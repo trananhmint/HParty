@@ -1,0 +1,33 @@
+.category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    padding: 20px 0px;
+    margin-left: -5px;
+}
+.category-menu{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+}
+
+.category-menu-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.category-menu-item img{
+    width: 80px;
+    border: 1px solid #f5a02c;
+    border-radius: 80px;
+}
+.category-menu-item span{
+    font-weight: 600;
+}
+.category svg{
+    font-size: 50px;
+    color: #E7C494;
+}

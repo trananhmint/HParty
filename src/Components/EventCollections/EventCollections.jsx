@@ -1,6 +1,6 @@
 import React from 'react'
 import'./EventCollections.css'
-import all_services from '../Assets/all_service'
+import all_services from '../Assets/events'
 import Item from '../Item/Item'
 export const EventCollections = () => {
   return (

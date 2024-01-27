@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     gap: 80px;
-    padding: 20px 0px;
-    margin-left: -5px;
+    padding: 20px;
+    margin-left: -50px;
 }
 .category-menu{
     display:flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     list-style: none;
     gap: 50px;
@@ -16,14 +16,22 @@
 
 .category-menu-item{
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
+    border-radius: 100px; 
 }
+
 
 .category-menu-item img{
     width: 80px;
-    border: 1px solid #f5a02c;
+    object-fit: contain;
     border-radius: 80px;
+    cursor: pointer;
 }
+
+.category-menu-item img:hover{
+    border: 0.1px solid #f5a02c;
+}
+
 .category-menu-item span{
     font-weight: 600;
 }

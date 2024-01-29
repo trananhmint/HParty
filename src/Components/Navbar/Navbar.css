@@ -46,6 +46,7 @@
 .navbar-search svg{
     background: #f5a02c;
     padding: 10px;
+    font-size: 40px;
     border-radius: 80px;
     color: white;
     margin-right: -45px;
@@ -72,6 +73,13 @@
 .navbar-login-signup button:hover{
     border: 1px solid #f5a02c;
 }
+
+.navbar-login-signup button:active{
+    transform: scale(1.05);
+    transition: 0.2s;
+    border: 1px solid #f5a02c;
+}
+
 .navbar-cart{
     display: flex;
     justify-content: center;

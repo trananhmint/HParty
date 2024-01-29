@@ -5,6 +5,7 @@
     align-items: center;
     gap: 20px;
     padding: 20px 0px;
+
 }
 
 .offers h1 {
@@ -21,13 +22,14 @@
 }
 
 .offers-box {
-    width: 65.6%;
+    width: 80%;
     height: 60vh;
     display: flex;
     margin: auto;
     padding: 0px 140px;
     gap: 100px;
-    background: linear-gradient(180deg, #f5a02c, #E7C494);
+    background: linear-gradient(90deg, #e6ba7c, #E7C494);
+    border-radius: 30px;
 }
 
 .offers-left {
@@ -36,6 +38,7 @@
     flex-direction: column;
     justify-content: center;
     width: 350px;
+    margin-top: -25px;
 
 }
 
@@ -43,27 +46,34 @@
     color: black;
     font-size: 80px;
     font-weight: 600;
-    text-shadow: 1px 0 #E7C494;
+    text-shadow: 10px 8px rgb(227, 156, 56);
 }
 
 .offers-left p {
     color: #171717;
     font-size: 22px;
     font-weight: 600;
+    text-shadow: 2px 2px #f2d3a9;
 }
 
 .offers-left button {
     width: 282px;
     height: 70px;
     border-radius: 35px;
-    background: #f5a02c;
+    background: #e9ae5c;
     border: none;
     color: white;
     font-size: 22px;
     font-weight: 600;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-left: 30px;
     cursor: pointer;
+}
+
+.offers-left button:active {
+    transform: scale(0.9);
+    transition: 0.1s;
+    border: 1px solid #c67709;
 }
 
 .offers-right {
@@ -71,7 +81,7 @@
     display: flex;
 }
 
-.offers-right img:hover{
-  transform: scale(1.05);
-  transition: 0.6s;  
+.offers-right img:hover {
+    transform: scale(1.05);
+    transition: 0.6s;
 }

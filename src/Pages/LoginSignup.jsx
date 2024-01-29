@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './CSS/LoginSignup.css'
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -8,49 +8,17 @@ const LoginSignup = () => {
   const ref = useRef(null);
   const[isActive, setIsActive] = useState(true);
 
-
-//  const container = useEffect(()=>{
-//     const element = ref.current;
-//     console.log(element)
-//   }, [])
-
-  // const handleClick = () => {
-  //   const container = ref.current;
-  //   console.log(container);
-
-  // }
-
-
-
   return (
-    // <div className='loginsignup'>
-    //   <div className="loginsignup-container">
-    //     <h1>Sign Up</h1>
-    //     <div className="loginsignup-fields">
-    //       <input type="text" placeholder='Your name' />
-    //       <input type="text" placeholder='Email address' />
-    //       <input type="password" placeholder='Password' />
-    //     </div>
-    //     <button>Continue</button>
-    //     <p className='loginsignup-login'>Already have an account <span>Login here</span></p>
-    //     <div className="loginsignup-agree">
-    //       <input type="checkbox" name="" id="" />
-    //       <p>By countinuing, I agree to the terms of use & privacy policy.</p>
-    //     </div>
-
-    //   </div>
-
-    // </div>
     <div className='Loginsignup'>
       <div  ref={ref} id='container'className ={isActive  ? 'container active': 'container'}>
         <div className="form-container sign-up">
           <form>
             <h1>Create Account</h1>
             <div className="social-icons">
-              <a href=""><GoogleIcon /></a>
-              <a href=""><FacebookIcon /></a>
-              <a href=""><GitHubIcon /></a>
-              <a href=""><LinkedInIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><GoogleIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><FacebookIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><GitHubIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><LinkedInIcon /></a>
             </div>
             <span>or use your email for registeration</span>
             <input type="text" placeholder='Name' />
@@ -63,10 +31,10 @@ const LoginSignup = () => {
           <form>
             <h1 >Sign In</h1>
             <div className="social-icons">
-              <a href=""><GoogleIcon /></a>
-              <a href=""><FacebookIcon /></a>
-              <a href=""><GitHubIcon /></a>
-              <a href=""><LinkedInIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><GoogleIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><FacebookIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><GitHubIcon /></a>
+              <a href="https://github.com/trananhmint/HParty"><LinkedInIcon /></a>
             </div>
             <span>or use your email password</span>
             <input type="email" placeholder='Email' />

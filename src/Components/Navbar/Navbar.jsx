@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export const Navbar = () => {
     return (
         <div className='navbar'>
-            <Link to="/" style={{textDecoration:'none'}}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
                 <div className='navbar-logo'>
                     <img src={party_logo} alt="" />
                     <p>HParty</p>
@@ -15,7 +15,7 @@ export const Navbar = () => {
             </Link>
 
             <div className='navbar-search'>
-                <input type="text" placeholder='Search here'/>
+                <input type="text" placeholder='Search here' />
                 <SearchIcon />
             </div>
 
@@ -23,10 +23,13 @@ export const Navbar = () => {
                 <Link to='/signup'><button className='login'>Sign Up</button></Link>
                 <button className='signup'>Log In</button>
             </div>
-            <div className="navbar-cart">
-                <ShoppingCartOutlinedIcon />
-                <div className="cart-count">0</div>
-            </div>
+            <Link to='/cart' style={{color:"black", textDecoration:"none"}}>
+                <div className="navbar-cart">
+                    <ShoppingCartOutlinedIcon />
+                    <div className="cart-count">0</div>
+                </div>
+            </Link>
+
         </div>
     )
 }

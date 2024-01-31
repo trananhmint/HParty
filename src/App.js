@@ -9,6 +9,7 @@ import rooms_banner from './Components/Assets/rooms_banner.jpg';
 import decorations_banner from'./Components/Assets/decorations_banners.jpg';
 import foods_banner from './Components/Assets/foods_banner.jpg';
 import services_banner from './Components/Assets/services_banner.png'
+import Cart from './Pages/Cart';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/decorations' element={<Services category="decorations" banner={decorations_banner}/>}/>
           <Route path='/foods' element={<Services category="foods"  banner={foods_banner}/>}/>
           <Route path='/services' element={<Services category="services"  banner={services_banner}/>} />
+          <Route path='/cart' element={<Cart/>}/>
         </Routes>
         <Footer />
       </BrowserRouter>

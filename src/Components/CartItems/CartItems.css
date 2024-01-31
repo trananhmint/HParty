@@ -1,0 +1,45 @@
+.cartitems{
+    margin:  100px 170px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cartitems hr{
+    height: 3px;
+    background: #f5a02c;
+    border: none;
+    outline: none;
+}
+
+.cartitems-format-main{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 75px;
+    padding: 20px 0px;
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cartitems-format{
+    font-size: 17px;
+    font-weight: 500;
+}
+.cartitems-image{
+    height: 62px;
+}
+
+.cartitems-quantity{
+    width: 64px;
+    height: 50px;
+    border: 1px solid #E7C494;
+    background: #E7C494;
+}
+
+.cartitems-quantity{
+    width: 15px;
+    margin: 0px 40px;
+    cursor: pointer;
+}

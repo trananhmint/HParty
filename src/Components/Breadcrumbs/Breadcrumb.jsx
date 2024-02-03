@@ -6,7 +6,7 @@ const Breadcrum = (props) => {
     const {service} = props;
     return (
         <div className='breadcrumb'>
-            HOME <ArrowForwardIosIcon /> {service.category} <ArrowForwardIosIcon/> {service.name}
+            HOME <ArrowForwardIosIcon /> {service.category} <ArrowForwardIosIcon/> {service.name} 
         </div>
     )
 }

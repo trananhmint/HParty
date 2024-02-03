@@ -1,7 +1,7 @@
 import React from 'react'
 import party_logo from '../Assets/logo1.png'
 import SearchIcon from '@mui/icons-material/Search';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 export const Navbar = () => {
@@ -25,7 +25,7 @@ export const Navbar = () => {
             </div>
             <Link to='/cart' style={{color:"black", textDecoration:"none"}}>
                 <div className="navbar-cart">
-                    <ShoppingCartOutlinedIcon />
+                    <LocalMallIcon />
                     <div className="cart-count">0</div>
                 </div>
             </Link>

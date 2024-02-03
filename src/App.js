@@ -25,7 +25,7 @@ function App() {
           <Route path='/services' element={<Services category="services"  banner={services_banner}/>} />
           <Route path='/cart' element={<Cart/>}/>
         </Routes>
-        <Footer />
+        <Footer/>
       </BrowserRouter>
     </div>
   );

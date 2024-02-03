@@ -2,12 +2,13 @@ import React from 'react'
 import './Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
+import { Link } from 'react-router-dom';
 
 export const Item = (props) => {
     return (
         <div className='item-card'>
             <div className="item-card-img">
-                <img src={props.image} alt="" />
+                <Link to={`/service/${props.id}`}><img src={props.image} alt="" /></Link>
             </div>
             <hr id='item-card-hr' />
             <div className="item-card-descriptions">

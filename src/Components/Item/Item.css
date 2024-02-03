@@ -26,7 +26,8 @@
 }
 #item-card-hr {
     font-weight: 400;
-    height: 1px;
+    height: 3px;
+  
 }
 .item-card-name {
     font-size: 20px;

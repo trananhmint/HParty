@@ -11,7 +11,7 @@ import Select from '@mui/material/Select';
 import ReactPaginate from 'react-paginate';
 
 
-export const Services = (props) => {
+export const ServiceCategory = (props) => {
   const [category, setCategory] = React.useState('');
 
   const handleChange = (event) => {
@@ -114,7 +114,7 @@ export const Services = (props) => {
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
-          <span>Showwing 1-8</span> out of <span>18</span> services
+          <span>Showing 1-8</span> out of <span>{all_service.length + 1}</span> services
         </p>
         <div className="services-sort">
           {/* Sort by <ArrowDropDownIcon
@@ -152,4 +152,4 @@ export const Services = (props) => {
   )
 }
 
-export default Services;
+export default ServiceCategory;

@@ -30,7 +30,7 @@ let events =[
     {
         name: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
         image: photo,
-        category:'services',
+        category:'waiters',
         new_price: 100000,
         old_price: 160000,
         place: "Hồ Chí Minh",

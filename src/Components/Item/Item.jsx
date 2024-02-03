@@ -16,8 +16,8 @@ export const Item = (props) => {
                     {props.name}
                 </div>
                 <div className="item-card-prices">
-                    <div className='item-card-new-price'>{props.new_price}.000đ</div>
-                    <div className='item-card-old-price'>{props.old_price}.000đ</div>
+                    <div className='item-card-new-price'>{props.new_price}đ</div>
+                    <div className='item-card-old-price'>{props.old_price}đ</div>
                 </div>
                 <div className="rate-stars">
                     <div className="stars">

@@ -5,9 +5,11 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import XIcon from '@mui/icons-material/X';
 import party_logo from '../Assets/logo1.png'
 export const Footer = () => {
+    const topScroll = () => window.scrollTo({top: 0, behavior: "smooth"});
+
     return (
         <div className='footer'>
-            <div className="footer-logo">
+            <div onClick={topScroll} className="footer-logo">
                 <img src={party_logo} alt='' />
                 <p>HParty</p>
             </div>

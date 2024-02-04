@@ -5,7 +5,7 @@ import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import rooms from '../Assets/rooms1.png';
 import foods from '../Assets/foods.jpg';
 import decorations from '../Assets/decorations.jpg'
-import services from '../Assets/services1.png'
+import waiters from '../Assets/waiters.png'
 import { Link } from 'react-router-dom';
 export const Category = () => {
   return (
@@ -21,8 +21,8 @@ export const Category = () => {
         <Link to='/decorations' style={{textDecoration:'none'}}>
           <li className='category-menu-item'><img src={decorations} alt="" /><span>Decors</span></li>
         </Link>
-        <Link to='/services' style={{textDecoration:'none'}}>
-          <li className='category-menu-item'><img src={services} alt="" /><span>Services</span></li>
+        <Link to='/waiters' style={{textDecoration:'none'}}>
+          <li className='category-menu-item'><img src={waiters} alt="" /><span>Waiters</span></li>
         </Link>
 
       </ul>

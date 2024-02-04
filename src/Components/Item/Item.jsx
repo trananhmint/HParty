@@ -2,6 +2,7 @@ import React from 'react'
 import './Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
+
 import { Link } from 'react-router-dom';
 
 export const Item = (props) => {
@@ -28,6 +29,7 @@ export const Item = (props) => {
                         <StarRateOutlinedIcon />
                     </div>
                     <p>(122)</p>
+                    {/* <p>{props.sale}</p> */}
                 </div>
                 <div className="item-card-place">
                     {props.place}

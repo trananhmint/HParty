@@ -6,7 +6,6 @@
     gap: 20px;
     background: #E7C494;
     margin-top: 20px;
-   
 }
 
 .footer-logo {
@@ -14,7 +13,6 @@
     align-items: center;
     gap:10px;
     padding: 5px 0px;
-
 }
 
 .footer-logo p {
@@ -22,7 +20,6 @@
     font-size: 35px;
     font-weight: 600;
     text-shadow: 1px 0 #E7C494;
-
 }
 .footer-logo img{
     width: 90px;
@@ -40,6 +37,7 @@
 }
 .footer-links li {
     cursor: pointer;
+    color: white;
 }
 .footer-social-icon {
     display: flex;
@@ -62,7 +60,6 @@
     color:rgb(240, 241, 228);
     font-size: 20px;
     text-shadow: 1px 0 #E7C494;
-
 }
 
 .footer-copyright hr{

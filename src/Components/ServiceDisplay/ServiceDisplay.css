@@ -16,7 +16,11 @@
     width: 160px;
     object-fit: contain;
 }
-.servicedisplay-display-img{
+.servicedisplay-display-img {
+    border: 1px solid #818181;
+    border-radius: 10px;
+}
+.servicedisplay-display-img img{
     width: 500px;
     height: 700px;
     object-fit: contain;

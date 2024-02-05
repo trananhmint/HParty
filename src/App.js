@@ -10,6 +10,8 @@ import foods_banner from './Components/Assets/foods_banner.jpg';
 import waiters_banner from './Components/Assets/waiters_banner.png'
 import Cart from './Pages/Cart';
 import ServiceCategory from './Pages/ServiceCategory';
+import SearchPage from './Pages/SearchPage';
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path='/foods' element={<ServiceCategory category="foods"  banner={foods_banner}/>}/>
           <Route path='/waiters' element={<ServiceCategory category="waiters"  banner={waiters_banner}/>} />
           <Route path='/cart' element={<Cart/>}/>
+          <Route path='/search' element={<SearchPage/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

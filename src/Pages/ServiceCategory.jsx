@@ -1,22 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
-import './CSS/Services.css'
+import './CSS/ServiceCategory.css'
 import { ServiceContext } from '../Components/Context/ServiceContext';
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Item from '../Components/Item/Item';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+
 // import { fetchService } from '../Components/Context/fetchService';
 import ReactPaginate from 'react-paginate';
 
 
 export const ServiceCategory = (props) => {
-  const [category, setCategory] = React.useState('');
-
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
+  
 
 
 
@@ -117,31 +110,6 @@ export const ServiceCategory = (props) => {
           <span>Showing 1-8</span> out of <span>{all_service.length + 1}</span> services
         </p>
         <div className="services-sort">
-          {/* Sort by <ArrowDropDownIcon
-            style={{
-              // fontSize:'25px',
-              marginBottom: '-8px'
-            }}
-          /> */}
-          {/* <div>Sort by:</div> */}
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
-              value={category}
-              onChange={handleChange}
-              label="Category"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={'rooms'}>Room</MenuItem>
-              <MenuItem value={'foods'}>Food</MenuItem>
-              <MenuItem value={'decorations'}>Decoration</MenuItem>
-              <MenuItem value={'service'}>Service</MenuItem>
-            </Select>
-          </FormControl>
         </div>
       </div>
       <div className="services-products">

@@ -6,11 +6,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const LoginSignup = () => {
   const ref = useRef(null);
-  const[isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(true);
 
   return (
     <div className='Loginsignup'>
-      <div  ref={ref} id='container'className ={isActive  ? 'container active': 'container'}>
+
+      <div ref={ref} id='container' className={isActive ? 'container active' : 'container'}>
         <div className="form-container sign-up">
           <form>
             <h1>Create Account</h1>
@@ -39,7 +40,7 @@ const LoginSignup = () => {
             <span>or use your email password</span>
             <input type="email" placeholder='Email' />
             <input type="password" placeholder='Password' />
-            <a href="#">Forgot Your Password?</a>
+            <a href="1">Forgot Your Password?</a>
             <button>Login</button>
           </form>
         </div>
@@ -48,17 +49,15 @@ const LoginSignup = () => {
             <div className="toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all of site of features</p>
-              <button className='hidden' id='login' onClick={()=>setIsActive(false)}>Login</button>
+              <button className='hidden' id='login' onClick={() => setIsActive(false)}>Login</button>
             </div>
             <div className="toggle-panel toggle-right">
               <h1>Hello, Friend</h1>
               <p>Register with your personal details to use all of site features</p>
-              <button className='hidden' id='register' onClick={()=>setIsActive(true)}>Sign Up</button>
+              <button className='hidden' id='register' onClick={() => setIsActive(true)}>Sign Up</button>
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
 

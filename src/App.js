@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Navbar from './Components/Navbar/Navbar';
+// import Navbar from './Components/Navbar/Navbar';
+// import Footer from './Components/Footer/Footer';
 import Homepage from './Pages/Homepage';
 import LoginSignup from './Pages/LoginSignup';
-import Footer from './Components/Footer/Footer';
 import rooms_banner from './Components/Assets/rooms_banner.jpg';
 import decorations_banner from'./Components/Assets/decorations_banners.jpg';
 import foods_banner from './Components/Assets/foods_banner.jpg';
@@ -17,7 +17,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/signup' element={<LoginSignup />} />
@@ -28,7 +27,6 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/search' element={<SearchPage/>}/>
         </Routes>
-        <Footer/>
       </BrowserRouter>
     </div>
   );

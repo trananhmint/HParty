@@ -6,6 +6,8 @@ import Item from '../Components/Item/Item';
 
 // import { fetchService } from '../Components/Context/fetchService';
 import ReactPaginate from 'react-paginate';
+import Navbar from '../Components/Navbar/Navbar';
+import Footer from '../Components/Footer/Footer';
 
 
 export const ServiceCategory = (props) => {
@@ -104,6 +106,7 @@ export const ServiceCategory = (props) => {
 
   return (
     <div className='services'>
+      <Navbar/>
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
@@ -115,7 +118,7 @@ export const ServiceCategory = (props) => {
       <div className="services-products">
         <PaginatedItems itemsPerPage={8} />
       </div>
-
+    <Footer/>
     </div>
   )
 }

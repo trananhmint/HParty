@@ -1,0 +1,16 @@
+
+  .main-layout {
+    display: flex;
+    flex-direction: column; /* Dàn theo chiều dọc */
+    align-items: center; /* Canh giữa các thành phần theo chiều ngang */
+  }
+  
+  .chart-group {
+    display: flex;
+    justify-content: space-between; /* Cách đều giữa các thành phần trong group */
+    margin-top: 70px;
+    margin-bottom: 20px; /* Khoảng cách giữa chart-group và ContractPieChart */
+  }
+  .user-pie-chart {
+    margin-right: 20px;
+  } 

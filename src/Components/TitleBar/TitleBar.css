@@ -1,0 +1,33 @@
+.titlebar{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 20px;
+    box-shadow: 0px 1px 3px -2px black;
+    background: #E7C494;
+    height: 100px;
+    text-shadow: 1px 0 #E7C494;
+    font-family: sans-serif;
+    color: #dba81a;
+    font-size: 22px;
+}
+.titlebar hr{
+    height: 40px;
+    border: 1px solid #dba81a;
+}
+.titlebar-logo{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.titlebar-logo img{
+    width: 90px;
+    border: 1px solid white;
+    border-radius: 80px;
+    background: white;
+}
+.titlebar-logo p{
+    color: #dba81a;
+    font-size: 35px;
+    font-weight: 600;
+}

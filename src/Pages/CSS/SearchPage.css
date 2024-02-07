@@ -27,13 +27,9 @@
     height: 1630px;
     border-radius: 12px;
     margin-left: 20px;
-    /* margin-top: 5px; */
     padding: 10px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     gap: 20px;
-    cursor: pointer;
 
 }
 

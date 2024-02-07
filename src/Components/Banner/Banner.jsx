@@ -13,7 +13,7 @@ export const Banner = () => {
                 <img src={banner_party3} alt="banner" id='slider-3'/>
             </div>
             <div className="banner-slider-nav">
-                <a href="#slider-1"/>
+                <a href="#slider-1"/> 
                 <a href="#slider-2"/>
                 <a href="#slider-3"/>
             </div>

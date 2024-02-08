@@ -12,6 +12,7 @@ import Cart from './Pages/Cart';
 import ServiceCategory from './Pages/ServiceCategory';
 import SearchPage from './Pages/SearchPage';
 import BookingService from './Pages/BookingService';
+import Alerts from './Pages/Alerts';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/search' element={<SearchPage/>}/>
           <Route path='/bookingService' element={<BookingService/>}/>
+          <Route path='/alerts' element={<Alerts/>}/>
         </Routes>
       </BrowserRouter>
     </div>

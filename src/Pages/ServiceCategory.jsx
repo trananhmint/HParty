@@ -12,9 +12,6 @@ import Footer from '../Components/Footer/Footer';
 
 export const ServiceCategory = (props) => {
   
-
-
-
   const { all_service } = useContext(ServiceContext);
 
   const items = all_service.filter((item) => item.category === props.category)

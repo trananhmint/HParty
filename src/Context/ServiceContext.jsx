@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import all_service from '../Assets/all_service'
+import all_service from '../Components/Assets/all_service'
 export const ServiceContext = createContext(null);
 
 const getDefaultCart = () => {
@@ -25,12 +25,12 @@ const ServiceContextProvider = (props) => {
     }
 
 
-    const getTotalPrice = ()=>{
+    const getTotalPrice = () => {
         let totalPrice = 0;
         for (let key in cartItems) {
-            if(key > 0 ){
-                let product = all_service.find((product)=> product.id === Number(key))
-                if(product){
+            if (key > 0) {
+                let product = all_service.find((product) => product.id === Number(key))
+                if (product) {
                     totalPrice += product.price * cartItems[key];
                 }
             }
@@ -38,10 +38,10 @@ const ServiceContextProvider = (props) => {
         return totalPrice;
     }
 
-    const getCountOfCart = () =>{
+    const getCountOfCart = () => {
         let count = 0;
-        for (let index in cartItems){
-            if(cartItems[index] > 0){
+        for (let index in cartItems) {
+            if (cartItems[index] > 0) {
                 count += cartItems[index];
             }
         }
@@ -49,7 +49,7 @@ const ServiceContextProvider = (props) => {
     }
 
 
-    const contextValue = { all_service, cartItems, addToCart, removeFromCart, getTotalPrice, getCountOfCart};
+    const contextValue = { all_service, cartItems, getCountOfCart, addToCart, removeFromCart, getTotalPrice };
     return <ServiceContext.Provider value={contextValue}>
         {props.children}
     </ServiceContext.Provider>

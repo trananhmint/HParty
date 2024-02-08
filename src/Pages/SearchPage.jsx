@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import './CSS/SearchPage.css'
+import all_service from '../Components/Assets/all_service';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { ServiceContext } from '../Components/Context/ServiceContext';
 import Item from '../Components/Item/Item';
 import ReactPaginate from 'react-paginate';
 import Checkbox from '@mui/material/Checkbox';
@@ -21,7 +21,6 @@ export const SearchPage = () => {
         setCategory(event.target.value);
     };
 
-    const { all_service } = useContext(ServiceContext);
     const items = all_service;
 
     function Items({ currentItems }) {

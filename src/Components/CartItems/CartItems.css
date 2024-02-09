@@ -1,12 +1,15 @@
-.cartitems{
-    margin:  100px 170px;
+.cartitems-items{
+    margin:  100px auto;
+    width: 80%;
     display: flex;
     flex-direction: column;
+    box-shadow: 0px 0px 10px 5px #e5e5e5;
+    padding: 50px;
     gap: 20px;
 }
 
-.cartitems hr{
-    height: 3px;
+.cartitems-items hr{
+    height: 2px;
     background: #f5a02c;
     border: none;
     outline: none;
@@ -16,16 +19,18 @@
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    gap: 75px;
-    padding: 20px 0px;
+    gap: 50px;
     color: black;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
 }
 
 .cartitems-format{
     font-size: 17px;
     font-weight: 500;
+}
+.cartitems-format p:nth-child(2) {
+    text-align: start;
 }
 .cartitems-image{
     height: 62px;
@@ -41,5 +46,80 @@
 .cartitems-quantity{
     width: 15px;
     margin: 0px 40px;
+    cursor: pointer;
+}
+.cartitems-format svg:hover {
+    color: red;
+}
+
+.cartitems-total {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    bottom: 0;
+    margin: 100px auto;
+    padding: 30px 50px;
+    box-shadow: 0 0 10px 5px #e5e5e5;
+    position: sticky;
+    background: white;
+}
+.cartitems-total hr {
+    width: 100%;
+    margin: 10px 0 20px 0;
+    border: none;
+    height: 2px;
+    background: #f5a02c;
+}
+.cartitems-total-promotion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.cartitems-total-promotion p {
+    display: flex;
+    font-size: 20px;
+    /* font-weight: 600; */
+    cursor: pointer;
+}
+.cartitems-total-promotion p:first-child {
+    font-size: 25px;
+    font-weight: 700;
+    cursor: auto;
+}
+.cartitems-total-promotion svg {
+    font-size: 35px;
+    margin-right: 10px;
+    margin-top: -1px;
+    color: #f5a02c;
+}
+.cartitems-total-cart {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+}
+.cartitems-total-price {
+    display: flex;
+    flex-direction: row;
+}
+.cartitems-total-price {
+    font-size: 23px;
+    font-weight: 500;
+    color: red;
+}
+.cartitems-total-price p:last-child {
+    font-weight: 800;
+    margin-left: 20px;
+}
+.cartitems-total-cart button {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    background: red;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
 }

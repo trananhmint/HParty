@@ -25,7 +25,8 @@
     font-size: 20px;
     color: #f5a02c;
 }
-.payment-methods svg{
+
+.payment-methods svg {
     font-size: 30px;
     margin-bottom: -8px;
 }
@@ -102,4 +103,23 @@
     opacity: .7;
     transform: scale(0.9);
     transition: 0.1s;
+}
+
+.payment-methods-change input {
+    position: initial;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    color:#3cbbbb;
+    border-radius: 50%;
+}
+
+.payment-methods-change input:hover{
+    background-color: #3cbbbb;
+}
+
+.payment-methods-change label {
+    position: relative;
+    font-size: 20px;
 }

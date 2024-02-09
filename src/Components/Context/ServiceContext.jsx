@@ -25,13 +25,13 @@ const ServiceContextProvider = (props) => {
     }
 
 
-    const getTotalPrice = ()=>{
+    const getTotalPrice = () =>{
         let totalPrice = 0;
         for (let key in cartItems) {
-            if(key > 0 ){
-                let product = all_service.find((product)=> product.id === Number(key))
-                if(product){
-                    totalPrice += product.price * cartItems[key];
+            if(cartItems[key] > 0 ){
+                let serviceInfo = all_service.find((service)=> service.id === Number(key))
+                if(serviceInfo){
+                    totalPrice += serviceInfo.price * cartItems[key];
                 }
             }
         }

@@ -32,6 +32,7 @@
 }
 .servicedisplay-right h1 {
     color: #3d3d3d;
+    text-align: start;
     font-size: 40px;
     font-weight: 700;
 }

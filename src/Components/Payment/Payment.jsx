@@ -2,13 +2,30 @@ import React from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 export const Payment = () => {
+
+
+    const handleClick = () => {
+        document.querySelector("#methods").style.display = "none";
+        document.querySelector("#methods-button").style.display = "none";
+        let html = `<input className ="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" />
+                    <label for="byCash">By Cash</label>
+                    
+                    <input  className ="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byBanking" />
+                    <label for="byBanking">By Banking</label>`;
+        var payment = document.querySelector(".payment-methods-change");
+        payment.innerHTML = html;
+    }
+
+
+
     return (
         <div className='payment'>
             <div className="payment-methods">
-                <p><LocalAtmOutlinedIcon/> Payment Method</p>
+                <p><LocalAtmOutlinedIcon /> Payment Method</p>
                 <div className="payment-methods-change">
-                    <p>By Cash</p>
-                    <button>Choose Method</button>
+                    <p id="methods" name="methods">By Cash</p>
+                    <button id="methods-button" onClick={handleClick}>Choose Method</button>
+
                 </div>
             </div>
             <hr />

@@ -1,0 +1,125 @@
+.payment {
+    margin: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 50px 50px;
+    background: white;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.payment hr {
+    outline: none;
+    border: 0.1px dashed grey;
+}
+
+.payment-methods {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payment-methods>p {
+    font-size: 20px;
+    color: #f5a02c;
+}
+
+.payment-methods svg {
+    font-size: 30px;
+    margin-bottom: -8px;
+}
+
+.payment-methods-change {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.payment-methods-change p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.payment-methods-change button {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: white;
+    color: #3cbbbb;
+    cursor: pointer;
+}
+
+.payment-total {
+    display: flex;
+    flex-direction: column;
+    margin-left: 800px;
+    gap: 40px;
+}
+
+.payment-total hr {
+    border: 1px solid grey;
+}
+
+.payment-total-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+    font-size: 18px;
+}
+
+.payment-total-button {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.payment-total-button p {
+    margin-top: 20px;
+    font-size: 18px;
+
+}
+
+.payment-total-button span {
+    font-size: 20px;
+    color: #f5a02c;
+}
+
+.payment-total-button button {
+    width: 262px;
+    height: 58px;
+    outline: none;
+    border: none;
+    border-radius: 33px;
+    background: #f5a02c;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.payment-total-button button:active {
+    opacity: .7;
+    transform: scale(0.9);
+    transition: 0.1s;
+}
+
+.payment-methods-change input {
+    position: initial;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    color:#3cbbbb;
+    border-radius: 50%;
+}
+
+.payment-methods-change input:hover{
+    background-color: #3cbbbb;
+}
+
+.payment-methods-change label {
+    position: relative;
+    font-size: 20px;
+}

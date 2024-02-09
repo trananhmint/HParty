@@ -326,6 +326,16 @@ let all_services = [
         id: "36"
     },
 
+    {
+        name: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+        image: photo,
+        category:'waiters',
+        new_price: 100000,
+        old_price: 160000,
+        place: "Hồ Chí Minh",
+        id: "37"
+    },
+
 ]
 
 export default all_services;

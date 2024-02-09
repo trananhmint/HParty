@@ -2,14 +2,14 @@ import React from 'react'
 import './Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
-
 import { Link } from 'react-router-dom';
 
 export const Item = (props) => {
     return (
+        <Link to={`/service/${props.id}`} style={{textDecoration:'none', color:'black'}}> 
         <div className='item-card'>
             <div className="item-card-img">
-                <Link to={`/service/${props.id}`}><img src={props.image} alt="" /></Link>
+                <img src={props.image} alt="" />
             </div>
             <hr id='item-card-hr' />
             <div className="item-card-descriptions">
@@ -36,6 +36,7 @@ export const Item = (props) => {
                 </div>
             </div>
         </div>
+        </Link>
     )
 }
 

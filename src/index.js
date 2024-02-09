@@ -7,7 +7,6 @@ import ServiceContextProvider from './Components/Context/ServiceContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
   <ServiceContextProvider>
     <App />
   </ServiceContextProvider>

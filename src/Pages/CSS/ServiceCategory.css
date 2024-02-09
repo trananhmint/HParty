@@ -72,6 +72,7 @@
     cursor: pointer;
     
 }
+
 .page-item.active{
     /* border: 1px solid #f5a02c ; */
     background-color: #E7C494;

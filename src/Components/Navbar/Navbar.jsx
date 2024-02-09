@@ -5,7 +5,7 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 export const Navbar = () => {
-    
+
 
     return (
         <div className='navbar'>
@@ -25,7 +25,7 @@ export const Navbar = () => {
                 <Link to='/signup'><button className='login'>Sign Up</button></Link>
                 <button className='signup'>Log In</button>
             </div>
-            <Link to='/cart' style={{color:"black", textDecoration:"none"}}>
+            <Link to='/cart' style={{ color: "black", textDecoration: "none" }}>
                 <div className="navbar-cart">
                     <LocalMallIcon />
                     <div className="cart-count">0</div>

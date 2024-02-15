@@ -8,6 +8,7 @@ import Item from '../Components/Item/Item';
 import ReactPaginate from 'react-paginate';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
+import { fetchService } from '../Context/fetchService';
 
 
 export const ServiceCategory = (props) => {
@@ -92,14 +93,14 @@ export const ServiceCategory = (props) => {
 
 
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [])
+  useEffect(() => {
+    fetchData();
+  }, [])
 
-  // const fetchData = async () => {
-  //   const data = await fetchService();
-  //   console.log(data.data);
-  // }
+  const fetchData = async () => {
+    const data = await fetchService();
+    console.log( typeof data.data);
+  }
 
   return (
     <div className='services'>

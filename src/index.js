@@ -7,9 +7,12 @@ import ServiceContextProvider from './Components/Context/ServiceContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ServiceContextProvider>
-    <App />
-  </ServiceContextProvider>
+  // <AuthProvider>
+    <ServiceContextProvider>
+      <App />
+    </ServiceContextProvider>
+  // </AuthProvider> 
+
 
 );
 // If you want to start measuring performance in your app, pass a function

@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './PopularServices.css'
 import all_services from '../Assets/events'
 import Item from '../Item/Item'
+import { fetchService } from '../../Context/fetchService'
 export const PopularServices = () => {
+
+
+    const [items, setItems] = useState([]);
+
+    const fetchData = async () => {
+        try {
+            const data = await fetchService();
+            setItems(data.data.data);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <div className='popular-services'>
             <h1>Popular Services</h1>
-            <hr/>
+            <hr />
             <div className="popular">
-                {all_services.map((item, i) => {
-                    return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} place={item.place} />
+                {items.map((item, i) => {
+                    console.log(item);
+                    return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                 })}
             </div>
         </div>

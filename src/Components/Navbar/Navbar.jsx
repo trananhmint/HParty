@@ -11,10 +11,19 @@ export const Navbar = () => {
 
     function loginLogout(user) {
         if (user != null) {
-            return <button onClick={() => auth.logOut()} className='logout'>Log Out</button>
+
+            return <div className='navbar-login-signup'>
+                <button onClick={() => auth.logOut()} className='logout'>Log Out</button>
+            </div>
+
         }
-        else{
-           return <Link to='/signup'><button className='signup'>Sign Up</button></Link>
+        else {
+
+            return <div className='navbar-login-signup'>
+                <Link to='/signup'><button className='login'>Log In</button></Link>
+                <Link to='/signup'><button className='signup'>Sign Up</button></Link>
+            </div>
+
         }
     }
 
@@ -33,12 +42,7 @@ export const Navbar = () => {
                 <input type="text" placeholder='Search here' />
                 <SearchIcon />
             </div>
-
-            <div className="navbar-login-signup">
-                <Link to='/signup'><button className='login'>Log In</button></Link>
                 {loginLogout(user)}
-
-            </div>
             <Link to='/cart' style={{ color: "black", textDecoration: "none" }}>
                 <div className="navbar-cart">
                     <LocalMallIcon />

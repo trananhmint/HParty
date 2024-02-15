@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import '../ServiceDisplay/ServiceDisplay.css';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import { ServiceContext } from '../Context/ServiceContext';
+import { ServiceContext } from '../../Context/ServiceContext';
+
 
 const ServiceDisplay = (props) => {
   const { service } = props;

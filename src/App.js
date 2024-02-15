@@ -26,7 +26,6 @@ function App() {
   // }
   return (
     <div className="App">
-
       <BrowserRouter>
         <AuthProvider>
           <Routes>
@@ -45,7 +44,6 @@ function App() {
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-
     </div>
   );
 }

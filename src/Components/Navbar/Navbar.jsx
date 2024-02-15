@@ -4,8 +4,21 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthProvider';
 export const Navbar = () => {
+    const auth = useAuth();
+    const user = auth.user;
 
+    function loginLogout(user) {
+        if (user != null) {
+            return <button onClick={() => auth.logOut()} className='logout'>Log Out</button>
+        }
+        else{
+           return <Link to='/signup'><button className='signup'>Sign Up</button></Link>
+        }
+    }
+
+    // console.log(loginLogout(user));
 
     return (
         <div className='navbar'>
@@ -22,8 +35,9 @@ export const Navbar = () => {
             </div>
 
             <div className="navbar-login-signup">
-                <Link to='/signup'><button className='login'>Sign Up</button></Link>
-                <button className='signup'>Log In</button>
+                <Link to='/signup'><button className='login'>Log In</button></Link>
+                {loginLogout(user)}
+
             </div>
             <Link to='/cart' style={{ color: "black", textDecoration: "none" }}>
                 <div className="navbar-cart">

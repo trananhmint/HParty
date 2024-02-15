@@ -8,9 +8,27 @@ import './CSS/Alerts.css'
 import all_service from '../Components/Assets/all_service';
 import Item from '../Components/Item/Item';
 import ReactPaginate from 'react-paginate';
+import { fetchService } from '../Context/fetchService';
 export const Alerts = () => {
+    // const items = all_service;
+    const [items, setItems] = useState([]);
 
-    const items = all_service;
+    const fetchData = async () => {
+        try {
+            const data = await fetchService();
+            setItems(data.data.data);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+
     function Items({ currentItems }) {
         return (
             <div className='services-displayed'>
@@ -102,6 +120,8 @@ export const Alerts = () => {
             <Footer />
         </div>
     )
+
+
 }
 
 export default Alerts;

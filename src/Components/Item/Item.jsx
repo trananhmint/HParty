@@ -14,11 +14,11 @@ export const Item = (props) => {
             <hr id='item-card-hr' />
             <div className="item-card-descriptions">
                 <div className="item-card-name">
-                    {props.name}
+                    {props.serviceName}
                 </div>
                 <div className="item-card-prices">
-                    <div className='item-card-new-price'>{props.new_price}đ</div>
-                    <div className='item-card-old-price'>{props.old_price}đ</div>
+                    <div className='item-card-new-price'>{props.price}đ</div>
+                    <div className='item-card-old-price'>{props.price}đ</div>
                 </div>
                 <div className="rate-stars">
                     <div className="stars">
@@ -32,7 +32,10 @@ export const Item = (props) => {
                     {/* <p>{props.sale}</p> */}
                 </div>
                 <div className="item-card-place">
-                    {props.place}
+                    {props.description}
+                    {props.status}
+                    {props.userId}
+                    {props.categoryId}
                 </div>
             </div>
         </div>

@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import './CartItems.css'
-import { ServiceContext } from '../Context/ServiceContext'
+
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
+import { ServiceContext } from '../../Context/ServiceContext';
 export const CartItems = () => {
   const { all_service, cartItems, removeFromCart } = useContext(ServiceContext);
   const { getTotalPrice, getCountOfCart } = useContext(ServiceContext);

@@ -12,8 +12,9 @@ const AuthProvider = ({ children }) => {
         try {
             const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data);
             console.log("Post created:", response.data);
-            navigate("/");
+            navigate("/signup");
             console.log("Success");
+            alert("Your register is successful")
 
         } catch (error) {
             console.error(error);

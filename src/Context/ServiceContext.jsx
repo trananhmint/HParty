@@ -25,23 +25,23 @@ const ServiceContextProvider = (props) => {
     }
 
 
-    const getTotalPrice = () => {
+    const getTotalPrice = () =>{
         let totalPrice = 0;
         for (let key in cartItems) {
-            if (key > 0) {
-                let product = all_service.find((product) => product.id === Number(key))
-                if (product) {
-                    totalPrice += product.price * cartItems[key];
+            if(cartItems[key] > 0 ){
+                let serviceInfo = all_service.find((service)=> service.id === key)
+                if(serviceInfo){
+                    totalPrice += serviceInfo.new_price * cartItems[key];
                 }
             }
         }
         return totalPrice;
     }
 
-    const getCountOfCart = () => {
+    const getCountOfCart = () =>{
         let count = 0;
-        for (let index in cartItems) {
-            if (cartItems[index] > 0) {
+        for (let index in cartItems){
+            if(cartItems[index] > 0){
                 count += cartItems[index];
             }
         }
@@ -49,7 +49,7 @@ const ServiceContextProvider = (props) => {
     }
 
 
-    const contextValue = { all_service, cartItems, getCountOfCart, addToCart, removeFromCart, getTotalPrice };
+    const contextValue = { all_service, cartItems, addToCart, removeFromCart, getTotalPrice, getCountOfCart};
     return <ServiceContext.Provider value={contextValue}>
         {props.children}
     </ServiceContext.Provider>

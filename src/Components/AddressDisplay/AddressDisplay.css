@@ -1,45 +1,64 @@
-.address-display{
+.address-display {
     display: flex;
     flex-direction: column;
-    margin: 0 40px;
+    width: 80%;
+    margin-top: 150px !important;
+    margin: auto;
     padding: 50px 50px;
     background: white;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     gap: 20px;
     text-align: left;
-    cursor: pointer;
     font-family: sans-serif;
+    border-radius: 15px;
 }
-.address-display > p{
+
+.address-display>p {
     font-size: 30px;
     font-weight: 600;
     color: #dba81a;
 }
-.address-display svg{
+
+.address-display svg {
     font-size: 32px;
     margin-bottom: -5px;
 }
-.address-display-name-phone-address{
+
+.address-display-name-phone-address {
     display: flex;
     justify-content: space-between;
-    
+
 }
-.address-display-name-phone{
+
+.address-display-name-phone {
     width: 18%;
     font-size: 20px;
     font-weight: 700;
 }
-.address-display-address{
+
+.address-display-address-chip {
+    width: '150px';
+    height: '30px'; 
+    margin-top:'15px'; 
+    border-radius: 0px; 
+    border:'1px solid #dba81a';
+    color: '#dba81a';
+    font-size: '15px';
+}
+
+.address-display-address {
     display: flex;
     gap: 50px;
     width: 60%;
     font-size: 20px;
 }
-.address-display-button{
+
+.address-display-button {
     width: 9%;
-   margin-top: 6px;
+    margin-top: 6px;
 }
-.address-display-button button{
+
+.address-display-button button {
     font-size: 18px;
     font-weight: 500;
     border: none;

@@ -1,4 +1,6 @@
 .navbar{
+    top: 0;
+    z-index: 999;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -8,6 +10,8 @@
     height: 100px;
     margin-bottom: 50px;
     text-shadow: 1px 0 #E7C494;
+    position: fixed;
+    width: 100%;
 }
 .navbar-logo{
     display: flex;

@@ -18,7 +18,7 @@ export const ShopCart = () => {
             <div className="shopcart-format-shopname">
                 <p>Company A</p>
                 <hr />
-                <p id='chatting'><MessageOutlinedIcon /> Chat now</p>
+                <p id='chatting'><MessageOutlinedIcon />Chat now</p>
             </div>
             {all_service.map((e) => {
                 if (cartItems[e.id] > 0) {
@@ -38,7 +38,7 @@ export const ShopCart = () => {
             })}
             <hr />
             <div className="shopcart-format-voucher">
-                <p><ConfirmationNumberOutlinedIcon /> Shop's Voucher</p>
+                <p><ConfirmationNumberOutlinedIcon />Shop's Voucher</p>
                 <div className="shopcart-format-voucher-change">
                     <p>Sale 15%</p>
                     <button>Choose Voucher</button>
@@ -46,9 +46,9 @@ export const ShopCart = () => {
             </div>
             <hr />
             <div className="shopcart-format-message">
-                <p>Message for Seller:</p>
+                <p>Message:</p>
                 <div className="shopcart-format-message-textarea">
-                    <textarea placeholder='Type your message here'></textarea>
+                    <textarea placeholder='Message for seller'></textarea>
                 </div>
             </div>
         </div>

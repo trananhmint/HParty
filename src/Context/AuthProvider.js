@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
 
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid login")
+            console.log("Your register is invalid or existed. Please register again!!!")
         }
     }
 
@@ -39,14 +39,13 @@ const AuthProvider = ({ children }) => {
                         console.log("Success");
                         return;
                     }
-                })
-            // if (response.data) {
 
-            // }
-            // throw new Error(response.data.message);
+                })
+
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid login")
+            console.log("This is an invalid login");
+            alert("Wrong email or password. Please enter again!!!");
         }
     };
 

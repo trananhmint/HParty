@@ -20,6 +20,7 @@ const Service = () => {
       <Navbar/>
       <Breadcrumb service={service}/>
       <ServiceDisplay service={service} />
+      
       <Footer/>
     </div>
   )

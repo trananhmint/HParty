@@ -4,6 +4,7 @@ import './CartItems.css'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
+import { Link } from 'react-router-dom';
 export const CartItems = () => {
   const { all_service, cartItems, removeFromCart } = useContext(ServiceContext);
   const { getTotalPrice, getCountOfCart } = useContext(ServiceContext);
@@ -52,7 +53,7 @@ export const CartItems = () => {
             <p>Total: </p>
             <p>{getTotalPrice()} đ</p>
           </div>
-          <button>BOOKING</button>
+          <Link to="/bookingService"><button>BOOKING</button></Link>
         </div>
       </div>
 

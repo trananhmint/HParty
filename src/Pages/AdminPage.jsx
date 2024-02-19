@@ -1,15 +1,13 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import './Sidebar.css';
-import UserPieChart from '../Userpiechart/Userpiechart';
-import ServiceBarChart from '../Servicebarchart/Servicebarchart';
-import ContractPieChart from '../Contractpiechart/Contractpiechart';
-import AdminHeader from '../Adminheader/Adminheader';
-import AdminSideBar from '../Adminsidebar/Adminsidebar';
-import AdminProfile from '../Adminprofile/Adminprofile';
+import './CSS/AdminPage.css';
+import UserPieChart from '../Components/Userpiechart/Userpiechart';
+import ServiceBarChart from '../Components/Servicebarchart/Servicebarchart';
+import ContractPieChart from '../Components/Contractpiechart/Contractpiechart';
+import AdminHeader from '../Components/Adminheader/Adminheader';
+import AdminSideBar from '../Components/Adminsidebar/Adminsidebar';
 
 const drawerWidth = 240;
 
@@ -33,7 +31,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 );
 
 
-export default function SideBar() {
+export default function AdminPage() {
   const [open, setOpen] = React.useState(false);
 
     
@@ -50,13 +48,14 @@ export default function SideBar() {
       <CssBaseline />
       <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen}/>
       <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
+      
       <Main open={open}>
       <div className="main-layout">
       <div className="chart-group">
-        <UserPieChart className="user-pie-chart"  />
-        <ServiceBarChart />
+        <UserPieChart className="user-pie-chart" />
+        <ServiceBarChart/>
       </div>
-      <ContractPieChart />
+      <ContractPieChart/>
     </div>
       </Main>
     </Box>

@@ -18,7 +18,7 @@ export const Item = (props) => {
                 </div>
                 <div className="item-card-prices">
                     <div className='item-card-new-price'>{props.price}đ</div>
-                    <div className='item-card-old-price'>{props.price}đ</div>
+                    <div className='item-card-old-price'>{props.sale_Price}đ</div>
                 </div>
                 <div className="rate-stars">
                     <div className="stars">
@@ -33,9 +33,6 @@ export const Item = (props) => {
                 </div>
                 <div className="item-card-place">
                     {props.description}
-                    {props.status}
-                    {props.userId}
-                    {props.categoryId}
                 </div>
             </div>
         </div>

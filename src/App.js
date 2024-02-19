@@ -16,7 +16,14 @@ import Alerts from './Pages/Alerts';
 import { useState } from 'react';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './router/route';
+import ContractPage from './Pages/ContractPage';
+import { pdfjs } from 'react-pdf';
+import ContractPageByPH from './Pages/ContractPageByPH';
 
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
 
 function App() {
   // const [token, setToken] = useState();
@@ -41,11 +48,13 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/bookingService' element={<BookingService />} />
+            <Route path="/contractByPH" element={<ContractPageByPH />} />
+            <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-
+        {/* <ContractPage/> */}
     </div>
   );
 }

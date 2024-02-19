@@ -9,6 +9,8 @@ export const TitleBar = (props) => {
             return <h2>Payment</h2>
         } if (title === 'cart') {
             return <h2>Cart</h2>
+        }if(title === 'contract'){
+            return <h2>Contract</h2>
         }
     }
     return (

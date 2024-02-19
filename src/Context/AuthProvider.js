@@ -10,14 +10,19 @@ const AuthProvider = ({ children }) => {
 
     const fetchRegister = async (data) => {
         try {
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data);
-            console.log("Post created:", response.data);
-            navigate("/");
-            console.log("Success");
+            const response = await axios
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data)
+                .then(res => {
+                    console.log("Post created:", res.data);
+                    navigate("/signup");
+                    console.log("Success");
+                    alert("Register successfully");
+                })
+
 
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid login")
+            console.log("This is an invalid register")
         }
     }
 

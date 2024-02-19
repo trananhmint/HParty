@@ -10,12 +10,14 @@ import foods_banner from './Components/Assets/foods_banner.jpg';
 import waiters_banner from './Components/Assets/waiters_banner.png'
 import Cart from './Pages/Cart';
 import ServiceCategory from './Pages/ServiceCategory';
+import Service from './Pages/Service';
 import SearchPage from './Pages/SearchPage';
 import BookingService from './Pages/BookingService';
 import Alerts from './Pages/Alerts';
 import { useState } from 'react';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './router/route';
+import ForgetPassword from './Pages/ForgetPassword';
 import ContractPage from './Pages/ContractPage';
 import { pdfjs } from 'react-pdf';
 import ContractPageByPH from './Pages/ContractPageByPH';
@@ -33,13 +35,15 @@ function App() {
   // }
   return (
     <div className="App">
-
       <BrowserRouter>
         <AuthProvider>
           <Routes>
             <Route path='/signup' element={<LoginSignup />} />
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Homepage />} />
+            </Route>
+            <Route path='/service' element={<Service />} >
+              <Route path=':serviceId' element={<Service />} />
             </Route>
             <Route path='/rooms' element={<ServiceCategory category="rooms" banner={rooms_banner} />} />
             <Route path='/decorations' element={<ServiceCategory category="decorations" banner={decorations_banner} />} />
@@ -51,6 +55,7 @@ function App() {
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
+            <Route path='/recover' element={<ForgetPassword/>} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

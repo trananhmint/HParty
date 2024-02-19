@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { ServiceContext } from '../Components/Context/ServiceContext'
 import { useParams } from 'react-router-dom';
 import ServiceDisplay from '../Components/ServiceDisplay/ServiceDisplay';
 import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
 import Navbar from '../Components/Navbar/Navbar';
+import Footer from '../Components/Footer/Footer';
+import { ServiceContext } from '../Context/ServiceContext';
 
 const Service = () => {
   const {all_service} = useContext(ServiceContext);

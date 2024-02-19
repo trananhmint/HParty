@@ -6,7 +6,7 @@ import banner_party3 from '../Assets/banner_party6.png'
 export const Banner = () => {
   return (
     <div className='banner'>
-        <div className="banner-slider-wrapper">
+        <div className="banner-slider-wrapper" id='slider-position'>
             <div className="banner-slider">
                 <img src={banner_party1} alt="banner" id='slider-1' />
                 <img src={banner_party2} alt="banner" id='slider-2'/>

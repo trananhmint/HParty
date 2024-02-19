@@ -33,19 +33,20 @@ function App() {
             <Route path='/signup' element={<LoginSignup />} />
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Homepage />} />
+              <Route path='/service' element={<Service />} >
+                <Route path=':serviceId' element={<Service />} />
+              </Route>
+              <Route path='/rooms' element={<ServiceCategory category="rooms" banner={rooms_banner} />} />
+              <Route path='/decorations' element={<ServiceCategory category="decorations" banner={decorations_banner} />} />
+              <Route path='/foods' element={<ServiceCategory category="foods" banner={foods_banner} />} />
+              <Route path='/waiters' element={<ServiceCategory category="waiters" banner={waiters_banner} />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/search' element={<SearchPage />} />
+              <Route path='/bookingService' element={<BookingService />} />
+              <Route path='/alerts' element={<Alerts />} />
+              <Route path='/recover' element={<ForgetPassword />} />
             </Route>
-            <Route path='/service' element={<Service />} >
-              <Route path=':serviceId' element={<Service />} />
-            </Route>
-            <Route path='/rooms' element={<ServiceCategory category="rooms" banner={rooms_banner} />} />
-            <Route path='/decorations' element={<ServiceCategory category="decorations" banner={decorations_banner} />} />
-            <Route path='/foods' element={<ServiceCategory category="foods" banner={foods_banner} />} />
-            <Route path='/waiters' element={<ServiceCategory category="waiters" banner={waiters_banner} />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/search' element={<SearchPage />} />
-            <Route path='/bookingService' element={<BookingService />} />
-            <Route path='/alerts' element={<Alerts />} />
-            <Route path='/recover' element={<ForgetPassword/>} />
+
           </Routes>
         </AuthProvider>
       </BrowserRouter>

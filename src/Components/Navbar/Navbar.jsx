@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import party_logo from '../Assets/logo1.png'
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
+import { ServiceContext } from '../../Context/ServiceContext';
 export const Navbar = () => {
     const auth = useAuth();
     const user = auth.user;
+    const { getCountOfCart} = useContext(ServiceContext);
 
     function loginLogout(user) {
         if (user != null) {
@@ -46,7 +48,7 @@ export const Navbar = () => {
             <Link to='/cart' style={{ color: "black", textDecoration: "none" }}>
                 <div className="navbar-cart">
                     <LocalMallIcon />
-                    <div className="cart-count">0</div>
+                    <div className="cart-count">{getCountOfCart()}</div>
                 </div>
             </Link>
 

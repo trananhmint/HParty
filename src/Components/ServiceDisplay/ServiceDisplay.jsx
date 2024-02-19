@@ -22,18 +22,18 @@ const ServiceDisplay = (props) => {
         </div>
       </div>
       <div className="servicedisplay-right">
-        <h1>{service.name}</h1>
+        <h1>{service.serviceName}</h1>
         <div className="servicedisplay-right-star">
           <StarOutlinedIcon />
           <StarOutlinedIcon />
           <StarOutlinedIcon />
           <StarOutlinedIcon />
           <StarBorderOutlinedIcon />
-          <p>({service.sale})</p>
+          <p>({service.sale}100)</p>
         </div>
         <div className="servicedisplay-right-prices">
           <div className="servicedisplay-right-price">{service.price} đ</div>
-          <div className="servicedisplay-right-price-sale">{service.sale_price} đ</div>
+          <div className="servicedisplay-right-price-sale">{service.price} đ</div>
         </div>
         <div className="servicedisplay-right-description">
           <p>{service.description}</p>

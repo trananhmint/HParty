@@ -86,10 +86,10 @@ function stringToColor(string) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            background: 'linear-gradient(to bottom, #DEB887, #FFFFFF )',
+            // background: 'linear-gradient(to bottom, #e7c494, #FFFFFF )',
+            background: '#e7c494',
             color: 'white',
             fontWeight: '500'
-            // background: '#DEB887'
 
           },
         }}

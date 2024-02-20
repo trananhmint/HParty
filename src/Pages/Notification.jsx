@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Paper, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
 import './CSS/Notification.css'
 import cakes from '../Components/Assets/Cakes.jpg';
 
@@ -22,7 +22,11 @@ const Notification = () => {
               primary={notification.title}
               secondary={notification.description}
             />
+            <Button variant="contained" size="medium" style={{background: 'white', color: 'black'}}>
+          Xem chi tiết
+        </Button>
           </ListItem>
+          
         ))}
       </List>
     </Paper>

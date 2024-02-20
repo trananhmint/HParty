@@ -1,0 +1,40 @@
+.hostserviceinfo {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+    padding: 40px 80px;
+    width: 80%;
+    min-width: 70%;
+    box-shadow: 0 0 10px 5px #e5e5e5;
+    border-radius: 20px;
+}
+.hostserviceinfo-info {
+    display: inline-block;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: space-evenly;
+}
+
+.hostserviceinfo-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+.hostserviceinfo-content {
+    font-size: 18px;
+
+}
+.hostserviceinfo hr {
+    margin: 0 50px;
+}
+.hostname {
+    /* display: flex; */
+    text-align: start;
+    font-size: 23px;
+    font-weight: 700;
+    height: 50%;
+}
+.hostserviceinfo-rating {
+    /* display: flex; */
+    height: 50%;
+    font-size: large;
+}

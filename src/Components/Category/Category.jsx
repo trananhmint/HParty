@@ -2,10 +2,10 @@ import React from 'react'
 import './Category.css';
 import ArrowLeftOutlinedIcon from '@mui/icons-material/ArrowLeftOutlined';
 import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
-import rooms from '../Assets/rooms1.png';
-import foods from '../Assets/foods.jpg';
-import decorations from '../Assets/decorations.jpg'
-import waiters from '../Assets/waiters.png'
+import rooms from '../Assets/room.png';
+import foods from '../Assets/food.png';
+import decorations from '../Assets/decoration.png'
+import waiters from '../Assets/waiter.png'
 import { Link } from 'react-router-dom';
 export const Category = () => {
   return (

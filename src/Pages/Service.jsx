@@ -1,12 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ServiceDisplay from '../Components/ServiceDisplay/ServiceDisplay';
 import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import { ServiceContext } from '../Context/ServiceContext';
+import axios from 'axios';
+import { fetchService } from '../Context/fetchService';
+import Descriptionbox from '../Components/DescriptionBox/Descriptionbox';
+import HostServiceInfo from '../Components/HostServiceInfo/HostServiceInfo';
 
 const Service = () => {
+
+
   const {all_service} = useContext(ServiceContext);
   console.log(all_service);
   const {serviceId} = useParams();
@@ -17,11 +23,13 @@ const Service = () => {
   console.log("service " + service); 
   return (
     <div className='service'>
-      <Navbar/>
-      <Breadcrumb service={service}/>
+      <Navbar />
+      <Breadcrumb service={service} />
       <ServiceDisplay service={service} />
-      
-      <Footer/>
+      <HostServiceInfo/>
+      <Descriptionbox />
+
+      <Footer />
     </div>
   )
 }

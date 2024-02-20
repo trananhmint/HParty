@@ -1,0 +1,43 @@
+.descriptionbox {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 80%;
+    padding: 50px 80px;
+    box-shadow: 0 0 10px 5px #e5e5e5;
+    border-radius: 20px;
+}
+.descriptionbox h2 {
+    display: flex;
+    /* justify-content: left; */
+}
+.descriptionbox-description {
+    width: 75%;
+    min-width: 600px;
+}
+.descriptionbox hr {
+    margin: 10px 0;
+}
+.descriptionbox-description p {
+    margin-top: 30px;
+    text-align: start;
+    font-size: 20px;
+}
+
+.descriptionbox-facilities {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    background-color: rgb(231, 196, 148, 0.5);
+    padding: 30px;
+    border-radius: 15px;
+    width: 22%;
+}
+.descriptionbox-facilities p {
+    display: flex;
+    font-size: 20px;
+}
+.descriptionbox-facilities svg {
+    color: rgb(64, 173, 64);
+    margin-right: 5px;
+}

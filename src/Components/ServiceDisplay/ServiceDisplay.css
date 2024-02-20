@@ -1,6 +1,11 @@
 .servicedisplay {
     display: flex;
-    margin: 0 170px;
+    margin: 20px auto;
+    width: 80%;
+    min-width: 70%;
+    box-shadow: 0 0 10px 5px #e5e5e5;
+    padding: 20px 80px;
+    border-radius: 20px;
 }
 .servicedisplay-left {
     display: flex;
@@ -63,6 +68,7 @@
 
 .servicedisplay-right button {
     padding: 20px 40px;
+    border-radius: 10px;
     width: 200px;
     font-size: 16px;
     font-weight: 600;
@@ -78,4 +84,8 @@
 }
 .servicedisplay-right-category span {
     font-weight: 600;
+}
+.servicedisplay-right-description {
+    font-size: 20px;
+    margin-bottom: 50px;
 }

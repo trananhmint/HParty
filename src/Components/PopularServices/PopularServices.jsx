@@ -3,6 +3,7 @@ import './PopularServices.css'
 import all_services from '../Assets/events'
 import Item from '../Item/Item'
 import { fetchService } from '../../Context/fetchService'
+import axios from 'axios'
 export const PopularServices = () => {
 
 
@@ -10,7 +11,8 @@ export const PopularServices = () => {
 
     const fetchData = async () => {
         try {
-            const data = await fetchService();
+            const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
+            console.log(data.data.data)
             setItems(data.data.data);
             console.log(data.data.data);
         } catch (err) {

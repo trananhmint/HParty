@@ -8,19 +8,30 @@ import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import { fetchService } from '../Context/fetchService';
 import { ServiceContext } from '../Context/ServiceContext';
+import axios from 'axios';
 export const ServiceCategory = (props) => {
   
-  const { all_service } = useContext(ServiceContext);
+  // const { all_service } = useContext(ServiceContext);
 
-  const items = all_service.filter((item) => item.category === props.category)
+  // const items = all_service.filter((item) => item.category === props.category)
+
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
+      setItems(response.data.data.filter((e) => { return e.categoryId === Number(props.categoryId) }));
+      console.log(response.data.data);
+    }
+    fetchData();
+  }, []);
 
 
   function Items({ currentItems }) {
     return (
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
-          if (props.category === item.category) {
-            return <Item key={i} id={item.id} name={item.name} category={item.category} image={item.image} new_price={item.new_price} old_price={item.old_price} place={item.place} />
+          if (Number(props.categoryId) === item.categoryId) {
+            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
           } else {
             return null;
           }
@@ -29,6 +40,8 @@ export const ServiceCategory = (props) => {
 
     )
   }
+
+  console.log(items)
 
   function PaginatedItems({ itemsPerPage }) {
     const [currentItems, setCurrentItems] = useState(null);
@@ -88,24 +101,13 @@ export const ServiceCategory = (props) => {
 
   }
 
-
-
-  useEffect(() => {
-    fetchData();
-  }, [])
-
-  const fetchData = async () => {
-    const data = await fetchService();
-    console.log( typeof data.data);
-  }
-
   return (
     <div className='services'>
       <Navbar/>
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
-          <span>Showing 1-8</span> out of <span>{all_service.length + 1}</span> services
+          <span>Showing 1-8</span> out of <span>{items.length + 1}</span> services
         </p>
         <div className="services-sort">
         </div>

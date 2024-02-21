@@ -53,7 +53,9 @@ export const CartItems = () => {
             <p>Total: </p>
             <p>{getTotalPrice()} đ</p>
           </div>
+
           <Link to='/bookingService'><button>BOOKING</button></Link>
+
         </div>
       </div>
 

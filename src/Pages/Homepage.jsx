@@ -10,13 +10,13 @@ import Footer from '../Components/Footer/Footer';
 export const Homepage = () => {
   return (
     <div>
-      <Navbar/>
-        <Banner/>
-        <Category/>
-        <EventCollections/>
-        <Offers/>
-        <PopularServices/>
-      <Footer/>  
+      <Navbar />
+      <Banner />
+      <Category />
+      <EventCollections />
+      <Offers />
+      <PopularServices />
+      <Footer />
     </div>
   )
 

@@ -45,17 +45,18 @@ function App() {
             <Route path='/service' element={<Service />} >
               <Route path=':serviceId' element={<Service />} />
             </Route>
-            <Route path='/rooms' element={<ServiceCategory category="rooms" banner={rooms_banner} />} />
-            <Route path='/decorations' element={<ServiceCategory category="decorations" banner={decorations_banner} />} />
-            <Route path='/foods' element={<ServiceCategory category="foods" banner={foods_banner} />} />
-            <Route path='/waiters' element={<ServiceCategory category="waiters" banner={waiters_banner} />} />
+            <Route path='/rooms' element={<ServiceCategory categoryId="1" banner={rooms_banner} />} />
+            <Route path='/decorations' element={<ServiceCategory categoryId="2" banner={decorations_banner} />} />
+            <Route path='/foods' element={<ServiceCategory categoryId="3" banner={foods_banner} />} />
+            <Route path='/waiters' element={<ServiceCategory categoryId="4" banner={waiters_banner} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/bookingService' element={<BookingService />} />
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
-            <Route path='/recover' element={<ForgetPassword/>} />
+            <Route path='/recover' element={<ForgetPassword />} />
+
           </Routes>
         </AuthProvider>
       </BrowserRouter>

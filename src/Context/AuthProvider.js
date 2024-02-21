@@ -24,6 +24,7 @@ const AuthProvider = ({ children }) => {
             console.error(error);
             console.log("This is an invalid register")
             alert("Your email or password is existed. Please try again!!!");
+            console.log("Your register is invalid or existed. Please register again!!!")
         }
     }
 

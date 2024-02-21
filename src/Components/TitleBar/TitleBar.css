@@ -7,9 +7,10 @@
     background: #E7C494;
     height: 100px;
     text-shadow: 1px 0 #E7C494;
-    font-family: sans-serif;
-    color: #dba81a;
-    font-size: 22px;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: poppins;
 }
 .titlebar hr{
     height: 40px;
@@ -18,6 +19,7 @@
 .titlebar-logo{
     display: flex;
     align-items: center;
+    margin-left: 50px;
     gap:10px;
 }
 .titlebar-logo img{
@@ -27,7 +29,8 @@
     background: white;
 }
 .titlebar-logo p{
-    color: #dba81a;
-    font-size: 35px;
+    color: white;
+    font-size: 30px;
     font-weight: 600;
+    font-family: poppins;
 }

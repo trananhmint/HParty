@@ -32,7 +32,7 @@ export const Item = (props) => {
                     {/* <p>{props.sale}</p> */}
                 </div>
                 <div className="item-card-place">
-                    {props.description}
+                    {/* {props.description} */}
                 </div>
             </div>
         </div>

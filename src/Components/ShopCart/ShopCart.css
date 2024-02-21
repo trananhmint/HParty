@@ -17,9 +17,10 @@
 
 .shopcart-format-main {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    gap: 75px;
+    justify-content: center;
+    gap: 90px;
     padding: 20px 0px;
     color: grey;
     font-size: 18px;

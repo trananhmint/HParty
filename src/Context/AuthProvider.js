@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.error(error);
             console.log("This is an invalid register")
+            alert("Your email or password is existed. Please try again!!!");
         }
     }
 
@@ -44,13 +45,10 @@ const AuthProvider = ({ children }) => {
                         return;
                     }
                 })
-            // if (response.data) {
-
-            // }
-            // throw new Error(response.data.message);
         } catch (error) {
             console.error(error);
             console.log("This is an invalid login")
+            alert("Your email or password is incorrect. Please try again!!!")
         }
     };
 

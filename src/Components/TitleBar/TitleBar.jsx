@@ -6,11 +6,11 @@ export const TitleBar = (props) => {
     const { title } = props;
     function getTitle(title) {
         if (title === 'payment') {
-            return <h2>Payment</h2>
+            return <p>Payment</p>
         } if (title === 'cart') {
-            return <h2>Cart</h2>
+            return <p>Cart</p>
         }if(title === 'contract'){
-            return <h2>Contract</h2>
+            return <p>Contract</p>
         }
     }
     return (

@@ -28,7 +28,7 @@ export const ShopCart = () => {
                             <p>{e.name}</p>
                             <p>{e.new_price}.000đ</p>
                             <button className="shopcart-quantity">{cartItems[e.id]}</button>
-                            <p>{e.new_price * cartItems[e.id]}.000đ</p>
+                            <p>{e.new_price * cartItems[e.id]}đ</p>
                             <RemoveCircleOutlineOutlinedIcon className='shopcart-remove' onClick={() => { removeFromCart(e.id) }} />
                         </div>
                     </div>

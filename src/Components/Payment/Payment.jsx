@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
+import { ServiceContext } from '../../Context/ServiceContext';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthProvider';
 export const Payment = () => {
-
-
+    const { getTotalPrice} = useContext(ServiceContext);
+    const auth = useAuth();
+    const user = auth.user;
     const handleClick = () => {
         document.querySelector("#methods").style.display = "none";
         document.querySelector("#methods-button").style.display = "none";
@@ -33,7 +37,7 @@ export const Payment = () => {
                 <div>
                     <div className="payment-total-item">
                         <p>Sub Total</p>
-                        <p>${0}</p>
+                        <p>{getTotalPrice()}đ</p>
                     </div>
                     <hr />
                     <div className="payment-total-item">
@@ -43,14 +47,16 @@ export const Payment = () => {
                     <hr />
                     <div className="payment-total-item">
                         <h3>Total</h3>
-                        <h3>${0}</h3>
+                        <h3>{getTotalPrice() + 0} đ</h3>
                     </div>
                 </div>
             </div>
             <hr />
             <div className="payment-total-button">
                 <p>Enter "Proceed to checkout" to agree with <span>Conditions of HParty</span></p>
-                <button>PROCEED TO CHECKOUT</button>
+
+              
+                <Link to='/alerts'><button>PROCEED TO CHECKOUT</button></Link>
             </div>
         </div>
     )

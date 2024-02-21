@@ -1,0 +1,43 @@
+.titlebar{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 20px;
+    box-shadow: 0px 1px 3px -2px black;
+    background: #E7C494;
+    height: 100px;
+    text-shadow: 1px 0 #E7C494;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: poppins;
+    font-family: sans-serif;
+    color: #ffffff;
+    font-size: 22px;
+    width: 100%;
+    position: fixed;
+}
+.titlebar hr{
+    height: 40px;
+    border: 1px solid #dba81a;
+}
+.titlebar-logo{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    gap:10px;
+}
+.titlebar-logo img{
+    width: 90px;
+    border: 1px solid white;
+    border-radius: 80px;
+    background: white;
+}
+.titlebar-logo p{
+    color: white;
+    font-size: 30px;
+    color: #ffffff;
+    font-size: 35px;
+    font-weight: 600;
+    font-family: poppins;
+}

@@ -1,0 +1,15 @@
+.contract-by-party-host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.formStyle{
+    padding: 20px;
+    border: 1px solid black;
+    width: 25%;
+    text-align: center;
+}
+.form-control{
+    border-color:black !important;
+}

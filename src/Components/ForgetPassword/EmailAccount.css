@@ -1,0 +1,54 @@
+.emailaccount {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+.emailaccount-box {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 200px auto;
+    padding: 50px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 1px 1px 10px 0 grey;
+}
+.emailaccount h2 {
+    color: #5e5e5e;
+}
+.emailaccount hr {
+    margin-top: 10px;
+}
+.emailaccount p {
+    margin-top: 20px;
+    font-size: 22px;
+}
+.emailaccount input {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #c8c8c8;
+}
+.emailaccount-box div {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.emailaccount button {
+    display: flex;
+    width: 100px;
+    height: 50px;
+    font-size: 24px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background: #f5a02c;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    float: right;
+    cursor: pointer;
+}
+
+.emailaccount button:hover {
+    background-color: #eb8900;
+}

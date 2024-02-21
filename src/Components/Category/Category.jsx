@@ -15,11 +15,11 @@ export const Category = () => {
         <Link to='/rooms' style={{textDecoration:'none'}}>
           <li className='category-menu-item'><img src={rooms} alt="" /> <span>Rooms</span></li>
         </Link>
-        <Link to='/foods' style={{textDecoration:'none'}}>
-          <li className='category-menu-item'><img src={foods} alt="" /><span>Foods</span></li>
-        </Link>
         <Link to='/decorations' style={{textDecoration:'none'}}>
           <li className='category-menu-item'><img src={decorations} alt="" /><span>Decors</span></li>
+        </Link>
+        <Link to='/foods' style={{textDecoration:'none'}}>
+          <li className='category-menu-item'><img src={foods} alt="" /><span>Foods</span></li>
         </Link>
         <Link to='/waiters' style={{textDecoration:'none'}}>
           <li className='category-menu-item'><img src={waiters} alt="" /><span>Waiters</span></li>

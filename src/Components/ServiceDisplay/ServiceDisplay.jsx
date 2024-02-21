@@ -46,15 +46,15 @@ const ServiceDisplay = (props) => {
             <p>({service.sale}100)</p>
         </div>
         <div className="servicedisplay-right-prices">
-          <div className="servicedisplay-right-price">{service.price}800.000 đ</div>
-          <div className="servicedisplay-right-price-sale">{service.price}500.000 đ</div>
+          <div className="servicedisplay-right-price">{service.price}đ</div>
+          <div className="servicedisplay-right-price-sale">{service.price}đ</div>
         </div>
         <div className="servicedisplay-right-description">
           <p>{service.description}
             🌿🌿🌿THẢM TRANG TRÍ PHÒNG KHÁCH PHAM STYLE🌿🌿🌿
           </p>
         </div>
-        <button onClick={() => { addToCart(service.id) }}>ADD TO CART</button>
+        <button onClick={() => { addToCart(service.serviceId) }}>ADD TO CART</button>
 
       </div>
 

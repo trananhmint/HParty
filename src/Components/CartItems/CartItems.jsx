@@ -28,7 +28,7 @@ export const CartItems = () => {
               <div className="cartitems-format cartitems-format-main">
                 <img src={e.image} alt="" className='cartitems-image' />
                 <p>{e.name}</p>
-                <p>{e.new_price}.000đ</p>
+                <p>{e.new_price}đ</p>
                 <button className="cartitems-quantity">{cartItems[e.id]}</button>
                 <p>{e.new_price * cartItems[e.id]} đ</p>
                 <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(e.id) }} />
@@ -48,12 +48,14 @@ export const CartItems = () => {
         </div>
         <hr />
         <div className="cartitems-total-cart">
-          <p className="cartitems-total-services">Chose {getCountOfCart()} service(s)</p>
+          <p className="cartitems-total-services">Choose {getCountOfCart()} service(s)</p>
           <div className="cartitems-total-price">
             <p>Total: </p>
             <p>{getTotalPrice()} đ</p>
           </div>
-          <Link to="/bookingService"><button>BOOKING</button></Link>
+
+          <Link to='/bookingService'><button>BOOKING</button></Link>
+
         </div>
       </div>
 

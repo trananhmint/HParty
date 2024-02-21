@@ -27,7 +27,7 @@
 }
 .servicedisplay-display-img img{
     width: 500px;
-    height: 700px;
+    /* height: 700px; */
     object-fit: contain;
 }
 .servicedisplay-right {

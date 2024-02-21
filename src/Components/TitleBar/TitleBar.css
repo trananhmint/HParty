@@ -7,6 +7,10 @@
     background: #E7C494;
     height: 100px;
     text-shadow: 1px 0 #E7C494;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: poppins;
     font-family: sans-serif;
     color: #ffffff;
     font-size: 22px;
@@ -20,6 +24,7 @@
 .titlebar-logo{
     display: flex;
     align-items: center;
+    margin-left: 50px;
     gap:10px;
 }
 .titlebar-logo img{
@@ -29,7 +34,10 @@
     background: white;
 }
 .titlebar-logo p{
+    color: white;
+    font-size: 30px;
     color: #ffffff;
     font-size: 35px;
     font-weight: 600;
+    font-family: poppins;
 }

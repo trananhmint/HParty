@@ -1,0 +1,39 @@
+.pdf-contract {
+    padding: 50px;
+    /* padding-right: 1000px; */
+    background-color: #dedede;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.react-pdf__Page {
+    width: 596px;
+}
+
+canvas.react-pdf__Page__canvas {
+    margin-bottom: 50px;
+
+}
+
+.contract-button {
+    width: 282px;
+    height: 70px;
+    border-radius: 35px;
+    background: #e9ae5c;
+    border: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    /* margin-top: 20px;
+    margin-left: 30px; */
+    cursor: pointer;
+}
+
+.contract-button:active {
+    transform: scale(0.9);
+    transition: 0.1s;
+    border: 1px solid #c67709;
+}

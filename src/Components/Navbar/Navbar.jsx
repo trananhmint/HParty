@@ -9,8 +9,7 @@ import { ServiceContext } from '../../Context/ServiceContext';
 export const Navbar = () => {
     const auth = useAuth();
     const user = auth.user;
-    const { getCountOfCart} = useContext(ServiceContext);
-
+    const {getCountOfCart} = useContext(ServiceContext);
     function loginLogout(user) {
         if (user != null) {
 

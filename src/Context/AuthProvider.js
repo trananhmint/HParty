@@ -10,14 +10,20 @@ const AuthProvider = ({ children }) => {
 
     const fetchRegister = async (data) => {
         try {
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data);
-            console.log("Post created:", response.data);
-            navigate("/signup");
-            console.log("Success");
-            alert("Your register is successful")
+
+            const response = await axios
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data)
+                .then(res => {
+                    console.log("Post created:", res.data);
+                    navigate("/signup");
+                    console.log("Success");
+                    alert("Register successfully");
+                })
 
         } catch (error) {
             console.error(error);
+            console.log("This is an invalid register")
+            alert("Your email or password is existed. Please try again!!!");
             console.log("Your register is invalid or existed. Please register again!!!")
         }
     }
@@ -39,13 +45,11 @@ const AuthProvider = ({ children }) => {
                         console.log("Success");
                         return;
                     }
-
                 })
-
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid login");
-            alert("Wrong email or password. Please enter again!!!");
+            console.log("This is an invalid login")
+            alert("Your email or password is incorrect. Please try again!!!")
         }
     };
 

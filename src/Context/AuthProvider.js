@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { jwtDecode } from "jwt-decode";
+import Alert from '@mui/material/Alert';
+import { toast } from "react-toastify";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -20,14 +22,35 @@ const AuthProvider = ({ children }) => {
                     console.log("Post created:", res.data);
                     navigate("/signup");
                     console.log("Success");
-                    alert("Register successfully");
+                    toast.success('Register successfully', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                
+                      });
+                    // alert("Register successfully");
                 })
 
         } catch (error) {
             console.error(error);
             console.log("This is an invalid register")
-            alert("Your email or password is existed. Please try again!!!");
-            console.log("Your register is invalid or existed. Please register again!!!")
+            toast.error('Your email or password is existed. Please try again!!!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        
+              });
+            // alert("Your email or password is existed. Please try again!!!");
         }
     }
 
@@ -53,14 +76,25 @@ const AuthProvider = ({ children }) => {
         } catch (error) {
             console.error(error);
             console.log("This is an invalid login")
-            alert("Your email or password is incorrect. Please try again!!!")
+            toast.error('Your email or password is incorrect. Please try again!!!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        
+              });
+            // alert("Your email or password is incorrect. Please try again!!!")
         }
     };
 
     const logOut = () => {
         setUser(null);
         setToken('');
-        cookies.remove("token");
+        cookies.remove("token", { expires: new Date()});
         navigate("/signup");
     };
 

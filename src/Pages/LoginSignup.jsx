@@ -7,12 +7,36 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useAuth } from '../Context/AuthProvider';
+import Alert from '@mui/material/Alert';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginSignup = () => {
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+  const [register, setRegister] = useState({
+    fullname: "",
+    email: "",
+    password: "",
+  })
+
+
+
+  // function getAlerts() {
+  //   if (input.email === "" && input.password === "") {
+  //     return <Alert severity="warning">Please enter your email and password</Alert>
+  //   } else if (register.fullname === "" && register.email === "" && register.password === "") {
+  //     return <Alert severity="warning">Please fill in the register form.</Alert>
+  //   }
+  // }
+
+  // const alert = getAlerts();
+  // console.log(alert);
+
+
+
 
   const auth = useAuth();
   const handleSubmitEvent = (e) => {
@@ -21,7 +45,18 @@ const LoginSignup = () => {
       auth.fetchLogin(input);
       return;
     }
-    alert("Please enter your email and password");
+    toast.warning('Please enter your email and password', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+
+    });
+
   };
 
   const handleInput = (e) => {
@@ -33,11 +68,6 @@ const LoginSignup = () => {
   };
 
 
-  const [register, setRegister] = useState({
-    fullname: "",
-    email:"",
-    password:"",
-  })
 
   const handleRegisterInput = (e) => {
     const { name, value } = e.target;
@@ -52,8 +82,21 @@ const LoginSignup = () => {
     if (register.fullname !== "" && register.email !== "" && register.password !== "") {
       auth.fetchRegister(register);
       return;
+    } else {
+      toast.warning('Please fill in the register form', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+      // alert("Please fill in the register form");
     }
-    alert("Please fill in the register form.");
+
   };
 
 
@@ -105,7 +148,6 @@ const LoginSignup = () => {
 
   return (
     <div className='Loginsignup'>
-
       <div ref={ref} id='container' className={isActive ? 'container active' : 'container'}>
         <div className="form-container sign-up">
           <form onSubmit={handleSubmitRegisterEvent}>
@@ -117,7 +159,7 @@ const LoginSignup = () => {
               <a href="https://github.com/trananhmint/HParty"><LinkedInIcon /></a>
             </div>
             <span>or use your email for registeration</span>
-            <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput}  placeholder='FullName' />
+            <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput} placeholder='FullName' />
             <input type="email" id='register-email' name='email' aria-describedby='register-email' aria-invalid="false" onChange={handleRegisterInput} placeholder='Email' />
             <input type="password" id='register-password' name='password' aria-describedby='register-password' aria-invalid="false" onChange={handleRegisterInput} placeholder='Password' />
             <button >Sign Up</button>

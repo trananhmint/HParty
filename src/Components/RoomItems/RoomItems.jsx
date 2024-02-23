@@ -1,13 +1,13 @@
 import React from 'react'
-import './Item.css'
+import '../Item/Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import { Link } from 'react-router-dom';
 
-export const Item = (props) => {
+export const RoomItems= (props) => {
 
     return (
-        <Link to={`/service/${props.id}`} style={{textDecoration:'none', color:'black'}}> 
+        <Link to={`/roomService/${props.id}`} style={{textDecoration:'none', color:'black'}}> 
         <div className='item-card'>
             <div className="item-card-img">
                 <img src={props.image} alt="" />
@@ -41,4 +41,4 @@ export const Item = (props) => {
     )
 }
 
-export default Item;
+export default RoomItems;

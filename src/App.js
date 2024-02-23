@@ -1,7 +1,5 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Navbar from './Components/Navbar/Navbar';
-// import Footer from './Components/Footer/Footer';
 import Homepage from './Pages/Homepage';
 import LoginSignup from './Pages/LoginSignup';
 import rooms_banner from './Components/Assets/rooms_banner.jpg';
@@ -21,6 +19,8 @@ import ForgetPassword from './Pages/ForgetPassword';
 import ContractPage from './Pages/ContractPage';
 import { pdfjs } from 'react-pdf';
 import ContractPageByPH from './Pages/ContractPageByPH';
+import RoomCategory from './Pages/RoomCategory';
+import RoomService from './Pages/RoomService';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -28,11 +28,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 function App() {
-  // const [token, setToken] = useState();
-
-  // if (!token) {
-  //   return <LoginSignup setToken={setToken} />
-  // }
   return (
     <div className="App">
       <BrowserRouter>
@@ -42,13 +37,16 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Homepage />} />
             </Route>
-            <Route path='/service' element={<Service />} >
-              <Route path=':serviceId' element={<Service />} />
+            <Route path='/service' element={<Service value = "2" />} >
+              <Route path=':serviceId' element={<Service/>} />
             </Route>
-            <Route path='/rooms' element={<ServiceCategory categoryId="1" banner={rooms_banner} />} />
-            <Route path='/decorations' element={<ServiceCategory categoryId="2" banner={decorations_banner} />} />
-            <Route path='/foods' element={<ServiceCategory categoryId="3" banner={foods_banner} />} />
-            <Route path='/waiters' element={<ServiceCategory categoryId="4" banner={waiters_banner} />} />
+            <Route path='/roomService' element={<RoomService value = "2"/>} >
+              <Route path=':roomId' element={<RoomService />} /> 
+            </Route>
+            <Route path='/rooms' element={<RoomCategory banner={rooms_banner} />} />
+            <Route path='/decorations' element={<ServiceCategory categoryId="1" banner={decorations_banner} />} />
+            <Route path='/foods' element={<ServiceCategory categoryId="2" banner={foods_banner} />} />
+            <Route path='/waiters' element={<ServiceCategory categoryId="3" banner={waiters_banner} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/bookingService' element={<BookingService />} />
@@ -60,7 +58,6 @@ function App() {
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-        {/* <ContractPage/> */}
     </div>
   );
 }

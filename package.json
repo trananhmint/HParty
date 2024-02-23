@@ -7,12 +7,14 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.6",
     "@mui/material": "^5.15.6",
+    "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.2",
+    "jwt-decode": "^4.0.0",
     "pdfjs-dist": "^3.11.174",
     "@mui/styled-engine-sc": "^6.0.0-alpha.13",
     "@mui/x-charts": "^6.19.3",
@@ -27,12 +29,17 @@
     "react-dom": "^18.2.0",
     "react-paginate": "^8.2.0",
     "react-pdf": "^7.7.0",
+    "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.0",
     "react-scripts": "^5.0.1",
+<<<<<<< HEAD
+    "universal-cookie": "^7.1.0",
+=======
     "react-router-dom": "^6.21.3",
     "react-scripts": "^5.0.1",
     "recharts": "^2.11.0",
     "styled-components": "^6.1.8",
+>>>>>>> 67a3dfeb3a2ab30de491d7fda834636171c50e7e
     "web-vitals": "^2.1.4"
   },
   "scripts": {

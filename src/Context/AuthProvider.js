@@ -1,11 +1,14 @@
 import { useContext, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
+import { jwtDecode } from "jwt-decode";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+    const cookies = new Cookies();
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(localStorage.getItem("site") || "");
+    const [token, setToken] = useState("");
     const navigate = useNavigate();
 
     const fetchRegister = async (data) => {
@@ -38,9 +41,10 @@ const AuthProvider = ({ children }) => {
                     console.log(res);
                     if (!!res.data && res.status === 200) {
                         console.log(JSON.parse(res.config.data))
+                        const decoded = jwtDecode(res.data)
                         setUser(JSON.parse(res.config.data));
                         setToken(res.data);
-                        localStorage.setItem("site", res.data);
+                        cookies.set("token", res.data, { expires: new Date(decoded.exp * 1000)});
                         navigate("/");
                         console.log("Success");
                         return;
@@ -55,8 +59,8 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setUser(null);
-        setToken("");
-        localStorage.removeItem("site");
+        setToken('');
+        cookies.remove("token");
         navigate("/signup");
     };
 

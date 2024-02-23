@@ -27,7 +27,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
 ).toString();
-=======
 // import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';

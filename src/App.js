@@ -25,6 +25,7 @@ import RoomService from './Pages/RoomService';
 import AdminPage from './Pages/AdminPage';
 import AdminProfile from './Pages/Adminprofile';
 import Notification from './Pages/Notification'
+import { ToastContainer} from 'react-toastify';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -69,8 +70,21 @@ function App() {
         <Route path="/admin-profile" element={<AdminProfile/>} />
         <Route path="/notification" element={<Notification/>} />
         </Routes> 
-        
       </BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </div>
   );
 }

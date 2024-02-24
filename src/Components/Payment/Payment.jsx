@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 export const Payment = () => {
     let date = new Date();
     const cart = useSelector((state) => state.cart.cart)
@@ -19,39 +20,72 @@ export const Payment = () => {
     console.log(serviceId);
     console.log(totalPrice);
 
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    // Hàm xử lý sự kiện khi thay đổi giá trị của startTime
+    const handleStartTimeChange = (e) => {
+        setStartTime(e.target.value);
+    };
+
+    // Hàm xử lý sự kiện khi thay đổi giá trị của endTime
+    const handleEndTimeChange = (e) => {
+        setEndTime(e.target.value);
+    };
 
     const navigate = useNavigate();
     const [booking, setBooking] = useState({
-        startTime: date,
-        endTIme: date,
+        startTime: startTime,
+        endTIme: endTime,
         totalPrice: totalPrice,
         roomId: roomIds[0],
-        serviceId: serviceId,
+        serviceIds: serviceId,
     })
-
-    // const handleInput = (e) => {
-    //   const { name, value } = e.target;
-    //   setBooking((prev) => ({
-    //     ...prev,
-    //     [name]: value,
-    //   }));
-    //   console.log(e.target)
-    // };
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        setBooking((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
     const fetchBooking = async (data) => {
         try {
             console.log("Hello")
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data)
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data,
+                {
+                    withCredentials: true // Ensure credentials are included
+                })
             console.log(response);
             console.log("Post created:", response.data);
-            navigate("/bookingService");
+            navigate("/alerts");
             console.log("Success");
-            alert("Booking successfully");
+            toast.success('Booking successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        
+              });
+            // alert("Booking successfully");
 
         } catch (error) {
             console.error(error);
             console.log("This is an invalid booking")
-            alert("Booking failed");
+            toast.error('Booking failed', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        
+              });
         }
     }
 
@@ -60,12 +94,47 @@ export const Payment = () => {
 
     const handleSubmitEvent = (e) => {
         e.preventDefault();
-        if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceId !== "") {
+        if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds !== "" && booking.startTime !== "" && booking.endTIme !== "") {
             fetchBooking(booking);
             return;
-        }
-        alert("Please choose services again.");
-        console.log(booking.totalPrice);
+        }else if(booking.roomId === ""){
+            toast.warning('Please choose A Room before booking.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        
+              });
+        }else if(booking.serviceIds.length === 0){
+            toast.warning('Please choose services again.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+        
+              });
+        }else if(booking.startTime === "" && booking.endTIme === ""){
+            toast.warning('Please enter Time for party', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
+
+
     };
 
 
@@ -98,6 +167,15 @@ export const Payment = () => {
                     </div>
                 </div>
                 <hr />
+                <input type="datetime-local" id='booking-startTime' name='startTime' aria-describedby='booking-startTime' aria-invalid="false" onChange={handleInput} placeholder='StartTime' />
+                <input type="datetime-local" id='booking-endTIme' name='endTIme' aria-describedby='booking-endTIme' aria-invalid="false" onChange={handleInput} placeholder='EndTIme' />
+                
+                {/* <input
+                    type="datetime-local"
+                    name="endTime"
+                    placeholder="End Time"
+                    onChange={handleEndTimeChange}
+                /> */}
                 <div className="payment-total">
                     <div>
                         <div className="payment-total-item">

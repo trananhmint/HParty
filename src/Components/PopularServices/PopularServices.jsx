@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './PopularServices.css'
-import all_services from '../Assets/events'
 import Item from '../Item/Item'
-import { fetchService} from '../../Context/fetchService'
 import axios from 'axios'
-import { FeaturedVideoRounded } from '@mui/icons-material'
-import { FetchProduct } from '../../Context/fetchData'
 export const PopularServices = () => {
 
 
@@ -33,8 +29,12 @@ export const PopularServices = () => {
             <hr />
             <div className="popular">
                 {items.map((item, i) => {
-                    // console.log(item);
-                    return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                    if (i <= 4) {
+                        return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                    }else{
+                        return null;
+                    }
+
                 })}
             </div>
         </div>

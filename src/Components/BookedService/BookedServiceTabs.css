@@ -1,0 +1,21 @@
+.bookedservicetabs {
+    margin: 180px auto;
+    width: 80%;
+    /* padding: 50px 80px; */
+    border-radius: 20px;
+    /* box-shadow: 0 0 10px 5px #e5e5e5; */
+}
+/*tabs label*/
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected   {
+    color: white !important;
+    background-color: #f5a02c;
+    font-weight: 600;
+    border-bottom: #f5a02c !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0 50px;
+}
+/*tabs linebar*/ 
+.css-1aquho2-MuiTabs-indicator {
+    background-color: #f5a02c !important;
+}

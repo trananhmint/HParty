@@ -6,6 +6,8 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import { ServiceContext } from '../../Context/ServiceContext';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+
 export const Navbar = () => {
     const auth = useAuth();
     const user = auth.user;
@@ -50,6 +52,7 @@ export const Navbar = () => {
                     <div className="cart-count">{getCountOfCart()}</div>
                 </div>
             </Link>
+            <Link to='/profile' ><AccountCircleRoundedIcon sx={{ color: 'white', fontSize: '50px', marginLeft: '-40px' }} /></Link>
 
         </div>
     )

@@ -5,7 +5,8 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
 export const ShopCart = () => {
-    const { all_service, cartItems, removeFromCart } = useContext(ServiceContext);
+    const { services, rooms, cartItems, product, removeFromCart, removeRoomsFromCart } = useContext(ServiceContext);
+
     return (
         <div className='shopcart'>
             <div className="shopcart-format-main">
@@ -20,22 +21,39 @@ export const ShopCart = () => {
                 <hr />
                 <p id='chatting'><MessageOutlinedIcon />Chat now</p>
             </div>
-            {all_service.map((e) => {
-                if (cartItems[e.id] > 0) {
-                    return <div>
-                        <div className="shopcart-format shopcart-format-main">
-                            <img src={e.image} alt="" className='shopcart-image' />
-                            <p>{e.name}</p>
-                            <p>{e.new_price}.000đ</p>
-                            <button className="shopcart-quantity">{cartItems[e.id]}</button>
-                            <p>{e.new_price * cartItems[e.id]}đ</p>
-                            <RemoveCircleOutlineOutlinedIcon className='shopcart-remove' onClick={() => { removeFromCart(e.id) }} />
-                        </div>
-                    </div>
-                } else {
-                    return null;
-                }
-            })}
+            {rooms.map((e) => {
+            if (product[e.roomId] > 0) {
+              return <div>
+                <div className="cartitems-format cartitems-format-main">
+                  <img src={e.imgPath} alt="" className='cartitems-image' />
+                  <p>{e.roomName}</p>
+                  <p>{e.price}đ</p>
+                  <button className="cartitems-quantity">{product[e.roomId]}</button>
+                  <p>{e.price * product[e.roomId]} đ</p>
+                  <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeRoomsFromCart(e.roomId) }} />
+                </div>
+              </div>
+            } else {
+              return null;
+            }
+          })}
+
+          {services.map((e) => {
+            if (cartItems[e.serviceId] > 0) {
+              return <div>
+                <div className="cartitems-format cartitems-format-main">
+                  <img src={e.imgPath} alt="" className='cartitems-image' />
+                  <p>{e.serviceName}</p>
+                  <p>{e.price}đ</p>
+                  <button className="cartitems-quantity">{cartItems[e.serviceId]}</button>
+                  <p>{e.price * cartItems[e.serviceId]} đ</p>
+                  <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(e.serviceId) }} />
+                </div>
+              </div>
+            } else {
+              return null;
+            }
+          })}
             <hr />
             <div className="shopcart-format-voucher">
                 <p><ConfirmationNumberOutlinedIcon />Shop's Voucher</p>

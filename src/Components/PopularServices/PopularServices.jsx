@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './PopularServices.css'
 import all_services from '../Assets/events'
 import Item from '../Item/Item'
-import { fetchService } from '../../Context/fetchService'
+import { fetchService} from '../../Context/fetchService'
 import axios from 'axios'
+import { FeaturedVideoRounded } from '@mui/icons-material'
+import { FetchProduct } from '../../Context/fetchData'
 export const PopularServices = () => {
 
 
@@ -12,9 +14,7 @@ export const PopularServices = () => {
     const fetchData = async () => {
         try {
             const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
-            console.log(data.data.data)
             setItems(data.data.data);
-            console.log(data.data.data);
         } catch (err) {
             console.log(err);
         }
@@ -25,6 +25,7 @@ export const PopularServices = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
 
     return (
         <div className='popular-services'>

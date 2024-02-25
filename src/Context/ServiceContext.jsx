@@ -1,11 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { addToCart } from "../redux/cartSlice";
+import { addToCart } from "../redux/CartSlice";
 
 import { FetchProduct } from "./fetchData";
 import { useDispatch, useSelector } from 'react-redux';
-import axios from "axios";
-// import { addToCart } from "../redux/CartSlice";
 
 export const ServiceContext = createContext(null);
 

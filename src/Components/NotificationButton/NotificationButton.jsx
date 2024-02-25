@@ -4,6 +4,7 @@ import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { List, ListItem, ListItemText } from "@mui/material";
+import './NotificationButton.css'
 
 export default function NotificationButton() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,10 +33,9 @@ export default function NotificationButton() {
   };
 
   return (
-    <div>
-      <Button aria-describedby={id} variant="contained" onClick={handleClick} style={{background: '#e7c494'}}>
-      <NotificationsNoneIcon/>
-        Thông Báo
+    <div className="notifcation-button">
+      <Button aria-describedby={id} variant="contained" onClick={handleClick} >
+      <NotificationsNoneIcon style={{fontSize:'30px'}}/>
       </Button>
       <Popover
         id={id}

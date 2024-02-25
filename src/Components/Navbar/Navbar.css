@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     top: 0;
     z-index: 999;
     display: flex;
@@ -13,24 +13,29 @@
     position: fixed;
     width: 100%;
 }
-.navbar-logo{
+
+.navbar-logo {
     display: flex;
     align-items: center;
-    margin-left:-20px ;
-    gap:10px;
+    margin-left: -20px;
+    gap: 10px;
 }
-.navbar-logo img{
+
+.navbar-logo img {
     width: 90px;
+    height: 90px;
     border: 1px solid white;
     border-radius: 80px;
     background: white;
 }
-.navbar-logo p{
+
+.navbar-logo p {
     color: white;
     font-size: 30px;
     font-weight: 600;
 }
-.navbar-search{
+
+.navbar-search {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,29 +46,37 @@
     height: 50px;
     width: 900px;
 }
-.navbar-search input{
+
+.navbar-search input {
     width: 800px;
     border: none;
     outline: none;
     font-size: 24px;
 }
-.navbar-search svg{
+
+.navbar-search svg {
     background: #f5a02c;
     padding: 10px;
     font-size: 40px;
     border-radius: 80px;
     color: white;
     margin-right: -45px;
-    
+
 }
-.navbar-login-signup{
+
+.navbar-info {
+    display: flex;
+    gap: 50px;
+}
+
+.navbar-login-signup {
     display: flex;
     align-items: center;
-    margin-right: -75px;
     gap: 10px;
-    
+
 }
-.navbar-login-signup button{
+
+.navbar-login-signup button {
     width: 100px;
     height: 50px;
     outline: none;
@@ -71,32 +84,33 @@
     border-radius: 75px;
     color: white;
     font-size: 22px;
-
-    background:rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     cursor: pointer;
 }
-.navbar-login-signup button:hover{
+
+.navbar-login-signup button:hover {
     border: 1px solid #f5a02c;
 }
 
-.navbar-login-signup button:active{
+.navbar-login-signup button:active {
     transform: scale(1.05);
     transition: 0.2s;
     border: 1px solid #f5a02c;
 }
 
-.navbar-cart{
+.navbar-cart {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -3px;
+    margin-top: 4px;
 }
-.navbar-cart svg{
+
+.navbar-cart svg {
     font-size: 40px;
     color: white;
 }
 
-.cart-count{
+.cart-count {
     width: 22px;
     height: 22px;
     display: flex;
@@ -107,5 +121,14 @@
     border-radius: 11px;
     font-size: 14px;
     background: red;
+    color: white;
+}
+.navbar-login-profile{
+    margin-bottom: -5px;
+    /* width: 20px; */
+}
+
+.navbar-login-profile svg {
+    font-size: 50px;
     color: white;
 }

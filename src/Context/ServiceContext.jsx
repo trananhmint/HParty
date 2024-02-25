@@ -126,8 +126,13 @@ const ServiceContextProvider = (props) => {
         return count + roomCount;
     }
 
+    const clearCart = () =>{
+        setCartItems(GetDefaultCart());
+        setProduct(GetDefaultCart());
+    }
 
-    const contextValue = { services, rooms, cartItems, product, AddToCart, AddRoomsToCart, removeFromCart, removeRoomsFromCart, getTotalPrice, getCountOfCart, totalPrice };
+
+    const contextValue = { services, rooms, cartItems, product, totalPrice, AddToCart, AddRoomsToCart, removeFromCart, removeRoomsFromCart, getTotalPrice, getCountOfCart, clearCart};
     return <ServiceContext.Provider value={contextValue}>
         {props.children}
     </ServiceContext.Provider>

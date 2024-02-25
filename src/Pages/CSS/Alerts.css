@@ -1,11 +1,13 @@
 .alert {
     display: flex;
     flex-direction: column;
+   
 }
 .alert-successful-error {
     padding: 10px 50px;
     align-items: center;
     text-align: center;
+    margin-top: 150px;
 }
 .alert-successful-error svg {
     font-size: 30px;

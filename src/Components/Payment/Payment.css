@@ -125,3 +125,31 @@
     position: relative;
     font-size: 20px;
 }
+.payment-input-time {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.payment-input-time >p {
+    font-size: 20px;
+    color:  #3cbbbb;
+}
+.payment-input-time svg{
+    font-size: 30px;
+    margin-bottom: -8px;
+}
+
+.payment-input-time input[type="datetime-local" i] {
+    font-size: 22px;
+    height: 50px;
+    border: 1px solid black;
+    padding: 0 20px;
+    border-radius: 4px;
+    transition: 1s ease;
+}
+/* .payment-input-time input:hover{
+    border: 1px solid #f5a02c;
+} */
+.payment-input-time input[type="datetime-local" ]:focus{
+   border-color: #f5a02c;
+}

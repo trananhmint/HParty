@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import './CartItems.css'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/cartSlice';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
@@ -12,12 +12,6 @@ export const CartItems = () => {
   const { services, rooms, cartItems, totalPrice, product, AddToCart, AddRoomsToCart, removeFromCart, removeRoomsFromCart, getTotalPrice, getCountOfCart } = useContext(ServiceContext);
 
   const dispatch = useDispatch();
-
-  // console.log(services);
-  // console.log(rooms)
-
-
-
 
   const handleClick = (rooms, services, totalPrice) => {
     const newItems = {
@@ -53,7 +47,6 @@ export const CartItems = () => {
                   <p className="cartitems-quantity">
                     {product[e.roomId]}
                   </p>
-                  {/* <button onClick={() => { AddRoomsToCart(e.roomId) }} /> */}
                   <p>{e.price * product[e.roomId]} đ</p>
                   <AddCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { AddRoomsToCart(e.roomId) }} />
                   <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeRoomsFromCart(e.roomId) }} />
@@ -73,6 +66,7 @@ export const CartItems = () => {
                   <p>{e.price}đ</p>
                   <button className="cartitems-quantity">{cartItems[e.serviceId]}</button>
                   <p>{e.price * cartItems[e.serviceId]} đ</p>
+                  <AddCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { AddToCart(e.serviceId) }} />
                   <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(e.serviceId) }} />
                 </div>
               </div>
@@ -96,14 +90,9 @@ export const CartItems = () => {
               {/* <input name="totalPrice" onChange={handleInput}/> */}
               <p>{getTotalPrice()} đ</p>
             </div>
-
             <Link to='/bookingService'><button onClick={() => handleClick(rooms, services, totalPrice)}>BOOKING</button></Link>
-
-
-
           </div>
         </div>
-
       </div>
     </form>
 

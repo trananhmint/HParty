@@ -20,7 +20,6 @@ export const Service = () => {
     async function fetchData() {
       let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
       setItems(response.data.data.find((e) => { return e.serviceId === Number(serviceId) }));
-      console.log(response.data);
     }
     fetchData();
   }, []);

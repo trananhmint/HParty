@@ -1,0 +1,37 @@
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-hyum1k-MuiToolbar-root {
+    top: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0px 1px 3px -2px black;
+    background: #E7C494;
+    height: 100px;
+    margin-bottom: 50px;
+    text-shadow: 1px 0 #E7C494;
+    position: fixed;
+    width: 100%;
+}
+
+.admin-appbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+img.MuiAvatar-img.css-1pqm26d-MuiAvatar-img {
+    border: 1px solid white;
+    border-radius: 80px;
+    background: white;
+}
+
+.MuiTypography-root.MuiTypography-h6.MuiTypography-noWrap.css-8u39c-MuiTypography-root {
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: poppins;
+}
+button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorInherit.MuiIconButton-edgeStart.MuiIconButton-sizeMedium.css-134qg7o-MuiButtonBase-root-MuiIconButton-root {
+    width: 80px;
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import EventNoteIcon from '@mui/icons-material/EventNote';

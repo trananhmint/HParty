@@ -4,23 +4,89 @@ import './CartItems.css'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/CartSlice';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { useAuth } from '../../Context/AuthProvider';
+import { toast } from 'react-toastify';
 
 export const CartItems = () => {
   const { services, rooms, cartItems, totalPrice, product, AddToCart, AddRoomsToCart, removeFromCart, removeRoomsFromCart, getTotalPrice, getCountOfCart } = useContext(ServiceContext);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleClick = (rooms, services, totalPrice) => {
+  const auth = useAuth();
+  const user = auth.user;
+
+
+  const handleClick = (rooms, services, totalPrice, user) => {
     const newItems = {
       rooms: rooms.filter(room => product[room.roomId] > 0),
       services: services.filter(service => cartItems[service.serviceId] > 0),
       totalPrice: totalPrice,
     }
-    dispatch(addToCart(newItems))
+    if (user !== null && user !== "") {
+      dispatch(addToCart(newItems))
+      navigate("/bookingService");
+    }
+    else {
+      toast.warning('Login before booking', {
+        position: "top-right",
+        autoClose: 10000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate("/cart");
+    }
+
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newItems = {
+      rooms: rooms.filter(room => product[room.roomId] > 0),
+      services: services.filter(service => cartItems[service.serviceId] > 0),
+      totalPrice: totalPrice,
+    }
+    console.log(typeof newItems.rooms);
+    console.log(newItems.rooms);
+    if (user !== null && user !== "") {
+      if (newItems.rooms !== null && newItems.rooms.length !== 0) {
+        dispatch(addToCart(newItems))
+        navigate("/bookingService");
+      } else {
+        toast.warning('Must choose room to book', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
+    else {
+      toast.warning('Login before booking', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // navigate("/cart");
+    }
+
   }
 
   // const cart = useSelector((state) => state.cart.cart)
@@ -28,7 +94,7 @@ export const CartItems = () => {
 
 
   return (
-    <form >
+    <form onSubmit={handleSubmit}>
       <div className='cartitems'>
         <div className="cartitems-items">
           <h1>Your Shopping Cart</h1>
@@ -94,7 +160,7 @@ export const CartItems = () => {
               {/* <input name="totalPrice" onChange={handleInput}/> */}
               <p>{getTotalPrice()} đ</p>
             </div>
-            <Link to='/bookingService'><button onClick={() => handleClick(rooms, services, totalPrice)}>BOOKING</button></Link>
+            <button >BOOKING</button>
           </div>
         </div>
       </div>

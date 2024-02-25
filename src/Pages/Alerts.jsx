@@ -103,13 +103,8 @@ export const Alerts = () => {
             <div className="alert-successful-error">
                 <Stack sx={{ width: '100%' }} spacing={2}>
                     <Alert severity="success" style={{ fontSize: '22px', justifyContent: 'center' }}>
-                        <AlertTitle style={{ fontSize: '30px', fontWeight: '600' }}>Booking is completed</AlertTitle>
-                        Your booking party is now preparing
-                    </Alert>
-
-                    <Alert severity="error" style={{ fontSize: '22px', justifyContent: 'center' }}>
-                        <AlertTitle style={{ fontSize: '30px', fontWeight: '600' }}>Opps!!There is something wrong</AlertTitle>
-                        Please try to recover your booking by clicking on the button below
+                        <AlertTitle style={{ fontSize: '30px', fontWeight: '600' }}>Thank You For Booking</AlertTitle>
+                        Please check your party in the your order
                     </Alert>
                 </Stack>
             </div>

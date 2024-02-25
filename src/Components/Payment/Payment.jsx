@@ -3,7 +3,7 @@ import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import { ServiceContext } from '../../Context/ServiceContext';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -52,7 +52,7 @@ export const Payment = () => {
             console.log(response);
             console.log("Post created:", response.data);
             // navigate("/alerts");
-            console.log("Success");
+            console.log("Success Booking");
             toast.success('Booking successfully', {
                 position: "top-right",
                 autoClose: 3000,
@@ -88,8 +88,14 @@ export const Payment = () => {
 
     const fetchVNPAY = async (data) => {
         try {
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/VNPay", data,
+            console.log(data);
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/VNPay", {
+                totalPrice: data
+            },
                 {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
                     withCredentials: true // Ensure credentials are included
                 })
             console.log(response);
@@ -107,6 +113,7 @@ export const Payment = () => {
                 theme: "light",
 
             });
+            window.location.href = response.data.url;
             // alert("Booking successfully");
 
         } catch (error) {
@@ -130,7 +137,7 @@ export const Payment = () => {
         e.preventDefault();
         if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds !== "" && booking.startTime !== "" && booking.endTIme !== "") {
             fetchBooking(booking);
-            fetchVNPAY(booking.totalPrice);
+            fetchVNPAY(totalPrice);
             // clearCart();
             return;
         } else if (booking.roomId === "") {
@@ -171,7 +178,7 @@ export const Payment = () => {
         }
     };
 
-   
+
 
     const handleSubmitVNPAY = (e) => {
         e.preventDefault();

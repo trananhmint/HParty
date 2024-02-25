@@ -1,8 +1,6 @@
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Navbar from './Components/Navbar/Navbar';
-// import Footer from './Components/Footer/Footer';
 import Homepage from './Pages/Homepage';
 import LoginSignup from './Pages/LoginSignup';
 import rooms_banner from './Components/Assets/rooms_banner.jpg';
@@ -28,18 +26,13 @@ import AdminPage from './Pages/AdminPage';
 import AdminProfile from './Pages/Adminprofile';
 import Notification from './Pages/Notification'
 import BookedService from './Pages/BookedService';
-
+import { ToastContainer} from 'react-toastify';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
 ).toString();
 
 function App() {
-  // const [token, setToken] = useState();
-
-  // if (!token) {
-  //   return <LoginSignup setToken={setToken} />
-  // }
   return (
     <div className="App">
       <BrowserRouter>
@@ -49,11 +42,11 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Homepage />} />
             </Route>
-            <Route path='/service' element={<Service value = "2" />} >
-              <Route path=':serviceId' element={<Service/>} />
+            <Route path='/service' element={<Service value="2" />} >
+              <Route path=':serviceId' element={<Service />} />
             </Route>
-            <Route path='/roomService' element={<RoomService value = "2"/>} >
-              <Route path=':roomId' element={<RoomService />} /> 
+            <Route path='/roomService' element={<RoomService value="2" />} >
+              <Route path=':roomId' element={<RoomService />} />
             </Route>
             <Route path='/rooms' element={<RoomCategory banner={rooms_banner} />} />
             <Route path='/decorations' element={<ServiceCategory categoryId="1" banner={decorations_banner} />} />
@@ -62,20 +55,34 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/bookingService' element={<BookingService />} />
-            <Route path='/bookedService' element={<BookedService/>}/>
+            <Route path='/bookedService' element={<BookedService />} />
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
             <Route path='/recover' element={<ForgetPassword />} />
           </Routes>
+          </AuthProvider>
           <Routes>
-         <Route path="/admin" element={<AdminPage/>} />
-         <Route path="/admin-profile" element={<AdminProfile/>} />
-         <Route path="/notification" element={<Notification/>} />
-        </Routes> 
-        </AuthProvider>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin-profile" element={<AdminProfile />} />
+            <Route path="/notification" element={<Notification />} />
+          </Routes>
+        
       </BrowserRouter>
-        {/* <ContractPage/> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </div>
   );
 }

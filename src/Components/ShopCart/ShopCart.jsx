@@ -5,8 +5,7 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
 export const ShopCart = () => {
-    const { services, rooms, cartItems, product, removeFromCart, removeRoomsFromCart } = useContext(ServiceContext);
-
+    const { services, rooms, cartItems, product} = useContext(ServiceContext);
     return (
         <div className='shopcart'>
             <div className="shopcart-format-main">
@@ -30,7 +29,6 @@ export const ShopCart = () => {
                   <p>{e.price}đ</p>
                   <button className="cartitems-quantity">{product[e.roomId]}</button>
                   <p>{e.price * product[e.roomId]} đ</p>
-                  <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeRoomsFromCart(e.roomId) }} />
                 </div>
               </div>
             } else {
@@ -47,7 +45,6 @@ export const ShopCart = () => {
                   <p>{e.price}đ</p>
                   <button className="cartitems-quantity">{cartItems[e.serviceId]}</button>
                   <p>{e.price * cartItems[e.serviceId]} đ</p>
-                  <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(e.serviceId) }} />
                 </div>
               </div>
             } else {

@@ -1,22 +1,51 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useState } from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 export const Payment = () => {
+    let date = new Date();
+    const cart = useSelector((state) => state.cart.cart)
+    const key = cart.length - 1;
+    const serviceId = cart[key].services.map(service => { return service.serviceId })
+    const roomIds = cart[key].rooms.map(room => { return room.roomId });
+    const totalPrice = cart[key].totalPrice;
+    // console.log(cart);
+    // console.log(cart[key].rooms[0].roomId);
+    console.log(roomIds[0])
+    console.log(serviceId);
+    console.log(totalPrice);
+
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    // Hàm xử lý sự kiện khi thay đổi giá trị của startTime
+    const handleStartTimeChange = (e) => {
+        setStartTime(e.target.value);
+    };
+
+    // Hàm xử lý sự kiện khi thay đổi giá trị của endTime
+    const handleEndTimeChange = (e) => {
+        setEndTime(e.target.value);
+    };
+
+
+    
+
+    // // const cart = useSelector((state) => state.cart.cart)
+    // // console.log(cart);
+
+
     const { getTotalPrice } = useContext(ServiceContext);
     const auth = useAuth();
     const user = auth.user;
     const navigate = useNavigate();
 
 
-    // const roomWithID1 = cart.rooms.find((room) => room.roomId === 1);
-    // console.log("Room with ID 1:", roomWithID1);
-
-    const cart = useSelector((state)=>(state.cart.cart));
     console.log(cart);
 
 
@@ -85,16 +114,26 @@ console.log(booking);
 
     return (
         <form onSubmit={handleSubmitEvent}>
+            
             <div className='payment'>
-                <div className="payment-methods">
-                    <p><LocalAtmOutlinedIcon /> Payment Method</p>
-                    <div className="payment-methods-change">
-                        <p id="methods" name="methods">By Cash</p>
-                        <button id="methods-button" onClick={handleClick}>Choose Method</button>
+                    <div className="payment-methods">
+                        <p><LocalAtmOutlinedIcon /> Payment Method</p>
+                        <div className="payment-methods-change">
+                            <p id="methods" name="methods">By Cash</p>
+                            <button id="methods-button" onClick={handleClick}>Choose Method</button>
 
                     </div>
                 </div>
                 <hr />
+                <input type="datetime-local" id='booking-startTime' name='startTime' aria-describedby='booking-startTime' aria-invalid="false" onChange={handleInput} placeholder='StartTime' />
+                <input type="datetime-local" id='booking-endTIme' name='endTIme' aria-describedby='booking-endTIme' aria-invalid="false" onChange={handleInput} placeholder='EndTIme' />
+                
+                {/* <input
+                    type="datetime-local"
+                    name="endTime"
+                    placeholder="End Time"
+                    onChange={handleEndTimeChange}
+                /> */}
                 <div className="payment-total">
                     <div>
                         <div className="payment-total-item">
@@ -116,12 +155,12 @@ console.log(booking);
                 <hr />
                 <div className="payment-total-button">
                     <p>Enter "Proceed to checkout" to agree with <span>Conditions of HParty</span></p>
-
-
-                    <Link to='/alerts'><button >PROCEED TO CHECKOUT</button></Link>
+                    
+                    <button type='submit'>PROCEED TO CHECKOUT</button>
                 </div>
             </div>
         </form>
+
     )
 }
 

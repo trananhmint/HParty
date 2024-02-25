@@ -78,7 +78,7 @@ export const RoomCategory = (props) => {
               previousLinkClassName="page-link"
               nextClassName="page-item"
               nextLinkClassName="page-link"
-breakLabel="..."
+              breakLabel="..."
               breakClassName="page-item"
               breakLinkClassName="page-link"
               containerClassName="pagination"
@@ -114,3 +114,4 @@ breakLabel="..."
 }
 
 export default RoomCategory;
+

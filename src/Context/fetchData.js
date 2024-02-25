@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 
- const FetchProduct = () => {
+const FetchProduct = () => {
     const [items, setItems] = useState([]);
 
-   useEffect(() => {
     const fetchData = async () => {
         try {
             const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
@@ -18,10 +17,13 @@ import axios from 'axios';
         }
 
     }
+
+
+    useEffect(() => {
+        fetchData();
     }, []);
 
     return items;
 
 }
-
-export {FetchProduct};
+export { FetchProduct };

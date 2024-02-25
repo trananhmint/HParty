@@ -9,8 +9,6 @@ import { useSelector } from 'react-redux';
 export const BookingService = () => {
   const title = 'payment'
 
-
-
   return (
     <div className='booking-service'>
       <TitleBar title={title} />

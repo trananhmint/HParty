@@ -15,19 +15,19 @@ export const ShopCart = () => {
         <p>Quantity</p>
         <p>Total</p>
       </div>
-      <div className="shopcart-format-shopname">
+      {/* <div className="shopcart-format-shopname">
         <p>Company A</p>
         <hr />
         <p id='chatting'><MessageOutlinedIcon />Chat now</p>
-      </div>
+      </div> */}
       {CartOfItems().map((item) => {
         if (item.roomId !== undefined && item.roomId !== null && item.roomId !== "" && item.roomId > 0) {
           return <div>
-            <div className="cartitems-format cartitems-format-main">
-              <img src={item.imgPath} alt="" className='cartitems-image' />
+            <div className="shopcart-format shopcart-format-main">
+              <img src={item.imgPath} alt="" className='shopcart-image' />
               <p>{item.roomName}</p>
               <p>{item.price}đ</p>
-              <p className="cartitems-quantity">
+              <p className="shopcart-quantity">
                 {/* {product[item.roomId]} */}
                 {getQuantity(item.roomId)}
               </p>
@@ -47,11 +47,11 @@ export const ShopCart = () => {
       {CartOfItems().map((item) => {
         if (item.serviceId !== undefined && item.serviceId !== null && item.serviceId !== "" && item.serviceId > 0) {
           return <div>
-            <div className="cartitems-format cartitems-format-main">
-              <img src={item.imgPath} alt="" className='cartitems-image' />
+            <div className="shopcart-format shopcart-format-main">
+              <img src={item.imgPath} alt="" className='shopcart-image' />
               <p>{item.serviceName}</p>
               <p>{item.price}đ</p>
-              <p className="cartitems-quantity">
+              <p className="shopcart-quantity">
                 {/* {cartItems[item.serviceId]} */}
                 {getQuantity(item.serviceId)}
               </p>

@@ -226,7 +226,6 @@ const ServiceContextProvider = (props) => {
 
         for (let index of cartItem) {
             count = count + 1
-
         }
         return count;
 

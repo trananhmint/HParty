@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import EventNoteIcon from '@mui/icons-material/EventNote';
@@ -11,18 +11,55 @@ import { toast } from 'react-toastify';
 
 
 export const Payment = () => {
-    const { clearCart } = useContext(ServiceContext);
+    const { clearCart, getTotalPrice, CartOfItems, rooms, services } = useContext(ServiceContext);
     const navigate = useNavigate();
+    const [isSuccess, setSuccess] = useState(true);
 
-    const cart = useSelector((state) => state.cart.cart)
-    const key = cart.length - 1;
-    const serviceId = cart[key].services.map(service => { return service.serviceId })
-    const roomIds = cart[key].rooms.map(room => { return room.roomId });
-    const totalPrice = cart[key].totalPrice;
+    // const cart = useSelector((state) => state.cart.cart)
+    // const key = cart.length - 1;
+    // const serviceId = cart[key].services.map(service => { return service.serviceId })
+    // const roomIds = cart[key].rooms.map(room => { return room.roomId });
+    // const totalPrice = cart[key].totalPrice;
 
-    console.log(roomIds[0])
-    console.log(serviceId);
-    console.log(totalPrice);
+
+    // const rooms = CartOfItems().filter((room) => room.roomId);
+    // const roomIds = rooms.map((room) => room.roomId);
+    // const services = CartOfItems().filter((service) => service.serviceId);
+    // const serviceId = services.map((service) => service.serviceId);
+    // const totalPrice = getTotalPrice();
+
+    // console.log(cart);
+    // console.log(roomIds[0])
+    // console.log(serviceId);
+    // console.log(totalPrice);
+
+
+    // const cartId = localStorage.getItem("email");
+    // let cart = JSON.parse(localStorage.getItem(cartId));
+    // let room = rooms.map((room) => room)
+    // let service = services.map((service) => service)
+    // let roomItem = cart.map((item) => {
+    //     return room.find((r) => Number(r.roomId) === Number(item))
+    // })
+    // const serviceItem = cart.map((item) => {
+    //     return service.find((s) => Number(s.serviceId) === Number(item))
+    // })
+
+    // let itemOfRoom = roomItem.filter((room) => room !== undefined);
+    // let itemOfService = serviceItem.filter((service) => service !== undefined);
+
+    // function onlyUnique(value, index, self) {
+    //     return self.indexOf(value) === index;
+    // }
+
+    let uniqueItemOfRoom = JSON.parse(localStorage.getItem("uniqueItemOfRoom"));
+    let uniqueItemOfService = JSON.parse(localStorage.getItem("uniqueItemOfService"));
+
+    let roomIds = uniqueItemOfRoom.map((room) => room.roomId);
+    let serviceIds = uniqueItemOfService.map((service) => service.serviceId);
+    let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+    console.log(roomIds)
+    console.log(serviceIds)
 
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -32,12 +69,35 @@ export const Payment = () => {
     const [booking, setBooking] = useState({
         startTime: "",
         endTIme: "",
-        totalPrice: cart.totalPrice,
-        roomId: cart.rooms,
-        serviceId: cart.services,
+        totalPrice: totalPrice,
+        roomId: roomIds[0],
+        serviceIds: serviceIds,
     })
+    // useEffect(() => {
+    //     setBooking(prevState => ({
+    //         ...prevState,
+    //         roomId: roomIds[0],// Gán giá trị cho roomId từ roomIds
+    //     }));
+    // }, [roomIds]);
 
-console.log(booking);
+    // useEffect(() => {
+    //     setBooking(prevState => ({
+    //         ...prevState,
+    //         serviceIds: serviceId,// Gán giá trị cho roomId từ roomIds
+    //     }));
+    // }, [serviceId]);
+
+    // useEffect(() => {
+    //     setBooking(prevState => ({
+    //         ...prevState,
+    //         totalPrice: totalPrice,// Gán giá trị cho roomId từ roomIds
+    //     }));
+    // }, [totalPrice]);
+
+    console.log(booking.roomId);
+    console.log(booking.serviceIds)
+    console.log(booking.totalPrice);
+
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -45,19 +105,23 @@ console.log(booking);
             ...prev,
             [name]: value,
         }));
-        console.log(e.target)  
     };
 
     const fetchBooking = async (data) => {
         try {
             const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data,
+
                 {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
                     withCredentials: true // Ensure credentials are included
                 })
             console.log(response);
             console.log("Post created:", response.data);
+            // console.log(response.data.isSuccess);
             // navigate("/alerts");
-            console.log("Success Booking");
             toast.success('Booking successfully', {
                 position: "top-right",
                 autoClose: 3000,
@@ -85,6 +149,7 @@ console.log(booking);
                 theme: "light",
 
             });
+            // navigate("/cart");
         }
     }
 
@@ -118,7 +183,7 @@ console.log(booking);
                 theme: "light",
 
             });
-            window.location.href = response.data.url;
+            // window.location.href = response.data.url;
             // alert("Booking successfully");
 
         } catch (error) {
@@ -140,9 +205,12 @@ console.log(booking);
 
     const handleSubmitEvent = (e) => {
         e.preventDefault();
-        if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceId !== "") {
+        if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds.length !== 0 && booking.startTime !== "" && booking.endTIme !== "") {
             fetchBooking(booking);
-            fetchVNPAY(totalPrice);
+            if (fetchBooking(booking)) {
+                fetchVNPAY(totalPrice);
+            }
+
             // clearCart();
             return;
         } else if (booking.roomId === "") {
@@ -180,8 +248,19 @@ console.log(booking);
                 progress: undefined,
                 theme: "light",
             });
+        } else if (isSuccess === false) {
+            toast.warning('Sorry, Please try again!!!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
-    };
+    }
 
 
 
@@ -209,7 +288,6 @@ console.log(booking);
 
 
 
-    const { getTotalPrice } = useContext(ServiceContext);
     const auth = useAuth();
     const handleClick = () => {
         document.querySelector("#methods").style.display = "none";
@@ -227,13 +305,13 @@ console.log(booking);
 
     return (
         <form onSubmit={handleSubmitEvent}>
-            
+
             <div className='payment'>
-                    <div className="payment-methods">
-                        <p><LocalAtmOutlinedIcon /> Payment Method</p>
-                        <div className="payment-methods-change">
-                            <p id="methods" name="methods">By Cash</p>
-                            <button id="methods-button" onClick={handleClick}>Choose Method</button>
+                <div className="payment-methods">
+                    <p><LocalAtmOutlinedIcon /> Payment Method</p>
+                    <div className="payment-methods-change">
+                        <p id="methods" name="methods">By Cash</p>
+                        <button id="methods-button" onClick={handleClick}>Choose Method</button>
 
                     </div>
                 </div>

@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     const cookies = new Cookies();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState("");
+    
     const navigate = useNavigate();
 
     const fetchRegister = async (data) => {
@@ -64,9 +65,12 @@ const AuthProvider = ({ children }) => {
                 .then(res => {
                     console.log(res);
                     if (!!res.data && res.status === 200) {
-                        console.log(JSON.parse(res.config.data))
+                        console.log(JSON.parse(res.config.data).email)
                         const decoded = jwtDecode(res.data)
                         setUser(JSON.parse(res.config.data));
+                        localStorage.setItem("email", JSON.parse(res.config.data).email)
+                        const cartId = localStorage.getItem("email");
+                        localStorage.setItem(cartId, JSON.parse(localStorage.getItem(cartId)));
                         setToken(res.data);
                         cookies.set("authToken", res.data, { expires: new Date(decoded.exp * 1000)});
                         toast.success('Login successfully', {
@@ -106,11 +110,15 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         setToken('');
         cookies.remove("authToken");
+        const cartId = localStorage.getItem("email");
+        localStorage.removeItem(cartId);
+        localStorage.removeItem("email");
+
         navigate("/signup");
     };
 
     return (
-        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut }}>
+        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut}}>
             {children}
         </AuthContext.Provider>
     );

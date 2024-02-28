@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import '../ServiceDisplay/ServiceDisplay.css';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
@@ -9,10 +9,19 @@ import Rating from '@mui/material/Rating';
 
 const ServiceDisplay = (props) => {
   const { service } = props;
-
-  const { AddToCart, AddRoomsToCart} = useContext(ServiceContext);
-
+  const { AddToCart, AddRoomsToCart } = useContext(ServiceContext);
   const [value, setValue] = React.useState(2);
+
+  const handleClick = (service) => {
+
+    if (service.serviceName) {
+      AddToCart(service.serviceId)
+    } else {
+      AddToCart(service.roomId)
+    }
+
+  }
+ 
 
   function getName(serviceName) {
     if (serviceName) {
@@ -22,7 +31,7 @@ const ServiceDisplay = (props) => {
     }
   }
 
-  function getButton (serviceName) {
+  function getButton(serviceName) {
     if (serviceName) {
       return <button onClick={() => { AddToCart(service.serviceId) }}>ADD TO CART</button>
     } else {
@@ -40,7 +49,7 @@ const ServiceDisplay = (props) => {
           <img src={service.imgPath} alt="" />
         </div>
         <div className="servicedisplay-display-img">
-          <img src={service.image} alt="" />
+          <img src={service.imgPath} alt="" />
         </div>
       </div>
       <div className="servicedisplay-right">
@@ -69,8 +78,8 @@ const ServiceDisplay = (props) => {
           <p>{service.description}
           </p>
         </div>
-        {/* <button onClick={() => { AddToCart(service.serviceId) }}>ADD TO CART</button> */}
-            {getButton(service.serviceName)}
+        <button onClick={() => { handleClick(service) }}>ADD TO CART</button>
+        {/* {getButton(service.serviceName)} */}
       </div>
 
     </div>

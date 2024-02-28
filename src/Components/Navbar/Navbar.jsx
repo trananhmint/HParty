@@ -7,13 +7,15 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import { ServiceContext } from '../../Context/ServiceContext';
-
+import Cookies from "universal-cookie";
 export const Navbar = () => {
     const auth = useAuth();
-    const user = auth.user;
-    const { getCountOfCart } = useContext(ServiceContext);
-    function loginLogout(user) {
-        if (user != null) {
+    const { getCountOfCart, count } = useContext(ServiceContext);
+    const cookies = new Cookies();
+    let token = cookies.get("authToken");
+
+    function loginLogout(token) {
+        if (token != null && token !== "" && token !== undefined) {
             return <div className='navbar-login-signup '>
                 <button onClick={() => auth.logOut()} className='logout'>Log Out</button>
             </div>
@@ -26,8 +28,8 @@ export const Navbar = () => {
         }
     }
 
-    function getAvatar(user) {
-        if (user != null) {
+    function getAvatar(token) {
+        if (token !== null && token !== "" && token !== undefined) {
             return <div className='navbar-login-profile'>
                 <AccountCircleIcon />
             </div>
@@ -53,8 +55,8 @@ export const Navbar = () => {
                 <SearchIcon />
             </div>
             <div className="navbar-info">
-                {getAvatar(user)}
-                {loginLogout(user)}
+                {getAvatar(token)}
+                {loginLogout(token)}
                 <Link to='/cart' style={{ color: "black", textDecoration: "none" }}>
                     <div className="navbar-cart">
                         <LocalMallIcon />

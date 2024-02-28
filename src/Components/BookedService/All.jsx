@@ -1,11 +1,10 @@
 import React from 'react'
 import './Booked.css'
 
-const Confirm = () => {
-
+const All = () => {
   return (
-    <div className='confirm'>
-      <div className="booked">
+    <div className='all'>
+              <div className="booked">
         <div className="booked-info">
           <p>ID: 124362657</p>
           <div className="booked-status">
@@ -56,4 +55,4 @@ const Confirm = () => {
   )
 }
 
-export default Confirm
+export default All

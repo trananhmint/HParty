@@ -35,7 +35,7 @@ const ServiceContextProvider = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room')
+            let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
             setRooms(response.data.data);
         }
         fetchData();

@@ -1,0 +1,57 @@
+
+.booked {
+    box-shadow: 0px 0px 10px 5px #e5e5e5;
+    border-radius: 5px;
+    margin: 20px;
+}
+.booked-info {
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+.booked-status {
+    display: flex;
+}
+.booked-status p {
+    display: flex;
+    color: #009b27;
+}
+.booked-status hr {
+    border: 1px solid #c0c0c0 !important ;
+    margin: 5px 10px;
+}
+.booked-item-details {
+    display: flex;
+}
+.booked-items-container {
+    padding: 20px;
+}
+.booked-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.booked-item-img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: #f5a02c;
+}
+.booked-item-info {
+    margin-left: 50px;
+}
+.booked-item-info p {
+    display: flex;
+}
+.booked-item-info p:first-child {
+    font-size: 18px;
+    font-weight: 600;
+}
+.booked-item-price {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+}

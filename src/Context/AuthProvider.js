@@ -113,7 +113,6 @@ const AuthProvider = ({ children }) => {
         const cartId = localStorage.getItem("email");
         localStorage.removeItem(cartId);
         localStorage.removeItem("email");
-
         navigate("/signup");
     };
 

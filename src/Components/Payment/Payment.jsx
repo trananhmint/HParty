@@ -13,7 +13,8 @@ import { toast } from 'react-toastify';
 export const Payment = () => {
     const { clearCart, getTotalPrice, CartOfItems, rooms, services } = useContext(ServiceContext);
     const navigate = useNavigate();
-    const [isSuccess, setSuccess] = useState(true);
+    const [isSuccess, setSuccess] = useState(false);
+    const [methods, setMethods] = useState("");
 
     // const cart = useSelector((state) => state.cart.cart)
     // const key = cart.length - 1;
@@ -112,27 +113,44 @@ export const Payment = () => {
             const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data,
 
                 {
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
+                    // headers: {
+                    //     "Content-Type": "application/json"
+                    // },
                     withCredentials: true // Ensure credentials are included
                 })
             console.log(response);
             console.log("Post created:", response.data);
-            // console.log(response.data.isSuccess);
+            console.log(response.data.isSuccess);
+            setSuccess(response.data.isSuccess)
             // navigate("/alerts");
-            toast.success('Booking successfully', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
 
-            });
+            if (response.data.isSuccess === false) {
+                toast.warning(response.data.message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+
+                });
+            } else {
+                toast.success('Booking successfully', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+
+                });
+            }
+
+
             // alert("Booking successfully");
 
         } catch (error) {
@@ -155,7 +173,7 @@ export const Payment = () => {
 
     // // const cart = useSelector((state) => state.cart.cart)
     // // console.log(cart);
-
+    console.log(isSuccess);
     const fetchVNPAY = async (data) => {
         try {
             console.log(data);
@@ -168,22 +186,26 @@ export const Payment = () => {
                     },
                     withCredentials: true // Ensure credentials are included
                 })
-            console.log(response);
-            console.log("VNPAY created:", response.data.url);
-            // navigate("/alerts");
-            console.log("Success");
-            toast.success('Move to VNPAY', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+            if (isSuccess === true) {
+                console.log(response);
+                console.log("VNPAY created:", response.data.url);
+                // navigate("/alerts");
+                console.log("Success");
+                toast.success('Move to VNPAY', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
 
-            });
-            // window.location.href = response.data.url;
+                });
+                window.location.href = response.data.url;
+            }
+
+
             // alert("Booking successfully");
 
         } catch (error) {
@@ -207,9 +229,7 @@ export const Payment = () => {
         e.preventDefault();
         if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds.length !== 0 && booking.startTime !== "" && booking.endTIme !== "") {
             fetchBooking(booking);
-            if (fetchBooking(booking)) {
-                fetchVNPAY(totalPrice);
-            }
+            fetchVNPAY(totalPrice);
 
             // clearCart();
             return;
@@ -263,46 +283,30 @@ export const Payment = () => {
     }
 
 
-
-    const handleSubmitVNPAY = (e) => {
-        e.preventDefault();
-        if (totalPrice !== null) {
-            fetchVNPAY(totalPrice);
-            return;
-        } else if (totalPrice === null) {
-            toast.warning('Please Choose Services !!!', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-
-            });
-        }
-    };
-
-
-
-
-
-    const auth = useAuth();
-    const handleClick = () => {
-        document.querySelector("#methods").style.display = "none";
-        document.querySelector("#methods-button").style.display = "none";
-        let html = `<input className ="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" />
-                    <label for="byCash">By Cash</label>
-                    
-                    <input  className ="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byVNPAY" />
-                    <label for="byBanking">By VNPAY</label>`;
-        var payment = document.querySelector(".payment-methods-change");
-        payment.innerHTML = html;
+    const handleChange = (e) => {
+        e.preventDefault()
+        setMethods(e.target.value);
     }
 
 
+    const auth = useAuth();
+    const handleClick = (e) => {
+        e.preventDefault()
+        document.querySelector("#payment-methods-display").style.display = "flex";
+        document.querySelector("#byCash").style.display = "inline"
+        document.querySelector("#byBanking").style.display = "inline"
+        document.querySelector("#methods-button").style.display = "none";
+        // let html = `<input className ="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" onChange={handleChange} />
+        //             <label for="byCash">By Cash</label>
 
+        //             <input className="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byVNPAY" onChange={handleChange} />
+        //             <label for="byBanking">By VNPAY</label>`;
+        // var payment = document.querySelector(".payment-methods-change");
+        // payment.innerHTML = html;
+    }
+
+
+    console.log(methods);
     return (
         <form onSubmit={handleSubmitEvent}>
 
@@ -310,7 +314,13 @@ export const Payment = () => {
                 <div className="payment-methods">
                     <p><LocalAtmOutlinedIcon /> Payment Method</p>
                     <div className="payment-methods-change">
-                        <p id="methods" name="methods">By Cash</p>
+                        <div id="payment-methods-display">
+                            <input className="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" onChange={handleChange} />
+                            <label for="byCash">By Cash</label>
+                            <input className="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byVNPAY" onChange={handleChange} />
+                            <label for="byBanking">By VNPAY</label>
+                        </div>
+
                         <button id="methods-button" onClick={handleClick}>Choose Method</button>
 
                     </div>

@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationButton from '../NotificationButton/NotificationButton';
 import './Adminheader.css';
-import logo from '../Assets/BirthdayLogo1.png';
+import party_logo from '../Assets/logo1.png'
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -45,7 +45,7 @@ const AdminHeader = ({ open, handleDrawerOpen }) => {
           <Link to="/admin">
           <Avatar
           alt=""
-          src={logo}
+          src={party_logo}
           sx={{ width: 56, height: 56 }}/>
           </Link>
           <Typography variant="h6" noWrap component="div">

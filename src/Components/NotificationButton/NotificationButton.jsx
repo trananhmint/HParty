@@ -4,6 +4,7 @@ import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { List, ListItem, ListItemText } from "@mui/material";
+import party_logo from '../Assets/logo1.png'
 
 export default function NotificationButton() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,9 +21,9 @@ export default function NotificationButton() {
   const id = open ? "simple-popover" : undefined;
 
   const notifications = [
-    { title: "Notification 1", description: "Description for notification 1" },
-    { title: "Notification 2", description: "Description for notification 2" },
-    // Thêm các thông báo khác nếu cần
+    { title: 'Thông báo 1', description: 'Nội dung thông báo 1', datetime:  new Date(), image: party_logo },
+    { title: 'Thông báo 2', description: 'Nội dung thông báo 2',datetime:  new Date(), image:'' },
+    { title: 'Thông báo 3', description: 'Nội dung thông báo 3',datetime:  new Date(), image:'' },
   ];
 
   // Hàm xử lý khi một mục trong danh sách được nhấp vào
@@ -47,21 +48,28 @@ export default function NotificationButton() {
           horizontal: "left",
         }}
       >
-        <List>
+        <List className="notification-list">
           {notifications.map((notification, index) => (
-            
+            <Link to="/notification" style={{textDecoration:'none'}}>
             <ListItem
               key={index}
-              button // Đặt thuộc tính button để tạo một nút nhấn từ ListItem
               onClick={() => handleListItemClick(notification)} // Xử lý sự kiện khi một mục được nhấp vào
             >
-            <Link to="/notification">
+            <img src={notification.image} alt="" className="notification-image" style={{width:'56px', height:'auto'}}/>
               <ListItemText
-                primary={notification.title}
-                secondary={notification.description}
+              primaryTypographyProps={{color: 'black', fontSize:'16px', fontWeight:'500'}}
+                 primary={notification.title}
+                secondary={
+                    <React.Fragment>
+                        {notification.description}
+                        <br/>
+                        {notification.datetime.toLocaleString()}
+                    </React.Fragment>}
+              secondaryTypographyProps={{textDecoration: 'none'}}
               />
-              </Link>
+             
             </ListItem>
+            </Link>
           ))}
         </List>
       </Popover>

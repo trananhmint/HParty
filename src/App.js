@@ -22,18 +22,17 @@ import ForgetPassword from './Pages/ForgetPassword';
 import ContractPage from './Pages/ContractPage';
 import { pdfjs } from 'react-pdf';
 import ContractPageByPH from './Pages/ContractPageByPH';
-
+import AdminPage from './Pages/AdminPage';
+import AdminProfile from './Pages/Adminprofile';
+import Notification from './Pages/Notification'
+import AllUsers from './Pages/AllUsers';
+import AllServices from './Pages/AllServices';
+import AllContracts from './Pages/AllContracts';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
 ).toString();
-=======
-// import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import AdminPage from './Pages/AdminPage';
-import AdminProfile from './Pages/Adminprofile';
-import Notification from './Pages/Notification'
+
 
 function App() {
   // const [token, setToken] = useState();
@@ -50,6 +49,9 @@ function App() {
             <Route path='/signup' element={<LoginSignup />} />
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Homepage />} />
+              <Route path="/admin" element={<AdminPage/>}  />
+              <Route path="/admin-profile" element={<AdminProfile/>} />
+              <Route path="/notification" element={<Notification/>} />
             </Route>
             <Route path='/service' element={<Service />} >
               <Route path=':serviceId' element={<Service />} />
@@ -65,13 +67,12 @@ function App() {
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
             <Route path='/recover' element={<ForgetPassword />} />
-
           </Routes>
         </AuthProvider>
         <Routes>
-        <Route path="/admin" element={<AdminPage/>} />
-        <Route path="/admin-profile" element={<AdminProfile/>} />
-        <Route path="/notification" element={<Notification/>} />
+        <Route path="/all-users" element={<AllUsers/>} />
+        <Route path="/all-services" element={<AllServices/>} /> 
+        <Route path="/all-contracts" element={<AllContracts/>} /> 
         </Routes> 
         
       </BrowserRouter>

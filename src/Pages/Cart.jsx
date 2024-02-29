@@ -6,9 +6,9 @@ import Footer from '../Components/Footer/Footer';
 export const Cart = () => {
   return (
     <div>
-      <Navbar/>
-        <CartItems/>
-      <Footer/>
+      <Navbar />
+      <CartItems />
+      <Footer />
     </div>
   )
 }

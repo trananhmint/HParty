@@ -1,8 +1,6 @@
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Navbar from './Components/Navbar/Navbar';
-// import Footer from './Components/Footer/Footer';
 import Homepage from './Pages/Homepage';
 import LoginSignup from './Pages/LoginSignup';
 import rooms_banner from './Components/Assets/rooms_banner.jpg';
@@ -28,41 +26,39 @@ import Notification from './Pages/Notification'
 import AllUsers from './Pages/AllUsers';
 import AllServices from './Pages/AllServices';
 import AllContracts from './Pages/AllContracts';
+import RoomCategory from './Pages/RoomCategory';
+import RoomService from './Pages/RoomService';
+import BookedService from './Pages/BookedService';
+import { ToastContainer} from 'react-toastify';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
 ).toString();
 
-
 function App() {
-  // const [token, setToken] = useState();
-
-  // if (!token) {
-  //   return <LoginSignup setToken={setToken} />
-  // }
   return (
     <div className="App">
       <BrowserRouter>
-
         <AuthProvider>
           <Routes>
             <Route path='/signup' element={<LoginSignup />} />
             <Route element={<PrivateRoute />}>
               <Route path='/' element={<Homepage />} />
-              <Route path="/admin" element={<AdminPage/>}  />
-              <Route path="/admin-profile" element={<AdminProfile/>} />
-              <Route path="/notification" element={<Notification/>} />
             </Route>
-            <Route path='/service' element={<Service />} >
+            <Route path='/service' element={<Service value="2" />} >
               <Route path=':serviceId' element={<Service />} />
             </Route>
-            <Route path='/rooms' element={<ServiceCategory categoryId="1" banner={rooms_banner} />} />
-            <Route path='/decorations' element={<ServiceCategory categoryId="2" banner={decorations_banner} />} />
-            <Route path='/foods' element={<ServiceCategory categoryId="3" banner={foods_banner} />} />
-            <Route path='/waiters' element={<ServiceCategory categoryId="4" banner={waiters_banner} />} />
+            <Route path='/roomService' element={<RoomService value="2" />} >
+              <Route path=':roomId' element={<RoomService />} />
+            </Route>
+            <Route path='/rooms' element={<RoomCategory banner={rooms_banner} />} />
+            <Route path='/decorations' element={<ServiceCategory categoryId="1" banner={decorations_banner} />} />
+            <Route path='/foods' element={<ServiceCategory categoryId="2" banner={foods_banner} />} />
+            <Route path='/waiters' element={<ServiceCategory categoryId="3" banner={waiters_banner} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/search' element={<SearchPage />} />
             <Route path='/bookingService' element={<BookingService />} />
+            <Route path='/bookedService' element={<BookedService />} />
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
@@ -73,10 +69,25 @@ function App() {
         <Route path="/all-users" element={<AllUsers/>} />
         <Route path="/all-services" element={<AllServices/>} /> 
         <Route path="/all-contracts" element={<AllContracts/>} /> 
+        <Route path="/admin" element={<AdminPage/>}  />
+              <Route path="/admin-profile" element={<AdminProfile/>} />
+              <Route path="/notification" element={<Notification/>} />
         </Routes> 
-        
       </BrowserRouter>
-        {/* <ContractPage/> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </div>
   );
 }

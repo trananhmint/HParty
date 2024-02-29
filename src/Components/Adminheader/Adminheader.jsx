@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,8 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationButton from '../NotificationButton/NotificationButton';
 import './Adminheader.css';
 import party_logo from '../Assets/logo1.png'
+import './Adminheader.css';
 const drawerWidth = 240;
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -31,31 +31,37 @@ const AppBar = styled(MuiAppBar, {
 
 const AdminHeader = ({ open, handleDrawerOpen }) => {
   return (
-      <AppBar position="fixed" open={open} style={{background: '#e7c494'}}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link to="/admin">
-          <Avatar
-          alt=""
-          src={party_logo}
-          sx={{ width: 56, height: 56 }}/>
-          </Link>
-          <Typography variant="h6" noWrap component="div">
-          HPARTY
-          </Typography>
-          <div style={{ marginLeft: 'auto' }}>
-            <NotificationButton classname="noti-button" />
+    <AppBar position="fixed" open={open} style={{ background: '#e7c494' }}>
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={handleDrawerOpen}
+          edge="start"
+          sx={{ mr: 2, ...(open && { display: 'none' }) }}
+        >
+          <MenuIcon style={{ width: "100px", height: "40px" }} />
+        </IconButton>
+        <Link to="/admin" style={{ textDecoration: "none" }}>
+          <div className="admin-appbar">
+            <Avatar
+              alt=""
+              src={party_logo}
+              sx={{ width: '90px', height: '90px' }}
+            />
+
+            <Typography variant="h6" noWrap component="div">
+              HPARTY
+            </Typography>
           </div>
-        </Toolbar>
-      </AppBar>
-  )
-}
+        </Link>
+
+        <div style={{ marginLeft: 'auto' }}>
+          <NotificationButton classname="noti-button" />
+        </div>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
 export default AdminHeader;

@@ -113,15 +113,62 @@
     left: 0;
     height: 25px;
     width: 25px;
-    color:#3cbbbb;
+    color: #3cbbbb;
     border-radius: 50%;
 }
 
-.payment-methods-change input:hover{
+.payment-methods-change input:hover {
     background-color: #3cbbbb;
 }
 
 .payment-methods-change label {
     position: relative;
     font-size: 20px;
+}
+
+.payment-input-time {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.payment-input-time>p {
+    font-size: 20px;
+    color: #3cbbbb;
+}
+
+.payment-input-time svg {
+    font-size: 30px;
+    margin-bottom: -8px;
+}
+
+.payment-input-time input[type="datetime-local" i] {
+    font-size: 22px;
+    height: 50px;
+    border: 1px solid black;
+    padding: 0 20px;
+    border-radius: 4px;
+    transition: 1s ease;
+}
+
+/* .payment-input-time input:hover{
+    border: 1px solid #f5a02c;
+} */
+.payment-input-time input[type="datetime-local"]:focus {
+    border-color: #f5a02c;
+}
+
+#payment-methods-display {
+    display: none;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+#byCash {
+    display: none;
+
+}
+
+#byBanking {
+    display: none;
 }

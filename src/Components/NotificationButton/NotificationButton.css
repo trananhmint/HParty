@@ -1,3 +1,14 @@
+
 .notification-list {
     max-width: max-content;
 }
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    background: #f5a02c;
+    padding: 10px;
+    font-size: 40px;
+    border-radius: 80px;
+    color: white;
+    box-shadow: 1px 1px #f5a02c;
+}
+

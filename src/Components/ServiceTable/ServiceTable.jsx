@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './ServiceTable.css'
 import { fetchService } from '../../Context/fetchService';
+import { Edit } from '@mui/icons-material';
 
 // function createData(ServiceId, ServiceName, Price, Description, Status, UserId, CategoryId, ServiceTitle) {
 //   return { ServiceId, ServiceName, Price, Description, Status, UserId, CategoryId, ServiceTitle };
@@ -67,10 +68,10 @@ export default function ServiceTable() {
               <TableCell component="th" scope="row">
                 {item.serviceId}
               </TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.serviceName}</TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.price}</TableCell>
+              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.serviceName}</TableCell>
+              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.price}</TableCell>
               <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.userId}</TableCell>
+              <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}}>{item.user.fullName}</TableCell>
               <TableCell sx={{fontSize:'16px'}} align="center">
                 {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
               </TableCell>
@@ -79,13 +80,16 @@ export default function ServiceTable() {
                 variant="contained"
                 style={{
                     backgroundColor: item.status === 1 ? '#32CD32' : '#FF4500',
-                    borderRadius: '20px',}}>
+                    borderRadius: '15px',
+                    fontSize: '15px',
+                    boxShadow: '1px 1px ',
+                    }}>
                     {item.status === 1 ? 'ACTIVE': 'NON_ACTIVE'}
              </Button>
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                    <Button variant="contained" endIcon={<EditIcon/>} style={{background:'#f5a02c'}}>
+                <Button variant="outlined" startIcon={<Edit />} style={{borderColor:'#f5a02c', color:'#f5a02c'}}>
                         Edit
                     </Button>
 

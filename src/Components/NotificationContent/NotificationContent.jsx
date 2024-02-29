@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Typography, List, ListItem, ListItemText, Button} from '@mui/material';
 import './NotificationContent.css';
 import party_logo from '../Assets/logo1.png'
@@ -29,7 +29,13 @@ const notifications = [
                                         }
                 secondaryTypographyProps={{fontSize:'16'}}
                 />
-              <Button variant="contained" size="medium" style={{ background: 'white', color: 'black' }}>
+              <Button variant="contained" size="medium" style={{ 
+                background: 'white', 
+                color: 'black', 
+                fontSize:'15px', 
+                borderRadius:'1px', 
+                marginLeft:'20px',
+                boxShadow: '1px 1px black' }}>
                 Xem chi tiết
               </Button>
             </ListItem>
@@ -38,5 +44,5 @@ const notifications = [
     </div>
   );
   };
-  
+
   export default NotificationContent;

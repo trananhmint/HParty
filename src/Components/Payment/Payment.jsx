@@ -1,64 +1,366 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import { ServiceContext } from '../../Context/ServiceContext';
-import { Link } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+
+
 export const Payment = () => {
-    const { getTotalPrice} = useContext(ServiceContext);
-    const auth = useAuth();
-    const user = auth.user;
-    const handleClick = () => {
-        document.querySelector("#methods").style.display = "none";
-        document.querySelector("#methods-button").style.display = "none";
-        let html = `<input className ="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" />
-                    <label for="byCash">By Cash</label>
-                    
-                    <input  className ="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byBanking" />
-                    <label for="byBanking">By Banking</label>`;
-        var payment = document.querySelector(".payment-methods-change");
-        payment.innerHTML = html;
+    const { clearCart, getTotalPrice, CartOfItems, rooms, services } = useContext(ServiceContext);
+    const navigate = useNavigate();
+    const [isSuccess, setSuccess] = useState(false);
+    const [methods, setMethods] = useState("");
+
+    // const cart = useSelector((state) => state.cart.cart)
+    // const key = cart.length - 1;
+    // const serviceId = cart[key].services.map(service => { return service.serviceId })
+    // const roomIds = cart[key].rooms.map(room => { return room.roomId });
+    // const totalPrice = cart[key].totalPrice;
+
+
+    // const rooms = CartOfItems().filter((room) => room.roomId);
+    // const roomIds = rooms.map((room) => room.roomId);
+    // const services = CartOfItems().filter((service) => service.serviceId);
+    // const serviceId = services.map((service) => service.serviceId);
+    // const totalPrice = getTotalPrice();
+
+    // console.log(cart);
+    // console.log(roomIds[0])
+    // console.log(serviceId);
+    // console.log(totalPrice);
+
+
+    // const cartId = localStorage.getItem("email");
+    // let cart = JSON.parse(localStorage.getItem(cartId));
+    // let room = rooms.map((room) => room)
+    // let service = services.map((service) => service)
+    // let roomItem = cart.map((item) => {
+    //     return room.find((r) => Number(r.roomId) === Number(item))
+    // })
+    // const serviceItem = cart.map((item) => {
+    //     return service.find((s) => Number(s.serviceId) === Number(item))
+    // })
+
+    // let itemOfRoom = roomItem.filter((room) => room !== undefined);
+    // let itemOfService = serviceItem.filter((service) => service !== undefined);
+
+    // function onlyUnique(value, index, self) {
+    //     return self.indexOf(value) === index;
+    // }
+
+    let uniqueItemOfRoom = JSON.parse(localStorage.getItem("uniqueItemOfRoom"));
+    let uniqueItemOfService = JSON.parse(localStorage.getItem("uniqueItemOfService"));
+
+    let roomIds = uniqueItemOfRoom.map((room) => room.roomId);
+    let serviceIds = uniqueItemOfService.map((service) => service.serviceId);
+    let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+    console.log(roomIds)
+    console.log(serviceIds)
+
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+
+
+
+    const [booking, setBooking] = useState({
+        startTime: "",
+        endTIme: "",
+        totalPrice: totalPrice,
+        roomId: roomIds[0],
+        serviceIds: serviceIds,
+    })
+    // useEffect(() => {
+    //     setBooking(prevState => ({
+    //         ...prevState,
+    //         roomId: roomIds[0],// Gán giá trị cho roomId từ roomIds
+    //     }));
+    // }, [roomIds]);
+
+    // useEffect(() => {
+    //     setBooking(prevState => ({
+    //         ...prevState,
+    //         serviceIds: serviceId,// Gán giá trị cho roomId từ roomIds
+    //     }));
+    // }, [serviceId]);
+
+    // useEffect(() => {
+    //     setBooking(prevState => ({
+    //         ...prevState,
+    //         totalPrice: totalPrice,// Gán giá trị cho roomId từ roomIds
+    //     }));
+    // }, [totalPrice]);
+
+    console.log(booking.roomId);
+    console.log(booking.serviceIds)
+    console.log(booking.totalPrice);
+
+
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        setBooking((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const fetchBooking = async (data) => {
+        try {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data,
+
+                {
+                    // headers: {
+                    //     "Content-Type": "application/json"
+                    // },
+                    withCredentials: true // Ensure credentials are included
+                })
+            console.log(response);
+            console.log("Post created:", response.data);
+            console.log(response.data.isSuccess);
+            setSuccess(response.data.isSuccess)
+            // navigate("/alerts");
+
+            if (response.data.isSuccess === false) {
+                toast.warning(response.data.message, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+
+                });
+            } else {
+                toast.success('Booking successfully', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+
+                });
+            }
+
+
+            // alert("Booking successfully");
+
+        } catch (error) {
+            console.error(error);
+            console.log("This is an invalid booking")
+            toast.error('Booking failed', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+            // navigate("/cart");
+        }
+    }
+
+    // // const cart = useSelector((state) => state.cart.cart)
+    // // console.log(cart);
+    console.log(isSuccess);
+    const fetchVNPAY = async (data) => {
+        try {
+            console.log(data);
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/VNPay", {
+                totalPrice: data
+            },
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    withCredentials: true // Ensure credentials are included
+                })
+            if (isSuccess === true) {
+                console.log(response);
+                console.log("VNPAY created:", response.data.url);
+                // navigate("/alerts");
+                console.log("Success");
+                toast.success('Move to VNPAY', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+
+                });
+                window.location.href = response.data.url;
+            }
+
+
+            // alert("Booking successfully");
+
+        } catch (error) {
+            console.error(error);
+            console.log("There are errors")
+            toast.error('VNPAY failed', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+        }
+    }
+
+    const handleSubmitEvent = (e) => {
+        e.preventDefault();
+        if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds.length !== 0 && booking.startTime !== "" && booking.endTIme !== "") {
+            fetchBooking(booking);
+            fetchVNPAY(totalPrice);
+
+            // clearCart();
+            return;
+        } else if (booking.roomId === "") {
+            toast.warning('Please choose A Room before booking.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+        } else if (booking.serviceIds.length === 0) {
+            toast.warning('Please choose services again.', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+        } else if (booking.startTime === "" && booking.endTIme === "") {
+            toast.warning('Please enter Time for party', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else if (isSuccess === false) {
+            toast.warning('Sorry, Please try again!!!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
 
 
+    const handleChange = (e) => {
+        e.preventDefault()
+        setMethods(e.target.value);
+    }
 
+
+    const auth = useAuth();
+    const handleClick = (e) => {
+        e.preventDefault()
+        document.querySelector("#payment-methods-display").style.display = "flex";
+        document.querySelector("#byCash").style.display = "inline"
+        document.querySelector("#byBanking").style.display = "inline"
+        document.querySelector("#methods-button").style.display = "none";
+        // let html = `<input className ="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" onChange={handleChange} />
+        //             <label for="byCash">By Cash</label>
+
+        //             <input className="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byVNPAY" onChange={handleChange} />
+        //             <label for="byBanking">By VNPAY</label>`;
+        // var payment = document.querySelector(".payment-methods-change");
+        // payment.innerHTML = html;
+    }
+
+
+    console.log(methods);
     return (
-        <div className='payment'>
-            <div className="payment-methods">
-                <p><LocalAtmOutlinedIcon /> Payment Method</p>
-                <div className="payment-methods-change">
-                    <p id="methods" name="methods">By Cash</p>
-                    <button id="methods-button" onClick={handleClick}>Choose Method</button>
+        <form onSubmit={handleSubmitEvent}>
 
-                </div>
-            </div>
-            <hr />
-            <div className="payment-total">
-                <div>
-                    <div className="payment-total-item">
-                        <p>Sub Total</p>
-                        <p>{getTotalPrice()}đ</p>
-                    </div>
-                    <hr />
-                    <div className="payment-total-item">
-                        <p>Shipping Fee</p>
-                        <p>Free</p>
-                    </div>
-                    <hr />
-                    <div className="payment-total-item">
-                        <h3>Total</h3>
-                        <h3>{getTotalPrice() + 0} đ</h3>
+            <div className='payment'>
+                <div className="payment-methods">
+                    <p><LocalAtmOutlinedIcon /> Payment Method</p>
+                    <div className="payment-methods-change">
+                        <div id="payment-methods-display">
+                            <input className="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" onChange={handleChange} />
+                            <label for="byCash">By Cash</label>
+                            <input className="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byVNPAY" onChange={handleChange} />
+                            <label for="byBanking">By VNPAY</label>
+                        </div>
+
+                        <button id="methods-button" onClick={handleClick}>Choose Method</button>
+
                     </div>
                 </div>
+                <hr />
+                <div className="payment-input-time">
+                    <p><EventNoteIcon /> Choose Party Time</p>
+                    <input type="datetime-local" id='booking-startTime' name='startTime' aria-describedby='booking-startTime' aria-invalid="false" onChange={handleInput} />
+                    <input type="datetime-local" id='booking-endTIme' name='endTIme' aria-describedby='booking-endTIme' aria-invalid="false" onChange={handleInput} />
+                </div>
+                <hr />
+                <div className="payment-total">
+                    <div>
+                        <div className="payment-total-item">
+                            <p>Sub Total</p>
+                            <p>{getTotalPrice()}đ</p>
+                        </div>
+                        <hr />
+                        <div className="payment-total-item">
+                            <p>Shipping Fee</p>
+                            <p>Free</p>
+                        </div>
+                        <hr />
+                        <div className="payment-total-item">
+                            <h3>Total</h3>
+                            <h3>{getTotalPrice() + 0} đ</h3>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div className="payment-total-button">
+                    <p>Enter "Proceed to checkout" to agree with <span>Conditions of HParty</span></p>
+                    <button type='submit'  >PROCEED TO CHECKOUT</button>
+                    {/* <form onSubmit={handleSubmitVNPAY}>
+                        <button type='submit'>DEPOSIT</button>
+                    </form> */}
+                </div>
             </div>
-            <hr />
-            <div className="payment-total-button">
-                <p>Enter "Proceed to checkout" to agree with <span>Conditions of HParty</span></p>
+        </form>
 
-              
-                <Link to='/alerts'><button>PROCEED TO CHECKOUT</button></Link>
-            </div>
-        </div>
     )
 }
 

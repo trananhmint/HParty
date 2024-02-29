@@ -46,18 +46,20 @@ export default function ContractTable() {
                 {row.ContractId}
               </TableCell>
               <TableCell sx={{fontSize:'16px'}} align='center'>{row.LinkFile}</TableCell>
-              <TableCell sx={{ fontSize: '16px'}} align="center">
+              <TableCell sx={{ fontSize: '16px'}} >
               <Button
                 variant="contained"
                 style={{
                     backgroundColor: row.Status === 1 ? '#32CD32' : '#FF4500',
-                    borderRadius: '20px',}}>
+                    borderRadius: '15px',
+                    fontSize: '15px',
+                    boxShadow: '1px 1px ',}}>
                     {row.Status === 1 ? 'ACTIVE': 'NON_ACTIVE'}
              </Button>
               </TableCell>
               <TableCell align='center'>
                 <Stack direction="row" alignItems={'center'} justifyContent={'space-around'}>
-                    <Button variant="contained" endIcon={<EditIcon/>} style={{background:'#f5a02c'}}>
+                    <Button variant="outlined" endIcon={<EditIcon/>} style={{borderColor:'#f5a02c', color:'#f5a02c'}}>
                         Edit
                     </Button>
 

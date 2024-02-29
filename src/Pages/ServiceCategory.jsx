@@ -1,26 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CSS/ServiceCategory.css'
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Item from '../Components/Item/Item';
-// import { fetchService } from '../Components/Context/fetchService';
 import ReactPaginate from 'react-paginate';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
-import { fetchService } from '../Context/fetchService';
-import { ServiceContext } from '../Context/ServiceContext';
 import axios from 'axios';
 export const ServiceCategory = (props) => {
   
-  // const { all_service } = useContext(ServiceContext);
 
-  // const items = all_service.filter((item) => item.category === props.category)
 
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetchData() {
       let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
       setItems(response.data.data.filter((e) => { return e.categoryId === Number(props.categoryId) }));
-      console.log(response.data.data);
     }
     fetchData();
   }, []);
@@ -81,7 +74,7 @@ export const ServiceCategory = (props) => {
             previousLabel="< previous"
             pageClassName="page-item"
             pageLinkClassName="page-link"
-            previousClassName="page-item"
+previousClassName="page-item"
             previousLinkClassName="page-link"
             nextClassName="page-item"
             nextLinkClassName="page-link"
@@ -107,7 +100,7 @@ export const ServiceCategory = (props) => {
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
-          <span>Showing 1-8</span> out of <span>{items.length + 1}</span> services
+          <span>Showing 1-8</span> out of <span>{items.length }</span> services
         </p>
         <div className="services-sort">
         </div>

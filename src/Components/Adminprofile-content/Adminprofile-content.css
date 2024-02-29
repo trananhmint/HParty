@@ -1,11 +1,11 @@
 /* AdminProfile.css */
 .admin-profile-container {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background: linear-gradient(to bottom, #D2B48C, #FFFFFF);
+    background: linear-gradient(to bottom, #DEB887, #FFFFFF);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 100px;
   }
@@ -35,5 +35,14 @@
   
   .admin-profile-content-wrapper p {
     margin: 5px 0; /* Khoảng cách giữa các dòng */
+
+
   }
-  
+  .admin-avatar-image{
+    width: 200px;
+    height: auto; 
+  }
+  .admin-profile-avatar{
+    margin-bottom: 10px;
+
+  }

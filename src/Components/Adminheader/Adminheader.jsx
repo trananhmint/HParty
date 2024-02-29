@@ -12,7 +12,6 @@ import './Adminheader.css';
 import party_logo from '../Assets/logo1.png'
 import './Adminheader.css';
 const drawerWidth = 240;
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -32,7 +31,7 @@ const AppBar = styled(MuiAppBar, {
 
 const AdminHeader = ({ open, handleDrawerOpen }) => {
   return (
-    <AppBar open={open} >
+    <AppBar position="fixed" open={open} style={{ background: '#e7c494' }}>
       <Toolbar>
         <IconButton
           color="inherit"
@@ -41,14 +40,15 @@ const AdminHeader = ({ open, handleDrawerOpen }) => {
           edge="start"
           sx={{ mr: 2, ...(open && { display: 'none' }) }}
         >
-          <MenuIcon style={{width:"100px",  height:"40px"}}/>
+          <MenuIcon style={{ width: "100px", height: "40px" }} />
         </IconButton>
-        <Link to="/admin" style={{textDecoration: "none"}}>
+        <Link to="/admin" style={{ textDecoration: "none" }}>
           <div className="admin-appbar">
             <Avatar
               alt=""
               src={party_logo}
-              sx={{ width: '90px', height: '90px' }} />
+              sx={{ width: '90px', height: '90px' }}
+            />
 
             <Typography variant="h6" noWrap component="div">
               HPARTY
@@ -60,8 +60,8 @@ const AdminHeader = ({ open, handleDrawerOpen }) => {
           <NotificationButton classname="noti-button" />
         </div>
       </Toolbar>
-    </AppBar >
+    </AppBar>
+  );
+};
 
-  )
-}
 export default AdminHeader;

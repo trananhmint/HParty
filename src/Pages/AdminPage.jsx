@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import './CSS/AdminPage.css';
@@ -34,7 +34,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 export default function AdminPage() {
   const [open, setOpen] = React.useState(false);
 
-    
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -44,19 +44,19 @@ export default function AdminPage() {
   };
 
   return (
-    <Box sx={{ display: 'flex'}} >
+    <Box sx={{ display: 'flex' }} >
       <CssBaseline />
-      <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen}/>
+      <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen} />
       <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
-      
+
       <Main open={open}>
-      <div className="main-layout">
-      <div className="chart-group">
-        <UserPieChart className="user-pie-chart" />
-        <ServiceBarChart/>
-      </div>
-      <ContractPieChart/>
-    </div>
+        <div className="main-layout">
+          <div className="chart-group">
+            <UserPieChart className="user-pie-chart" />
+            <ServiceBarChart />
+          </div>
+          <ContractPieChart />
+        </div>
       </Main>
     </Box>
   );

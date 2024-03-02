@@ -30,6 +30,7 @@ import RoomCategory from './Pages/RoomCategory';
 import RoomService from './Pages/RoomService';
 import BookedService from './Pages/BookedService';
 import { ToastContainer} from 'react-toastify';
+import EditService from './Components/EditForm/EditService';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -63,6 +64,7 @@ function App() {
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
             <Route path='/recover' element={<ForgetPassword />} />
+            
           </Routes>
         </AuthProvider>
         <Routes>
@@ -72,6 +74,7 @@ function App() {
         <Route path="/admin" element={<AdminPage/>}  />
               <Route path="/admin-profile" element={<AdminProfile/>} />
               <Route path="/notification" element={<Notification/>} />
+            <Route path='/updateService' element={<EditService/>}/>
         </Routes> 
       </BrowserRouter>
       <ToastContainer

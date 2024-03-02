@@ -62,8 +62,8 @@ function stringAvatar(name) {
   };
 }
 
-const fullname = 'Vo Nguyen Trung Hai'; // Lấy nội dung từ thẻ <p>
-const firstLetter = fullname.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
+  const text = 'Ocean Võ'; // Lấy nội dung từ thẻ <p>
+  const firstLetter = text.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
 
 
 
@@ -72,24 +72,24 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
   const theme = useTheme();
 
   const textAndIcons = {
-    'My Profile Info': <AssignmentIndIcon />,
-    'All Users': <AccountBoxIcon />,
-    'All Services': <CelebrationIcon />,
-    'All Contracts': <TaskIcon />,
+    'My Profile Info':  <AssignmentIndIcon style={{color: 'white'}} />,
+    'All Users': <AccountBoxIcon style={{color: 'white'}}/>,
+    'All Services': <CelebrationIcon style={{color: 'white'}}/>,
+    'All Contracts': <TaskIcon style={{color: 'white'}}/>,
   };
 
   return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
+      <Drawer
+        sx={{
           width: drawerWidth,
-          boxSizing: 'border-box',
-          // background: 'linear-gradient(to bottom, #e7c494, #FFFFFF )',
-          background: '#e7c494',
-          color: 'white',
-          fontWeight: '500'
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            // background: 'linear-gradient(to bottom, #DEB887, #FFFFFF )',
+            background: '#e7c494',
+            color: 'white',
+            fontWeight: '500'
 
         },
       }}
@@ -99,10 +99,10 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
     >
       <DrawerHeader >
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'space-between' }}>
-          <Avatar {...stringAvatar(firstLetter)} />
-          <p style={{ fontWeight: '600' }}>{fullname}</p>
+        <Avatar {...stringAvatar(firstLetter)} />
+        <p style={{fontWeight: '500', fontSize:'18px'}}>{text}</p>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon style={{color:'#ffffff'}}/> : <ChevronRightIcon />}
           </IconButton>
         </div>
       </DrawerHeader>
@@ -114,25 +114,25 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
               <ListItemIcon>
                 {textAndIcons[text]}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText  primaryTypographyProps={{fontWeight: '500'}} primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
-  )
-}
-export default AdminSidebar;
+        <Divider />
+        <List>
+          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon style={{color: 'white'}} /> : <MailIcon style={{color: 'white'}}/>}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      )
+    }
+    export default AdminSidebar;

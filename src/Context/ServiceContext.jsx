@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { addToCart } from "../redux/CartSlice";
+import { addToCart } from "../redux/cartSlice";
 import { useDispatch } from 'react-redux';
 
 export const ServiceContext = createContext(null);
@@ -226,7 +226,6 @@ const ServiceContextProvider = (props) => {
 
         for (let index of cartItem) {
             count = count + 1
-
         }
         return count;
 

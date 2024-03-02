@@ -20,11 +20,14 @@ import ForgetPassword from './Pages/ForgetPassword';
 import ContractPage from './Pages/ContractPage';
 import { pdfjs } from 'react-pdf';
 import ContractPageByPH from './Pages/ContractPageByPH';
-import RoomCategory from './Pages/RoomCategory';
-import RoomService from './Pages/RoomService';
 import AdminPage from './Pages/AdminPage';
 import AdminProfile from './Pages/Adminprofile';
 import Notification from './Pages/Notification'
+import AllUsers from './Pages/AllUsers';
+import AllServices from './Pages/AllServices';
+import AllContracts from './Pages/AllContracts';
+import RoomCategory from './Pages/RoomCategory';
+import RoomService from './Pages/RoomService';
 import BookedService from './Pages/BookedService';
 import { ToastContainer} from 'react-toastify';
 import EditService from './Components/EditForm/EditService';
@@ -63,14 +66,16 @@ function App() {
             <Route path='/recover' element={<ForgetPassword />} />
             
           </Routes>
-          </AuthProvider>
-          <Routes>
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/admin-profile" element={<AdminProfile />} />
-            <Route path="/notification" element={<Notification />} />
+        </AuthProvider>
+        <Routes>
+        <Route path="/all-users" element={<AllUsers/>} />
+        <Route path="/all-services" element={<AllServices/>} /> 
+        <Route path="/all-contracts" element={<AllContracts/>} /> 
+        <Route path="/admin" element={<AdminPage/>}  />
+              <Route path="/admin-profile" element={<AdminProfile/>} />
+              <Route path="/notification" element={<Notification/>} />
             <Route path='/updateService' element={<EditService/>}/>
-          </Routes>
-        
+        </Routes> 
       </BrowserRouter>
       <ToastContainer
         position="top-right"

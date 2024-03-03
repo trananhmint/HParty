@@ -44,11 +44,11 @@ export default function AdminProfile() {
       <CssBaseline />
       <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen}/>
       <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
-      <Main open={open}>
+      {/* <Main open={open}>
       <div className='admin-profile-content'>
       <AdminProfileContent/>
       </div>
-      </Main>
+      </Main> */}
     </Box>
   );
 }

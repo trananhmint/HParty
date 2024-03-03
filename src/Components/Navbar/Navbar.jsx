@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import party_logo from '../Assets/logo1.png'
 import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
@@ -10,7 +10,21 @@ import { ServiceContext } from '../../Context/ServiceContext';
 import Cookies from "universal-cookie";
 export const Navbar = () => {
     const auth = useAuth();
-    const { getCountOfCart, count } = useContext(ServiceContext);
+    const { getCountOfCart } = useContext(ServiceContext);
+    const [count, setCount] = useState(0);
+
+    const cartId = localStorage.getItem("email");
+    const cart = JSON.parse(localStorage.getItem(cartId)) || [] ;
+   
+
+    useEffect(() => {
+        if (cart.length > 0) {
+            setCount(getCountOfCart())
+        } else if (cart === null || cart.length === 0) {
+            setCount(0);
+        }
+    })
+
     const cookies = new Cookies();
     let token = cookies.get("authToken");
 
@@ -59,8 +73,9 @@ export const Navbar = () => {
                 {loginLogout(token)}
                 <Link to='/cart' style={{ color: "black", textDecoration: "none" }}>
                     <div className="navbar-cart">
+                        {/* {getCountOfCart()} */}
                         <LocalMallIcon />
-                        <div className="cart-count">{getCountOfCart()}</div>
+                        <div className="cart-count">{count}</div>
                     </div>
                 </Link>
 

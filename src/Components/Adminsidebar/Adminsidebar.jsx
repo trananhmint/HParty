@@ -34,48 +34,48 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 function stringToColor(string) {
-    let hash = 0;
-    let i;
-  
-    /* eslint-disable no-bitwise */
-    for (i = 0; i < string.length; i += 1) {
-      hash = string.charCodeAt(i) + ((hash << 5) - hash);
-    }
-  
-    let color = '#';
-  
-    for (i = 0; i < 3; i += 1) {
-      const value = (hash >> (i * 8)) & 0xff;
-      color += `00${value.toString(16)}`.slice(-2);
-    }
-    /* eslint-enable no-bitwise */
-  
-    return color;
-  }
-  
-  function stringAvatar(name) {
-    return {
-      sx: {
-        bgcolor: stringToColor(name),
-      },
-      children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-    };
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
 
-  const text = 'Vo Nguyen Trung Hai'; // Lấy nội dung từ thẻ <p>
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+  };
+}
+
+  const text = 'Ocean Võ'; // Lấy nội dung từ thẻ <p>
   const firstLetter = text.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
 
-  
-    
-  
-  const AdminSidebar = ({ open, handleDrawerClose }) => {
+
+
+
+const AdminSidebar = ({ open, handleDrawerClose }) => {
   const theme = useTheme();
 
   const textAndIcons = {
-    'My Profile Info':  <AssignmentIndIcon />,
-    'All Users': <AccountBoxIcon/>,
-    'All Services': <CelebrationIcon/>,
-    'All Contracts': <TaskIcon/>,
+    'My Profile Info':  <AssignmentIndIcon style={{color: 'white'}} />,
+    'All Users': <AccountBoxIcon style={{color: 'white'}}/>,
+    'All Services': <CelebrationIcon style={{color: 'white'}}/>,
+    'All Contracts': <TaskIcon style={{color: 'white'}}/>,
   };
 
   return (
@@ -86,35 +86,35 @@ function stringToColor(string) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            // background: 'linear-gradient(to bottom, #e7c494, #FFFFFF )',
+            // background: 'linear-gradient(to bottom, #DEB887, #FFFFFF )',
             background: '#e7c494',
             color: 'white',
             fontWeight: '500'
 
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader >
+        },
+      }}
+      variant="persistent"
+      anchor="left"
+      open={open}
+    >
+      <DrawerHeader >
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'space-between' }}>
         <Avatar {...stringAvatar(firstLetter)} />
-        <p style={{fontWeight: '500'}}>{text}</p>
+        <p style={{fontWeight: '500', fontSize:'18px'}}>{text}</p>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon style={{color:'#ffffff'}}/> : <ChevronRightIcon />}
           </IconButton>
         </div>
-        </DrawerHeader>
-        <Divider />
-        <List>
+      </DrawerHeader>
+      <Divider />
+      <List>
         {['My Profile Info', 'All Users', 'All Services', 'All Contracts'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton component={Link} to={text === 'My Profile Info' ? '/admin-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
               <ListItemIcon>
                 {textAndIcons[text]}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText  primaryTypographyProps={{fontWeight: '500'}} primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -125,7 +125,7 @@ function stringToColor(string) {
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index % 2 === 0 ? <InboxIcon style={{color: 'white'}} /> : <MailIcon style={{color: 'white'}}/>}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

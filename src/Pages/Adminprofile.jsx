@@ -27,6 +27,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     }),
   }),
 );
+
   
 export default function AdminProfile() {
   const [open, setOpen] = React.useState(false);
@@ -40,6 +41,11 @@ export default function AdminProfile() {
     setOpen(false);
   };
 
+  
+
+
+
+
   return (
     <Box sx={{ display: 'flex'}} >
       <CssBaseline />
@@ -47,7 +53,7 @@ export default function AdminProfile() {
       <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
       <Main open={open}>
       <div className='admin-profile-content'>
-      <AdminProfileContent/>
+      <AdminProfileContent />
       </div>
       </Main>
     </Box>

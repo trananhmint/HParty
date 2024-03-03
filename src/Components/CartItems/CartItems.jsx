@@ -5,7 +5,7 @@ import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumb
 import { ServiceContext } from '../../Context/ServiceContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../redux/cartSlice';
+import { addToCart } from '../../redux/CartSlice';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { useAuth } from '../../Context/AuthProvider';
 import { toast } from 'react-toastify';

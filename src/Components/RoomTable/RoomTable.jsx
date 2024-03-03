@@ -10,18 +10,18 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
-import './ServiceTable.css'
-import { fetchService } from '../../Context/fetchService';
-import { disableService } from '../../Context/disableService';
+import './RoomTable.css'
+import { deleteService } from '../../Context/disableService';
+import { fetchRoom } from '../../Context/fetchRoom';
 
 
 
-export default function ServiceTable() {
+export default function RoomTable() {
   const [items, setItems] = useState([]);
 
   const fetchData = async () => {
       try {
-          const data = await fetchService();
+          const data = await fetchRoom();
           setItems(data.data.data);
           console.log(data.data.data);
       } catch (err) {
@@ -29,15 +29,7 @@ export default function ServiceTable() {
       }
 
   }
-  const handlDisableClick = async (id) => {
-    try {
-      await disableService(id);
-      console.log("Service disable:", id);
-      setItems(items.filter((item) => item.serviceId !== id));
-    } catch (error) {
-      console.error("Error disabling service:", error);
-    }
-  };
+
 
 //   const handleDeleteClick = async (id) => {
 //     try {
@@ -86,11 +78,12 @@ useEffect(() => {
         <TableHead className='table-header'>
           <TableRow >
             <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} >ID</TableCell>
-            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Service Name</TableCell>
-            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Price</TableCell>
+            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Room Name</TableCell>
             <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Description</TableCell>
-            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">UserID</TableCell>
-            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">CategoryID</TableCell>
+            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Capacity</TableCell>
+            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Address</TableCell>
+            <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Price</TableCell>
+            {/* <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">UserID</TableCell> */}
             <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Status</TableCell>
             <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">Operation</TableCell>
           </TableRow>
@@ -98,19 +91,18 @@ useEffect(() => {
         <TableBody>
           {items.map((item) => (
             <TableRow
-              key={item.serviceId}
+              key={item.roomId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {item.serviceId}
+                {item.roomId}
               </TableCell>
-              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.serviceName}</TableCell>
-              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}} align='center'>{item.price}</TableCell>
+              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.roomName}</TableCell>
               <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
-              <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell>
-              <TableCell sx={{fontSize:'16px'}} align="center">
-                {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
-              </TableCell>
+              <TableCell sx={{fontSize:'16px'}}>{item.capacity}</TableCell>
+              <TableCell sx={{fontSize:'16px'}}>{item.address}</TableCell>
+              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}} align='center'>{item.price}</TableCell>
+              {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
               <TableCell sx={{ fontSize: '16px'}} align="center">
               <Button
                 variant="contained"
@@ -132,7 +124,8 @@ useEffect(() => {
                     <Button variant="outlined" 
                     startIcon={<DeleteIcon />} 
                     style={{ borderColor: '#f5a02c', color: '#f5a02c' }} 
-                    onClick={()=>handlDisableClick(item.serviceId)}>
+                    // onClick={()=>handleDeleteClick(item.serviceId)} >
+                    >
                       Delete
                     </Button>
                 </Stack>

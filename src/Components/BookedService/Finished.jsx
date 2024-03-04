@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 const Finished = () => {
 
@@ -131,6 +132,8 @@ const Finished = () => {
                   <p>{book.status}</p>
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
+                  <hr />
+                  <button id='cancel'><CancelOutlinedIcon /></button>
                 </div>
               </div>
               <hr />

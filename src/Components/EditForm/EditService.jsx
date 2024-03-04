@@ -10,9 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Input } from '@mui/base/Input';
 import TextField from '@mui/material/TextField';
-
-
-
+import { Edit } from '@mui/icons-material';
 import './EditService.css'
 
 export default function ModalUnstyled() {
@@ -30,7 +28,7 @@ export default function ModalUnstyled() {
     return (
         <div className='editservice'>
             <TriggerButton type="button" onClick={handleOpen}>
-                Open modal
+                <Edit style={{marginTop: '-3px'}}/>  EDIT
             </TriggerButton>
             <Modal
                 aria-labelledby="unstyled-modal-title"
@@ -208,26 +206,31 @@ const ModalContent = styled('div')(
 
 const TriggerButton = styled('button')(
     ({ theme }) => css`
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.875rem;
+    display: flex;
+    alignItems: 'center';
+    gap: 8px;
+    font-family:  sans-serif;
+    font-size: 14px;
     line-height: 1.5;
+    width: 99px;
+    height: 37px;
     padding: 8px 16px;
     border-radius: 8px;
     transition: all 150ms ease;
     cursor: pointer;
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    color: ${theme.palette.mode === 'dark' ? grey[200] : grey[900]};
+    background:  white;
+    border: 1px solid #f5a02c;
+    // border: none;
+    color:  #f5a02c;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
     &:hover {
-      background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-      border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+      background: #f5a02c;
+      color: white;
     }
 
     &:active {
-      background: ${theme.palette.mode === 'dark' ? grey[700] : grey[100]};
+      background: #cb7d14;
     }
 
     &:focus-visible {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Booked.css'
 import axios from 'axios';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 const All = () => {
   const [booked, setBooked] = useState([]);
@@ -94,6 +95,8 @@ const All = () => {
                 <p>{book.status}</p>
                 <hr />
                 <p>{getDateTime(book.bookingDate)}</p>
+                <hr/>
+                <button id ='cancel'><CancelOutlinedIcon/></button>
               </div>
             </div>
             <hr />

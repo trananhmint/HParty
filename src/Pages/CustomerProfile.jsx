@@ -1,11 +1,12 @@
 import React from 'react';
-import { styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import './Adminprofile.css';
-import AdminProfileContent from '../Adminprofile-content/Adminprofile-content';
-import AdminHeader from '../Adminheader/Adminheader';
-import AdminSideBar from '../Adminsidebar/Adminsidebar';
+import './CSS/AdminPage.css';
+import CustomerHeader from '../Components/CustomerHeader/CustomerHeader';
+import CustomerSideBar from '../Components/CustomerSideBar/CustomerSideBar';
+import Footer from '../Components/Footer/Footer';
+
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -26,11 +27,15 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     }),
   }),
 );
-  
-export default function AdminProfile() {
-  const [open, setOpen] = React.useState(false);
 
-    
+
+const name = localStorage.getItem('email');
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+export const CustomerProfile = () => {
+  const [open, setOpen] = React.useState(true);
+
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -40,15 +45,21 @@ export default function AdminProfile() {
   };
 
   return (
-    <Box sx={{ display: 'flex'}} >
-      <CssBaseline />
-      <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen}/>
-      <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
-      {/* <Main open={open}>
-      <div className='admin-profile-content'>
-      <AdminProfileContent/>
-      </div>
-      </Main> */}
-    </Box>
-  );
+    <div>
+      <Box sx={{ display: 'flex' }} >
+        <CssBaseline />
+        <CustomerHeader open={open} handleDrawerOpen={handleDrawerOpen} />
+        <CustomerSideBar open={open} handleDrawerClose={handleDrawerClose} />
+
+        <Main open={open}>
+
+        </Main>
+        {/* <Footer /> */}
+      </Box>
+
+    </div>
+
+  )
 }
+
+export default CustomerProfile;

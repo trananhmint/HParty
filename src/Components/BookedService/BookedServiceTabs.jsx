@@ -18,6 +18,8 @@ const BookedServiceTabs = () => {
         setValue(newValue);
     };
 
+    
+
     return (
         <div className="bookedservicetabs">
             <Box sx={{ width: '100%', typography: 'body1', }}>

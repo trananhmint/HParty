@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { addToCart } from "../redux/cartSlice";
+import { addToCart } from "../redux/CartSlice";
 import { useDispatch } from 'react-redux';
 
 export const ServiceContext = createContext(null);
@@ -25,6 +25,7 @@ const ServiceContextProvider = (props) => {
     const [rooms, setRooms] = useState([]);
     const [services, setServices] = useState([]);
     const cartId = localStorage.getItem("email");
+    const [count, setCount] = useState(0);
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem(cartId)) || []);
     const dispatch = useDispatch();
     function onlyUnique(value, index, self) {
@@ -176,64 +177,30 @@ const ServiceContextProvider = (props) => {
         setTotalPrice(totalPrice);
         return totalPrice;
 
-        // let sumPrice = 0;
-
-        // for (let key in product) {
-        //     if (product[key] > 0) {
-        //         let roomInfo = rooms.find((room) => Number(room.roomId) === Number(key))
-        //         if (roomInfo) {
-        //             sumPrice += roomInfo.price * product[key];
-        //         }
-        //     }
-        // }
-
-        // for (let key in cartItems) {
-        //     if (cartItems[key] > 0) {
-        //         let serviceInfo = services.find((service) => Number(service.serviceId) === Number(key))
-        //         console.log(serviceInfo)
-        //         if (serviceInfo) {
-        //             totalPrice += serviceInfo.price * cartItems[key];
-        //         }
-        //     }
-        // }
-
-        // return totalPrice + sumPrice;
-
 
     }
 
 
 
     const getCountOfCart = () => {
-        // let roomCount = 0;
-
-        // for (let index in product) {
-        //     if (product[index] > 0) {
-        //         roomCount += product[index];
-        //     }
-        // }
-
-
-
-        // for (let index in cartItems) {
-        //     if (cartItems[index] > 0) {
-        //         count += cartItems[index];
-        //     }
-        // }
-        // return count + roomCount;
-        // console.log(cart)
+    
         let count = 0;
 
         for (let index of cartItem) {
             count = count + 1
+            setCount(count);
         }
         return count;
 
     }
 
+    const clearCart = () => {
+        localStorage.removeItem(cartId);
+    }
 
 
-    const contextValue = { services, rooms, AddToCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity, CartOfItems, totalPrice };
+
+    const contextValue = { services, rooms, AddToCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity, CartOfItems, totalPrice, clearCart, count };
     return <ServiceContext.Provider value={contextValue}>
         {props.children}
     </ServiceContext.Provider>

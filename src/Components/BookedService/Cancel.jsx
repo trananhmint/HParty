@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Booked.css'
 import axios from 'axios';
-
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 const Cancel = () => {
 
   const [booked, setBooked] = useState([]);
@@ -70,8 +70,8 @@ const Cancel = () => {
     }
     return category;
   }
-  function getDateTime (bookingDate)  {
-    let now  = new Date(bookingDate);
+  function getDateTime(bookingDate) {
+    let now = new Date(bookingDate);
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     let day = now.getDate();
@@ -93,6 +93,8 @@ const Cancel = () => {
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
                 </div>
+                <hr />
+                <button id='cancel'><CancelOutlinedIcon /></button>
               </div>
               <hr />
               <div className="booked-items-container">

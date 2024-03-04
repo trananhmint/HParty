@@ -24,22 +24,41 @@ export const CartItems = () => {
   let cart = JSON.parse(localStorage.getItem(cartId));
   let room = rooms.map((room) => room)
   let service = services.map((service) => service)
-  let roomItem = cart.map((item) => {
-    return room.find((r) => Number(r.roomId) === Number(item))
-  })
-  const serviceItem = cart.map((item) => {
-    return service.find((s) => Number(s.serviceId) === Number(item))
-  })
-
-  let itemOfRoom = roomItem.filter((room) => room !== undefined);
-  let itemOfService = serviceItem.filter((service) => service !== undefined);
-
   function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
   }
 
-  let uniqueItemOfRoom = [...itemOfRoom.filter(onlyUnique)];
-  let uniqueItemOfService = [...itemOfService.filter(onlyUnique)];
+  function uniqueRoom(cart, room) {
+    let uniqueItemOfRoom = [];
+    if (cart.length > 0) {
+      let roomItem = cart.map((item) => {
+        return room.find((r) => Number(r.roomId) === Number(item))
+      })
+      let itemOfRoom = roomItem.filter((room) => room !== undefined);
+      uniqueItemOfRoom = [...itemOfRoom.filter(onlyUnique)];
+      console.log(uniqueItemOfRoom);
+    }
+
+    return uniqueItemOfRoom;
+  }
+
+  function uniqueService(cart, service) {
+    let uniqueItemOfService = [];
+    if (cart.length > 0) {
+      let serviceItem = cart.map((item) => {
+        return service.find((s) => Number(s.serviceId) === Number(item))
+      })
+
+
+      let itemOfService = serviceItem.filter((service) => service !== undefined);
+      uniqueItemOfService = [...itemOfService.filter(onlyUnique)];
+      console.log(uniqueItemOfService);
+    }
+    return uniqueItemOfService;
+
+
+  }
+
 
 
 
@@ -50,8 +69,8 @@ export const CartItems = () => {
     e.preventDefault();
 
     const newItems = {
-      rooms: uniqueItemOfRoom,
-      services: uniqueItemOfService,
+      rooms: uniqueRoom(cart, room),
+      services: uniqueService(cart, service),
       totalPrice: totalPrice,
     }
     console.log(newItems);
@@ -89,8 +108,8 @@ export const CartItems = () => {
       // navigate("/cart");
     }
 
-    localStorage.setItem('uniqueItemOfRoom', JSON.stringify(uniqueItemOfRoom));
-    localStorage.setItem('uniqueItemOfService', JSON.stringify(uniqueItemOfService));
+    localStorage.setItem('uniqueItemOfRoom', JSON.stringify(uniqueRoom(cart, room)));
+    localStorage.setItem('uniqueItemOfService', JSON.stringify(uniqueService(cart, service)));
     localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
 
   }

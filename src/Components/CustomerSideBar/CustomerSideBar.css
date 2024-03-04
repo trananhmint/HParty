@@ -1,0 +1,10 @@
+
+
+.drawer-avatar{
+    display:flex;
+    gap: 10px
+}
+.drawer-avatar p{
+    margin-top: 8px;
+    font-size: 20px;
+}

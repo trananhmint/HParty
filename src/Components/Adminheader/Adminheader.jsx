@@ -11,6 +11,8 @@ import NotificationButton from '../NotificationButton/NotificationButton';
 import './Adminheader.css';
 import party_logo from '../Assets/logo1.png'
 import './Adminheader.css';
+import Cookies from 'universal-cookie';
+import { useAuth } from '../../Context/AuthProvider';
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -30,6 +32,11 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const AdminHeader = ({ open, handleDrawerOpen }) => {
+
+
+  const auth = useAuth();
+  const cookies = new Cookies();
+  let token = cookies.get("authToken");
   return (
     <AppBar position="fixed" open={open} style={{ background: '#e7c494' }}>
       <Toolbar>
@@ -56,7 +63,10 @@ const AdminHeader = ({ open, handleDrawerOpen }) => {
           </div>
         </Link>
 
-        <div style={{ marginLeft: 'auto' }}>
+        <div className="admin-header-noti-logout" style={{ marginLeft: 'auto' }}>
+          <div className="admin-header-button">
+            <button onClick={() => auth.logOut()} className='logout'>Log Out</button>
+          </div>
           <NotificationButton classname="noti-button" />
         </div>
       </Toolbar>

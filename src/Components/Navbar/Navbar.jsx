@@ -14,8 +14,8 @@ export const Navbar = () => {
     const [count, setCount] = useState(0);
 
     const cartId = localStorage.getItem("email");
-    const cart = JSON.parse(localStorage.getItem(cartId)) || [] ;
-   
+    const cart = JSON.parse(localStorage.getItem(cartId)) || [];
+
 
     useEffect(() => {
         if (cart.length > 0) {
@@ -45,7 +45,9 @@ export const Navbar = () => {
     function getAvatar(token) {
         if (token !== null && token !== "" && token !== undefined) {
             return <div className='navbar-login-profile'>
-                <AccountCircleIcon />
+                <Link to="/customerProfile">
+                    <AccountCircleIcon />
+                </Link>
             </div>
         }
         else {

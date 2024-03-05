@@ -31,6 +31,11 @@ import RoomService from './Pages/RoomService';
 import BookedService from './Pages/BookedService';
 import { ToastContainer} from 'react-toastify';
 import AllRooms from './Pages/AllRooms';
+import EditService from './Components/EditForm/EditService';
+import CustomerProfile from './Pages/CustomerProfile';
+import MyOrder from './Pages/MyOrder';
+import { CusProfile } from './Pages/CusProfile';
+import CusAddress from './Pages/CusAddress';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -64,17 +69,24 @@ function App() {
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
             <Route path='/recover' element={<ForgetPassword />} />
+            <Route path='/customerProfile' element={<CustomerProfile />} />
+            <Route path='/customer-profile' element={<CusProfile />} />
+            <Route path='/my-address' element={<CusAddress />} />
+            <Route path='/my-order' element={<MyOrder />}></Route>
+            <Route path='/all-promotion'></Route>
+          </Routes>
+
+          <Routes>
+            <Route path="/all-users" element={<AllUsers />} />
+            <Route path="/all-services" element={<AllServices />} />
+            <Route path="/all-contracts" element={<AllContracts />} />
+            <Route path="/all-rooms" element={<AllRooms/>} /> 
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin-profile" element={<AdminProfile />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route path='/updateService' element={<EditService />} />
           </Routes>
         </AuthProvider>
-        <Routes>
-        <Route path="/all-users" element={<AllUsers/>} />
-        <Route path="/all-services" element={<AllServices/>} /> 
-        <Route path="/all-contracts" element={<AllContracts/>} /> 
-        <Route path="/all-rooms" element={<AllRooms/>} /> 
-        <Route path="/admin" element={<AdminPage/>}  />
-        <Route path="/admin-profile" element={<AdminProfile/>} />
-        <Route path="/notification" element={<Notification/>} />
-        </Routes> 
       </BrowserRouter>
       <ToastContainer
         position="top-right"

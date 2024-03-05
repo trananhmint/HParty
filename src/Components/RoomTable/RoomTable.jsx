@@ -11,8 +11,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './RoomTable.css'
-import { deleteService } from '../../Context/disableService';
 import { fetchRoom } from '../../Context/fetchRoom';
+import { disableRoom } from '../../Context/disableRoom';
 
 
 
@@ -29,48 +29,20 @@ export default function RoomTable() {
       }
 
   }
+  const handlDisableClick = async (id) => {
+    try {
+      await disableRoom(id);
+      console.log("Room disable:", id);
+      setItems(items.filter((item) => item.serviceId !== id));
+    } catch (error) {
+      console.error("Error disabling room:", error);
+    }
+  };
 
-
-//   const handleDeleteClick = async (id) => {
-//     try {
-//         await deleteService(id);
-//         fetchData(); // Refetch data to update the UI
-//         console.log('Delete API request successful');
-//     } catch (error) {
-//         console.error('Error during Delete API request:', error);
-//     }
-// };
 useEffect(() => {
   fetchData();
 }, []);
-  // function handleDeleteClick () {
-  //   var option ={
-  //     method: "DELETE", 
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     fetch ()  
-  //   }
-  // }
-//  const handleDeleteClick = async (id) => {
-//   try {
-//     const response = await fetch(`https://bookingbirthdayparties.azurewebsites.net/api/Service/${id}`, {
-//       method: 'DELETE',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     });
 
-//     if (!response.ok) {
-//       console.error('Delete API request failed:', response.statusText);
-//       return;
-//     }
-//     fetchData(); 
-//     console.log('Delete API request successful');
-//   } catch (error) {
-//     console.error('Error during Delete API request:', error);
-//   }
-// };
 
   return (
     <TableContainer component={Paper}>
@@ -122,9 +94,9 @@ useEffect(() => {
                     </Button>
 
                     <Button variant="outlined" 
-                    startIcon={<DeleteIcon />} 
+                    endIcon={<DeleteIcon />} 
                     style={{ borderColor: '#f5a02c', color: '#f5a02c' }} 
-                    // onClick={()=>handleDeleteClick(item.serviceId)} >
+                    onClick={()=>handlDisableClick(item.roomIdId)} 
                     >
                       Delete
                     </Button>

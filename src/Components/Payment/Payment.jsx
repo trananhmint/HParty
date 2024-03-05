@@ -136,7 +136,7 @@ export const Payment = () => {
                     theme: "light",
 
                 });
-            } else {
+            } else if (response.data.isSuccess === true) {
                 toast.success('Booking successfully', {
                     position: "top-right",
                     autoClose: 3000,
@@ -186,25 +186,26 @@ export const Payment = () => {
                     },
                     withCredentials: true // Ensure credentials are included
                 })
-            if (isSuccess === true) {
-                console.log(response);
-                console.log("VNPAY created:", response.data.url);
-                // navigate("/alerts");
-                console.log("Success");
-                toast.success('Move to VNPAY', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-
-                });
-                window.location.href = response.data.url;
-            }
-
+                if(isSuccess === true){
+                    console.log(response);
+                    console.log("VNPAY created:", response.data.url);
+                    // navigate("/alerts");
+                    console.log("Success");
+                    toast.success('Move to VNPAY', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+        
+                    });
+                    window.location.href = response.data.url;
+        
+                }
+          
 
             // alert("Booking successfully");
 
@@ -229,7 +230,10 @@ export const Payment = () => {
         e.preventDefault();
         if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds.length !== 0 && booking.startTime !== "" && booking.endTIme !== "") {
             fetchBooking(booking);
-            fetchVNPAY(totalPrice);
+            if (isSuccess === true) {
+                fetchVNPAY(totalPrice);
+            }
+
 
             // clearCart();
             return;
@@ -284,7 +288,7 @@ export const Payment = () => {
 
 
     const handleChange = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         setMethods(e.target.value);
     }
 

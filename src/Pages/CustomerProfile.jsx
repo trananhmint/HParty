@@ -3,11 +3,9 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import './CSS/AdminPage.css';
-import UserPieChart from '../Components/Userpiechart/Userpiechart';
-import ServiceBarChart from '../Components/Servicebarchart/Servicebarchart';
-import ContractPieChart from '../Components/Contractpiechart/Contractpiechart';
-import AdminHeader from '../Components/Adminheader/Adminheader';
-import AdminSideBar from '../Components/Adminsidebar/Adminsidebar';
+import CustomerHeader from '../Components/CustomerHeader/CustomerHeader';
+import CustomerSideBar from '../Components/CustomerSideBar/CustomerSideBar';
+import Footer from '../Components/Footer/Footer';
 
 const drawerWidth = 240;
 
@@ -31,7 +29,10 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 );
 
 
-export default function AdminPage() {
+const name = localStorage.getItem('email');
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+export const CustomerProfile = () => {
   const [open, setOpen] = React.useState(true);
 
 
@@ -44,20 +45,21 @@ export default function AdminPage() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }} >
-      <CssBaseline />
-      <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen} />
-      <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
+    <div>
+      <Box sx={{ display: 'flex' }} >
+        <CssBaseline />
+        <CustomerHeader open={open} handleDrawerOpen={handleDrawerOpen} />
+        <CustomerSideBar open={open} handleDrawerClose={handleDrawerClose} />
 
-      <Main open={open}>
-        <div className="main-layout">
-          <div className="chart-group">
-            <UserPieChart className="user-pie-chart" />
-            <ServiceBarChart />
-          </div>
-          <ContractPieChart />
-        </div>
-      </Main>
-    </Box>
-  );
+        <Main open={open}>
+
+        </Main>
+        {/* <Footer /> */}
+      </Box>
+
+    </div>
+
+  )
 }
+
+export default CustomerProfile;

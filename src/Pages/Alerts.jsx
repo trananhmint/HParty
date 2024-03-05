@@ -10,9 +10,22 @@ import ReactPaginate from 'react-paginate';
 import { fetchService } from '../Context/fetchService';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import { ServiceContext } from '../Context/ServiceContext';
 
 
 export const Alerts = () => {
+    // const {clearCart} = useState(ServiceContext);
+
+    // function removeCart() {
+    //     const cartId = localStorage.getItem("email");
+    //     console.log(cartId);
+    //     localStorage.setItem(cartId, JSON.stringify([]));
+    //     const cart = localStorage.getItem(cartId);
+    //     console.log(cart);
+    // }
+
+
+
 
     const apiUrl1 = "https://bookingbirthdayparties.azurewebsites.net/api/Deposit";
     let status = "fail";
@@ -59,10 +72,12 @@ export const Alerts = () => {
     console.log("vnp_TxnRef: " + vnp_TxnRef);
     console.log("vnp_SecureHash: " + vnp_SecureHash);
 
-    if (vnp_ResponseCode == "00") {
+    if (vnp_ResponseCode === "00") {
         const orderDetail = JSON.parse(localStorage.getItem("orderItem"));
         localStorage.removeItem("shoppingCart");
-        console.log(orderDetail);
+        const cartId = localStorage.getItem("email");
+        localStorage.removeItem(cartId);
+        console.log(cartId);
         status = "success";
 
         const data = {

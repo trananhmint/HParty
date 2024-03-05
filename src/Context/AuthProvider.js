@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
     const cookies = new Cookies();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState("");
-    
+    const [role, setRole] = useState();
     const navigate = useNavigate();
 
     const fetchRegister = async (data) => {
@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
                         draggable: true,
                         progress: undefined,
                         theme: "light",
-        
+
                     });
                 })
 
@@ -72,7 +72,12 @@ const AuthProvider = ({ children }) => {
                         const cartId = localStorage.getItem("email");
                         localStorage.setItem(cartId, JSON.parse(localStorage.getItem(cartId)));
                         setToken(res.data);
-                        cookies.set("authToken", res.data, { expires: new Date(decoded.exp * 1000)});
+                        const roles = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+                        setRole(decoded[roles]);
+                        console.log(decoded);
+                        console.log(decoded[roles]);
+
+                        cookies.set("authToken", res.data, { expires: new Date(decoded.exp * 1000) });
                         toast.success('Login successfully', {
                             position: "top-right",
                             autoClose: 3000,
@@ -82,9 +87,13 @@ const AuthProvider = ({ children }) => {
                             draggable: true,
                             progress: undefined,
                             theme: "light",
-            
+
                         });
-                        navigate("/");
+                        if (decoded[roles] === "Customer") {
+                            navigate("/");
+                        } else if(decoded[roles] === "Admin") {
+                            navigate("/admin")
+                        }
                         console.log("Success");
                         return;
                     }
@@ -117,7 +126,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut}}>
+        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut }}>
             {children}
         </AuthContext.Provider>
     );

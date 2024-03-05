@@ -1,0 +1,104 @@
+.my-address {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px;
+}
+
+.my-address-title-frame {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-address-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.my-address-title h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.my-address-title p {
+    color: grey;
+}
+
+.my-address-button button {
+    /* width: 200px; */
+    margin-top: 10px;
+    float: right;
+    align-items: center;
+    height: 60px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    background: red;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.my-address-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.my-address-content h3 {
+    font-size: 30px;
+}
+
+.my-address-content-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.my-address-name-phone {
+    display: flex;
+    gap: 10px
+}
+
+.my-address-name-phone p {
+    margin-top: 6px;
+    font-size: 23px;
+}
+
+.my-address-address {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-address-address-detail p {
+    font-size: 22px;
+}
+
+.my-address-address-button {
+    display: flex;
+  
+    gap: 10px;
+    margin-bottom: 100px;
+}
+
+.my-address-address-button button {
+    /* align-items: center; */
+    height: 60px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: red;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#success{
+    background-color: green;
+    border: 1px solid green;
+    color: white;
+}

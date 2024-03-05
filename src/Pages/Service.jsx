@@ -24,16 +24,16 @@ export const Service = () => {
     fetchData();
   }, []);
 
-    return (
-      <div className='service'>
-        <Navbar />
-        <Breadcrumb service={items} />
-        <ServiceDisplay service={items} />
-        <HostServiceInfo />
-        <Descriptionbox />
-        <Feedback />
-        <Footer />
-      </div>
-    )
-  }
-  export default Service;
+  return (
+    <div className='service'>
+      <Navbar />
+      <Breadcrumb service={items} />
+      <ServiceDisplay service={items} />
+      <HostServiceInfo />
+      <Descriptionbox />
+      <Feedback />
+      <Footer  />
+    </div>
+  )
+}
+export default Service;

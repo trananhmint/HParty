@@ -61,7 +61,7 @@ function stringAvatar(name) {
     };
 }
 
-const text = 'Cao Linh'; // Lấy nội dung từ thẻ <p>
+const text = 'Trung Son'; // Lấy nội dung từ thẻ <p>
 const firstLetter = text.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
 
 

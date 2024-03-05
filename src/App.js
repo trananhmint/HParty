@@ -75,7 +75,6 @@ function App() {
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
           </Routes>
-
           <Routes>
             <Route path="/all-users" element={<AllUsers />} />
             <Route path="/all-services" element={<AllServices />} />

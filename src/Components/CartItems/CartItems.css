@@ -136,3 +136,15 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+.cartitems-clear button {
+    float: right;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    background: red;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

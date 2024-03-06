@@ -29,7 +29,7 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-export const CustomerHeader = ({ open, handleDrawerOpen }) => {
+export const HostHeader = ({ open, handleDrawerOpen }) => {
     return (
         <AppBar position="fixed" open={open} style={{ background: '#e7c494'}}>
             <Toolbar>
@@ -64,4 +64,4 @@ export const CustomerHeader = ({ open, handleDrawerOpen }) => {
     )
 }
 
-export default CustomerHeader
+export default HostHeader;

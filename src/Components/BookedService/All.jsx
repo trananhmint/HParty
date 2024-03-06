@@ -48,6 +48,28 @@ const All = () => {
     }
   };
 
+  const fetchCustomerCancel = async (data) => {
+    try {
+      const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Booking/CancelByCustomer', data,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true,
+        })
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+
+  const handleClick = (bookingId) => {
+    window.confirm('Are you sure to cancel');
+    fetchCustomerCancel(bookingId);
+  }
+
   console.log("Booked:", booked)
   console.log("Booking Detail:", bookingDetail);
 
@@ -86,17 +108,17 @@ const All = () => {
 
   return (
     <div className='all'>
-      {booked.map((book) => {
+      {booked.map((book, index) => {
         return <div>
           <div className="booked">
             <div className="booked-info">
-              <p>ID: {Math.random().toFixed(5) * 100000}</p>
+              <p>ID: {book.bookingId}</p>
               <div className="booked-status">
                 <p>{book.status}</p>
                 <hr />
                 <p>{getDateTime(book.bookingDate)}</p>
-                <hr/>
-                <button id ='cancel'><CancelOutlinedIcon/></button>
+                <hr />
+                <button id='cancel' onClick={() => handleClick(book.bookingId)} ><CancelOutlinedIcon /></button>
               </div>
             </div>
             <hr />

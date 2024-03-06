@@ -45,7 +45,7 @@ export const Navbar = () => {
     function getAvatar(token) {
         if (token !== null && token !== "" && token !== undefined) {
             return <div className='navbar-login-profile'>
-                <Link to="/customerProfile">
+                <Link to="/customer">
                     <AccountCircleIcon />
                 </Link>
             </div>

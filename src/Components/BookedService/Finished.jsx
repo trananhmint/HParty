@@ -121,13 +121,13 @@ const Finished = () => {
     return formattedDateTime;
   }
   return (
-    <div className='finished'>
-      {booked.map((book) => {
+    <div className='confirm'>
+      {booked.map((book, index) => {
         if (book.status === "FINISHED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {Math.random().toFixed(5) * 100000}</p>
+              <p>ID: {book.bookingId}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />
@@ -176,11 +176,9 @@ const Finished = () => {
                   </div>
                   <hr />
                 </div>
-
               })}
             </div>
           </div>
-
         }
       })}
     </div>

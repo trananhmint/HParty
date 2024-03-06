@@ -91,9 +91,12 @@ const AuthProvider = ({ children }) => {
                         });
                         if (decoded[roles] === "Customer") {
                             navigate("/");
-                        } else if(decoded[roles] === "Admin") {
+                        } else if (decoded[roles] === "Admin") {
                             navigate("/admin")
+                        } else {
+                            navigate("/host")
                         }
+
                         console.log("Success");
                         return;
                     }

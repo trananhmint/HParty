@@ -65,7 +65,6 @@ export const ServiceCategory = (props) => {
 
         <div className="services-pagination">
           <ReactPaginate
-
             nextLabel="next >"
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
@@ -74,7 +73,7 @@ export const ServiceCategory = (props) => {
             previousLabel="< previous"
             pageClassName="page-item"
             pageLinkClassName="page-link"
-previousClassName="page-item"
+            previousClassName="page-item"
             previousLinkClassName="page-link"
             nextClassName="page-item"
             nextLinkClassName="page-link"
@@ -100,7 +99,7 @@ previousClassName="page-item"
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
-          <span>Showing 1-8</span> out of <span>{items.length }</span> services
+          <span>Showing 1-8</span> out of <span>{items.length}</span> services
         </p>
         <div className="services-sort">
         </div>

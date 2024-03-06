@@ -41,7 +41,7 @@ export default function ServiceTable() {
       <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
         <TableHead className='table-header'>
           <TableRow >
-            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >ID</TableCell>
+            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >No.</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
@@ -52,13 +52,13 @@ export default function ServiceTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item) => (
-            <TableRow
+          {items.map((item, index) => {
+            return <TableRow
               key={item.serviceId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {item.serviceId}
+                {index + 1}
               </TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
@@ -88,7 +88,7 @@ export default function ServiceTable() {
                 </Stack>
               </TableCell>
             </TableRow>
-          ))}
+          })}
         </TableBody>
       </Table>
     </TableContainer>

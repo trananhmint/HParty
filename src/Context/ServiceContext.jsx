@@ -31,13 +31,14 @@ const ServiceContextProvider = (props) => {
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
-    localStorage.setItem(cartId, JSON.stringify(cart))
+    localStorage.setItem(cartId, JSON.stringify(cart.filter(onlyUnique)));
 
 
     useEffect(() => {
         async function fetchData() {
             let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
             setRooms(response.data.data);
+            console.log(response.data.data)
         }
         fetchData();
     }, []);
@@ -71,7 +72,7 @@ const ServiceContextProvider = (props) => {
     let itemOfService = serviceItem.filter((service) => service !== undefined);
     let uniqueItemOfRoom = [...itemOfRoom.filter(onlyUnique)];
     let uniqueItemOfService = [...itemOfService.filter(onlyUnique)];
-    let cartItem = [...itemOfRoom, ...itemOfService];
+    let cartItem = [...uniqueItemOfRoom, ...uniqueItemOfService];
 
 
 
@@ -106,48 +107,26 @@ const ServiceContextProvider = (props) => {
 
 
     const AddToCart = (itemId) => {
-        // setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-        // console.log("Add to cart");
-        // console.log(cartItems);
-
-        setCart([...cart, itemId]);
-        // cart.unshift(itemId);
-        // cart = cart.filter(onlyUnique);
+        setCart([...cart.filter(onlyUnique), itemId]);
         console.log("Add to cart");
         console.log(cart);
-        // localStorage.setItem(cartId, JSON.stringify(cart))
         console.log(localStorage.getItem(cartId));
 
     }
 
 
-    // const removeRoomsFromCart = (itemId) => {
-    //     if (product[itemId] > 0) {
-    //         setProduct((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-    //     }
-
-    // }
 
     const removeFromCart = (itemId) => {
-        // if (cartItems[itemId] > 0) {
-        //     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-        // }
-        //    let newCart = cart.filter((currentItemId) => currentItemId !== itemId);
-        //    setCart(newCart);
-
         let index = cart.indexOf(itemId);
         cart.splice(index, 1);
         // delete cart[index]
         setCart([...cart]);
 
-        // cart = cart.filter(onlyUnique);
-        // localStorage.setItem(cartId, JSON.stringify(cart))
-        // console.log(localStorage.getItem(cartId));
     }
 
     const getQuantity = (itemId) => {
         let quantity = 0;
-        for (let index of itemOfCart) {
+        for (let index of itemOfCart.filter(onlyUnique)) {
             if (Number(itemId) === index) {
                 quantity = quantity + 1
             }
@@ -183,7 +162,7 @@ const ServiceContextProvider = (props) => {
 
 
     const getCountOfCart = () => {
-    
+
         let count = 0;
 
         for (let index of cartItem) {
@@ -195,7 +174,9 @@ const ServiceContextProvider = (props) => {
     }
 
     const clearCart = () => {
-        localStorage.removeItem(cartId);
+        let cart = [];
+        localStorage.setItem(cartId, JSON.stringify([]));
+        setCart([]);
     }
 
 

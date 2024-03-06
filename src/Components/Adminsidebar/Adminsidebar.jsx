@@ -18,6 +18,7 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import TaskIcon from '@mui/icons-material/Task';
+import SingleBedIcon from '@mui/icons-material/SingleBed';
 import './Adminsidebar.css';
 const drawerWidth = 240;
 
@@ -61,9 +62,10 @@ function stringAvatar(name) {
 }
 
   const text = 'Ocean Võ'; // Lấy nội dung từ thẻ <p>
-  const firstLetter = text.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
-
-
+  const firstLetter = text.substring(0).toUpperCase();// Lấy chữ cái đầu tiên
+  const storedImage = localStorage.getItem('selectedImage');
+    
+  
 
 
 const AdminSidebar = ({ open, handleDrawerClose }) => {
@@ -74,6 +76,7 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
     'All Users': <AccountBoxIcon style={{color: 'white'}}/>,
     'All Services': <CelebrationIcon style={{color: 'white'}}/>,
     'All Contracts': <TaskIcon style={{color: 'white'}}/>,
+    'All Rooms': <SingleBedIcon style={{color: 'white'}}/>,
   };
 
   return (
@@ -97,16 +100,17 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
     >
       <DrawerHeader >
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'space-between' }}>
-        <Avatar {...stringAvatar(firstLetter)} />
+        <Avatar src={storedImage} {...stringAvatar(firstLetter)}>
+        </Avatar> 
         <p style={{fontWeight: '500', fontSize:'18px'}}>{text}</p>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon style={{color:'#ffffff'}}/> : <ChevronRightIcon />}
           </IconButton>
         </div>
-      </DrawerHeader>
-      <Divider />
-      <List>
-        {['My Profile Info', 'All Users', 'All Services', 'All Contracts'].map((text, index) => (
+        </DrawerHeader>
+        <Divider />
+        <List>
+        {['My Profile Info', 'All Users', 'All Services', 'All Contracts', 'All Rooms'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton component={Link} to={text === 'My Profile Info' ? '/admin-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
               <ListItemIcon>
@@ -132,5 +136,5 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
         </List>
       </Drawer>
       )
-    }
-    export default AdminSidebar;
+    };
+    export default AdminSidebar

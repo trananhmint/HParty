@@ -15,6 +15,7 @@ const cartSlice = createSlice({
                 state.cart.push(action.payload);
             } else {
                 // Handle other cases as needed
+                // alert
             }
         },
 

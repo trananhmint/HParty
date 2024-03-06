@@ -37,6 +37,7 @@ const AdminHeader = ({ open, handleDrawerOpen }) => {
   const auth = useAuth();
   const cookies = new Cookies();
   let token = cookies.get("authToken");
+  
   return (
     <AppBar position="fixed" open={open} style={{ background: '#e7c494' }}>
       <Toolbar>

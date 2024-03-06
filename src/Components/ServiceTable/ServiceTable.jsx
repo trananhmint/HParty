@@ -13,7 +13,8 @@ import Stack from '@mui/material/Stack';
 import './ServiceTable.css'
 import { fetchService } from '../../Context/fetchService';
 import { Edit } from '@mui/icons-material';
-import ModalUnstyled from '../EditForm/EditService';
+import ModalUpdateService from '../EditForm/EditService';
+
 
 
 export default function ServiceTable() {
@@ -81,7 +82,7 @@ export default function ServiceTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <ModalUnstyled open={open} />
+                  <ModalUpdateService open={open} />
                   <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                     Delete
                   </Button>

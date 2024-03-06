@@ -35,6 +35,7 @@ import CustomerProfile from './Pages/CustomerProfile';
 import MyOrder from './Pages/MyOrder';
 import { CusProfile } from './Pages/CusProfile';
 import CusAddress from './Pages/CusAddress';
+import RoomModalUnstyled from './Components/EditForm/EditRoom';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -81,7 +82,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
-            <Route path='/updateService' element={<EditService />} />
+            <Route path='/editRoom' element={<RoomModalUnstyled />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

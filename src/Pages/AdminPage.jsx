@@ -32,7 +32,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 
 export default function AdminPage() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
 
   const handleDrawerOpen = () => {

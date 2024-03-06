@@ -10,11 +10,10 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
-import './ServiceTable.css'
+import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
-import { Edit } from '@mui/icons-material';
-import ModalUpdateService from '../EditForm/EditService';
-
+import { disableService } from '../../Context/disableService';
+import ModalUnstyled from '../EditForm/EditService';
 
 
 export default function ServiceTable() {
@@ -33,6 +32,19 @@ export default function ServiceTable() {
     }
 
   }
+  const handlDisableClick = async (id) => {
+    try {
+      await disableService(id);
+      console.log("Service disable:", id);
+      setItems(items.filter((item) => item.serviceId !== id));
+    } catch (error) {
+      console.error("Error disabling service:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   useEffect(() => {
     fetchData();
   }, []);
@@ -62,6 +74,10 @@ export default function ServiceTable() {
                 {item.serviceId}
               </TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.user.fullName}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
@@ -82,7 +98,17 @@ export default function ServiceTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <ModalUpdateService open={open} />
+                <Button variant="outlined" endIcon={<EditIcon/>} style={{background:'#f5a02c', color: 'white', borderColor: 'white'}}>
+                        Edit
+                    </Button>
+
+                    <Button variant="outlined" 
+                    startIcon={<DeleteIcon />} 
+                    style={{ borderColor: '#f5a02c', color: '#f5a02c' }} 
+                    onClick={()=>handlDisableClick(item.serviceId)}>
+                      Delete
+                    </Button>
+                  <ModalUnstyled open={open} />
                   <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                     Delete
                   </Button>

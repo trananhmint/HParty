@@ -29,7 +29,8 @@ import AllContracts from './Pages/AllContracts';
 import RoomCategory from './Pages/RoomCategory';
 import RoomService from './Pages/RoomService';
 import BookedService from './Pages/BookedService';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
+import AllRooms from './Pages/AllRooms';
 import EditService from './Components/EditForm/EditService';
 import CustomerProfile from './Pages/CustomerProfile';
 import MyOrder from './Pages/MyOrder';
@@ -79,6 +80,7 @@ function App() {
             <Route path="/all-users" element={<AllUsers />} />
             <Route path="/all-services" element={<AllServices />} />
             <Route path="/all-contracts" element={<AllContracts />} />
+            <Route path="/all-rooms" element={<AllRooms/>} /> 
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />

@@ -59,7 +59,7 @@ export default function ContractTable() {
               </TableCell>
               <TableCell align='center'>
                 <Stack direction="row" alignItems={'center'} justifyContent={'space-around'}>
-                    <Button variant="outlined" endIcon={<EditIcon/>} style={{borderColor:'#f5a02c', color:'#f5a02c'}}>
+                    <Button variant="outlined" endIcon={<EditIcon/>} style={{background:'#f5a02c', color: 'white', borderColor: 'white'}}>
                         Edit
                     </Button>
 

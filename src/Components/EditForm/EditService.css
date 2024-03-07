@@ -15,8 +15,9 @@
 }
 .modal-description div {
     display: flex;
-    width: 50%;
-    margin: 10px 0;
+
+    /* width: 50%; */
+    margin: 12px 0;
 }
 
 .modal-description p {
@@ -37,5 +38,7 @@
 }
 .update-description {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    width: 80%;
+    
 }

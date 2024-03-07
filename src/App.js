@@ -36,6 +36,7 @@ import CustomerProfile from './Pages/CustomerProfile';
 import MyOrder from './Pages/MyOrder';
 import { CusProfile } from './Pages/CusProfile';
 import CusAddress from './Pages/CusAddress';
+import RoomModalUnstyled from './Components/EditForm/EditRoom';
 import HostDisplay from './Pages/HostDisplay';
 import { HostProfile } from './Pages/HostProfile';
 import { HostServices } from './Pages/HostServices';
@@ -91,7 +92,7 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
-            <Route path='/updateService' element={<EditService />} />
+            <Route path='/editRoom' element={<RoomModalUnstyled />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

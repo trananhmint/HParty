@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
-import './ServiceTable.css'
+import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
 import { Edit } from '@mui/icons-material';
 import ModalUnstyled from '../EditForm/EditService';
@@ -32,6 +32,16 @@ export default function ServiceTable() {
     }
 
   }
+  const handlDisableClick = async (id) => {
+    try {
+      await disableService(id);
+      console.log("Service disable:", id);
+      setItems(items.filter((item) => item.serviceId !== id));
+    } catch (error) {
+      console.error("Error disabling service:", error);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -60,6 +70,10 @@ export default function ServiceTable() {
               <TableCell component="th" scope="row">
                 {index + 1}
               </TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.user.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>

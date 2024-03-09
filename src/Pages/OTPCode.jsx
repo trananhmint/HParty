@@ -7,11 +7,11 @@ const ForgetPassword = () => {
 
 
 
-  return (
-    <div className='forgetpassword'>
-      <EmailAccount/>
-    </div>
-  )
+    return (
+        <div className='forgetpassword'>
+            <OTPCode />
+        </div>
+    )
 }
 
 export default ForgetPassword

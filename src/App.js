@@ -69,7 +69,9 @@ function App() {
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
+
             <Route path='/recover' element={<ForgetPassword />} />
+            
             <Route path='/customerProfile' element={<CustomerProfile />} />
             <Route path='/customer-profile' element={<CusProfile />} />
             <Route path='/my-address' element={<CusAddress />} />

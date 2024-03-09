@@ -5,8 +5,9 @@ import ReactPaginate from 'react-paginate';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import axios from 'axios';
+import ServiceBreadcrumb from '../Components/Breadcrumbs/ServiceBreadcrumb';
 export const ServiceCategory = (props) => {
-  
+
 
 
   const [items, setItems] = useState([]);
@@ -23,7 +24,7 @@ export const ServiceCategory = (props) => {
     return (
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
-          if (Number(props.categoryId) === item.categoryId) {
+          if (Number(props.categoryId) === item.categoryId && item.status === 1) {
             return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
           } else {
             return null;
@@ -65,7 +66,6 @@ export const ServiceCategory = (props) => {
 
         <div className="services-pagination">
           <ReactPaginate
-
             nextLabel="next >"
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
@@ -74,7 +74,7 @@ export const ServiceCategory = (props) => {
             previousLabel="< previous"
             pageClassName="page-item"
             pageLinkClassName="page-link"
-previousClassName="page-item"
+            previousClassName="page-item"
             previousLinkClassName="page-link"
             nextClassName="page-item"
             nextLinkClassName="page-link"
@@ -96,11 +96,12 @@ previousClassName="page-item"
 
   return (
     <div className='services'>
-      <Navbar/>
+      <Navbar />
+      <ServiceBreadcrumb service = {props}/>
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
-          <span>Showing 1-8</span> out of <span>{items.length }</span> services
+          <span>Showing 1-8</span> out of <span>Services</span>
         </p>
         <div className="services-sort">
         </div>
@@ -108,7 +109,7 @@ previousClassName="page-item"
       <div className="services-products">
         <PaginatedItems itemsPerPage={8} />
       </div>
-    <Footer/>
+      <Footer />
     </div>
   )
 }

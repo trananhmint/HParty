@@ -10,6 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationButton from '../NotificationButton/NotificationButton';
 import '../Adminheader/Adminheader.css';
 import party_logo from '../Assets/logo1.png'
+import { useAuth } from '../../Context/AuthProvider';
+import Cookies from 'universal-cookie';
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -29,9 +31,14 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-export const CustomerHeader = ({ open, handleDrawerOpen }) => {
+
+
+export const HostHeader = ({ open, handleDrawerOpen }) => {
+    const auth = useAuth();
+    const cookies = new Cookies();
+    let token = cookies.get("authToken");
     return (
-        <AppBar position="fixed" open={open} style={{ background: '#e7c494'}}>
+        <AppBar position="fixed" open={open} style={{ background: '#e7c494' }}>
             <Toolbar>
                 <IconButton
                     color="inherit"
@@ -42,7 +49,7 @@ export const CustomerHeader = ({ open, handleDrawerOpen }) => {
                 >
                     <MenuIcon style={{ width: "100px", height: "40px" }} />
                 </IconButton>
-                <Link to="/" style={{ textDecoration: "none" }}>
+                <Link to="/host" style={{ textDecoration: "none" }}>
                     <div className="admin-appbar">
                         <Avatar
                             alt=""
@@ -56,7 +63,10 @@ export const CustomerHeader = ({ open, handleDrawerOpen }) => {
                     </div>
                 </Link>
 
-                <div style={{ marginLeft: 'auto' }}>
+                <div className="admin-header-noti-logout" style={{ marginLeft: 'auto' }}>
+                    <div className="admin-header-button">
+                        <button onClick={() => auth.logOut()} className='logout'>Log Out</button>
+                    </div>
                     <NotificationButton classname="noti-button" />
                 </div>
             </Toolbar>
@@ -64,4 +74,4 @@ export const CustomerHeader = ({ open, handleDrawerOpen }) => {
     )
 }
 
-export default CustomerHeader
+export default HostHeader;

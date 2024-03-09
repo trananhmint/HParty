@@ -111,8 +111,8 @@ const Booked = () => {
   }
 
 
-  function getDateTime (bookingDate)  {
-    let now  = new Date(bookingDate);
+  function getDateTime(bookingDate) {
+    let now = new Date(bookingDate);
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     let day = now.getDate();
@@ -123,20 +123,20 @@ const Booked = () => {
   }
 
   return (
-    <div>
-      {booked.map((book) => {
-        if (book.status === "FINISHED") {
+    <div className='confirm'>
+      {booked.map((book, index) => {
+        if (book.status === "BOOKED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {Math.random().toFixed(5) * 100000}</p>
+                <p>ID: {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
+                  <hr />
+                  <button id='cancel'><CancelOutlinedIcon /></button>
                 </div>
-                <hr/>
-                <button id ='cancel'><CancelOutlinedIcon/></button>
               </div>
               <hr />
               <div className="booked-items-container">
@@ -178,14 +178,12 @@ const Booked = () => {
                   </div>
                   <hr />
                 </div>
-
               })}
             </div>
           </div>
-
         }
       })}
-    </div >
+    </div>
   )
 }
 

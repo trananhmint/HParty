@@ -1,25 +1,4 @@
-/* AdminProfile.css */
-/* .admin-profile-container {
-    width: 600px;
-    height: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: linear-gradient(to bottom, #DEB887, #FFFFFF);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 100px;
-  }
-   */
-
-  .admin-avatar-image{
-    width: 200px;
-    height: auto; 
-  }
-  .admin-profile-avatar{
-    margin-bottom: 10px;
-
-  }
-  .customer-profile {
+.host-profile {
     margin-top: 150px;
     display: flex;
     flex-direction: column;
@@ -28,32 +7,28 @@
     padding: 10px;
 }
 
-.admin-profile-title {
+.host-profile-title {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.admin-profile-title p {
+.host-profile-title p {
     color: grey;
 }
 
-.admin-profile-title h3 {
-    font-size: 25px;
-    font-weight: 600;
-}
-  .admin-profile-title h3 {
+.host-profile-title h3 {
     font-size: 25px;
     font-weight: 600;
 }
 
-.admin-profile-list {
+.host-profile-list {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.admin-profile-list p {
+.host-profile-list p {
     font-size: 20px;
     font-weight: 500;
 }
@@ -62,12 +37,12 @@ span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt
     font-size: 20px;
 }
 
-.admin-profile-button {
+.host-profile-button {
     display: flex;
     /* justify-content: center; */
 }
 
-.admin-profile-button button {
+.host-profile-button button {
     width: 150px;
     padding: 20px;
     font-size: 20px;
@@ -78,4 +53,3 @@ span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt
     border-radius: 6px;
     cursor: pointer;
 }
-  

@@ -31,7 +31,7 @@ export const PopularServices = () => {
             <hr />
             <div className="popular">
                 {items.map((item, i) => {
-                    if (i <= 4) {
+                    if (i <= 4 && item.status === 1) {
                         return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                     }else{
                         return null;

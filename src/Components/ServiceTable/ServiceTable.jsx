@@ -11,9 +11,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
+import { Edit } from '@mui/icons-material';
 import { disableService } from '../../Context/disableService';
-import ModalUnstyled from '../EditForm/EditService';
+import ModalUpdateService from '../EditForm/EditService';
 import DeleteService from '../DeleteDialog/DeleteService';
+import { toast } from 'react-toastify';
 
 
 export default function ServiceTable() {
@@ -21,7 +23,7 @@ export default function ServiceTable() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
 
-  
+
 
   console.log(open);
 
@@ -39,13 +41,22 @@ export default function ServiceTable() {
     try {
       await disableService(id);
       console.log("Service disable:", id);
-      fetchData();
+      toast.success('Delete Successfully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // fetchData();
+      window.location.reload();
     } catch (error) {
       console.error("Error disabling service:", error);
     }
   };
-
-
 
   useEffect(() => {
     fetchData();
@@ -67,21 +78,17 @@ export default function ServiceTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <TableRow
               key={item.serviceId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {item.serviceId}
+                {index + 1}
               </TableCell>
-
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.user.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
@@ -100,14 +107,8 @@ export default function ServiceTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <ModalUnstyled open={open} />
-                    {/* <Button variant="outlined" 
-                    startIcon={<DeleteIcon />} 
-                    style={{ borderColor: '#f5a02c', color: '#f5a02c',borderRadius: '8px' }} 
-                    onClick={()=>handleDisableClick(item.serviceId)}>
-                      Delete
-                    </Button>  */}
-                    <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} /> 
+                  <ModalUpdateService service={item} />
+                  <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
                 </Stack>
               </TableCell>
             </TableRow>

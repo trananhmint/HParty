@@ -72,6 +72,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
         'My Address': <AssignmentIndIcon style={{ color: 'white' }} />,
         'Change Password': <AssignmentIndIcon style={{ color: 'white' }} />,
         'Host Services': <AccountBoxIcon style={{ color: 'white' }} />,
+        'Host Rooms': <AccountBoxIcon style={{ color: 'white' }} />,
         'All Promotion': <CelebrationIcon style={{ color: 'white' }} />,
     };
 
@@ -109,7 +110,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
             </DrawerHeader>
             <Divider />
             <List>
-                {['My Profile', 'Host Services', 'Change Password', 'My Address', 'All Promotion'].map((text, index) => (
+                {['My Profile', 'Host Services', 'Host Rooms', 'Change Password', 'My Address', 'All Promotion'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={Link} to={text === 'My Profile' ? '/host-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
                             <ListItemIcon>

@@ -1,8 +1,15 @@
 /* @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"; */
+.services{
+    margin-top: 150px;
+}
+
+
 .services-banner {
     display: flex;
     margin: 30px auto;
-    width: 82%;
+    width: 50%;
+    
+    
 }
 
 .services-indexSort {

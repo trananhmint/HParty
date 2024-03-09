@@ -15,10 +15,20 @@ import { fetchUser } from '../../Context/fetchUser';
 import axios from 'axios';
 import ModalUpdateUser from '../EditForm/EditUser';
 
+// function createData(userId, FullName, Status, RoleId, Email, Address) {
+// return { userId, FullName, Status, RoleId, Email, Address };
+//}
+
+//const rows = [
+//createData(1, 'Võ Nguyễn Trung Hải','ACTIVE', 1,'chunhai27032003@gmail.com', '123 Nguyễn Văn Tăng, phường Long Thạnh Mỹ, Quận 9, TP Hồ Chí Minh'),
+//createData(2, 'Nguyễn Văn A', 'ACTIVE', 2, 'nguyenvana@example.com', '456 Lê Lợi, phường Phú Mỹ, Quận 7, TP Hồ Chí Minh'),
+//createData(3, 'Trần Thị B', 'NON_ACTIVE', 3, 'tranthib@example.com', '789 Trần Phú, phường Bình Thủy, Quận Ninh Kiều, TP Cần Thơ'),
+//createData(4, 'Lê Văn C', 'ACTIVE', 1,  'levanc@example.com', '101 Lê Lợi, phường Xuân Khánh, Quận Ninh Kiều, TP Cần Thơ'),
+//createData(5, 'Phạm Thị D', 'NON_ACTIVE', 2,  'phamthid@example.com', '202 Lê Lợi, phường Hưng Lợi, TP Cẩm Phả, Quảng Ninh')
+//];
 
 export default function UserTable() {
   const [items, setItems] = useState([]);
-  const [status, setStatus] = useState("ACTIVE");
 
   const fetchData = async () => {
     try {
@@ -40,45 +50,6 @@ export default function UserTable() {
     fetchData();
   }, []);
 
-  const getStatus = (item) => {
-    if (item === "ACTIVE") {
-      setStatus("ACTIVE");
-      return status;
-    } else {
-      setStatus("INACTIVE")
-      return status;
-    }
-  }
-
-  const fetchDisableUser = async (data) => {
-    try {
-      const response = await axios.put('https://bookingbirthdayparties.azurewebsites.net/api/Authentication/disableUser', data,
-        {
-          headers: {
-            "Content-Type": "application/json"
-          },
-          withCredentials: true,
-        })
-      console.log(response.data);
-      setStatus("INACTIVE");
-      return response.data;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  }
-
-  const handleClick = async (userId) => {
-    const confirmed = window.confirm('Are you sure you want to disable this user?');
-    if (confirmed) {
-      const success = await fetchDisableUser(userId);
-      if (success) {
-        alert('User status updated successfully!');
-      } else {
-        alert('Failed to update user status.');
-      }
-    }
-  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
@@ -95,20 +66,20 @@ export default function UserTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <TableRow
               key={item.userId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {index + 1}
+                {item.userId}
               </TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.email}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.phone}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">
-                {item.role.roleId === 1 ? 'Customer' : item.role.roleId === 2 ? 'Party Host' : item.role.roleId === 3 ? 'Admin' : ''}
+                {item.role.roleId === 1 ? 'Customer' : item.role.roleId=== 2 ? 'Party Host' : item.role.roleId === 3 ? 'Admin' : ''}
               </TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button
@@ -117,7 +88,6 @@ export default function UserTable() {
                     backgroundColor: item.status === 'ACTIVE' ? '#32CD32' : '#FF4500',
                     borderRadius: '20px',
                   }}>
-                  {/* {item.status === 'ACTIVE' ? 'ACTIVE' : 'INACTIVE'} */}
                   {item.status}
                 </Button>
               </TableCell>

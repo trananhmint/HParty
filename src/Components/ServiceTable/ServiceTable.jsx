@@ -13,7 +13,8 @@ import Stack from '@mui/material/Stack';
 import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
 import { Edit } from '@mui/icons-material';
-import ModalUnstyled from '../EditForm/EditService';
+import { disableService } from '../../Context/disableService';
+import ModalUpdateService from '../EditForm/EditService';
 
 
 export default function ServiceTable() {
@@ -71,10 +72,6 @@ export default function ServiceTable() {
                 {index + 1}
               </TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.user.fullName}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
@@ -95,7 +92,7 @@ export default function ServiceTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <ModalUnstyled open={open} />
+                  <ModalUpdateService service = {item}/>
                   <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                     Delete
                   </Button>

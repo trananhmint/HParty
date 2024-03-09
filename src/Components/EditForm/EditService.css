@@ -1,18 +1,21 @@
 .editservice input {
     font-size: 20px;
-    
+
     padding: 10px;
 }
+
 .modal-description {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
 }
+
 .update-container {
     display: flex;
 
 }
+
 .modal-description div {
     display: flex;
 
@@ -24,21 +27,31 @@
     font-size: 20px;
     width: 100px;
 }
+
 .modal-description input {
     font-size: 18px;
     padding: 5px;
     width: 250px;
 }
+
 .update-status select {
     font-size: 18px;
     width: 250px;
 }
+
 .modal-description option {
     font-size: 18px;
 }
+
 .update-description {
     display: flex;
     /* flex-direction: row; */
     width: 80%;
-    
+
+}
+
+.createservice {
+    display: float;
+    float: right;
+    margin-bottom: 10px;
 }

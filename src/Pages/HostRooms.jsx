@@ -2,9 +2,10 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import './CSS/AdminPage.css';
+import './CSS/HostServices.css'
 import HostHeader from '../Components/HostHeader/HostHeader';
 import HostSideBar from '../Components/HostSideBar/HostSideBar';
+import HostRoomTable from '../Components/HostRoomTable/HostRoomTable';
 
 const drawerWidth = 240;
 
@@ -30,10 +31,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 const name = localStorage.getItem('email');
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-
-export const HostDisplay = () => {
-    const [open, setOpen] = React.useState(false);
+export const HostRooms = () => {
+    const [open, setOpen] = React.useState(true);
 
 
     const handleDrawerOpen = () => {
@@ -43,23 +42,20 @@ export const HostDisplay = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
     return (
-        <div>
-            <Box sx={{ display: 'flex' }} >
-                <CssBaseline />
-                <HostHeader open={open} handleDrawerOpen={handleDrawerOpen} />
-                <HostSideBar open={open} handleDrawerClose={handleDrawerClose} />
+        <Box sx={{ display: 'flex' }} >
+            <CssBaseline />
+            <HostHeader open={open} handleDrawerOpen={handleDrawerOpen} />
+            <HostSideBar open={open} handleDrawerClose={handleDrawerClose} />
 
-                <Main open={open}>
+            <Main open={open}>
+                <div className='host-services-table'>
+                    <HostRoomTable/>
+                </div>
 
-                </Main>
-                {/* <Footer /> */}
-            </Box>
-
-        </div>
-
+            </Main>
+        </Box>
     )
 }
-export default HostDisplay;
+
 

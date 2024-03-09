@@ -3,10 +3,9 @@ import './CartItems.css'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/CartSlice';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { useAuth } from '../../Context/AuthProvider';
 import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
@@ -20,6 +19,7 @@ export const CartItems = () => {
   const auth = useAuth();
   const cookies = new Cookies();
   let token = cookies.get("authToken");
+  console.log(token);
   const cartId = localStorage.getItem("email");
   let cart = JSON.parse(localStorage.getItem(cartId));
   let room = rooms.map((room) => room)
@@ -90,7 +90,7 @@ export const CartItems = () => {
 
     // console.log(typeof newItems.rooms);
     console.log(newItems.rooms.length);
-    if (token !== null && token !== "") {
+    if (token !== null && token !== "" && token !== undefined) {
       if (uniqueRoom(cart, room).length === 0) {
         toast.warning('Must choose Room to book', {
           position: "top-right",

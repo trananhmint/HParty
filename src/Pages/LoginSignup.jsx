@@ -201,7 +201,8 @@ const LoginSignup = () => {
             <span>or use your email for registeration</span>
             <div className='input-field-register'>
               <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput} placeholder='FullName' />
-              <select name='roleId' defaultValue={1} onChange={handleRegisterInput}>
+              <select name='roleId' defaultValue={0} onChange={handleRegisterInput}>
+                <option value={0} disabled>Select User Type</option>
                 <option value={1} >Customer</option>
                 <option value={2} >Party Host</option>
               </select>

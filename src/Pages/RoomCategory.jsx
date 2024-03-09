@@ -6,6 +6,7 @@ import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import axios from 'axios';
 import RoomItems from '../Components/RoomItems/RoomItems';
+import ServiceBreadcrumb from '../Components/Breadcrumbs/ServiceBreadcrumb';
 
 export const RoomCategory = (props) => {
   const [items, setItems] = useState([]);
@@ -23,7 +24,9 @@ export const RoomCategory = (props) => {
     return (
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
-          return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+          if (item.status === 1) {
+            return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+          }
         })}
       </div>
 
@@ -42,7 +45,6 @@ export const RoomCategory = (props) => {
     useEffect(() => {
       const endOffset = itemOffset + itemsPerPage;
       console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-
       setCurrentItems(items.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(items.length / itemsPerPage))
     }, [itemOffset, itemsPerPage]);
@@ -93,10 +95,11 @@ export const RoomCategory = (props) => {
   return (
     <div className='services'>
       <Navbar />
+      <ServiceBreadcrumb  service={props}/>
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>
-          <span>Showing 1-8</span> out of <span>{items.length}</span> services
+          <span>Showing 1-8</span> out of <span>Rooms</span>
         </p>
         <div className="services-sort">
         </div>

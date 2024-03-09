@@ -15,6 +15,7 @@ import { fetchRoom } from '../../Context/fetchRoom';
 import { disableRoom } from '../../Context/disableRoom';
 import ModalUpdateRoom from '../EditForm/EditRoom';
 import DeleteRoom from '../DeleteDialog/DeleteRoom';
+import { toast } from 'react-toastify';
 
 
 
@@ -31,15 +32,28 @@ export default function RoomTable() {
     }
 
   }
+
   const handleDisableClick = async (id) => {
     try {
       await disableRoom(id);
       console.log("Room disable:", id);
-      fetchData();
+      toast.success('Delete Successfully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // fetchData();
+      window.location.reload();
     } catch (error) {
       console.error("Error disabling room:", error);
     }
   };
+
 
   useEffect(() => {
     fetchData();
@@ -71,11 +85,11 @@ export default function RoomTable() {
               <TableCell component="th" scope="row">
                 {item.roomId}
               </TableCell>
-              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.roomName}</TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
-              <TableCell sx={{fontSize:'16px'}} align='center'>{item.capacity}</TableCell>
-              <TableCell sx={{fontSize:'16px',  whiteSpace: 'nowrap'}}>{item.address}</TableCell>
-              <TableCell sx={{fontSize:'16px'}} align='center'>{item.price}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.roomName}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }} align='center'>{item.capacity}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.address}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }} align='center'>{item.price}</TableCell>
               {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button
@@ -92,13 +106,7 @@ export default function RoomTable() {
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                   <ModalUpdateRoom room={item} />
-                  <Button variant="outlined"
-                    endIcon={<DeleteIcon />}
-                    style={{ borderColor: '#f5a02c', color: '#f5a02c' }}
-                    onClick={() => handlDisableClick(item.roomId)}
-                  >
-                    Delete
-                  </Button>
+                  <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)} />
                 </Stack>
               </TableCell>
             </TableRow>

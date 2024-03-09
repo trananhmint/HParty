@@ -21,7 +21,7 @@ export default function UserTable() {
 
   const fetchData = async () => {
     try {
-      const data = await axios.get(fetchUser(),
+      const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/users',
         {
           withCredentials: true
         });
@@ -33,6 +33,7 @@ export default function UserTable() {
     }
 
   }
+
 
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function UserTable() {
               <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.phone}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">
-                {item.role.roleId === 1 ? 'Customer' : item.role.roleId=== 2 ? 'Party Host' : item.role.roleId === 3 ? 'Admin' : ''}
+                {item.role.roleId === 1 ? 'Customer' : item.role.roleId === 2 ? 'Party Host' : item.role.roleId === 3 ? 'Admin' : ''}
               </TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button

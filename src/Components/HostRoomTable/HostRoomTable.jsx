@@ -15,10 +15,34 @@ import { fetchRoom } from '../../Context/fetchRoom';
 import { disableRoom } from '../../Context/disableRoom';
 import ModalUpdateRoom from '../EditForm/EditRoom';
 import ModalCreateRoom from '../CreateForm/CreateRoom';
+import DeleteRoom from '../DeleteDialog/DeleteRoom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 
 export const HostRoomTable = () => {
   const [items, setItems] = useState([]);
+  const [host, setHost] = useState([]);
+
+
+  const fetchPartyHost = async () => {
+    try {
+      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/User',
+        {
+          withCredentials: true,
+        }
+      )
+      setHost(response.data.data);
+      console.log(response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchPartyHost()
+  }, []);
+
 
   const fetchData = async () => {
     try {
@@ -30,10 +54,21 @@ export const HostRoomTable = () => {
     }
 
   }
-  const handlDisableClick = async (id) => {
+  const handleDisableClick = async (id) => {
     try {
       await disableRoom(id);
       console.log("Room disable:", id);
+      toast.success('Delete Successfully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // fetchData();
       window.location.reload();
     } catch (error) {
       console.error("Error disabling room:", error);
@@ -64,14 +99,14 @@ export const HostRoomTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => {
+            {items.map((item, index) => {
               if (item.status === 1) {
                 return <TableRow
                   key={item.roomId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {item.roomId}
+                    {index + 1}
                   </TableCell>
                   <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.roomName}</TableCell>
                   <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
@@ -94,13 +129,14 @@ export const HostRoomTable = () => {
                   <TableCell align="right">
                     <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                       <ModalUpdateRoom room={item} />
-                      <Button variant="outlined"
+                      {/* <Button variant="outlined"
                         endIcon={<DeleteIcon />}
                         style={{ borderColor: '#f5a02c', color: '#f5a02c' }}
-                        onClick={() => handlDisableClick(item.roomId)}
+                        onClick={() => handleDisableClick(item.roomId)}
                       >
                         Delete
-                      </Button>
+                      </Button> */}
+                      <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)} />
                     </Stack>
                   </TableCell>
                 </TableRow>

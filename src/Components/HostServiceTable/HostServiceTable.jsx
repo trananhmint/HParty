@@ -13,6 +13,9 @@ import './HostServiceTable.css'
 import { fetchService } from '../../Context/fetchService';
 import ModalUnstyled from '../EditForm/EditService';
 import ModalCreateService from '../CreateForm/CreateService';
+import DeleteService from '../DeleteDialog/DeleteService';
+import { disableService } from '../../Context/disableService';
+import { toast } from 'react-toastify';
 
 
 export const HostServiceTable = () => {
@@ -34,6 +37,28 @@ export const HostServiceTable = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    const handleDisableClick = async (id) => {
+        try {
+            await disableService(id);
+            console.log("Service disable:", id);
+            toast.success('Delete Successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            // fetchData();
+            window.location.reload();
+        } catch (error) {
+            console.error("Error disabling service:", error);
+        }
+    };
+
 
     return (
         <div>
@@ -86,9 +111,10 @@ export const HostServiceTable = () => {
                                     <TableCell align="right">
                                         <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                                             <ModalUnstyled service={item} />
-                                            <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
+                                            {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                                                 Delete
-                                            </Button>
+                                            </Button> */}
+                                            <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
                                         </Stack>
                                     </TableCell>
                                 </TableRow>

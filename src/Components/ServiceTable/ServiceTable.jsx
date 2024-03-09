@@ -15,6 +15,7 @@ import { Edit } from '@mui/icons-material';
 import { disableService } from '../../Context/disableService';
 import ModalUpdateService from '../EditForm/EditService';
 import DeleteService from '../DeleteDialog/DeleteService';
+import { toast } from 'react-toastify';
 
 
 export default function ServiceTable() {
@@ -40,7 +41,18 @@ export default function ServiceTable() {
     try {
       await disableService(id);
       console.log("Service disable:", id);
-      fetchData();
+      toast.success('Delete Successfully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // fetchData();
+      window.location.reload();
     } catch (error) {
       console.error("Error disabling service:", error);
     }
@@ -71,7 +83,7 @@ export default function ServiceTable() {
               key={item.serviceId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-               <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row">
                 {index + 1}
               </TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>

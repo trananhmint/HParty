@@ -3,16 +3,15 @@ import './CartItems.css'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/CartSlice';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { useAuth } from '../../Context/AuthProvider';
 import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 
 export const CartItems = () => {
-  const { services, rooms, totalPrice, CartOfItems, AddToCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity } = useContext(ServiceContext);
+  const { services, rooms, totalPrice, CartOfItems, clearCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity } = useContext(ServiceContext);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,6 +19,7 @@ export const CartItems = () => {
   const auth = useAuth();
   const cookies = new Cookies();
   let token = cookies.get("authToken");
+  console.log(token);
   const cartId = localStorage.getItem("email");
   let cart = JSON.parse(localStorage.getItem(cartId));
   let room = rooms.map((room) => room)
@@ -64,10 +64,23 @@ export const CartItems = () => {
 
   // console.log(uniqueItemOfService);
   // console.log(CartOfItems());
+  console.log(uniqueService(cart, service));
+
+  const getDecoration = uniqueService(cart, service).some((service) => Number(service.categoryId) === 1)
+  const getFood = uniqueService(cart, service).some((service) => Number(service.categoryId) === 2);
+  const getWaiter = uniqueService(cart, service).some((service) => Number(service.categoryId) === 3);
+  console.log("Deco: ", getDecoration);
+  console.log("Food: ", getFood);
+  console.log("Waiter: ", getWaiter);
+  console.log("Room: ", uniqueRoom(cart, room))
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    clearCart();
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const newItems = {
       rooms: uniqueRoom(cart, room),
       services: uniqueService(cart, service),
@@ -76,13 +89,10 @@ export const CartItems = () => {
     console.log(newItems);
 
     // console.log(typeof newItems.rooms);
-    // console.log(newItems.rooms);
-    if (token !== null && token !== "") {
-      if (newItems.rooms !== null && newItems.rooms.length !== 0) {
-        dispatch(addToCart(newItems))
-        navigate("/bookingService");
-      } else {
-        toast.warning('Must choose room to book', {
+    console.log(newItems.rooms.length);
+    if (token !== null && token !== "" && token !== undefined) {
+      if (uniqueRoom(cart, room).length === 0) {
+        toast.warning('Must choose Room to book', {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -92,6 +102,56 @@ export const CartItems = () => {
           progress: undefined,
           theme: "light",
         });
+      } if (getDecoration !== true && getFood !== true && getWaiter !== true) {
+        toast.warning('You do not have any service. Please choose services', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } if (getDecoration !== true) {
+        toast.warning('Must choose Decoration to book', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } if (getFood !== true) {
+        toast.warning('Must choose Food to book', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } if (getWaiter !== true) {
+        toast.warning('Must choose Waiter to book', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+
+
+      else {
+        dispatch(addToCart(newItems))
+        navigate("/bookingService");
       }
     }
     else {
@@ -144,7 +204,6 @@ export const CartItems = () => {
                     {getQuantity(item.roomId)}
                   </p>
                   <p>{item.price * getQuantity(item.roomId)} đ</p>
-                  <AddCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { AddToCart(item.roomId) }} />
                   <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(item.roomId) }} />
                 </div>
               </div>
@@ -170,7 +229,6 @@ export const CartItems = () => {
                     {getQuantity(item.serviceId)}
                   </p>
                   <p>{item.price * getQuantity(item.serviceId)} đ</p>
-                  <AddCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { AddToCart(item.serviceId) }} />
                   <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(item.serviceId) }} />
                 </div>
               </div>
@@ -178,6 +236,9 @@ export const CartItems = () => {
               return null;
             }
           })}
+          <div className='cartitems-clear'>
+            <button onClick={handleClick}>CLEAR</button>
+          </div>
         </div>
 
 
@@ -194,7 +255,8 @@ export const CartItems = () => {
               {/* <input name="totalPrice" onChange={handleInput}/> */}
               <p>{getTotalPrice()} đ</p>
             </div>
-            <button >BOOKING</button>
+
+            <button>BOOKING</button>
           </div>
         </div>
       </div>

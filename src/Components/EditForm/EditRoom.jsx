@@ -15,10 +15,17 @@ import { NumericFormat } from 'react-number-format';
 import './EditService.css'
 import MoneyFormattedInputs from '../Format/NumericFormat';
 
-export default function ModalUpdateRoom() {
+export default function ModalUpdateRoom({room}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [updateRoom, setUpdateRoom] = React.useState ({
+        RoomName: room.roomName,
+        Description: room.description,
+        Capacity: room.capacity,
+        Address: room.address,
+    })
 
     const name = "Balloon"
 

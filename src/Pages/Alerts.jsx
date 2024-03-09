@@ -14,8 +14,8 @@ import { ServiceContext } from '../Context/ServiceContext';
 
 
 export const Alerts = () => {
-    // const {clearCart} = useState(ServiceContext);
-
+    const { clearCart } = useState(ServiceContext);
+    // clearCart();
     // function removeCart() {
     //     const cartId = localStorage.getItem("email");
     //     console.log(cartId);
@@ -75,9 +75,7 @@ export const Alerts = () => {
     if (vnp_ResponseCode === "00") {
         const orderDetail = JSON.parse(localStorage.getItem("orderItem"));
         localStorage.removeItem("shoppingCart");
-        const cartId = localStorage.getItem("email");
-        localStorage.removeItem(cartId);
-        console.log(cartId);
+
         status = "success";
 
         const data = {
@@ -198,7 +196,7 @@ export const Alerts = () => {
                     </Alert>
                 </Stack>
             </div>
-
+            <p>{clearCart()}</p>
             <div className="alerts-services">
                 <PaginatedItems itemsPerPage={16} />
             </div>

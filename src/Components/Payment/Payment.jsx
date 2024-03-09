@@ -344,11 +344,6 @@ export const Payment = () => {
                         </div>
                         <hr />
                         <div className="payment-total-item">
-                            <p>Shipping Fee</p>
-                            <p>Free</p>
-                        </div>
-                        <hr />
-                        <div className="payment-total-item">
                             <h3>Total</h3>
                             <h3>{getTotalPrice() + 0} đ</h3>
                         </div>

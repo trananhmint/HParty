@@ -8,18 +8,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
+import { Edit } from '@mui/icons-material';
 import { disableService } from '../../Context/disableService';
-import ModalUnstyled from '../EditForm/EditService';
+import ModalUpdateService from '../EditForm/EditService';
+import DeleteService from '../DeleteDialog/DeleteService';
+import { toast } from 'react-toastify';
 
 
 export default function ServiceTable() {
   const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+
+
+
   console.log(open);
 
   const fetchData = async () => {
@@ -32,19 +37,27 @@ export default function ServiceTable() {
     }
 
   }
-  const handlDisableClick = async (id) => {
+  const handleDisableClick = async (id) => {
     try {
       await disableService(id);
       console.log("Service disable:", id);
-      setItems(items.filter((item) => item.serviceId !== id));
+      toast.success('Delete Successfully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // fetchData();
+      window.location.reload();
     } catch (error) {
       console.error("Error disabling service:", error);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
   useEffect(() => {
     fetchData();
   }, []);
@@ -56,8 +69,8 @@ export default function ServiceTable() {
           <TableRow >
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >ID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
-            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
+            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
@@ -65,18 +78,14 @@ export default function ServiceTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <TableRow
               key={item.serviceId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {item.serviceId}
+                {index + 1}
               </TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.user.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
@@ -98,20 +107,8 @@ export default function ServiceTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                <Button variant="outlined" endIcon={<EditIcon/>} style={{background:'#f5a02c', color: 'white', borderColor: 'white'}}>
-                        Edit
-                    </Button>
-
-                    <Button variant="outlined" 
-                    startIcon={<DeleteIcon />} 
-                    style={{ borderColor: '#f5a02c', color: '#f5a02c' }} 
-                    onClick={()=>handlDisableClick(item.serviceId)}>
-                      Delete
-                    </Button>
-                  <ModalUnstyled open={open} />
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
-                    Delete
-                  </Button>
+                  <ModalUpdateService service={item} />
+                  <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
                 </Stack>
               </TableCell>
             </TableRow>

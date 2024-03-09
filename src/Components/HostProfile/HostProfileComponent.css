@@ -1,0 +1,55 @@
+.host-profile {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* background-color: #e7c494; */
+    padding: 10px;
+}
+
+.host-profile-title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.host-profile-title p {
+    color: grey;
+}
+
+.host-profile-title h3 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.host-profile-list {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.host-profile-list p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root {
+    font-size: 20px;
+}
+
+.host-profile-button {
+    display: flex;
+    /* justify-content: center; */
+}
+
+.host-profile-button button {
+    width: 150px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    background: red;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

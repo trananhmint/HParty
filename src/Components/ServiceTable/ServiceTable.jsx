@@ -8,18 +8,21 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './ServiceTable.css'
 import { fetchService } from '../../Context/fetchService';
 import { disableService } from '../../Context/disableService';
 import ModalUnstyled from '../EditForm/EditService';
+import DeleteService from '../DeleteDialog/DeleteService';
 
 
 export default function ServiceTable() {
   const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+
+  
+
   console.log(open);
 
   const fetchData = async () => {
@@ -32,19 +35,16 @@ export default function ServiceTable() {
     }
 
   }
-  const handlDisableClick = async (id) => {
+  const handleDisableClick = async (id) => {
     try {
       await disableService(id);
       console.log("Service disable:", id);
-      setItems(items.filter((item) => item.serviceId !== id));
+      fetchData();
     } catch (error) {
       console.error("Error disabling service:", error);
     }
   };
 
-useEffect(() => {
-  fetchData();
-}, []);
   useEffect(() => {
     fetchData();
   }, []);
@@ -56,8 +56,8 @@ useEffect(() => {
           <TableRow >
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >ID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
-            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
+            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
@@ -74,12 +74,8 @@ useEffect(() => {
                 {item.serviceId}
               </TableCell>
               <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.serviceName}</TableCell>
-              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}} align='center'>{item.price}</TableCell>
               <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
-              <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
@@ -98,20 +94,14 @@ useEffect(() => {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                <Button variant="outlined" endIcon={<EditIcon/>} style={{background:'#f5a02c', color: 'white', borderColor: 'white'}}>
-                        Edit
-                    </Button>
-
-                    <Button variant="outlined" 
-                    startIcon={<DeleteIcon />} 
-                    style={{ borderColor: '#f5a02c', color: '#f5a02c' }} 
-                    onClick={()=>handlDisableClick(item.serviceId)}>
-                      Delete
-                    </Button>
                   <ModalUnstyled open={open} />
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
-                    Delete
-                  </Button>
+                    {/* <Button variant="outlined" 
+                    startIcon={<DeleteIcon />} 
+                    style={{ borderColor: '#f5a02c', color: '#f5a02c',borderRadius: '8px' }} 
+                    onClick={()=>handleDisableClick(item.serviceId)}>
+                      Delete
+                    </Button>  */}
+                    <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} /> 
                 </Stack>
               </TableCell>
             </TableRow>

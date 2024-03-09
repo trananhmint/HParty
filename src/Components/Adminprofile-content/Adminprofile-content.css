@@ -10,38 +10,6 @@
     margin-top: 100px;
   }
    */
-  .admin-profile-header {
-    font-size: 36px;
-    color: black
-  }
-  
-  .admin-profile-content {
-    font-size: 20px;
-    color: #555555;
-  }
-  
-  .admin-profile-button {
-    background: #8B4513;
-    color: #FFFFFF;
-    border-radius: 20px;
-    padding: 5px 10px;
-    margin-left: 10px;
-  }
-  .admin-profile-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start
-  }
-  
-  .admin-profile-content-wrapper label {
-    margin: 10px 0; /* Khoảng cách giữa các dòng */
-  }
-
-  .admin-profile-content-wrapper span {
-    margin-left: 10px;
-    color: black;
-    font-size: 20px;
-  }
 
   .admin-avatar-image{
     width: 200px;
@@ -57,8 +25,9 @@
   .css-ttn1xo{
     margin-top: 150px;
   }
-  .customer-profile {
-    margin-top: 150px;
+  /*Chỉnh phần Grid của phần Avatar*/
+  .admin-profile {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -66,32 +35,32 @@
     padding: 10px;
 }
 
-.customer-profile-title {
+.admin-profile-title {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.customer-profile-title p {
+.admin-profile-title p {
     color: grey;
 }
 
-.customer-profile-title h3 {
+.admin-profile-title h3 {
     font-size: 25px;
     font-weight: 600;
 }
-  .customer-profile-title h3 {
+  .admin-profile-title h3 {
     font-size: 25px;
     font-weight: 600;
 }
 
-.customer-profile-list {
+.admin-profile-list {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.customer-profile-list p {
+.admin-profile-list p {
     font-size: 20px;
     font-weight: 500;
 }
@@ -100,12 +69,12 @@ span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt
     font-size: 20px;
 }
 
-.customer-profile-button {
+.admin-profile-button {
     display: flex;
     /* justify-content: center; */
 }
 
-.customer-profile-button button {
+.admin-profile-button button {
     width: 150px;
     padding: 20px;
     font-size: 20px;

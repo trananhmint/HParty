@@ -218,10 +218,10 @@ const TriggerButton = styled('button')(
     border-radius: 8px;
     transition: all 150ms ease;
     cursor: pointer;
-    background:  white;
+    background: #f5a02c;
     border: 1px solid #f5a02c;
     // border: none;
-    color:  #f5a02c;
+    color:  white;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
     &:hover {

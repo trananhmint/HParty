@@ -8,19 +8,22 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
 import { Edit } from '@mui/icons-material';
 import { disableService } from '../../Context/disableService';
 import ModalUpdateService from '../EditForm/EditService';
+import DeleteService from '../DeleteDialog/DeleteService';
 
 
 export default function ServiceTable() {
   const [items, setItems] = useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
+
+
+
   console.log(open);
 
   const fetchData = async () => {
@@ -33,11 +36,11 @@ export default function ServiceTable() {
     }
 
   }
-  const handlDisableClick = async (id) => {
+  const handleDisableClick = async (id) => {
     try {
       await disableService(id);
       console.log("Service disable:", id);
-      setItems(items.filter((item) => item.serviceId !== id));
+      fetchData();
     } catch (error) {
       console.error("Error disabling service:", error);
     }
@@ -54,8 +57,8 @@ export default function ServiceTable() {
           <TableRow >
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >ID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
-            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
+            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
@@ -68,7 +71,7 @@ export default function ServiceTable() {
               key={item.serviceId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+               <TableCell component="th" scope="row">
                 {index + 1}
               </TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
@@ -92,10 +95,8 @@ export default function ServiceTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <ModalUpdateService service = {item}/>
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
-                    Delete
-                  </Button>
+                  <ModalUpdateService service={item} />
+                  <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
                 </Stack>
               </TableCell>
             </TableRow>

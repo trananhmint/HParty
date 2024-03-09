@@ -14,6 +14,7 @@ import './RoomTable.css'
 import { fetchRoom } from '../../Context/fetchRoom';
 import { disableRoom } from '../../Context/disableRoom';
 import ModalUpdateRoom from '../EditForm/EditRoom';
+import DeleteRoom from '../DeleteDialog/DeleteRoom';
 
 
 
@@ -30,11 +31,11 @@ export default function RoomTable() {
     }
 
   }
-  const handlDisableClick = async (id) => {
+  const handleDisableClick = async (id) => {
     try {
       await disableRoom(id);
       console.log("Room disable:", id);
-      setItems(items.filter((item) => item.serviceId !== id));
+      fetchData();
     } catch (error) {
       console.error("Error disabling room:", error);
     }
@@ -70,11 +71,11 @@ export default function RoomTable() {
               <TableCell component="th" scope="row">
                 {item.roomId}
               </TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.roomName}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.capacity}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.roomName}</TableCell>
+              <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
+              <TableCell sx={{fontSize:'16px'}} align='center'>{item.capacity}</TableCell>
+              <TableCell sx={{fontSize:'16px',  whiteSpace: 'nowrap'}}>{item.address}</TableCell>
+              <TableCell sx={{fontSize:'16px'}} align='center'>{item.price}</TableCell>
               {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button

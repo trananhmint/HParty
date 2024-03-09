@@ -76,41 +76,53 @@ const AdminProfileContent = () => {
 
   
   return (
-    <Box sx={{ flexGrow: 1 }}>
-     <div className="customer-profile-title">
+    <Box sx={{ flexGrow: 1 }} style={{
+      margin: '0px auto',
+      width: '80%',
+      boxShadow: '0px 0px 10px 5px #e5e5e5',
+      padding: '20px'
+    }}>
+     <div className="admin-profile-title">
           <h3>MY PROFILE INFORMATION</h3>
           <p>Manage your given information to protect account</p>
       </div>
       <hr />
-    <Grid container spacing={1} columns={15}>
-      <Grid xs={9}>
-        <Item>
-        <div className='customer-profile'>
-            
-            <div className='customer-profile-list customer-profile-login-name'>
+    <Grid container spacing={0} columns={12} style={{
+
+    }}>
+      <Grid xs={6} style={{
+        boxShadow: 'none',
+      boxRadius: '0'
+      }}>
+        <Item style={{
+          boxShadow: 'none',
+          boxRadius: '0'
+        }}>
+        <div className='admin-profile'>    
+            <div className='admin-profile-list admin-profile-login-name'>
                 <p>Login Name: </p>
-                <TextField id="outlined-basic" label="Login Name" variant="outlined" style={{ width: "500px" }} />
+                <TextField id="outlined-basic" label="Login Name" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
-            <div className='customer-profile-list customer-profile-name'>
+            <div className='admin-profile-list admin-profile-name'>
                 <p>Name: </p>
-                <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: "500px" }} />
+                <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
-            <div className=' customer-profile-list customer-profile-email'>
+            <div className=' admin-profile-list admin-profile-email'>
                 <p>Email: </p>
-                <TextField type='email' id="outlined-basic" label="Email" variant="outlined" style={{ width: "500px" }} />
+                <TextField type='email' id="outlined-basic" label="Email" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
-            <div className='customer-profile-list customer-profile-phone-number'>
+            <div className='admin-profile-list admin-profile-phone-number'>
                 <p>Phone Number: </p>
-                <TextField id="outlined-basic" label="Phone Number" variant="outlined" style={{ width: "500px" }} />
+                <TextField id="outlined-basic" label="Phone Number" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
-            <div className='customer-profile-list customer-profile-gender'>
-                {/* <p>Gender: </p> */}
+            <div className='admin-profile-list admin-profile-gender'>
+                <p>Gender: </p> 
                 <FormControl>
-                    <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                    <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
                     <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
@@ -123,13 +135,13 @@ const AdminProfileContent = () => {
                 </FormControl>
             </div>
 
-            <div className='customer-profile-list customer-profile-birthday'>
+            <div className='admin-profile-list admin-profile-birthday'>
                 <p>Birth Date: </p>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker style={{ width: "500px" }} />
+                    <DatePicker style={{ width: "500px", fontSize:'20px' }} />
                 </LocalizationProvider>
             </div>
-            <div className="customer-profile-button">
+            <div className="admin-profile-button">
                 <button>Submit</button>
             </div>
 
@@ -137,8 +149,12 @@ const AdminProfileContent = () => {
 
         </Item>
       </Grid>
-      <Grid xs={6} justifyContent = "center">
-        <Item style={{ display: 'inline-table', justifyContent: 'center' }}>
+      <Grid xs={6} justifyContent = "center" style={{marginTop: '120px'}}>
+        <Item style={{ 
+          display: 'grid', 
+          justifyContent: 'center', 
+          boxShadow: 'none',
+          boxRadius: '0' }}>
           <Avatar
             alt=""
             src={selectedImage || party_logo}
@@ -157,7 +173,9 @@ const AdminProfileContent = () => {
         color: '#555555', 
         borderColor: 'white',
         boxShadow: '#000000 0px 1px 1px 0px',
-        marginTop: '5px'
+        marginTop: '20px',
+        width: '200px',
+      marginLeft: '240px'
       }}
     >
       Choose picture

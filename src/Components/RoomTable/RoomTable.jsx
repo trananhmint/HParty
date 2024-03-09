@@ -13,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import './RoomTable.css'
 import { fetchRoom } from '../../Context/fetchRoom';
 import { disableRoom } from '../../Context/disableRoom';
+import DeleteRoom from '../DeleteDialog/DeleteRoom';
 
 
 
@@ -29,11 +30,11 @@ export default function RoomTable() {
       }
 
   }
-  const handlDisableClick = async (id) => {
+  const handleDisableClick = async (id) => {
     try {
       await disableRoom(id);
       console.log("Room disable:", id);
-      setItems(items.filter((item) => item.serviceId !== id));
+      fetchData();
     } catch (error) {
       console.error("Error disabling room:", error);
     }
@@ -71,9 +72,9 @@ useEffect(() => {
               </TableCell>
               <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.roomName}</TableCell>
               <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.capacity}</TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.address}</TableCell>
-              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}} align='center'>{item.price}</TableCell>
+              <TableCell sx={{fontSize:'16px'}} align='center'>{item.capacity}</TableCell>
+              <TableCell sx={{fontSize:'16px',  whiteSpace: 'nowrap'}}>{item.address}</TableCell>
+              <TableCell sx={{fontSize:'16px'}} align='center'>{item.price}</TableCell>
               {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
               <TableCell sx={{ fontSize: '16px'}} align="center">
               <Button
@@ -92,14 +93,7 @@ useEffect(() => {
                 <Button variant="outlined" endIcon={<EditIcon/>} style={{background:'#f5a02c', color: 'white', borderColor: 'white'}}>
                         Edit
                     </Button>
-
-                    <Button variant="outlined" 
-                    endIcon={<DeleteIcon />} 
-                    style={{ borderColor: '#f5a02c', color: '#f5a02c' }} 
-                    onClick={()=>handlDisableClick(item.roomIdId)} 
-                    >
-                      Delete
-                    </Button>
+                    <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)}/>
                 </Stack>
               </TableCell>
             </TableRow>

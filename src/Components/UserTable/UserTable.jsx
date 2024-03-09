@@ -15,24 +15,13 @@ import { fetchUser } from '../../Context/fetchUser';
 import axios from 'axios';
 import ModalUpdateUser from '../EditForm/EditUser';
 
-// function createData(userId, FullName, Status, RoleId, Email, Address) {
-// return { userId, FullName, Status, RoleId, Email, Address };
-//}
-
-//const rows = [
-//createData(1, 'Võ Nguyễn Trung Hải','ACTIVE', 1,'chunhai27032003@gmail.com', '123 Nguyễn Văn Tăng, phường Long Thạnh Mỹ, Quận 9, TP Hồ Chí Minh'),
-//createData(2, 'Nguyễn Văn A', 'ACTIVE', 2, 'nguyenvana@example.com', '456 Lê Lợi, phường Phú Mỹ, Quận 7, TP Hồ Chí Minh'),
-//createData(3, 'Trần Thị B', 'NON_ACTIVE', 3, 'tranthib@example.com', '789 Trần Phú, phường Bình Thủy, Quận Ninh Kiều, TP Cần Thơ'),
-//createData(4, 'Lê Văn C', 'ACTIVE', 1,  'levanc@example.com', '101 Lê Lợi, phường Xuân Khánh, Quận Ninh Kiều, TP Cần Thơ'),
-//createData(5, 'Phạm Thị D', 'NON_ACTIVE', 2,  'phamthid@example.com', '202 Lê Lợi, phường Hưng Lợi, TP Cẩm Phả, Quảng Ninh')
-//];
 
 export default function UserTable() {
   const [items, setItems] = useState([]);
 
   const fetchData = async () => {
     try {
-      const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/users',
+      const data = await axios.get(fetchUser(),
         {
           withCredentials: true
         });

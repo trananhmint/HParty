@@ -10,15 +10,20 @@ import TextField from '@mui/material/TextField';
 import { Edit } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
+import { NumericFormat } from 'react-number-format';
 
 import './EditService.css'
+import MoneyFormattedInputs from '../Format/NumericFormat';
 
-export default function ModalUpdateService() {
+export default function ModalCreateRoom() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const name = "Balloon"
+
+    const price = 345432342;
+
     const [status, setStatus] = React.useState('');
 
     const handleChangeStatus = (event) => {
@@ -30,10 +35,15 @@ export default function ModalUpdateService() {
         setCategory(event.target.value);
     };
 
+    const VND = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+
     return (
         <div className='editservice'>
             <TriggerButton type="button" onClick={handleOpen}>
-                <Edit style={{marginTop: '-3px'}}/>  EDIT
+                <Edit style={{ marginTop: '-3px' }} />  EDIT
             </TriggerButton>
             <Modal
                 aria-labelledby="unstyled-modal-title"
@@ -44,14 +54,15 @@ export default function ModalUpdateService() {
             >
                 <ModalContent sx={{ width: '800px' }}>
                     <h2 id="unstyled-modal-title" className="modal-title">
-                        Update Service
+                        Create Room
                     </h2>
 
                     <div>
                         <div id="unstyled-modal-description" className="modal-description">
 
+                            <TextField id="outlined-basic" label="ID" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
+                            <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px', marginRight: '50px'}}>
                                 <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-helper-label"
@@ -62,17 +73,21 @@ export default function ModalUpdateService() {
                                     style={{ height: '35.88px' }}
                                 >
                                     <MenuItem value={10}>Room</MenuItem>
-                                    <MenuItem value={20}>Food</MenuItem>
+                                    <MenuItem value={20}>Food</MenuItem>``
                                     <MenuItem value={20}>Decoration</MenuItem>
                                     <MenuItem value={20}>Waiter</MenuItem>
 
                                 </Select>
-                            </FormControl>                           
-                            <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            </FormControl>
+                            <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} />                            
+                            <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+
+                            <TextField id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                
                             <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                 <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                 <Select
@@ -88,19 +103,13 @@ export default function ModalUpdateService() {
                                 </Select>
                             </FormControl>
                         </div>
-                        <div style={{padding: '0 50px'}}>
-                            <TextField
-                                fullWidth
-                                id="outlined-multiline-static"
-                                label="Multiline"
-                                multiline
-                                rows={4}
-                                defaultValue="Description"
-                                // style={{margin: '0 50px'}}
+                        <div style={{ padding: '0 50px' }}>
+                            <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4} defaultValue="Description"
+                            // style={{margin: '0 50px'}}
                             />
                         </div>
                     </div>
-                    <div style={{margin: '20px auto'}}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600'}}>Save</Button></div>
+                    <div style={{ margin: '20px auto' }}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
 
                 </ModalContent>
             </Modal>
@@ -211,10 +220,10 @@ const TriggerButton = styled('button')(
     border-radius: 8px;
     transition: all 150ms ease;
     cursor: pointer;
-    background: #f5a02c;
+    background:  white;
     border: 1px solid #f5a02c;
     // border: none;
-    color:  white;
+    color:  #f5a02c;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
     &:hover {

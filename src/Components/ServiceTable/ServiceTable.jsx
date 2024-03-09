@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
-import './ServiceTable.css'
+import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
 import { disableService } from '../../Context/disableService';
 import ModalUnstyled from '../EditForm/EditService';
@@ -45,6 +45,8 @@ export default function ServiceTable() {
     }
   };
 
+
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -73,8 +75,12 @@ export default function ServiceTable() {
               <TableCell component="th" scope="row">
                 {item.serviceId}
               </TableCell>
-              <TableCell sx={{fontSize:'16px', whiteSpace: 'nowrap'}}>{item.serviceName}</TableCell>
-              <TableCell sx={{fontSize:'16px'}}>{item.description}</TableCell>
+
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+              <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.user.fullName}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align="center">

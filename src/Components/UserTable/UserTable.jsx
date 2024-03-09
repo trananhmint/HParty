@@ -13,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import './UserTable.css'
 import { fetchUser } from '../../Context/fetchUser';
 import axios from 'axios';
+import ModalUpdateUser from '../EditForm/EditUser';
 
 
 export default function UserTable() {
@@ -81,9 +82,7 @@ export default function UserTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <Button variant="outlined" startIcon={<EditIcon />} style={{ borderColor: '#f5a02c', color: 'white', background:'#f5a02c' }}>
-                    Edit
-                  </Button>
+                  <ModalUpdateUser />
                   <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                     Delete
                   </Button>

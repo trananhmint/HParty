@@ -3,17 +3,22 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Input } from '@mui/base/Input';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import { Edit } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 
 import './EditService.css'
 
-export default function ModalUpdateService() {
+
+export default function ModalUpdateUser() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -24,16 +29,17 @@ export default function ModalUpdateService() {
     const handleChangeStatus = (event) => {
         setStatus(event.target.value);
     };
-    const [category, setCategory] = React.useState('');
 
-    const handleChangeCategory = (event) => {
-        setCategory(event.target.value);
+    const [role, setRole] = React.useState('');
+
+    const handleChangeRole = (event) => {
+        setRole(event.target.value);
     };
 
     return (
         <div className='editservice'>
             <TriggerButton type="button" onClick={handleOpen}>
-                <Edit style={{marginTop: '-3px'}}/>  EDIT
+                <Edit style={{ marginTop: '-3px' }} />  EDIT
             </TriggerButton>
             <Modal
                 aria-labelledby="unstyled-modal-title"
@@ -43,37 +49,32 @@ export default function ModalUpdateService() {
                 slots={{ backdrop: StyledBackdrop }}
             >
                 <ModalContent sx={{ width: '800px' }}>
-                    <h2 id="unstyled-modal-title" className="modal-title">
-                        Update Service
-                    </h2>
+                    <h1 id="unstyled-modal-title" className="modal-title">
+                        Update User
+                    </h1>
 
                     <div>
                         <div id="unstyled-modal-description" className="modal-description">
-
-                            <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Full Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Email" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                            <TextField id="outlined-basic" label="Phone" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
-                                <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
+                                <InputLabel id="demo-simple-select-helper-label">Role</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-helper-label"
                                     id="demo-simple-select-helper"
-                                    value={category}
-                                    label="Category"
-                                    onChange={handleChangeCategory}
+                                    value={role}
+                                    label="Role"
+                                    onChange={handleChangeRole}
                                     style={{ height: '35.88px' }}
                                 >
-                                    <MenuItem value={10}>Room</MenuItem>
-                                    <MenuItem value={20}>Food</MenuItem>
-                                    <MenuItem value={20}>Decoration</MenuItem>
-                                    <MenuItem value={20}>Waiter</MenuItem>
-
+                                    <MenuItem value={10}>Admin</MenuItem>
+                                    <MenuItem value={20}>Party Host</MenuItem>
+                                    <MenuItem value={20}>Customer</MenuItem>
                                 </Select>
-                            </FormControl>                           
-                            <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
+                            </FormControl> 
+                            <FormControl style={{ width: '250px', marginLeft: '100px', marginTop: '-1px' }}>
                                 <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-helper-label"
@@ -87,8 +88,9 @@ export default function ModalUpdateService() {
                                     <MenuItem value={20}>Inactive</MenuItem>
                                 </Select>
                             </FormControl>
+                            {/* </div> */}
                         </div>
-                        <div style={{padding: '0 50px'}}>
+                        <div style={{ padding: '0 50px' }}>
                             <TextField
                                 fullWidth
                                 id="outlined-multiline-static"
@@ -96,12 +98,11 @@ export default function ModalUpdateService() {
                                 multiline
                                 rows={4}
                                 defaultValue="Description"
-                                // style={{margin: '0 50px'}}
+                            // style={{margin: '0 50px'}}
                             />
                         </div>
                     </div>
-                    <div style={{margin: '20px auto'}}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600'}}>Save</Button></div>
-
+                    <div style={{ margin: '20px auto' }}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
                 </ModalContent>
             </Modal>
         </div>
@@ -211,10 +212,10 @@ const TriggerButton = styled('button')(
     border-radius: 8px;
     transition: all 150ms ease;
     cursor: pointer;
-    background: #f5a02c;
+    background:  white;
     border: 1px solid #f5a02c;
     // border: none;
-    color:  white;
+    color:  #f5a02c;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
     &:hover {

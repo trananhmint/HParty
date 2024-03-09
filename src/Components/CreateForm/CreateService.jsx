@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 
 import './EditService.css'
 
-export default function ModalUpdateService() {
+export default function ModalCreateService() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -33,7 +33,7 @@ export default function ModalUpdateService() {
     return (
         <div className='editservice'>
             <TriggerButton type="button" onClick={handleOpen}>
-                <Edit style={{marginTop: '-3px'}}/>  EDIT
+                <Edit style={{ marginTop: '-3px' }} />  EDIT
             </TriggerButton>
             <Modal
                 aria-labelledby="unstyled-modal-title"
@@ -44,12 +44,12 @@ export default function ModalUpdateService() {
             >
                 <ModalContent sx={{ width: '800px' }}>
                     <h2 id="unstyled-modal-title" className="modal-title">
-                        Update Service
+                        Create Service
                     </h2>
 
                     <div>
                         <div id="unstyled-modal-description" className="modal-description">
-
+                            <TextField id="outlined-basic" label="ID" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                 <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
@@ -67,7 +67,7 @@ export default function ModalUpdateService() {
                                     <MenuItem value={20}>Waiter</MenuItem>
 
                                 </Select>
-                            </FormControl>                           
+                            </FormControl>
                             <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
                             <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
@@ -88,7 +88,7 @@ export default function ModalUpdateService() {
                                 </Select>
                             </FormControl>
                         </div>
-                        <div style={{padding: '0 50px'}}>
+                        <div style={{ padding: '0 50px' }}>
                             <TextField
                                 fullWidth
                                 id="outlined-multiline-static"
@@ -96,11 +96,11 @@ export default function ModalUpdateService() {
                                 multiline
                                 rows={4}
                                 defaultValue="Description"
-                                // style={{margin: '0 50px'}}
+                            // style={{margin: '0 50px'}}
                             />
                         </div>
                     </div>
-                    <div style={{margin: '20px auto'}}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600'}}>Save</Button></div>
+                    <div style={{ margin: '20px auto' }}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
 
                 </ModalContent>
             </Modal>
@@ -211,10 +211,10 @@ const TriggerButton = styled('button')(
     border-radius: 8px;
     transition: all 150ms ease;
     cursor: pointer;
-    background: #f5a02c;
+    background:  white;
     border: 1px solid #f5a02c;
     // border: none;
-    color:  white;
+    color:  #f5a02c;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
     &:hover {

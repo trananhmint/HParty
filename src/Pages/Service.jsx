@@ -18,7 +18,7 @@ export const Service = () => {
   const { serviceId } = useParams();
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
+      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
       setItems(response.data.data.find((e) => { return e.serviceId === Number(serviceId) }));
     }
     fetchData();

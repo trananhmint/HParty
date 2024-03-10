@@ -13,46 +13,73 @@ import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import { ServiceContext } from '../Context/ServiceContext';
 import RoomItems from '../Components/RoomItems/RoomItems';
+import axios from 'axios';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export const SearchPage = () => {
     const { rooms, services } = useContext(ServiceContext);
     const [category, setCategory] = React.useState('');
+    const queryParams = window.location.search;
+    const cleanQuery = queryParams.replace("?", "");
+    const urlParams = new URLSearchParams(cleanQuery);
+    const [items, setItems] = React.useState([...services, ...rooms]);
+
+    const [search, setSearch] = React.useState({
+        search: urlParams.get("searchTerm")
+    });
+
+    console.log(search.search);
 
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
 
+    const fetchSearch = async () => {
+        try {
+            // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room/search_room", search.search, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
 
+            });
+            setItems(response.data.data);
+            console.log(response.data.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    
+    useEffect(()=> {
+        fetchSearch();
+    }, [])
 
-    const items = [...services, ...rooms];
-    console.log(items.sort(() => {
-        return Math.random() - 0.5;
-    }));
+    //gộp và trộn room & service
+    
+    // console.log(items.sort(() => {
+    //     return Math.random() - 0.5;
+    // }));
+
     console.log(items);
+
     function Items({ currentItems }) {
         return (
-
             <div className='services-displayed'>
-
                 {currentItems && currentItems.map((item, i) => {
-                    if (item.categoryId === category) {
+                    if (category === item.categoryId) {
                         return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
-                    } else if (category === "") {
+                    } else if (category === 4 && item.categoryId === undefined) {
+                        return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                    }
+                    else {
                         if (item.categoryId === undefined) {
                             return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                         } else {
                             return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                         }
-                    } else if (category === 4 && item.categoryId === undefined) {
-                        return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                     }
-
-                    else {
-                        return null;
-                    }
-
                 })}
             </div>
 

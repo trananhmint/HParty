@@ -3,7 +3,7 @@ import EmailAccount from '../Components/ForgetPassword/EmailAccount'
 import OTPCode from '../Components/ForgetPassword/OTPCode'
 
 
-const ForgetPassword = () => {
+const OTP = () => {
 
 
 
@@ -14,4 +14,4 @@ const ForgetPassword = () => {
     )
 }
 
-export default ForgetPassword
+export default OTP

@@ -89,6 +89,7 @@ const LoginSignup = () => {
     if (register.fullname !== "" && register.email !== "" && register.password !== "" && register.address !== ""
       && register.phone !== "" && register.roleId !== 0) {
       auth.fetchRegister(register);
+      localStorage.setItem("confirmEmail",JSON.stringify(register.email));
       return;
     } else if (register.fullname === "") {
       toast.warning('Please input your Full Name', {

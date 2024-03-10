@@ -6,10 +6,11 @@
 
 .services-banner {
     display: flex;
+    object-fit: cover;
     margin: 30px auto;
-    width: 50%;
-    
-    
+    width: 80%;
+    height: 350px;
+    border-radius: 15px;
 }
 
 .services-indexSort {

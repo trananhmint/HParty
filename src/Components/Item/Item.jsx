@@ -3,8 +3,13 @@ import './Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import { Link } from 'react-router-dom';
+import Rating from '@mui/material/Rating';
 
 export const Item = (props) => {
+
+
+
+    const [value, setValue] = React.useState(2);
 
     return (
         <Link to={`/service/${props.id}`} style={{textDecoration:'none', color:'black'}}> 
@@ -23,11 +28,7 @@ export const Item = (props) => {
                 </div>
                 <div className="rate-stars">
                     <div className="stars">
-                        <StarRateIcon />
-                        <StarRateIcon />
-                        <StarRateIcon />
-                        <StarRateIcon />
-                        <StarRateOutlinedIcon />
+                    <Rating name="read-only" value={value} readOnly />
                     </div>
                     <p>(122)</p>
                     {/* <p>{props.sale}</p> */}

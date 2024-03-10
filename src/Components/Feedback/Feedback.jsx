@@ -3,131 +3,78 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange } from '@mui/material/colors';
+import Rating from '@mui/material/Rating';
+
 import './Feedback.css'
-export const Feedback = () => {
+import axios from 'axios';
+
+export const Feedback = (serviceId) => {
+
+    const [value, setValue] = React.useState(2);
+    const [services, setServices] = React.useState();
+
+    const fetchFeedback = async (data) => {
+        try {
+            const response = await axios.get("");
+            console.log(response.data);
+            setServices(response.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    const feedbacks = services.find((service) => {
+        if (service.serviceId === serviceId) {
+            return service.feedback;
+        }
+
+    })
+
     return (
         <div className='feedback'>
             <p>FEEDBACK</p>
-            <div className="feedback-frame">
-                <div className="feedback-avatar">
-                    <Avatar
-                        sx={{ bgcolor: deepOrange[500] }}
-                        alt="Trung Sơn"
-                        src="/broken-image.jpg"
-                    />
-                </div>
-                <div className="feedback-frame-right">
-                    <div className="feedback-frame-name">
-                        <p>Trung Sơn</p>
-                        <div className="feedback-frame-stars">
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateOutlinedIcon />
+            {feedbacks.map((feedback) => {
+                return <div>
+                    <div className="feedback-frame">
+                        <div className="feedback-avatar">
+                            <Avatar
+                                sx={{ bgcolor: deepOrange[500] }}
+                                alt="Trung Sơn"
+                                src="/broken-image.jpg"
+                            />
                         </div>
-                        <div className="feedback-frame-time">
-                            2023-12-06 16:34
-                        </div>
-                    </div>
+                        <div className="feedback-frame-right">
+                            <div className="feedback-frame-name">
+                                <p>{feedback.name}</p>
+                                <div className="feedback-frame-stars">
+                                    <Rating name="read-only" value={feedback.rating} readOnly />
+                                </div>
+                                <div className="feedback-frame-time">
+                                    <p>{feedback.time}</p>
+                                </div>
+                            </div>
 
-                    <div className="feedback-frame-content">
-                        Đã nhận được hàng và test thử hai ngày rồi Sài thấy rất OK nghe nhạc hay mà binh cũng rất lâu mình mua thêm cái màu trắng nữa cho vợ
-                        <div className="feedback-frame-content-image">
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                        </div>
+                            <div className="feedback-frame-content">
+                                <p>{feedback.content}</p>
+                                <div className="feedback-frame-content-image">
+                                    <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
+                                    <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
+                                    <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
+                                    <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
+                                </div>
 
-                    </div>
-                    <div className="feedback-frame-reply">
-                        <h4>Reply from Host</h4>
-                        <p>Cảm ơn vì đã ủng hộ tôi. Hãy chờ chuyến thăm tiếp theo của cô. Giáng sinh vui vẻ và năm mới vui vẻ!</p>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div className="feedback-frame">
-                <div className="feedback-avatar">
-                    <Avatar
-                        sx={{ bgcolor: deepOrange[500] }}
-                        alt="Ánh Minh"
-                        src="/broken-image.jpg"
-                    />
-                </div>
-                <div className="feedback-frame-right">
-                    <div className="feedback-frame-name">
-                        <p>Ánh Minh</p>
-                        <div className="feedback-frame-stars">
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateOutlinedIcon />
-                        </div>
-                        <div className="feedback-frame-time">
-                            2023-12-06 16:34
+                            </div>
+                            <div className="feedback-frame-reply">
+                                <h4>Reply from Host</h4>
+                                <p>{feedback.content}</p>
+                            </div>
                         </div>
                     </div>
+                    <hr />
+                </div>
 
-                    <div className="feedback-frame-content">
-                        Đã nhận được hàng và test thử hai ngày rồi Sài thấy rất OK nghe nhạc hay mà binh cũng rất lâu mình mua thêm cái màu trắng nữa cho vợ
-                        <div className="feedback-frame-content-image">
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                        </div>
-
-                    </div>
-                    <div className="feedback-frame-reply">
-                        <h4>Reply from Host</h4>
-                        <p>Cảm ơn vì đã ủng hộ tôi. Hãy chờ chuyến thăm tiếp theo của cô. Giáng sinh vui vẻ và năm mới vui vẻ!</p>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div className="feedback-frame">
-                <div className="feedback-avatar">
-                    <Avatar
-                        sx={{ bgcolor: deepOrange[500] }}
-                        alt="Trung Hải"
-                        src="/broken-image.jpg"
-                    />
-                </div>
-                <div className="feedback-frame-right">
-                    <div className="feedback-frame-name">
-                        <p>Trung Hải</p>
-                        <div className="feedback-frame-stars">
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateIcon />
-                            <StarRateOutlinedIcon />
-                        </div>
-                        <div className="feedback-frame-time">
-                            2023-12-06 16:34
-                        </div>
-                    </div>
-
-                    <div className="feedback-frame-content">
-                        Đã nhận được hàng và test thử hai ngày rồi Sài thấy rất OK nghe nhạc hay mà binh cũng rất lâu mình mua thêm cái màu trắng nữa cho vợ
-                        <div className="feedback-frame-content-image">
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                            <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                        </div>
-
-                    </div>
-                    <div className="feedback-frame-reply">
-                        <h4>Reply from Host</h4>
-                        <p>Cảm ơn vì đã ủng hộ tôi. Hãy chờ chuyến thăm tiếp theo của cô. Giáng sinh vui vẻ và năm mới vui vẻ!</p>
-                    </div>
-                </div>
-            </div>
-            <hr />
+            })}
         </div>
     )
 }

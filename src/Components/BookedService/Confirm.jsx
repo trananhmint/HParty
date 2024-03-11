@@ -40,7 +40,7 @@ const Confirm = () => {
 
   const fetchBookingDetail = async (bookingId) => {
     try {
-      const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
       return response.data.data;
     } catch (err) {
       console.log(err);

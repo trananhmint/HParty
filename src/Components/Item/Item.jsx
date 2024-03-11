@@ -3,6 +3,7 @@ import './Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import { Link } from 'react-router-dom';
+import Rating from '@mui/material/Rating';
 
 export const Item = (props) => {
 

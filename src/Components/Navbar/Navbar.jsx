@@ -4,14 +4,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import { ServiceContext } from '../../Context/ServiceContext';
 import Cookies from "universal-cookie";
+import axios from 'axios';
 export const Navbar = () => {
     const auth = useAuth();
     const { getCountOfCart } = useContext(ServiceContext);
     const [count, setCount] = useState(0);
+    const navigate = useNavigate();
 
     const cartId = localStorage.getItem("email");
     const cart = JSON.parse(localStorage.getItem(cartId)) || [];
@@ -57,6 +59,17 @@ export const Navbar = () => {
 
     // console.log(loginLogout(user));
 
+    //Search
+    const [searchTerm, setSearchTerm] = useState('');
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const onSubmitSearch = (e) => {
+        const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
+        navigate(`/search?${queryParams}`);
+    }
+
     return (
         <div className='navbar'>
             <Link to="/" style={{ textDecoration: 'none' }}>
@@ -65,11 +78,12 @@ export const Navbar = () => {
                     <p>HParty</p>
                 </div>
             </Link>
-
-            <div className='navbar-search'>
-                <input type="text" placeholder='Search here' />
-                <SearchIcon />
-            </div>
+            <form onSubmit={onSubmitSearch}>
+                <div className='navbar-search'>
+                    <input type="text" onChange={handleSearch} placeholder='Search here' />
+                    <button><SearchIcon /></button>
+                </div>
+            </form>
             <div className="navbar-info">
                 {getAvatar(token)}
                 {loginLogout(token)}

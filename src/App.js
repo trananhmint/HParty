@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import LoginSignup from './Pages/LoginSignup';
-import rooms_banner from './Components/Assets/rooms_banner.jpg';
+import rooms_banner from './Components/Assets/VenueBanner.jpg';
 import decorations_banner from './Components/Assets/decorations_banners.jpg';
 import foods_banner from './Components/Assets/foods_banner.jpg';
-import waiters_banner from './Components/Assets/waiters_banner.png'
+import waiters_banner from './Components/Assets/waiter_service.png'
 import Cart from './Pages/Cart';
 import ServiceCategory from './Pages/ServiceCategory';
 import Service from './Pages/Service';
@@ -41,6 +41,8 @@ import HostDisplay from './Pages/HostDisplay';
 import { HostProfile } from './Pages/HostProfile';
 import { HostServices } from './Pages/HostServices';
 import { HostRooms } from './Pages/HostRooms';
+import OTPCode from './Components/ForgetPassword/OTPCode';
+import OTP from './Pages/OTP';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -73,7 +75,8 @@ function App() {
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
-            <Route path='/recover' element={<ForgetPassword />} />
+
+            <Route path='/otp' element={<OTP/>} />
             <Route path='/customer' element={<CustomerProfile />} />
             <Route path='/customer-profile' element={<CusProfile />} />
             <Route path='/my-address' element={<CusAddress />} />

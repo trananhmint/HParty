@@ -38,15 +38,15 @@ const Cancel = () => {
   //   }
   // }, [booked]);
 
-  // const fetchBookingDetail = async (bookingId) => {
-  //   try {
-  //     const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-  //     return response.data.data;
-  //   } catch (err) {
-  //     console.log(err);
-  //     return null;
-  //   }
-  // };
+  const fetchBookingDetail = async (bookingId) => {
+    try {
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
+      return response.data.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
 
   // console.log("Booked:", booked)
   // console.log("Booking Detail:", bookingDetail);

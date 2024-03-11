@@ -39,39 +39,39 @@ const Booked = () => {
   //   }
   // }, [booked]);
 
-  // const fetchBookingDetail = async (bookingId) => {
-  //   try {
-  //     const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-  //     return response.data.data;
-  //   } catch (err) {
-  //     console.log(err);
-  //     return null;
-  //   }
-  // };
+  const fetchBookingDetail = async (bookingId) => {
+    try {
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
+      return response.data.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
 
-  // useEffect(() => {
-  //   const fetchRooms = async () => {
-  //     try {
-  //       const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms');
-  //       setRooms(response.data.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchRooms();
-  // }, []);
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms');
+        setRooms(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchRooms();
+  }, []);
 
-  // useEffect(() => {
-  //   const fetchServices = async () => {
-  //     try {
-  //       const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
-  //       setServices(response.data.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchServices();
-  // }, []);
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services');
+        setServices(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchServices();
+  }, []);
 
   // console.log("Service: ", services)
   // console.log("Booked:", booked)

@@ -17,24 +17,24 @@ const AuthProvider = ({ children }) => {
         try {
 
             const response = await axios
-                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data, {
+                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/register", data, {
                     headers: { 'Content-Type': 'application/json' }
                 })
                 .then(res => {
                     console.log("Post created:", res.data);
-                    navigate("/signup");
+                    navigate("/otp");
                     console.log("Success");
-                    toast.success('Register successfully', {
-                        position: "top-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
+                    // toast.success('Register successfully', {
+                    //     position: "top-right",
+                    //     autoClose: 3000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "light",
 
-                    });
+                    // });
                 })
 
         } catch (error) {
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     const fetchLogin = async (data) => {
         try {
             const response = await axios
-                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/login", data,
+                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/login", data,
                     {
                         withCredentials: true // Ensure credentials are included
                     })

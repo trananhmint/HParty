@@ -15,7 +15,7 @@ const Booked = () => {
 
   const fetchBooked = async () => {
     try {
-      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Booking');
+      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking');
       setBooked(response.data.data);
       console.log(response.data);
     } catch (err) {
@@ -27,21 +27,21 @@ const Booked = () => {
     fetchBooked();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const bookingIds = booked.map(booking => booking.bookingId);
+  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+  //     setBookingDetail(bookingDetails);
+  //   };
 
-    if (booked.length > 0) {
-      fetchData();
-    }
-  }, [booked]);
+  //   if (booked.length > 0) {
+  //     fetchData();
+  //   }
+  // }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
-      const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
       return response.data.data;
     } catch (err) {
       console.log(err);
@@ -52,7 +52,7 @@ const Booked = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms');
+        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms');
         setRooms(response.data.data);
       } catch (err) {
         console.log(err);
@@ -64,7 +64,7 @@ const Booked = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
+        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services');
         setServices(response.data.data);
       } catch (err) {
         console.log(err);
@@ -73,23 +73,23 @@ const Booked = () => {
     fetchServices();
   }, []);
 
-  console.log("Service: ", services)
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
-  let bookList = [];
-  bookingDetail.map((books) => {
-    if (books.length > 1) {
+  // console.log("Service: ", services)
+  // console.log("Booked:", booked)
+  // console.log("Booking Detail:", bookingDetail);
+  // let bookList = [];
+  // bookingDetail.map((books) => {
+  //   if (books.length > 1) {
 
-      bookList.push(books)
-    } else {
-      for (let book of books) {
-        bookList.push(book);
-      }
-    }
-  });
+  //     bookList.push(books)
+  //   } else {
+  //     for (let book of books) {
+  //       bookList.push(book);
+  //     }
+  //   }
+  // });
 
-  console.log("Book List: ")
-  console.log(bookList);
+  // console.log("Book List: ")
+  // console.log(bookList);
 
   function getCategory(categoryId) {
     let category;

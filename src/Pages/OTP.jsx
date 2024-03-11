@@ -3,15 +3,15 @@ import EmailAccount from '../Components/ForgetPassword/EmailAccount'
 import OTPCode from '../Components/ForgetPassword/OTPCode'
 
 
-const ForgetPassword = () => {
+const OTP = () => {
 
 
 
-  return (
-    <div className='forgetpassword'>
-      <EmailAccount/>
-    </div>
-  )
+    return (
+        <div className='forgetpassword'>
+            <OTPCode />
+        </div>
+    )
 }
 
-export default ForgetPassword
+export default OTP

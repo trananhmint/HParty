@@ -23,19 +23,21 @@ import axios from 'axios';
 export const HostRoomTable = () => {
   const [items, setItems] = useState([]);
   const [host, setHost] = useState([]);
-
+  const [loading, setLoading] = useState(true);
 
   const fetchPartyHost = async () => {
     try {
-      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/User',
+      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User',
         {
           withCredentials: true,
         }
       )
       setHost(response.data.data);
       console.log(response.data.data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   }
 
@@ -49,8 +51,10 @@ export const HostRoomTable = () => {
       const data = await fetchRoom();
       setItems(data.data.data);
       console.log(data.data.data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
 
   }

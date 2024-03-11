@@ -14,7 +14,7 @@ const Cancel = () => {
 
   const fetchBooked = async () => {
     try {
-      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Booking');
+      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking');
       setBooked(response.data.data);
       console.log(response.data);
     } catch (err) {
@@ -26,30 +26,30 @@ const Cancel = () => {
     fetchBooked();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const bookingIds = booked.map(booking => booking.bookingId);
+  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+  //     setBookingDetail(bookingDetails);
+  //   };
 
-    if (booked.length > 0) {
-      fetchData();
-    }
-  }, [booked]);
+  //   if (booked.length > 0) {
+  //     fetchData();
+  //   }
+  // }, [booked]);
 
-  const fetchBookingDetail = async (bookingId) => {
-    try {
-      const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-      return response.data.data;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
+  // const fetchBookingDetail = async (bookingId) => {
+  //   try {
+  //     const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
+  //     return response.data.data;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return null;
+  //   }
+  // };
 
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
+  // console.log("Booked:", booked)
+  // console.log("Booking Detail:", bookingDetail);
 
 
   function getCategory(categoryId) {
@@ -87,7 +87,7 @@ const Cancel = () => {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {index + 1}</p>
+                <p>No. {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />

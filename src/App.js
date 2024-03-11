@@ -79,6 +79,7 @@ function App() {
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
+            
           </Routes>
           <Routes>
             <Route path='/host' element={<HostDisplay />} />

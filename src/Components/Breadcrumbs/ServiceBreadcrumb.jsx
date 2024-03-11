@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 export const ServiceBreadcrumb = ({ service }) => {
 
-    console.log(service)
 
     function getCategoryName(categoryId) {
         if (categoryId === "1") {

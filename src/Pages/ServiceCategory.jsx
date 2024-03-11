@@ -6,15 +6,17 @@ import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
 import axios from 'axios';
 import ServiceBreadcrumb from '../Components/Breadcrumbs/ServiceBreadcrumb';
+import { CircularProgress } from '@mui/material';
 export const ServiceCategory = (props) => {
 
 
-
+  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
+      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
       setItems(response.data.data.filter((e) => { return e.categoryId === Number(props.categoryId) }));
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -25,7 +27,7 @@ export const ServiceCategory = (props) => {
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
           if (Number(props.categoryId) === item.categoryId && item.status === 1) {
-            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
           } else {
             return null;
           }
@@ -94,10 +96,18 @@ export const ServiceCategory = (props) => {
 
   }
 
+  if (loading) {
+    return (
+      <div className="loading-spinner-container">
+        <CircularProgress color="primary" size={60} thickness={5} />
+      </div>
+    );
+  }
+
   return (
     <div className='services'>
       <Navbar />
-      <ServiceBreadcrumb service = {props}/>
+      <ServiceBreadcrumb service={props} />
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>

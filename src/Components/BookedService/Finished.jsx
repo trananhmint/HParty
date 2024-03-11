@@ -14,7 +14,7 @@ const Finished = () => {
 
   const fetchBooked = async () => {
     try {
-      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Booking');
+      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking');
       setBooked(response.data.data);
       console.log(response.data);
     } catch (err) {
@@ -127,7 +127,7 @@ const Finished = () => {
           return <div>
             <div className="booked">
               <div className="booked-info">
-              <p>ID: {index + 1}</p>
+                <p>No. {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />

@@ -25,7 +25,6 @@ export default function ModalUpdateService({ service }) {
 
     const [images, setImages] = useState("");
 
-
     const handleChangeImage = (e) => {
         console.log(e.target.value);
         setImages(e.target.files[0])
@@ -38,9 +37,6 @@ export default function ModalUpdateService({ service }) {
         e.preventDefault();
         setOpen(false)
     };
-
-
-
 
 
     const [updateService, setUpdateService] = useState({
@@ -70,7 +66,7 @@ export default function ModalUpdateService({ service }) {
 
     };
 
-    console.log("Service Name: ", updateService.ServiceName)
+    // console.log("Service Name: ", updateService.ServiceName)
 
     const name = "Balloon"
 
@@ -91,7 +87,7 @@ export default function ModalUpdateService({ service }) {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put("https://bookingbirthdayparties.azurewebsites.net/api/Service", formData,
+            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
 
                 {
 

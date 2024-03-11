@@ -41,12 +41,12 @@ export const SearchPage = () => {
                         return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                     } else if (category === "") {
                         if (item.categoryId === undefined) {
-                            return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                         } else {
                             return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                         }
                     } else if (category === 4 && item.categoryId === undefined) {
-                        return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                        return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                     }
 
                     else {

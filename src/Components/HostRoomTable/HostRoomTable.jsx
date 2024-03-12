@@ -27,7 +27,7 @@ export const HostRoomTable = () => {
 
   const fetchPartyHost = async () => {
     try {
-      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User',
+      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/User',
         {
           withCredentials: true,
         }

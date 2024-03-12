@@ -8,7 +8,7 @@ const FetchProduct = () => {
 
     const fetchData = async () => {
         try {
-            const data = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services');
+            const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
             console.log(data.data.data)
             setItems(data.data.data);
             console.log(data.data.data);

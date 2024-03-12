@@ -87,7 +87,7 @@ export default function ModalUpdateService({ service }) {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
+            const response = await axios.put(`https://bookingbirthdayparties.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
 
                 {
 

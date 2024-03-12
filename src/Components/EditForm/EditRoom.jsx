@@ -89,7 +89,7 @@ export default function ModalUpdateRoom({ room }) {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put("https://bookingbithdayparty.azurewebsites.net/api/Room/room/6", formData,
+            const response = await axios.put("https://bookingbirthdayparties.azurewebsites.net/api/Room/room/6", formData,
 
                 {
 

@@ -17,7 +17,7 @@ export const RoomService = () => {
   console.log(roomId);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
+      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
       setItems(response.data.data.find((e) => { return e.roomId === Number(roomId) }));
       setLoading(false);
     }

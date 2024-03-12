@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './UserTable.css'
 import { fetchUser } from '../../Context/fetchUser';
@@ -21,9 +20,10 @@ export default function UserTable() {
 
   const fetchData = async () => {
     try {
-      const data = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/users',
+      const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/users',
+
         {
-          withCredentials: true
+          withCredentials: true,
         });
       console.log(data);
       setItems(data.data.data);
@@ -77,6 +77,8 @@ export default function UserTable() {
                   style={{
                     backgroundColor: item.status === 'ACTIVE' ? '#32CD32' : '#FF4500',
                     borderRadius: '20px',
+                    fontSize: '15px',
+                    boxShadow: '1px 1px ',
                   }}>
                   {item.status}
                 </Button>

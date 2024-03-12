@@ -18,7 +18,7 @@ const style = {
   borderRadius: "8px",
 };
 
-export default function DeleteService({handleDisableClick}) {
+export default function DeleteUser({handleDisableClick}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,7 +45,7 @@ export default function DeleteService({handleDisableClick}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Are you sure to disable this service ?
+            Are you sure to disable this user ?
           </Typography>
           <Button
             autoFocus

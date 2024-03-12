@@ -38,7 +38,6 @@ export default function ModalCreateService() {
                 }
             );
             setUser(data.data.data);
-            console.log(data.data.data);
             setLoading(false);
         } catch (err) {
             console.log(err);
@@ -50,7 +49,6 @@ export default function ModalCreateService() {
         fetchData();
     }, []);
 
-    console.log(user)
 
     const handleChangeImage = (e) => {
         console.log(e.target.value);

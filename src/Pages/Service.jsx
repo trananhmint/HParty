@@ -11,18 +11,31 @@ import axios from 'axios';
 import { fetchService } from '../Context/fetchService';
 import Descriptionbox from '../Components/DescriptionBox/Descriptionbox';
 import HostServiceInfo from '../Components/HostServiceInfo/HostServiceInfo';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export const Service = () => {
   const [items, setItems] = useState([]);
   const { serviceId } = useParams();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
       let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
       setItems(response.data.data.find((e) => { return e.serviceId === Number(serviceId) }));
+      setLoading(false);
     }
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-spinner-container">
+        <CircularProgress color="primary" size={60} thickness={5} />
+      </div>
+    );
+  }
+
 
   return (
     <div className='service'>
@@ -32,7 +45,7 @@ export const Service = () => {
       <HostServiceInfo />
       <Descriptionbox />
       <Feedback />
-      <Footer  />
+      <Footer />
     </div>
   )
 }

@@ -27,17 +27,17 @@ const Booked = () => {
     fetchBooked();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const bookingIds = booked.map(booking => booking.bookingId);
+  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+  //     setBookingDetail(bookingDetails);
+  //   };
 
-    if (booked.length > 0) {
-      fetchData();
-    }
-  }, [booked]);
+  //   if (booked.length > 0) {
+  //     fetchData();
+  //   }
+  // }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
@@ -73,23 +73,23 @@ const Booked = () => {
     fetchServices();
   }, []);
 
-  console.log("Service: ", services)
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
-  let bookList = [];
-  bookingDetail.map((books) => {
-    if (books.length > 1) {
+  // console.log("Service: ", services)
+  // console.log("Booked:", booked)
+  // console.log("Booking Detail:", bookingDetail);
+  // let bookList = [];
+  // bookingDetail.map((books) => {
+  //   if (books.length > 1) {
 
-      bookList.push(books)
-    } else {
-      for (let book of books) {
-        bookList.push(book);
-      }
-    }
-  });
+  //     bookList.push(books)
+  //   } else {
+  //     for (let book of books) {
+  //       bookList.push(book);
+  //     }
+  //   }
+  // });
 
-  console.log("Book List: ")
-  console.log(bookList);
+  // console.log("Book List: ")
+  // console.log(bookList);
 
   function getCategory(categoryId) {
     let category;
@@ -111,8 +111,8 @@ const Booked = () => {
   }
 
 
-  function getDateTime (bookingDate)  {
-    let now  = new Date(bookingDate);
+  function getDateTime(bookingDate) {
+    let now = new Date(bookingDate);
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
     let day = now.getDate();
@@ -123,20 +123,20 @@ const Booked = () => {
   }
 
   return (
-    <div>
-      {booked.map((book) => {
-        if (book.status === "FINISHED") {
+    <div className='confirm'>
+      {booked.map((book, index) => {
+        if (book.status === "BOOKED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {Math.random().toFixed(5) * 100000}</p>
+                <p>ID: {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
+                  <hr />
+                  <button id='cancel'><CancelOutlinedIcon /></button>
                 </div>
-                <hr/>
-                <button id ='cancel'><CancelOutlinedIcon/></button>
               </div>
               <hr />
               <div className="booked-items-container">
@@ -178,14 +178,12 @@ const Booked = () => {
                   </div>
                   <hr />
                 </div>
-
               })}
             </div>
           </div>
-
         }
       })}
-    </div >
+    </div>
   )
 }
 

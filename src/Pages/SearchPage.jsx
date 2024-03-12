@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './CSS/SearchPage.css'
 import all_service from '../Components/Assets/all_service';
 import InputLabel from '@mui/material/InputLabel';
@@ -11,31 +11,75 @@ import Checkbox from '@mui/material/Checkbox';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
+import { ServiceContext } from '../Context/ServiceContext';
+import RoomItems from '../Components/RoomItems/RoomItems';
+import axios from 'axios';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export const SearchPage = () => {
+    const { rooms, services } = useContext(ServiceContext);
     const [category, setCategory] = React.useState('');
+    const queryParams = window.location.search;
+    const cleanQuery = queryParams.replace("?", "");
+    const urlParams = new URLSearchParams(cleanQuery);
+    const [items, setItems] = React.useState([...services, ...rooms]);
+
+    const [search, setSearch] = React.useState({
+        search: urlParams.get("searchTerm")
+    });
+
+    console.log(search.search);
 
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
 
-    const items = all_service;
+    const fetchSearch = async () => {
+        try {
+            // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room/search_room", search.search, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+
+            });
+            setItems(response.data.data);
+            console.log(response.data.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    
+    useEffect(()=> {
+        fetchSearch();
+    }, [])
+
+    //gộp và trộn room & service
+    
+    // console.log(items.sort(() => {
+    //     return Math.random() - 0.5;
+    // }));
+
+    console.log(items);
 
     function Items({ currentItems }) {
         return (
             <div className='services-displayed'>
                 {currentItems && currentItems.map((item, i) => {
-
-                    if (item.category === category) {
-                        return <Item key={i} id={item.id} name={item.name} category={item.category} image={item.image} new_price={item.new_price} old_price={item.old_price} place={item.place} />
-                    } else if (category === "") {
-                        return <Item key={i} id={item.id} name={item.name} category={item.category} image={item.image} new_price={item.new_price} old_price={item.old_price} place={item.place} />
-                    } else {
-                        return null;
+                    if (category === item.categoryId) {
+                        return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                    } else if (category === 4 && item.categoryId === undefined) {
+                        return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
                     }
-
+                    else {
+                        if (item.categoryId === undefined) {
+                            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                        } else {
+                            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+                        }
+                    }
                 })}
             </div>
 
@@ -170,15 +214,15 @@ export const SearchPage = () => {
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={'rooms'}>Room</MenuItem>
-                                <MenuItem value={'foods'}>Food</MenuItem>
-                                <MenuItem value={'decorations'}>Decoration</MenuItem>
-                                <MenuItem value={'waiters'}>Waiters</MenuItem>
+                                <MenuItem value={4}>Room</MenuItem>
+                                <MenuItem value={1}>Decoration</MenuItem>
+                                <MenuItem value={2}>Food</MenuItem>
+                                <MenuItem value={3}>Waiters</MenuItem>
                             </Select>
                         </FormControl>
                     </div>
                     <div className="searchpage-services">
-                        <PaginatedItems itemsPerPage={16} />
+                        <PaginatedItems itemsPerPage={8} />
                     </div>
                 </div>
             </div>

@@ -26,17 +26,17 @@ const Cancel = () => {
     fetchBooked();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const bookingIds = booked.map(booking => booking.bookingId);
+  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+  //     setBookingDetail(bookingDetails);
+  //   };
 
-    if (booked.length > 0) {
-      fetchData();
-    }
-  }, [booked]);
+  //   if (booked.length > 0) {
+  //     fetchData();
+  //   }
+  // }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
@@ -48,8 +48,8 @@ const Cancel = () => {
     }
   };
 
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
+  // console.log("Booked:", booked)
+  // console.log("Booking Detail:", bookingDetail);
 
 
   function getCategory(categoryId) {
@@ -81,20 +81,20 @@ const Cancel = () => {
     return formattedDateTime;
   }
   return (
-    <div className='cancel'>
-      {booked.map((book) => {
-        if (book.status === "CANCELLED") {
+    <div className='confirm'>
+      {booked.map((book, index) => {
+        if (book.status === "CANCELED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {Math.random().toFixed(5) * 100000}</p>
+                <p>No. {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
+                  <hr />
+                  <button id='cancel'><CancelOutlinedIcon /></button>
                 </div>
-                <hr />
-                <button id='cancel'><CancelOutlinedIcon /></button>
               </div>
               <hr />
               <div className="booked-items-container">
@@ -136,11 +136,9 @@ const Cancel = () => {
                   </div>
                   <hr />
                 </div>
-
               })}
             </div>
           </div>
-
         }
       })}
     </div>

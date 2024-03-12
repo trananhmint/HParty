@@ -19,15 +19,8 @@
     margin-bottom: 10px;
 
   }
-  .css-yfo96e{
+  .customer-profile {
     margin-top: 150px;
-  }
-  .css-ttn1xo{
-    margin-top: 150px;
-  }
-  /*Chỉnh phần Grid của phần Avatar*/
-  .admin-profile {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;

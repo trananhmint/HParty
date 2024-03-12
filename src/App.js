@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import LoginSignup from './Pages/LoginSignup';
-import rooms_banner from './Components/Assets/rooms_banner.jpg';
+import rooms_banner from './Components/Assets/VenueBanner.jpg';
 import decorations_banner from './Components/Assets/decorations_banners.jpg';
 import foods_banner from './Components/Assets/foods_banner.jpg';
-import waiters_banner from './Components/Assets/waiters_banner.png'
+import waiters_banner from './Components/Assets/waiter_service.png'
 import Cart from './Pages/Cart';
 import ServiceCategory from './Pages/ServiceCategory';
 import Service from './Pages/Service';
@@ -29,7 +29,7 @@ import AllContracts from './Pages/AllContracts';
 import RoomCategory from './Pages/RoomCategory';
 import RoomService from './Pages/RoomService';
 import BookedService from './Pages/BookedService';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import AllRooms from './Pages/AllRooms';
 import EditService from './Components/EditForm/EditService';
 import CustomerProfile from './Pages/CustomerProfile';
@@ -37,6 +37,12 @@ import MyOrder from './Pages/MyOrder';
 import { CusProfile } from './Pages/CusProfile';
 import CusAddress from './Pages/CusAddress';
 import RoomModalUnstyled from './Components/EditForm/EditRoom';
+import HostDisplay from './Pages/HostDisplay';
+import { HostProfile } from './Pages/HostProfile';
+import { HostServices } from './Pages/HostServices';
+import { HostRooms } from './Pages/HostRooms';
+import OTPCode from './Components/ForgetPassword/OTPCode';
+import OTP from './Pages/OTP';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -69,18 +75,26 @@ function App() {
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
-            <Route path='/recover' element={<ForgetPassword />} />
-            <Route path='/customerProfile' element={<CustomerProfile />} />
+
+            <Route path='/otp' element={<OTP/>} />
+            <Route path='/customer' element={<CustomerProfile />} />
             <Route path='/customer-profile' element={<CusProfile />} />
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
+            
+          </Routes>
+          <Routes>
+            <Route path='/host' element={<HostDisplay />} />
+            <Route path='/host-profile' element={<HostProfile />} />
+            <Route path='/host-services' element={<HostServices />} />
+            <Route path='/host-rooms' element={<HostRooms />} />
           </Routes>
           <Routes>
             <Route path="/all-users" element={<AllUsers />} />
             <Route path="/all-services" element={<AllServices />} />
             <Route path="/all-contracts" element={<AllContracts />} />
-            <Route path="/all-rooms" element={<AllRooms/>} /> 
+            <Route path="/all-rooms" element={<AllRooms />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />

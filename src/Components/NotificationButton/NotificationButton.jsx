@@ -14,7 +14,7 @@ export default function NotificationButton() {
 
   // const fetchUserId = async () => {
   //   try {
-  //     const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User', {
+  //     const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/User', {
   //       withCredentials: true,
   //     });
   //     console.log(response);
@@ -39,6 +39,7 @@ export default function NotificationButton() {
 
   //  }
   const [anchorEl, setAnchorEl] = React.useState(null);
+  
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

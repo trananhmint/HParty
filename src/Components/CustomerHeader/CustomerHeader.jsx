@@ -31,7 +31,7 @@ const AppBar = styled(MuiAppBar, {
 
 export const CustomerHeader = ({ open, handleDrawerOpen }) => {
     return (
-        <AppBar position="fixed" open={open} style={{ background: '#e7c494' }}>
+        <AppBar position="fixed" open={open} style={{ background: '#e7c494'}}>
             <Toolbar>
                 <IconButton
                     color="inherit"

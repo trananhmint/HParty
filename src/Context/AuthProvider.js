@@ -10,29 +10,31 @@ const AuthProvider = ({ children }) => {
     const cookies = new Cookies();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState("");
-    const [role, setRole] = useState();
+    const [role, setRole] = useState("");
     const navigate = useNavigate();
 
     const fetchRegister = async (data) => {
         try {
 
             const response = await axios
-                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data)
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data, {
+                    headers: { 'Content-Type': 'application/json' }
+                })
                 .then(res => {
                     console.log("Post created:", res.data);
-                    navigate("/signup");
+                    navigate("/otp");
                     console.log("Success");
-                    toast.success('Register successfully', {
-                        position: "top-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
+                    // toast.success('Register successfully', {
+                    //     position: "top-right",
+                    //     autoClose: 3000,
+                    //     hideProgressBar: false,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    //     theme: "light",
 
-                    });
+                    // });
                 })
 
         } catch (error) {
@@ -87,12 +89,13 @@ const AuthProvider = ({ children }) => {
                             draggable: true,
                             progress: undefined,
                             theme: "light",
-
                         });
                         if (decoded[roles] === "Customer") {
                             navigate("/");
-                        } else if(decoded[roles] === "Admin") {
+                        } else if (decoded[roles] === "Admin") {
                             navigate("/admin")
+                        } else {
+                            navigate("/host")
                         }
                         console.log("Success");
                         return;
@@ -126,7 +129,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut }}>
+        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut, role}}>
             {children}
         </AuthContext.Provider>
     );

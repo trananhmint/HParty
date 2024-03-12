@@ -85,12 +85,12 @@ const Confirm = () => {
 
   return (
     <div className='confirm'>
-      {booked.map((book) => {
+      {booked.map((book, index) => {
         if (book.status === "PENDING") {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {Math.random().toFixed(5) * 100000}</p>
+              <p>ID: {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />

@@ -2,7 +2,7 @@ import React from 'react';
 import { styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import './CSS/AllUsers.css';
+import './CSS/AllUsers.css'
 import AdminHeader from '../Components/Adminheader/Adminheader';
 import AdminSideBar from '../Components/Adminsidebar/Adminsidebar';
 import UserTable from '../Components/UserTable/UserTable';
@@ -46,7 +46,7 @@ export default function AllUsers() {
       <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen}/>
       <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
       <Main open={open}>
-      <div className="user-table">
+      <div className="user-table-content">
             <UserTable/>
       </div>
       </Main>

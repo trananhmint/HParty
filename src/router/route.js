@@ -4,6 +4,7 @@ import { useAuth } from "../Context/AuthProvider";
 
 const PrivateRoute = () => {
   const user = useAuth();
+  console.log(user.role)
   // if (!user.token) return <Navigate to="/signup"/>;
   return <Outlet />;
 };

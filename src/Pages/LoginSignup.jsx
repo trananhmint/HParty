@@ -20,20 +20,11 @@ const LoginSignup = () => {
     fullname: "",
     email: "",
     password: "",
+    address: "",
+    phone: "",
+    roleId: 0
   })
 
-
-
-  // function getAlerts() {
-  //   if (input.email === "" && input.password === "") {
-  //     return <Alert severity="warning">Please enter your email and password</Alert>
-  //   } else if (register.fullname === "" && register.email === "" && register.password === "") {
-  //     return <Alert severity="warning">Please fill in the register form.</Alert>
-  //   }
-  // }
-
-  // const alert = getAlerts();
-  // console.log(alert);
 
 
 
@@ -61,28 +52,120 @@ const LoginSignup = () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setInput((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    if (name === "roleId") {
+      setInput((prev) => ({
+        ...prev,
+        [name]: Number(value),
+      }));
+    } else {
+      setInput((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+
   };
 
 
 
   const handleRegisterInput = (e) => {
     const { name, value } = e.target;
-    setRegister((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    if (name === "roleId") {
+      setRegister((prev) => ({
+        ...prev,
+        [name]: Number(value),
+      }));
+    } else {
+      setRegister((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+
   };
 
   const handleSubmitRegisterEvent = (e) => {
     e.preventDefault();
-    if (register.fullname !== "" && register.email !== "" && register.password !== "") {
+    if (register.fullname !== "" && register.email !== "" && register.password !== "" && register.address !== ""
+      && register.phone !== "" && register.roleId !== 0) {
       auth.fetchRegister(register);
+      localStorage.setItem("confirmEmail",JSON.stringify(register.email));
       return;
-    } else {
+    } else if (register.fullname === "") {
+      toast.warning('Please input your Full Name', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+    } else if (register.email === "") {
+      toast.warning('Please input your Email', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+    } else if (register.password === "") {
+      toast.warning('Please create your Password', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+    } else if (register.address === "") {
+      toast.warning('Please input your Address', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+    } else if (register.phone === "") {
+      toast.warning('Please input your Phone', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+    } else if (register.roleId === 0) {
+      toast.warning('Please choose your Role', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+      });
+    }
+
+    else {
       toast.warning('Please fill in the register form', {
         position: "top-right",
         autoClose: 3000,
@@ -100,48 +183,6 @@ const LoginSignup = () => {
   };
 
 
-  // const {setToken} = props;
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-
-  //   axios
-  //     .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/login", { email, password })
-  //     .then(response =>{
-  //       console.log(response);
-
-  //     })
-  //     .catch(error =>{
-  //       console.log("This is not a valid login");
-  //     })
-  // }
-
-  // async function loginUser(credentials) {
-  //   try {
-  //     const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Authentication/login', credentials, {
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     });
-  //     return response.data;
-  //   } catch (error) {
-  //     // Xử lý lỗi nếu cần
-  //     console.error('Error during login:', error);
-  //     throw error;
-  //   }
-  // }
-
-  // const [email, setEmail] = useState()
-  // const [password, setPassword] = useState()
-
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  //   const token = await loginUser({
-  //     email,
-  //     password
-  //   })
-  //   setToken(token);
-  //   console.log(token);
-  // }
 
   const ref = useRef(null);
   const [isActive, setIsActive] = useState(true);
@@ -159,9 +200,18 @@ const LoginSignup = () => {
               <a href="https://github.com/trananhmint/HParty"><LinkedInIcon /></a>
             </div>
             <span>or use your email for registeration</span>
-            <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput} placeholder='FullName' />
-            <input type="email" id='register-email' name='email' aria-describedby='register-email' aria-invalid="false" onChange={handleRegisterInput} placeholder='Email' />
-            <input type="password" id='register-password' name='password' aria-describedby='register-password' aria-invalid="false" onChange={handleRegisterInput} placeholder='Password' />
+            <div className='input-field-register'>
+              <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput} placeholder='FullName' />
+              <select name='roleId' defaultValue={0} onChange={handleRegisterInput}>
+                <option value={0} disabled>Select User Type</option>
+                <option value={1} >Customer</option>
+                <option value={2} >Party Host</option>
+              </select>
+              <input type="email" id='register-email' name='email' aria-describedby='register-email' aria-invalid="false" onChange={handleRegisterInput} placeholder='Email' />
+              <input type="password" id='register-password' name='password' aria-describedby='register-password' aria-invalid="false" onChange={handleRegisterInput} placeholder='Password' />
+              <input type="text" id='register-address' name='address' aria-describedby='register-address' aria-invalid="false" onChange={handleRegisterInput} placeholder='Address' />
+              <input type="text" id='register-phone' name='phone' aria-describedby='register-phone' aria-invalid="false" onChange={handleRegisterInput} placeholder='Phone' />
+            </div>
             <button >Sign Up</button>
           </form>
         </div>

@@ -17,11 +17,34 @@ import MoneyFormattedInputs from '../Format/NumericFormat';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ModalUpdateRoom({ room }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [host, setHost] = useState("");
+
+
+
+    const fetchPartyHost = async () => {
+        try {
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User", {
+                withCredentials: true
+            });
+            setHost(data.data.data);
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchPartyHost();
+    }, []);
+
 
     const [updateRoom, setUpdateRoom] = React.useState({
         RoomId: room.roomId,
@@ -29,11 +52,14 @@ export default function ModalUpdateRoom({ room }) {
         Description: room.description,
         Capacity: room.capacity,
         Address: room.address,
-        UserId: room.userId,
+        UserId: host.userId,
         Price: room.price,
         Images: room.images,
-        Status: room.status
+        Status: room.status,
+        Area: ""
     })
+
+
 
 
     const handleInput = (e) => {
@@ -51,6 +77,15 @@ export default function ModalUpdateRoom({ room }) {
         }
 
     };
+    console.log("RoomId: ", updateRoom.RoomId);
+    console.log("RoomName: ", updateRoom.RoomName);
+    console.log("Description: ", updateRoom.Description);
+    console.log("Capacity: ", updateRoom.Capacity);
+    console.log("Address: ", updateRoom.Address);
+    console.log("UserId: ", updateRoom.UserId);
+    console.log("Price: ", updateRoom.Price);
+    console.log("Images: ", updateRoom.Images);
+    console.log("Area: ", updateRoom.Area)
 
     const name = "Balloon"
 
@@ -73,7 +108,7 @@ export default function ModalUpdateRoom({ room }) {
     });
 
 
-    const fetchUpdateService = async (updateRoom) => {
+    const fetchUpdateRoom = async (updateRoom) => {
         try {
             const formData = new FormData();
             // // Thêm các trường dữ liệu khác nếu cần
@@ -82,14 +117,15 @@ export default function ModalUpdateRoom({ room }) {
             formData.append('Description', updateRoom.Description);
             formData.append('Capacity', updateRoom.Capacity);
             formData.append('Address', updateRoom.Address);
-            formData.append('UserId', updateRoom.UserId);
+            formData.append('UserId', host.userId);
             formData.append('Price', updateRoom.Price);
             formData.append('Images', updateRoom.Images);
             formData.append('Status', updateRoom.Status);
+            formData.append('Area', updateRoom.Area);
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put("https://bookingbithdayparty.azurewebsites.net/api/Room/room/6", formData,
+            const response = await axios.put(`https://bookingbirthdayparties.azurewebsites.net/api/Room/room/${updateRoom.RoomId}`, formData,
 
                 {
 
@@ -119,6 +155,7 @@ export default function ModalUpdateRoom({ room }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        fetchUpdateRoom(updateRoom)
     }
 
     return (
@@ -178,7 +215,7 @@ export default function ModalUpdateRoom({ room }) {
                                 <TextField id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' defaultValue={room.capacity} onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' defaultValue={room.address} onChange={handleInput} />
 
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={room.userId} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
                                 <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>

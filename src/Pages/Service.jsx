@@ -21,7 +21,7 @@ export const Service = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
+      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
       setItems(response.data.data.find((e) => { return e.serviceId === Number(serviceId) }));
       setLoading(false);
     }
@@ -44,7 +44,7 @@ export const Service = () => {
       <ServiceDisplay service={items} />
       <HostServiceInfo />
       <Descriptionbox />
-      <Feedback />
+      {/* <Feedback /> */}
       <Footer />
     </div>
   )

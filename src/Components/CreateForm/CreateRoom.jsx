@@ -111,7 +111,7 @@ export default function ModalCreateRoom() {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room", formData, {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true,
             });

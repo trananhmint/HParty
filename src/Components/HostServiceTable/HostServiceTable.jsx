@@ -32,10 +32,13 @@ export const HostServiceTable = () => {
 
     const fetchPartyHost = async () => {
         try {
-            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User", {
-                withCredentials: true
-            });
-            setHost(data.data.data);
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
+                {
+                    withCredentials: true
+                }
+            );
+            setUser(data.data.data);
+            console.log(data.data.data);
             setLoading(false);
         } catch (err) {
             console.log(err);

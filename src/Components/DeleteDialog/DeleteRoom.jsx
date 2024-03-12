@@ -12,9 +12,10 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  border: "2px solid white",
+  boxShadow: "0 4px 12px",
   p: 4,
+  borderRadius: "8px",
 };
 
 export default function DeleteRoom({handleDisableClick}) {
@@ -49,13 +50,33 @@ export default function DeleteRoom({handleDisableClick}) {
           <Button
             autoFocus
             onClick={handleClose}
-            sx={{ mt: 2, float: "right" }}
+            sx={{
+              mt: 2,
+              float: "right",
+              color: "green",
+              "&:hover": {
+                backgroundColor: "white", 
+              },
+              "&:active": {
+                backgroundColor: "white", 
+              },
+            }}
           >
             Cancel
           </Button>
           <Button
             onClick={handleYesClick}
-            sx={{ mt: 2, float: "right" }}
+            sx={{
+              mt: 2,
+              float: "right",
+              color: "red",
+              "&:hover": {
+                backgroundColor: "white", 
+              },
+              "&:active": {
+                backgroundColor: "white", 
+              },
+            }}
             autoFocus
           >
             Yes

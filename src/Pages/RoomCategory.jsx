@@ -7,14 +7,16 @@ import Footer from '../Components/Footer/Footer';
 import axios from 'axios';
 import RoomItems from '../Components/RoomItems/RoomItems';
 import ServiceBreadcrumb from '../Components/Breadcrumbs/ServiceBreadcrumb';
-
+import { CircularProgress } from '@mui/material';
 export const RoomCategory = (props) => {
+  const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
+      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
       setItems(response.data.data);
       console.log(response.data.data);
+      setLoading(false);
     }
     fetchData();
   }, []);
@@ -25,7 +27,7 @@ export const RoomCategory = (props) => {
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
           if (item.status === 1) {
-            return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
+            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} />
           }
         })}
       </div>
@@ -92,10 +94,17 @@ export const RoomCategory = (props) => {
 
   }
 
+  if (loading) {
+    return (
+      <div className="loading-spinner-container">
+        <CircularProgress color="primary" size={60} thickness={5} />
+      </div>
+    );
+  }
   return (
     <div className='services'>
       <Navbar />
-      <ServiceBreadcrumb  service={props}/>
+      <ServiceBreadcrumb service={props} />
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">
         <p>

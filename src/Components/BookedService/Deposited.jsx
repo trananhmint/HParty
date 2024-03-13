@@ -3,8 +3,7 @@ import './Booked.css'
 import axios from 'axios';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
-const Booked = () => {
-
+const Deposited = () => {
   const [booked, setBooked] = useState([]);
   const [bookingDetail, setBookingDetail] = useState([]);
   const [rooms, setRooms] = useState([]);
@@ -27,17 +26,17 @@ const Booked = () => {
     fetchBooked();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const bookingIds = booked.map(booking => booking.bookingId);
-  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-  //     setBookingDetail(bookingDetails);
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const bookingIds = booked.map(booking => booking.bookingId);
+      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+      setBookingDetail(bookingDetails);
+    };
 
-  //   if (booked.length > 0) {
-  //     fetchData();
-  //   }
-  // }, [booked]);
+    if (booked.length > 0) {
+      fetchData();
+    }
+  }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
@@ -49,47 +48,58 @@ const Booked = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms');
-        setRooms(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchRooms();
-  }, []);
+  const fetchCustomerCancel = async (data) => {
+    try {
+      const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Booking/CancelByCustomer', data,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true,
+        })
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
 
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services');
-        setServices(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchServices();
-  }, []);
 
-  // console.log("Service: ", services)
-  // console.log("Booked:", booked)
-  // console.log("Booking Detail:", bookingDetail);
-  // let bookList = [];
-  // bookingDetail.map((books) => {
-  //   if (books.length > 1) {
+  const fetchCustomerFinish = async (data) => {
+    try {
+      const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Booking/finishBooking', data,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true,
+        })
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
 
-  //     bookList.push(books)
-  //   } else {
-  //     for (let book of books) {
-  //       bookList.push(book);
-  //     }
-  //   }
-  // });
 
-  // console.log("Book List: ")
-  // console.log(bookList);
+
+
+  const handleClick = (bookingId) => {
+    window.confirm('Are you sure to cancel');
+    fetchCustomerCancel(bookingId);
+  }
+
+
+  const handleClickFinish = (bookingId) => {
+    window.confirm('Are you sure to finish');
+    fetchCustomerFinish(bookingId);
+  }
+
+  console.log("Booked:", booked)
+  console.log("Booking Detail:", bookingDetail);
+
 
   function getCategory(categoryId) {
     let category;
@@ -110,7 +120,6 @@ const Booked = () => {
     return category;
   }
 
-
   function getDateTime(bookingDate) {
     let now = new Date(bookingDate);
     let year = now.getFullYear();
@@ -122,20 +131,25 @@ const Booked = () => {
     return formattedDateTime;
   }
 
+
+
   return (
-    <div className='confirm'>
+    <div className='all'>
       {booked.map((book, index) => {
-        if (book.status === "BOOKED") {
+        if (book.status === "DEPOSITED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {index + 1}</p>
+                <p>NO.{index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
                   <hr />
-                  <button id='cancel'><CancelOutlinedIcon /></button>
+                  <div className='booking-button'>
+                    <button id='finish' onClick={() => handleClickFinish(book.bookingId)}>FINISH</button>
+                    <button id='cancel' onClick={() => handleClick(book.bookingId)} ><CancelOutlinedIcon /></button>
+                  </div>
                 </div>
               </div>
               <hr />
@@ -182,9 +196,10 @@ const Booked = () => {
             </div>
           </div>
         }
+
       })}
     </div>
   )
 }
 
-export default Booked
+export default Deposited

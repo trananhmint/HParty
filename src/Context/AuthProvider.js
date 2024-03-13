@@ -10,31 +10,31 @@ const AuthProvider = ({ children }) => {
     const cookies = new Cookies();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState();
     const navigate = useNavigate();
 
     const fetchRegister = async (data) => {
         try {
 
             const response = await axios
-                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/register", data, {
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data, {
                     headers: { 'Content-Type': 'application/json' }
                 })
                 .then(res => {
                     console.log("Post created:", res.data);
-                    navigate("/otp");
                     console.log("Success");
-                    // toast.success('Register successfully', {
-                    //     position: "top-right",
-                    //     autoClose: 3000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "light",
+                    //  navigate("/otp");
+                    toast.success('Please check your email!!!', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
 
-                    // });
+                    });
                 })
 
         } catch (error) {
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     const fetchLogin = async (data) => {
         try {
             const response = await axios
-                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/login", data,
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/login", data,
                     {
                         withCredentials: true // Ensure credentials are included
                     })
@@ -129,7 +129,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut, role}}>
+        <AuthContext.Provider value={{ token, user, fetchLogin, fetchRegister, logOut, role }}>
             {children}
         </AuthContext.Provider>
     );

@@ -16,42 +16,6 @@ export const Payment = () => {
     const [isSuccess, setSuccess] = useState(false);
     const [methods, setMethods] = useState("");
 
-    // const cart = useSelector((state) => state.cart.cart)
-    // const key = cart.length - 1;
-    // const serviceId = cart[key].services.map(service => { return service.serviceId })
-    // const roomIds = cart[key].rooms.map(room => { return room.roomId });
-    // const totalPrice = cart[key].totalPrice;
-
-
-    // const rooms = CartOfItems().filter((room) => room.roomId);
-    // const roomIds = rooms.map((room) => room.roomId);
-    // const services = CartOfItems().filter((service) => service.serviceId);
-    // const serviceId = services.map((service) => service.serviceId);
-    // const totalPrice = getTotalPrice();
-
-    // console.log(cart);
-    // console.log(roomIds[0])
-    // console.log(serviceId);
-    // console.log(totalPrice);
-
-
-    // const cartId = localStorage.getItem("email");
-    // let cart = JSON.parse(localStorage.getItem(cartId));
-    // let room = rooms.map((room) => room)
-    // let service = services.map((service) => service)
-    // let roomItem = cart.map((item) => {
-    //     return room.find((r) => Number(r.roomId) === Number(item))
-    // })
-    // const serviceItem = cart.map((item) => {
-    //     return service.find((s) => Number(s.serviceId) === Number(item))
-    // })
-
-    // let itemOfRoom = roomItem.filter((room) => room !== undefined);
-    // let itemOfService = serviceItem.filter((service) => service !== undefined);
-
-    // function onlyUnique(value, index, self) {
-    //     return self.indexOf(value) === index;
-    // }
 
     let uniqueItemOfRoom = JSON.parse(localStorage.getItem("uniqueItemOfRoom"));
     let uniqueItemOfService = JSON.parse(localStorage.getItem("uniqueItemOfService"));
@@ -74,26 +38,7 @@ export const Payment = () => {
         roomId: roomIds[0],
         serviceIds: serviceIds,
     })
-    // useEffect(() => {
-    //     setBooking(prevState => ({
-    //         ...prevState,
-    //         roomId: roomIds[0],// Gán giá trị cho roomId từ roomIds
-    //     }));
-    // }, [roomIds]);
-
-    // useEffect(() => {
-    //     setBooking(prevState => ({
-    //         ...prevState,
-    //         serviceIds: serviceId,// Gán giá trị cho roomId từ roomIds
-    //     }));
-    // }, [serviceId]);
-
-    // useEffect(() => {
-    //     setBooking(prevState => ({
-    //         ...prevState,
-    //         totalPrice: totalPrice,// Gán giá trị cho roomId từ roomIds
-    //     }));
-    // }, [totalPrice]);
+    
 
     console.log(booking.roomId);
     console.log(booking.serviceIds)
@@ -110,7 +55,7 @@ export const Payment = () => {
 
     const fetchBooking = async (data) => {
         try {
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Booking", data,
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data,
 
                 {
                     headers: {
@@ -177,7 +122,7 @@ export const Payment = () => {
     const fetchVNPAY = async (data) => {
         try {
             console.log(data);
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/VNPay", {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/VNPay", {
                 totalPrice: data
             },
                 {

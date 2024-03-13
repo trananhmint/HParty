@@ -127,6 +127,7 @@ export const HostServiceTable = () => {
                             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >No.</TableCell>
                             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
                             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
+                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Sale Price</TableCell>
                             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell>
                             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
                             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
@@ -147,6 +148,7 @@ export const HostServiceTable = () => {
                                     </TableCell>
                                     <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
                                     <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.salePrice}</TableCell>
                                     <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Base64 Encoded" /></TableCell>
                                     {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images}</TableCell> */}
                                     <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>

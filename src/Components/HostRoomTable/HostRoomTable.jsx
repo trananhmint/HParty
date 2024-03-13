@@ -97,6 +97,7 @@ export const HostRoomTable = () => {
               <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Capacity</TableCell>
               <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Address</TableCell>
               <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
+              <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Sale Price</TableCell>
               {/* <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">UserID</TableCell> */}
               <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
               <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
@@ -117,6 +118,7 @@ export const HostRoomTable = () => {
                   <TableCell sx={{ fontSize: '16px' }}>{item.capacity}</TableCell>
                   <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
                   <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+                  <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.salePrice}</TableCell>
                   {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
                   <TableCell sx={{ fontSize: '16px' }} align="center">
                     <Button

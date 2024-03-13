@@ -80,7 +80,8 @@ const AdminProfileContent = () => {
       margin: '0px auto',
       width: '80%',
       boxShadow: '0px 0px 10px 5px #e5e5e5',
-      padding: '20px'
+      padding: '20px',
+      marginTop: '100px'
     }}>
      <div className="admin-profile-title">
           <h3>MY PROFILE INFORMATION</h3>

@@ -123,7 +123,7 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
           </ListItem>
         ))}
       </List>
-        <Divider />
+        {/* <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding>
@@ -135,7 +135,7 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
       )
     };

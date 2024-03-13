@@ -56,13 +56,13 @@ export default function UserTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <TableRow
               key={item.userId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {item.userId}
+                {index + 1}
               </TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.fullName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.email}</TableCell>

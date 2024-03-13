@@ -10,7 +10,6 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import './ServiceTable.css';
 import { fetchService } from '../../Context/fetchService';
-import { Edit } from '@mui/icons-material';
 import { disableService } from '../../Context/disableService';
 import ModalUpdateService from '../EditForm/EditService';
 import DeleteService from '../DeleteDialog/DeleteService';
@@ -69,9 +68,11 @@ export default function ServiceTable() {
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >ID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
+            {/* <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell> */}
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
-            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
+            {/* <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Sale Price</TableCell> */}
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
+            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
           </TableRow>
@@ -85,13 +86,16 @@ export default function ServiceTable() {
               <TableCell component="th" scope="row">
                 {index + 1}
               </TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align="center">{item.serviceName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
+              {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Base64 Encoded" /></TableCell> */}
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+              {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.salePrice}</TableCell> */}
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
               </TableCell>
+              <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
+            
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button
                   variant="contained"

@@ -65,9 +65,36 @@ const Deposited = () => {
     }
   }
 
+
+  const fetchCustomerFinish = async (data) => {
+    try {
+      const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Booking/finishBooking', data,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true,
+        })
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+
+
+
+
   const handleClick = (bookingId) => {
     window.confirm('Are you sure to cancel');
     fetchCustomerCancel(bookingId);
+  }
+
+
+  const handleClickFinish = (bookingId) => {
+    window.confirm('Are you sure to finish');
+    fetchCustomerFinish(bookingId);
   }
 
   console.log("Booked:", booked)
@@ -120,7 +147,7 @@ const Deposited = () => {
                   <p>{getDateTime(book.bookingDate)}</p>
                   <hr />
                   <div className='booking-button'>
-                    <button id='finish'>FINISH</button>
+                    <button id='finish' onClick={() => handleClickFinish(book.bookingId)}>FINISH</button>
                     <button id='cancel' onClick={() => handleClick(book.bookingId)} ><CancelOutlinedIcon /></button>
                   </div>
                 </div>

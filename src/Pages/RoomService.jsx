@@ -39,7 +39,7 @@ export const RoomService = () => {
       <ServiceDisplay service={items} />
       <HostServiceInfo />
       <Descriptionbox />
-      <Feedback />
+      {/* <Feedback /> */}
       <Footer />
     </div>
   )

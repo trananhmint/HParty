@@ -25,49 +25,49 @@ export const HostServiceTable = () => {
     const handleOpen = () => setOpen(true);
     const [loading, setLoading] = useState(true);
     const [base64Image, setBase64Image] = useState('');
-    const [user, setUser] = useState("");
+    const [host, setHost] = useState("");
 
 
 
-    const fetchUser = async () => {
+
+    const fetchPartyHost = async () => {
         try {
             const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
                 {
                     withCredentials: true
                 }
             );
-            setUser(data.data.data);
+            setHost(data.data.data);
             console.log(data.data.data);
             setLoading(false);
         } catch (err) {
             console.log(err);
             setLoading(false);
         }
-
     }
-    useEffect(() => {
-        fetchUser();
-    }, []);
 
-    console.log(user);
-
-    console.log(open);
-
-    const fetchData = async () => {
+    const fetchData = async (id) => {
         try {
-            const data = await fetchService();
+            setLoading(true); // Set loading to true before fetching data
+            const data = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Service/party_host/service/${id}`);
             setItems(data.data.data);
-            console.log(data.data.data);
             setLoading(false);
         } catch (err) {
             console.log(err);
             setLoading(false);
         }
-
     }
+
     useEffect(() => {
-        fetchData();
+        fetchPartyHost();
     }, []);
+
+    useEffect(() => {
+        if (host) { // Check if user exists before calling fetchData
+            fetchData(host.userId);
+        }
+    }, [host]);
+
 
     if (loading) {
         return (
@@ -98,133 +98,131 @@ export const HostServiceTable = () => {
         }
     };
 
-    const handleImageUpload = (images) => {
-        const file = images;
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            const base64String = reader.result.split(',')[1]; // Lấy phần base64 từ chuỗi dữ liệu được đọc
-            setBase64Image(base64String);
-        };
-
-        reader.readAsDataURL(file);
-    };
-
-    // const service = items.find((item) => item.images)
-    // console.log(service.images[0].imageBase64);
-    // const image = service.images[0].imageBase64
 
 
-    return (
-        <div>
-            <ModalCreateService />
-            <TableContainer component={Paper}>
 
-                <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
+    {
+        if (items !== null) {
+            return (
+                <div>
+                    <ModalCreateService />
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
 
-                    <TableHead className='table-header'>
-                        <TableRow >
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >No.</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Sale Price</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserID</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
-                            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {items.map((item, index) => {
-                            if (item.status === 1 && item.images !== null) {
-                                return <TableRow
-                                    key={item.serviceId}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {index + 1}
-                                    </TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.salePrice}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Base64 Encoded" /></TableCell>
-                                    {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images}</TableCell> */}
-                                    <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px' }} align="center">
-                                        {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
-                                    </TableCell>
-                                    <TableCell sx={{ fontSize: '16px' }} align="center">
-                                        <Button
-                                            variant="contained"
-                                            style={{
-                                                backgroundColor: item.status === 1 ? '#32CD32' : '#FF4500',
-                                                borderRadius: '15px',
-                                                fontSize: '15px',
-                                                boxShadow: '1px 1px ',
-                                            }}>
-                                            {item.status === 1 ? 'ACTIVE' : 'NON_ACTIVE'}
-                                        </Button>
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                                            <ModalUnstyled service={item} />
-                                            {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
-                                                Delete
-                                            </Button> */}
-                                            <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
-                                        </Stack>
-                                    </TableCell>
+                            <TableHead className='table-header'>
+                                <TableRow >
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >No.</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Host</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
                                 </TableRow>
-                            } else if (item.status === 1) {
-                                return <TableRow
-                                    key={item.serviceId}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {index + 1}
-                                    </TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${base64Image}`} alt="Base64 Encoded" /></TableCell>
+                            </TableHead>
+                            <TableBody>
+                                {items.map((item, index) => {
+                                    if (item.status === 1 && item.images !== null && item.images.length > 0) {
+                                        return <TableRow
+                                            key={item.serviceId}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">
+                                                {index + 1}
+                                            </TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Base64 Encoded" /></TableCell>
+                                            {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images}</TableCell> */}
+                                            <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px' }} align="center">
+                                                {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
+                                            </TableCell>
+                                            <TableCell sx={{ fontSize: '16px' }} align="center">
+                                                <Button
+                                                    variant="contained"
+                                                    style={{
+                                                        backgroundColor: item.status === 1 ? '#32CD32' : '#FF4500',
+                                                        borderRadius: '15px',
+                                                        fontSize: '15px',
+                                                        boxShadow: '1px 1px ',
+                                                    }}>
+                                                    {item.status === 1 ? 'ACTIVE' : 'NON_ACTIVE'}
+                                                </Button>
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
+                                                    <ModalUnstyled service={item} />
+                                                    <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
+                                                </Stack>
+                                            </TableCell>
+                                        </TableRow>
+                                    } else if (item.status === 1) {
+                                        return <TableRow
+                                            key={item.serviceId}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">
+                                                {index + 1}
+                                            </TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${base64Image}`} alt="Base64 Encoded" /></TableCell>
 
-                                    {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images[0].imageBase64}</TableCell> */}
-                                    <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.user.fullName}</TableCell>
-                                    <TableCell sx={{ fontSize: '16px' }} align="center">
-                                        {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
-                                    </TableCell>
-                                    <TableCell sx={{ fontSize: '16px' }} align="center">
-                                        <Button
-                                            variant="contained"
-                                            style={{
-                                                backgroundColor: item.status === 1 ? '#32CD32' : '#FF4500',
-                                                borderRadius: '15px',
-                                                fontSize: '15px',
-                                                boxShadow: '1px 1px ',
-                                            }}>
-                                            {item.status === 1 ? 'ACTIVE' : 'NON_ACTIVE'}
-                                        </Button>
-                                    </TableCell>
-                                    <TableCell align="right">
-                                        <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                                            <ModalUnstyled service={item} />
-                                            {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
+                                            {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images[0].imageBase64}</TableCell> */}
+                                            <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px' }} align="center">
+                                                {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
+                                            </TableCell>
+                                            <TableCell sx={{ fontSize: '16px' }} align="center">
+                                                <Button
+                                                    variant="contained"
+                                                    style={{
+                                                        backgroundColor: item.status === 1 ? '#32CD32' : '#FF4500',
+                                                        borderRadius: '15px',
+                                                        fontSize: '15px',
+                                                        boxShadow: '1px 1px ',
+                                                    }}>
+                                                    {item.status === 1 ? 'ACTIVE' : 'NON_ACTIVE'}
+                                                </Button>
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
+                                                    <ModalUnstyled service={item} />
+                                                    {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                                             Delete
                                         </Button> */}
-                                            <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
-                                        </Stack>
-                                    </TableCell>
-                                </TableRow>
-                            }
+                                                    <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
+                                                </Stack>
+                                            </TableCell>
+                                        </TableRow>
+                                    }
 
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div >
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div >
 
-    );
+            );
+        } else {
+            return (
+                toast.info("There is no any room", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                })
+            )
+        }
+    }
+
 }

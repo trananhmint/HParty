@@ -44,7 +44,7 @@ export const Service = () => {
       <ServiceDisplay service={items} />
       <HostServiceInfo />
       <Descriptionbox />
-      <Feedback />
+      {/* <Feedback /> */}
       <Footer />
     </div>
   )

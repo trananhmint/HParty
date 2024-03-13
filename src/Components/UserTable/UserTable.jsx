@@ -21,7 +21,6 @@ export default function UserTable() {
   const fetchData = async () => {
     try {
       const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/users',
-
         {
           withCredentials: true,
         });

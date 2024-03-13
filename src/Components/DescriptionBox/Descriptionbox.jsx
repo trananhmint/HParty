@@ -2,22 +2,15 @@ import React from 'react'
 import './DescriptionBox.css'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const Descriptionbox = () => {
+const Descriptionbox = (props) => {
+  const {service} = props;
   return (
     <div className="descriptionbox">
       <div className='descriptionbox-description'>
         <h2>Service Details</h2>
         <hr />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias fugit fugiat consectetur!
-          Consequatur soluta quisquam quo dicta nesciunt! Nobis quaerat inventore fugiat laborum porro
-          voluptates fugit nam magni, eum maxime. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-          Officiis eaque dolorem perferendis eius non quasi laborum impedit at neque ad nostrum, numquam illum.
-          Cum, repellendus incidunt voluptatum voluptatibus fugiat accusamus! Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit. Praesentium distinctio fuga cum facere molestias natus modi quis!
-          Ullam delectus, maxime neque voluptates tenetur qui, adipisci earum architecto, dolorum tempora aspernatur.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero facilis dignissimos minima officia molestias
-          iure optio eligendi atque modi quam natus, quod earum tenetur labore? Minima voluptatum magni harum quisquam.
+          {service.description}
         </p>
 
       </div>

@@ -33,7 +33,7 @@ const name = localStorage.getItem('email');
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export const CustomerProfile = () => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
 
   const handleDrawerOpen = () => {

@@ -37,10 +37,11 @@ const BookedServiceTabs = () => {
                         </TabList>
                     </Box>
                     <TabPanel value="1"><Deposited /> </TabPanel>
-                    <TabPanel value="2"><Finished /> </TabPanel>
+                    <TabPanel value="2"><Confirm /></TabPanel>
+                    <TabPanel value="3"><Finished /> </TabPanel>
                     {/* <TabPanel value="3"><Booked /></TabPanel>
                     <TabPanel value="4"><Finished /></TabPanel> */}
-                    <TabPanel value="3"><Cancel /></TabPanel>
+                    <TabPanel value="4"><Cancel /></TabPanel>
 
                 </TabContext>
             </Box>

@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 export default function ModalCreateRoom() {
     const [open, setOpen] = React.useState(false);
@@ -25,6 +26,25 @@ export default function ModalCreateRoom() {
     const handleClose = () => setOpen(false);
     const [images, setImages] = useState("");
     const [price, setPrice] = useState(0);
+    const [host, setHost] = useState("");
+
+
+    const fetchData = async () => {
+        try {
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+                {
+                    withCredentials: true
+                }
+            );
+            setHost(data.data.data);
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
 
 
     const handleChangePrice = (e) => {
@@ -43,9 +63,10 @@ export default function ModalCreateRoom() {
         Description: "",
         Capacity: 0,
         Address: "",
-        UserId: 0,
+        UserId: host.userId,
         Images: [],
-        Status: ""
+        Status: "",
+        Area: ""
     })
 
     const handleInput = (e) => {
@@ -64,14 +85,15 @@ export default function ModalCreateRoom() {
 
     };
 
-    // console.log('RoomName: ', createRoom.RoomName);
-    // console.log('Price', price);
-    // console.log('Description: ', createRoom.Description);
-    // console.log("Capacity: ", createRoom.Capacity);
-    // console.log("Address: ", createRoom.Address);
-    // console.log("UserId: ", createRoom.UserId);
-    // console.log("Status", createRoom.Status);
-    // console.log("Images: ", images);
+    console.log('RoomName: ', createRoom.RoomName);
+    console.log('Price', createRoom.Price);
+    console.log('Description: ', createRoom.Description);
+    console.log("Capacity: ", createRoom.Capacity);
+    console.log("Address: ", createRoom.Address);
+    console.log("UserId: ", createRoom.UserId);
+    console.log("Status", createRoom.Status);
+    console.log("Area: ", createRoom.Area);
+    console.log("Images: ", images);
 
     const name = "Balloon"
 
@@ -99,9 +121,11 @@ export default function ModalCreateRoom() {
             // Thêm các trường dữ liệu khác nếu cần
             formData.append("RoomName", createRoom.RoomName);
             formData.append("Description", createRoom.Description);
+            formData.append("Price", createRoom.Price);
             formData.append("Capacity", createRoom.Capacity);
             formData.append("Address", createRoom.Address);
-            formData.append("UserId", createRoom.UserId);
+            formData.append("Area", createRoom.Area);
+            formData.append("UserId", host.userId);
             formData.append("Images", images);
             // Xử lý file ảnh nếu có
 
@@ -111,7 +135,7 @@ export default function ModalCreateRoom() {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room", formData, {
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true,
             });
@@ -191,16 +215,16 @@ export default function ModalCreateRoom() {
 
                                     </Select>
                                 </FormControl>
-                                <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                                <TextField id="outlined-basic" label="Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleChangePrice} />
+                                <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
 
                                 <TextField type='number' id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' onChange={handleInput} />
 
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' onChange={handleInput} />
-                                <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} onChange={handleChangeImage} />
-                                <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
+                                <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleChangeImage} />
+                                <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
                                 <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                     <Select
@@ -324,6 +348,7 @@ const ModalContent = styled('div')(
 const TriggerButton = styled('button')(
     ({ theme }) => css`
     display: flex;
+    float: 'right';
     alignItems: 'center';
     justify-content: center;
     gap: 8px;

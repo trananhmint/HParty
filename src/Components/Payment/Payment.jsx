@@ -55,7 +55,7 @@ export const Payment = () => {
 
     const fetchBooking = async (data) => {
         try {
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Booking", data,
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Booking", data,
 
                 {
                     // headers: {
@@ -122,7 +122,7 @@ export const Payment = () => {
     const fetchVNPAY = async (data) => {
         try {
             console.log(data);
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/VNPay", {
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/VNPay", {
                 totalPrice: data
             },
                 {

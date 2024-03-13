@@ -6,14 +6,23 @@ import { Avatar, Rating } from '@mui/material'
 
 
 
-const HostServiceInfo = () => {
+const HostServiceInfo = (props) => {
+    const { service } = props;
+    // console.log(service.serviceName);
+    let user = "";
+    if(service.user) {
+        user = service.user;
+        console.log(user);
+    }
+    console.log(service.roomName);
+    
     return (
         <div className='hostserviceinfo'>
             <div className="hostserviceinfo-avatar">
                 <Avatar alt="Remy Sharp" src={users} style={{ width: '70px', height: '70px', border: '1px solid black' }} />
             </div>
             <div className="hostserviceinfo-info">
-                <p className="hostname">Party Host</p>
+                <p className="hostname">{user.fullName}</p>
                 <p className="hostlocation">Ho Chi Minh City</p>
             </div>
             <hr />
@@ -34,7 +43,7 @@ const HostServiceInfo = () => {
             <hr />
             <div className="hostserviceinfo-email">
                 <p className='hostserviceinfo-title'>Email</p>
-                <p className='hostserviceinfo-content'>partyhost@gmail.com</p>
+                <p className='hostserviceinfo-content'>{user.email}</p>
             </div>
 
         </div>

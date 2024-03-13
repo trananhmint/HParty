@@ -113,9 +113,9 @@ export const Payment = () => {
             const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Booking", data,
 
                 {
-                    // headers: {
-                    //     "Content-Type": "application/json"
-                    // },
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
                     withCredentials: true // Ensure credentials are included
                 })
             console.log(response);

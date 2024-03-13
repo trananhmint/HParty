@@ -10,6 +10,7 @@ import Rating from '@mui/material/Rating';
 const ServiceDisplay = (props) => {
   const [base64, setBase64] = useState('')
   const { service } = props;
+  console.log(service);
   const { AddToCart, AddRoomsToCart } = useContext(ServiceContext);
   const [value, setValue] = React.useState(2);
 
@@ -18,7 +19,6 @@ const ServiceDisplay = (props) => {
 
 
   const handleClick = (service) => {
-
     if (service.serviceName) {
       AddToCart(service.serviceId)
     } else {

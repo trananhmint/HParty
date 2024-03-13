@@ -42,10 +42,11 @@ export const Service = () => {
       <Navbar />
       <Breadcrumb service={items} />
       <ServiceDisplay service={items} />
-      <HostServiceInfo />
-      <Descriptionbox />
-      {/* <Feedback /> */}
-      <Footer />
+      <HostServiceInfo service={items} />
+      <Descriptionbox service={items} />
+      <Feedback service={items} />
+      <Footer  />
+
     </div>
   )
 }

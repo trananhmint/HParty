@@ -35,7 +35,7 @@ export const SearchPage = () => {
         setCategory(event.target.value);
     };
 
-    const fetchSearch = async () => {
+    const fetchSearchRoom = async () => {
         try {
             // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
             const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room/search_room", search.search, {
@@ -51,9 +51,26 @@ export const SearchPage = () => {
             console.log(error);
         }
     }
+
+    const fetchSearchService = async () => {
+        try {
+            // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Service/services", search.search, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+
+            });
+            setItems(response.data.data);
+            console.log(response.data.data);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
     
     useEffect(()=> {
-        fetchSearch();
+        fetchSearchRoom();
     }, [])
 
     //gộp và trộn room & service

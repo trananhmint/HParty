@@ -49,9 +49,17 @@ export const HostRoomTable = () => {
   const fetchData = async (id) => {
     try {
       setLoading(true); // Set loading to true before fetching data
-      const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Room/party_host/rooms/${id}`);
-      setItems(data.data.data);
-      setLoading(false);
+      const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Room/party_host/rooms/${id}`,
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+      if (data.data.data !== null && data.data.data !== undefined) {
+        setItems(data.data.data);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
     } catch (err) {
       console.log(err);
       setLoading(false);

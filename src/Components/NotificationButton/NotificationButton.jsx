@@ -11,6 +11,7 @@ import { fetchNoti } from "../../Context/fetchNoti";
 // import { fetchNoti } from "../../Context/fetchNoti";
 
 export default function NotificationButton() {
+
   const [user, setUser] = useState();
   const [items, setItems] = useState([]);
 
@@ -47,6 +48,20 @@ export default function NotificationButton() {
       fetchData(user.userId);
     }
   }, [user]);
+
+
+  // const fetchUserId = async () => {
+  //   try {
+  //     const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User', {
+  //       withCredentials: true,
+  //     });
+  //     console.log(response);
+  //     setItems(response.data.data);
+  //   } catch (err) {
+  //     console.error('Error fetching user ID:', err);
+  //     throw err; // Rethrow the error to handle it further up the call stack
+  //   }
+  // }
 
 
 

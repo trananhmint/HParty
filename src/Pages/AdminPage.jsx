@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import './CSS/AdminPage.css';
 import UserPieChart from '../Components/Userpiechart/Userpiechart';
-import ServiceBarChart from '../Components/Servicebarchart/Servicebarchart';
-import ContractPieChart from '../Components/Contractpiechart/Contractpiechart';
 import AdminHeader from '../Components/Adminheader/Adminheader';
 import AdminSideBar from '../Components/Adminsidebar/Adminsidebar';
+import ServicePieChart from '../Components/ServicePieChart/ServicePiechart';
+import AdminRevenue from '../Components/AdminRevenue/AdminRevenue';
 
 const drawerWidth = 240;
 
@@ -51,11 +51,11 @@ export default function AdminPage() {
 
       <Main open={open}>
         <div className="main-layout">
+        <AdminRevenue /> 
           <div className="chart-group">
             <UserPieChart className="user-pie-chart" />
-            <ServiceBarChart />
+            <ServicePieChart/>
           </div>
-          <ContractPieChart />
         </div>
       </Main>
     </Box>

@@ -78,7 +78,7 @@ const AuthProvider = ({ children }) => {
                         setRole(decoded[roles]);
                         console.log(decoded);
                         console.log(decoded[roles]);
-
+                        console.log(decoded.exp)
                         cookies.set("authToken", res.data, { expires: new Date(decoded.exp * 1000) });
                         toast.success('Login successfully', {
                             position: "top-right",

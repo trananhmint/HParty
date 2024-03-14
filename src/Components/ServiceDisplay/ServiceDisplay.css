@@ -27,12 +27,16 @@
 }
 
 .servicedisplay-display-img {
-    border: 1px solid #818181;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid #818181; */
     border-radius: 10px;
+    align-items: center;
 }
 
 .servicedisplay-display-img img {
     width: 500px;
+    height: auto;
     /* height: 700px; */
     object-fit: contain;
 }

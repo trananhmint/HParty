@@ -19,8 +19,8 @@
     margin-bottom: 10px;
 
   }
-  .customer-profile {
-    margin-top: 150px;
+  .admin-profile {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 30px;

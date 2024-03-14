@@ -59,7 +59,7 @@ export default function ModalCreateService() {
 
 
     const [createService, setCreateService] = useState({
-        ServiceTitle: "",
+        ServiceTitle: "String",
         ServiceName: "",
         Price: 0,
         Description: "",
@@ -84,13 +84,12 @@ export default function ModalCreateService() {
 
     };
 
-    // console.log("Service Title: ", createService.ServiceTitle);
-    // console.log("Service Name: ", createService.ServiceName);
-    // console.log("Price: ", createService.Price);
-    // console.log("Description", createService.Description);
-    // console.log("User Id: ", createService.UserId);
-    // console.log("Category Id: ", createService.CategoryId);
-    // console.log("Images: ", createService.Images);
+    console.log("Service Title: ", createService.ServiceTitle);
+    console.log("Service Name: ", createService.ServiceName);
+    console.log("Price: ", createService.Price);
+    console.log("Description", createService.Description);
+    console.log("User Id: ", user.userId);
+    console.log("Category Id: ", createService.CategoryId);
     console.log("Image1: ", images)
     const name = "Balloon"
 
@@ -207,7 +206,7 @@ export default function ModalCreateService() {
                                 </FormControl>
                                 <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
                                 {/* <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} /> */}
-                                <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' defaultValue={"String"} onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' onChange={handleInput} defaultValue={user.userId} />
                                 <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} onChange={handleChangeImage} />
                                 {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>

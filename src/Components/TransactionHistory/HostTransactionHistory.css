@@ -1,0 +1,65 @@
+.table-header{
+    background: #DEB887;
+}
+table.MuiTable-root.css-quj9j6-MuiTable-root {
+    padding: 30px 50px;
+    box-shadow: 0 0 10px 5px #e5e5e5;
+} 
+.transaction-history-table {
+    margin-top: 0px;
+}
+.transaction-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 900px;
+}
+.transaction-search input {
+    width: 1000px;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.transaction-search svg {
+    background: #f5a02c;
+    padding: 10px;
+    font-size: 40px;
+    border-radius: 80px;
+    color: white;
+    margin-right: -45px;
+
+}
+
+.transaction-filter span {
+    font-size: 24px;
+    font-weight: 600;
+
+}
+.transaction-filter button{
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 20px;
+    background:  #DEB887 ;
+    color: white;
+    border-radius: 30px;
+    border-color: white;
+    width:  160px;
+    height: 50px;
+    outline: none;
+}
+.transaction-filter select{
+    font-size: 20px;
+    background:  #DEB887 ;
+    color: white;
+    border-radius: 30px;
+    border-color: white;
+    width:  160px;
+    height: 50px;
+    justify-content: center;
+    text-align: center;
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './OTPCode.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const OTPCode = () => {
     const navigate = useNavigate();
@@ -24,9 +25,29 @@ const OTPCode = () => {
                 }
             )
             console.log(response.data);
+            toast.success('Please Log In', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             navigate("/signup")
         }
         catch (error) {
+            toast.error('Your OTP Code is wrong. Please try again', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
             console.log(error);
         }
     }

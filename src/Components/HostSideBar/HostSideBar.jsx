@@ -132,10 +132,10 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
                     <Link to='/customerProfile' style={{ textDecoration: 'none', color: 'white' }}>
                         <div className="drawer-avatar">
                         <Avatar {...(name ? stringAvatar(name) : {})} />
-                            <p>{name}</p>
+                            <span>{name}</span>
                         </div>
                     </Link>
-                    <IconButton onClick={handleDrawerClose} style={{ marginTop: "8px", fontSize: "20px" }}>
+                    <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon style={{ color: '#ffffff' }} /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>

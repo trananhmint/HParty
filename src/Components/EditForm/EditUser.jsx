@@ -90,7 +90,7 @@ export default function ModalUpdateUser() {
                             </FormControl>
                             {/* </div> */}
                         </div>
-                        <div style={{ padding: '0 50px' }}>
+                        <div style={{ padding: '0 42px' }}>
                             <TextField
                                 fullWidth
                                 id="outlined-multiline-static"

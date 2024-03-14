@@ -43,6 +43,8 @@ import { HostServices } from './Pages/HostServices';
 import { HostRooms } from './Pages/HostRooms';
 import OTPCode from './Components/ForgetPassword/OTPCode';
 import OTP from './Pages/OTP';
+import HostTransactionHistoryPage from './Pages/HostTransactionHistory';
+import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -82,6 +84,8 @@ function App() {
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
+            <Route path="/my-transaction-history" element={<CustTransactionHistoryPage/>} />
+            
 
           </Routes>
           <Routes>
@@ -91,6 +95,7 @@ function App() {
             <Route path='/host-profile' element={<HostProfile />} />
             <Route path='/host-services' element={<HostServices />} />
             <Route path='/host-rooms' element={<HostRooms />} />
+            <Route path="/host-transaction-history" element={<HostTransactionHistoryPage/>} />
           </Routes>
           <Routes>
             <Route element={<PrivateRoute />}>
@@ -98,7 +103,7 @@ function App() {
             </Route>
             <Route path="/all-users" element={<AllUsers />} />
             <Route path="/all-services" element={<AllServices />} />
-            <Route path="/all-contracts" element={<AllContracts />} />
+            {/* <Route path="/all-contracts" element={<AllContracts />} /> */}
             <Route path="/all-rooms" element={<AllRooms />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />

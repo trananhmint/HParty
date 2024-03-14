@@ -17,6 +17,8 @@ import DeleteService from '../DeleteDialog/DeleteService';
 import { disableService } from '../../Context/disableService';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
 
 export const HostServiceTable = () => {
@@ -26,6 +28,7 @@ export const HostServiceTable = () => {
     const [loading, setLoading] = useState(true);
     const [base64Image, setBase64Image] = useState('');
     const [host, setHost] = useState("");
+
 
 
 
@@ -49,8 +52,13 @@ export const HostServiceTable = () => {
     const fetchData = async (id) => {
         try {
             setLoading(true); // Set loading to true before fetching data
-            const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Service/party_host/service/${id}`);
+            const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Service/party_host/service/${id}`,
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                }
+            );
             setItems(data.data.data);
+            console.log(data.data.data)
             setLoading(false);
         } catch (err) {
             console.log(err);
@@ -63,11 +71,15 @@ export const HostServiceTable = () => {
     }, []);
 
     useEffect(() => {
-        if (host) { // Check if user exists before calling fetchData
+        if (host) { 
             fetchData(host.userId);
         }
     }, [host]);
 
+
+    const itemServices = items.filter((item) => item.status === 1)
+
+    console.log(itemServices);
 
     if (loading) {
         return (
@@ -102,12 +114,11 @@ export const HostServiceTable = () => {
 
 
     {
-        if (items !== null) {
+        if (itemServices !== null && itemServices.length > 0) {
             return (
                 <div>
                     <ModalCreateService />
                     <TableContainer component={Paper}>
-
                         <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
 
                             <TableHead className='table-header'>
@@ -118,7 +129,7 @@ export const HostServiceTable = () => {
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Host</TableCell>
-                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">CategoryID</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Category</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
                                 </TableRow>
@@ -135,7 +146,7 @@ export const HostServiceTable = () => {
                                             </TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
-                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Base64 Encoded" /></TableCell>
+                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" /></TableCell>
                                             {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images}</TableCell> */}
                                             <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
@@ -157,9 +168,6 @@ export const HostServiceTable = () => {
                                             <TableCell align="right">
                                                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                                                     <ModalUnstyled service={item} />
-                                                    {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
-                                                Delete
-                                            </Button> */}
                                                     <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
                                                 </Stack>
                                             </TableCell>
@@ -174,7 +182,7 @@ export const HostServiceTable = () => {
                                             </TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
-                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${base64Image}`} alt="Base64 Encoded" /></TableCell>
+                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${base64Image}`} alt="Images" /></TableCell>
 
                                             {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images[0].imageBase64}</TableCell> */}
                                             <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
@@ -215,16 +223,18 @@ export const HostServiceTable = () => {
             );
         } else {
             return (
-                toast.info("There is no any room", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                })
+                <div>
+                    <ModalCreateService />
+                    <div className="alert-successful-error">
+                        <Stack sx={{ width: '100%' }} spacing={2}>
+                            <Alert severity="info" style={{ fontSize: '22px', justifyContent: 'center' }}>
+                                <AlertTitle style={{ fontSize: '30px', fontWeight: '600' }}>There is no services</AlertTitle>
+                                Please check your services before continuing to add new data.
+                            </Alert>
+                        </Stack>
+                    </div>
+                </div>
+
             )
         }
     }

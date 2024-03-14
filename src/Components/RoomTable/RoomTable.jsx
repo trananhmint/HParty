@@ -7,7 +7,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import EditIcon from '@mui/icons-material/Edit';
 import Stack from '@mui/material/Stack';
 import './RoomTable.css'
 import { fetchRoom } from '../../Context/fetchRoom';
@@ -15,7 +14,6 @@ import { disableRoom } from '../../Context/disableRoom';
 import ModalUpdateRoom from '../EditForm/EditRoom';
 import DeleteRoom from '../DeleteDialog/DeleteRoom';
 import { toast } from 'react-toastify';
-
 
 
 export default function RoomTable() {
@@ -30,7 +28,7 @@ export default function RoomTable() {
       console.log(err);
     }
 
-  }
+  };
 
   const handleDisableClick = async (id) => {
     try {
@@ -70,26 +68,28 @@ export default function RoomTable() {
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Capacity</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Address</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
-            {/* <TableCell sx={{fontSize:'18px', fontWeight:'550',color:'white'}} align="center">UserID</TableCell> */}
+            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">SalePrice</TableCell>
+            {/* <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserId</TableCell> */}
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <TableRow
               key={item.roomId}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {item.roomId}
+                {index + 1}
               </TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.roomName}</TableCell>
               <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align='center'>{item.capacity}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.address}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align='center'>{item.price}</TableCell>
-              {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
+              <TableCell sx={{ fontSize: '16px' }} align='center'>{item.salePrice}</TableCell>
+              {/* <TableCell sx={{ fontSize: '16px' }} align='center'>{item.userId}</TableCell> */}
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button
                   variant="contained"

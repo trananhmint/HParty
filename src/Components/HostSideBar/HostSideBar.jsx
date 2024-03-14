@@ -17,6 +17,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CelebrationIcon from '@mui/icons-material/Celebration';
+import HistoryIcon from '@mui/icons-material/History';
 import TaskIcon from '@mui/icons-material/Task';
 import '../Adminsidebar/Adminsidebar.css';
 import './HostSideBar.css'
@@ -74,6 +75,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
         'Host Services': <AccountBoxIcon style={{ color: 'white' }} />,
         'Host Rooms': <AccountBoxIcon style={{ color: 'white' }} />,
         'All Promotion': <CelebrationIcon style={{ color: 'white' }} />,
+        'Host Transaction History': <HistoryIcon  style={{ color: 'white' }} />,
     };
 
     return (
@@ -110,7 +112,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
             </DrawerHeader>
             <Divider />
             <List>
-                {['My Profile', 'Host Services', 'Host Rooms', 'Change Password', 'Host Address', 'All Promotion'].map((text, index) => (
+                {['My Profile', 'Host Services', 'Host Rooms', 'Change Password', 'Host Address', 'All Promotion', 'Host Transaction History'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={Link} to={text === 'My Profile' ? '/host-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
                             <ListItemIcon>

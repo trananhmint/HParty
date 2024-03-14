@@ -34,7 +34,7 @@ export default function DeleteRoom({handleDisableClick}) {
       variant='outlined' 
       startIcon={<DeleteIcon />} 
       onClick={handleOpen} 
-      style={{ borderColor: '#f5a02c', color: '#f5a02c',borderRadius: '8px' }} >
+      style={{ borderColor: '#f5a02c', color: '#f5a02c', borderRadius: '8px' }} >
       Delete
       </Button>
       <Modal

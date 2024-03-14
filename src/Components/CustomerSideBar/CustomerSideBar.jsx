@@ -17,6 +17,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CelebrationIcon from '@mui/icons-material/Celebration';
+import HistoryIcon from '@mui/icons-material/History';
 import TaskIcon from '@mui/icons-material/Task';
 import '../Adminsidebar/Adminsidebar.css';
 import './CustomerSideBar.css'
@@ -75,6 +76,7 @@ export const CustomerSideBar = ({ open, handleDrawerClose }) => {
         'Change Password': <AssignmentIndIcon style={{ color: 'white' }} />,
         'My Order': <AccountBoxIcon style={{ color: 'white' }} />,
         'All Promotion': <CelebrationIcon style={{ color: 'white' }} />,
+        'My Transaction History': <HistoryIcon  style={{ color: 'white' }} />,
     };
 
     return (
@@ -111,7 +113,7 @@ export const CustomerSideBar = ({ open, handleDrawerClose }) => {
             </DrawerHeader>
             <Divider />
             <List>
-                {['My Profile', 'My Order', 'Change Password', 'My Address', 'All Promotion'].map((text, index) => (
+                {['My Profile', 'My Order', 'Change Password', 'My Address', 'All Promotion', 'My Transaction History'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={Link} to={text === 'My Profile' ? '/customer-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
                             <ListItemIcon>

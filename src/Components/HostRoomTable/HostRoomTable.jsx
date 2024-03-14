@@ -7,8 +7,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import '../RoomTable/RoomTable.css'
 import { fetchRoom } from '../../Context/fetchRoom';
 import { disableRoom } from '../../Context/disableRoom';
@@ -174,13 +172,6 @@ export const HostRoomTable = () => {
                       <TableCell align="right">
                         <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                           <ModalUpdateRoom room={item} />
-                          {/* <Button variant="outlined"
-                          endIcon={<DeleteIcon />}
-                          style={{ borderColor: '#f5a02c', color: '#f5a02c' }}
-                          onClick={() => handleDisableClick(item.roomId)}
-                        >
-                          Delete
-                        </Button> */}
                           <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)} />
                         </Stack>
                       </TableCell>
@@ -216,13 +207,6 @@ export const HostRoomTable = () => {
                       <TableCell align="right">
                         <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                           <ModalUpdateRoom room={item} />
-                          {/* <Button variant="outlined"
-                          endIcon={<DeleteIcon />}
-                          style={{ borderColor: '#f5a02c', color: '#f5a02c' }}
-                          onClick={() => handleDisableClick(item.roomId)}
-                        >
-                          Delete
-                        </Button> */}
                           <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)} />
                         </Stack>
                       </TableCell>
@@ -253,7 +237,6 @@ export const HostRoomTable = () => {
       )
     }
   }
-
 }
 
 export default HostRoomTable

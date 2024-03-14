@@ -119,7 +119,6 @@ export const HostServiceTable = () => {
                 <div>
                     <ModalCreateService />
                     <TableContainer component={Paper}>
-
                         <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
 
                             <TableHead className='table-header'>
@@ -169,9 +168,6 @@ export const HostServiceTable = () => {
                                             <TableCell align="right">
                                                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                                                     <ModalUnstyled service={item} />
-                                                    {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
-                                                Delete
-                                            </Button> */}
                                                     <DeleteService handleDisableClick={() => handleDisableClick(item.serviceId)} />
                                                 </Stack>
                                             </TableCell>

@@ -30,7 +30,7 @@ export default function ModalUpdateRoom({ room }) {
 
     const fetchPartyHost = async () => {
         try {
-            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User", {
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User", {
                 withCredentials: true
             });
             setHost(data.data.data);
@@ -125,7 +125,7 @@ export default function ModalUpdateRoom({ room }) {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put(`https://bookingbirthdayparties.azurewebsites.net/api/Room/room/${updateRoom.RoomId}`, formData,
+            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Room/room/${updateRoom.RoomId}`, formData,
 
                 {
 

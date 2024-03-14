@@ -10,6 +10,7 @@ import Rating from '@mui/material/Rating';
 const ServiceDisplay = (props) => {
   const [base64, setBase64] = useState('')
   const { service } = props;
+  console.log(service);
   const { AddToCart, AddRoomsToCart } = useContext(ServiceContext);
   const [value, setValue] = React.useState(2);
 
@@ -18,7 +19,6 @@ const ServiceDisplay = (props) => {
 
 
   const handleClick = (service) => {
-
     if (service.serviceName) {
       AddToCart(service.serviceId)
     } else {
@@ -50,13 +50,13 @@ const ServiceDisplay = (props) => {
         <div className='servicedisplay'>
           <div className="servicedisplay-left">
             <div className="servicedisplay-img-container">
-              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Base64 Encoded" />
-              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Base64 Encoded" />
-              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Base64 Encoded" />
-              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Base64 Encoded" />
+              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Images" />
+              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Images" />
+              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Images" />
+              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Images" />
             </div>
             <div className="servicedisplay-display-img">
-              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Base64 Encoded" />
+              <img src={`data:image/jpeg;base64,${images[0].imageBase64}`} alt="Images" />
             </div>
           </div>
           <div className="servicedisplay-right">
@@ -96,13 +96,13 @@ const ServiceDisplay = (props) => {
         <div className='servicedisplay'>
           <div className="servicedisplay-left">
             <div className="servicedisplay-img-container">
-              <img src={`data:image/jpeg;base64,${base64}`} alt="Base64 Encoded" />
-              <img src={`data:image/jpeg;base64,${base64}`} alt="Base64 Encoded" />
-              <img src={`data:image/jpeg;base64,${base64}`} alt="Base64 Encoded" />
-              <img src={`data:image/jpeg;base64,${base64}`} alt="Base64 Encoded" />
+              <img src={`data:image/jpeg;base64,${base64}`} alt="Images" />
+              <img src={`data:image/jpeg;base64,${base64}`} alt="Images" />
+              <img src={`data:image/jpeg;base64,${base64}`} alt="Images" />
+              <img src={`data:image/jpeg;base64,${base64}`} alt="Images" />
             </div>
             <div className="servicedisplay-display-img">
-              <img src={`data:image/jpeg;base64,${base64}`} alt="Base64 Encoded" />
+              <img src={`data:image/jpeg;base64,${base64}`} alt="Images" />
             </div>
           </div>
           <div className="servicedisplay-right">

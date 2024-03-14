@@ -7,9 +7,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import Stack from '@mui/material/Stack';
 import '../RoomTable/RoomTable.css'
 import { fetchRoom } from '../../Context/fetchRoom';
 import { disableRoom } from '../../Context/disableRoom';
@@ -18,6 +15,9 @@ import ModalCreateRoom from '../CreateForm/CreateRoom';
 import DeleteRoom from '../DeleteDialog/DeleteRoom';
 import { toast } from 'react-toastify';
 import { CircularProgress } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 import axios from 'axios';
 
 
@@ -29,7 +29,7 @@ export const HostRoomTable = () => {
 
   const fetchPartyHost = async () => {
     try {
-      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/User',
+      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User',
         {
           withCredentials: true,
         }
@@ -49,9 +49,18 @@ export const HostRoomTable = () => {
   const fetchData = async (id) => {
     try {
       setLoading(true); // Set loading to true before fetching data
-      const data = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Room/party_host/rooms/${id}`);
-      setItems(data.data.data);
-      setLoading(false);
+      const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Room/party_host/rooms/${id}`,
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+      if (data.data.data !== null && data.data.data !== undefined) {
+        setItems(data.data.data);
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -69,7 +78,14 @@ export const HostRoomTable = () => {
   }, [host]);
 
   console.log(items)
-
+  const itemRoom = items.filter((item) => {
+    if (item.status === 1) {
+      return item.status === 1
+    } else {
+      return [];
+    }
+  });
+  console.log(itemRoom);
   if (loading) {
     return (
       <div className="loading-spinner-container">
@@ -100,7 +116,10 @@ export const HostRoomTable = () => {
     }
   };
 
-    if (items !== null) {
+
+
+  {
+    if (itemRoom !== null && itemRoom.length > 0) {
       return (
         <div>
           <ModalCreateRoom />
@@ -108,7 +127,7 @@ export const HostRoomTable = () => {
             <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
               <TableHead className='table-header'>
                 <TableRow >
-                  <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >ID</TableCell>
+                  <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >No.</TableCell>
                   <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Room Name</TableCell>
                   <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell>
                   <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
@@ -131,7 +150,7 @@ export const HostRoomTable = () => {
                         {index + 1}
                       </TableCell>
                       <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.roomName}</TableCell>
-                      <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Base64 Encoded" /></TableCell>
+                      <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" /></TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.capacity}</TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
@@ -153,13 +172,41 @@ export const HostRoomTable = () => {
                       <TableCell align="right">
                         <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                           <ModalUpdateRoom room={item} />
-                          {/* <Button variant="outlined"
-                          endIcon={<DeleteIcon />}
-                          style={{ borderColor: '#f5a02c', color: '#f5a02c' }}
-                          onClick={() => handleDisableClick(item.roomId)}
-                        >
-                          Delete
-                        </Button> */}
+                          <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)} />
+                        </Stack>
+                      </TableCell>
+                    </TableRow>
+                  } else if (item.status === 1) {
+                    return <TableRow
+                      key={item.roomId}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {index + 1}
+                      </TableCell>
+                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.roomName}</TableCell>
+                      <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${base64Image}`} alt="Images" /></TableCell>
+                      <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
+                      <TableCell sx={{ fontSize: '16px' }}>{item.capacity}</TableCell>
+                      <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
+                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
+                      {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
+                      <TableCell sx={{ fontSize: '16px' }} align="center">
+                        <Button
+                          variant="contained"
+                          style={{
+                            backgroundColor: item.status === 1 ? '#32CD32' : '#FF4500',
+                            borderRadius: '15px',
+                            fontSize: '15px',
+                            boxShadow: '1px 1px ',
+                          }}>
+                          {item.status === 1 ? 'ACTIVE' : 'NON_ACTIVE'}
+                        </Button>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
+                          <ModalUpdateRoom room={item} />
                           <DeleteRoom handleDisableClick={() => handleDisableClick(item.roomId)} />
                         </Stack>
                       </TableCell>
@@ -175,18 +222,21 @@ export const HostRoomTable = () => {
       );
     } else {
       return (
-        toast.info("There is no any room", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        })
+        <div>
+          <ModalCreateRoom />
+          <div className="alert-successful-error">
+
+            <Stack sx={{ width: '100%' }} spacing={0}>
+              <Alert severity="info" style={{ fontSize: '22px', justifyContent: 'center' }}>
+                <AlertTitle style={{ fontSize: '30px', fontWeight: '600' }}>There is no rooms</AlertTitle>
+                Please check your rooms before continuing to add new data.
+              </Alert>
+            </Stack>
+          </div>
+        </div>
       )
     }
   }
+}
 
 export default HostRoomTable

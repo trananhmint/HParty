@@ -36,7 +36,7 @@ const ServiceContextProvider = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
+            let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
             setRooms(response.data.data);
         }
         fetchData();
@@ -50,7 +50,7 @@ const ServiceContextProvider = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
+            let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
             setServices(response.data.data);
         }
         fetchData();

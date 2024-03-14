@@ -13,7 +13,7 @@ export const RoomCategory = (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
+      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
       setItems(response.data.data);
       console.log(response.data.data);
       setLoading(false);

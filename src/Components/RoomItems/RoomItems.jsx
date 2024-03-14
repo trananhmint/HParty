@@ -12,7 +12,7 @@ export const RoomItems = (props) => {
                 <Link to={`/roomService/${props.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                     <div className='item-card'>
                         <div className="item-card-img">
-                            <img src={`data:image/jpeg;base64,${props.images[0].imageBase64}`} alt="Base64 Encoded" />
+                            <img src={`data:image/jpeg;base64,${props.images[0].imageBase64}`} alt="Images" />
                         </div>
                         <hr id='item-card-hr' />
                         <div className="item-card-descriptions">
@@ -46,7 +46,7 @@ export const RoomItems = (props) => {
                 <Link to={`/roomService/${props.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                     <div className='item-card'>
                         <div className="item-card-img">
-                            <img src={`data:image/jpeg;base64,${""}`} alt="Base64 Encoded" />
+                            <img src={`data:image/jpeg;base64,${""}`} alt="Images" />
                         </div>
                         <hr id='item-card-hr' />
                         <div className="item-card-descriptions">

@@ -102,7 +102,7 @@ export const CartItems = () => {
           progress: undefined,
           theme: "light",
         });
-      } if (getDecoration !== true && getFood !== true && getWaiter !== true) {
+      } else if (getDecoration !== true && getFood !== true && getWaiter !== true) {
         toast.warning('You do not have any service. Please choose services', {
           position: "top-right",
           autoClose: 3000,
@@ -113,7 +113,7 @@ export const CartItems = () => {
           progress: undefined,
           theme: "light",
         });
-      } if (getDecoration !== true) {
+      } else if (getDecoration !== true) {
         toast.warning('Must choose Decoration to book', {
           position: "top-right",
           autoClose: 3000,
@@ -124,7 +124,7 @@ export const CartItems = () => {
           progress: undefined,
           theme: "light",
         });
-      } if (getFood !== true) {
+      } else if (getFood !== true) {
         toast.warning('Must choose Food to book', {
           position: "top-right",
           autoClose: 3000,
@@ -135,7 +135,7 @@ export const CartItems = () => {
           progress: undefined,
           theme: "light",
         });
-      } if (getWaiter !== true) {
+      } else if (getWaiter !== true) {
         toast.warning('Must choose Waiter to book', {
           position: "top-right",
           autoClose: 3000,
@@ -147,8 +147,6 @@ export const CartItems = () => {
           theme: "light",
         });
       }
-
-
       else {
         dispatch(addToCart(newItems))
         navigate("/bookingService");

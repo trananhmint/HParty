@@ -8,32 +8,41 @@ import Feedback from '../Components/Feedback/Feedback';
 import axios from 'axios';
 import Descriptionbox from '../Components/DescriptionBox/Descriptionbox';
 import HostServiceInfo from '../Components/HostServiceInfo/HostServiceInfo';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const RoomService = () => {
-    const [items, setItems] = useState([]);
-    const { roomId } = useParams();
-    console.log(roomId);
-    useEffect(() => {
-      async function fetchData() {
-        let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
-        setItems(response.data.data.find((e) => { return e.roomId === Number(roomId) }));
-      }
-      fetchData();
-    }, []);
+  const [items, setItems] = useState([]);
+  const { roomId } = useParams();
+  const [loading, setLoading] = useState(true);
+  console.log(roomId);
+  useEffect(() => {
+    async function fetchData() {
+      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
+      setItems(response.data.data.find((e) => { return e.roomId === Number(roomId) }));
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
 
-    console.log(items);
-  
-      return (
-        <div className='service'>
-          <Navbar />
-          <Breadcrumb service={items} />
-          <ServiceDisplay service={items} />
-          <HostServiceInfo service={items} />
-          <Descriptionbox service={items} />
-          <Feedback service={items}/>
-          <Footer />
-        </div>
-      )
+  if (loading) {
+    return (
+      <div className="loading-spinner-container">
+        <CircularProgress color="primary" size={60} thickness={5} />
+      </div>
+    );
+  }
+
+  return (
+    <div className='service'>
+      <Navbar />
+      <Breadcrumb service={items} />
+      <ServiceDisplay service={items} />
+      <HostServiceInfo service={items} />
+      <Descriptionbox service={items} />
+      <Feedback service={items}/>
+      <Footer />
+    </div>
+  )
 }
 
 export default RoomService;

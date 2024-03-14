@@ -26,17 +26,17 @@ const Cancel = () => {
     fetchBooked();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const bookingIds = booked.map(booking => booking.bookingId);
+  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+  //     setBookingDetail(bookingDetails);
+  //   };
 
-    if (booked.length > 0) {
-      fetchData();
-    }
-  }, [booked]);
+  //   if (booked.length > 0) {
+  //     fetchData();
+  //   }
+  // }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
@@ -48,8 +48,8 @@ const Cancel = () => {
     }
   };
 
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
+  // console.log("Booked:", booked)
+  // console.log("Booking Detail:", bookingDetail);
 
 
   function getCategory(categoryId) {
@@ -87,7 +87,7 @@ const Cancel = () => {
           return <div>
             <div className="booked">
               <div className="booked-info">
-                <p>ID: {index + 1}</p>
+                <p>No. {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />

@@ -127,7 +127,7 @@ const Finished = () => {
           return <div>
             <div className="booked">
               <div className="booked-info">
-              <p>ID: {index + 1}</p>
+                <p>No. {index + 1}</p>
                 <div className="booked-status">
                   <p>{book.status}</p>
                   <hr />

@@ -27,17 +27,17 @@ const Booked = () => {
     fetchBooked();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const bookingIds = booked.map(booking => booking.bookingId);
+  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+  //     setBookingDetail(bookingDetails);
+  //   };
 
-    if (booked.length > 0) {
-      fetchData();
-    }
-  }, [booked]);
+  //   if (booked.length > 0) {
+  //     fetchData();
+  //   }
+  // }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
@@ -73,23 +73,23 @@ const Booked = () => {
     fetchServices();
   }, []);
 
-  console.log("Service: ", services)
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
-  let bookList = [];
-  bookingDetail.map((books) => {
-    if (books.length > 1) {
+  // console.log("Service: ", services)
+  // console.log("Booked:", booked)
+  // console.log("Booking Detail:", bookingDetail);
+  // let bookList = [];
+  // bookingDetail.map((books) => {
+  //   if (books.length > 1) {
 
-      bookList.push(books)
-    } else {
-      for (let book of books) {
-        bookList.push(book);
-      }
-    }
-  });
+  //     bookList.push(books)
+  //   } else {
+  //     for (let book of books) {
+  //       bookList.push(book);
+  //     }
+  //   }
+  // });
 
-  console.log("Book List: ")
-  console.log(bookList);
+  // console.log("Book List: ")
+  // console.log(bookList);
 
   function getCategory(categoryId) {
     let category;

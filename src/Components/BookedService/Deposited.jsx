@@ -3,7 +3,7 @@ import './Booked.css'
 import axios from 'axios';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
-const All = () => {
+const Deposited = () => {
   const [booked, setBooked] = useState([]);
   const [bookingDetail, setBookingDetail] = useState([]);
   const [rooms, setRooms] = useState([]);
@@ -65,9 +65,36 @@ const All = () => {
     }
   }
 
+
+  const fetchCustomerFinish = async (data) => {
+    try {
+      const response = await axios.post('https://bookingbithdayparty.azurewebsites.net/api/Booking/finishBooking', data,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          withCredentials: true,
+        })
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  }
+
+
+
+
   const handleClick = (bookingId) => {
     window.confirm('Are you sure to cancel');
     fetchCustomerCancel(bookingId);
+  }
+
+
+  const handleClickFinish = (bookingId) => {
+    window.confirm('Are you sure to finish');
+    fetchCustomerFinish(bookingId);
   }
 
   console.log("Booked:", booked)
@@ -109,64 +136,70 @@ const All = () => {
   return (
     <div className='all'>
       {booked.map((book, index) => {
-        return <div>
-          <div className="booked">
-            <div className="booked-info">
-              <p>ID: {book.bookingId}</p>
-              <div className="booked-status">
-                <p>{book.status}</p>
-                <hr />
-                <p>{getDateTime(book.bookingDate)}</p>
-                <hr />
-                <button id='cancel' onClick={() => handleClick(book.bookingId)} ><CancelOutlinedIcon /></button>
-              </div>
-            </div>
-            <hr />
-            <div className="booked-items-container">
-              <div className="booked-item">
-                <div className="booked-item-details">
-                  <div className="booked-item-img">
-                    <img src="" alt="" />
-                  </div>
-                  <div className="booked-item-info">
-                    <p className='booked-name'>{book.room.roomName}</p>
-                    <p>Type: Room</p>
-                    <p>Quantity: 1</p>
+        if (book.status === "DEPOSITED") {
+          return <div>
+            <div className="booked">
+              <div className="booked-info">
+                <p>NO.{index + 1}</p>
+                <div className="booked-status">
+                  <p>{book.status}</p>
+                  <hr />
+                  <p>{getDateTime(book.bookingDate)}</p>
+                  <hr />
+                  <div className='booking-button'>
+                    <button id='finish' onClick={() => handleClickFinish(book.bookingId)}>FINISH</button>
+                    <button id='cancel' onClick={() => handleClick(book.bookingId)} ><CancelOutlinedIcon /></button>
                   </div>
                 </div>
-                <div className="booked-item-price">
-                  <p>{book.room.price} đ</p>
-                </div>
               </div>
-            </div>
-            <hr />
-            {book.services.map((service) => {
-              return <div>
-                <div className="booked-items-container">
-                  <div className="booked-item">
-                    <div className="booked-item-details">
-                      <div className="booked-item-img">
-                        <img src="" alt="" />
-                      </div>
-                      <div className="booked-item-info">
-                        <p className='booked-name'>{service.serviceName}</p>
-                        <p>Type: {getCategory(Number(service.categoryId))}</p>
-                        <p>Quantity: 1</p>
-                      </div>
+              <hr />
+              <div className="booked-items-container">
+                <div className="booked-item">
+                  <div className="booked-item-details">
+                    <div className="booked-item-img">
+                      <img src="" alt="" />
                     </div>
-                    <div className="booked-item-price">
-                      <p>{service.price} đ</p>
+                    <div className="booked-item-info">
+                      <p className='booked-name'>{book.room.roomName}</p>
+                      <p>Type: Room</p>
+                      <p>Quantity: 1</p>
                     </div>
                   </div>
+                  <div className="booked-item-price">
+                    <p>{book.room.price} đ</p>
+                  </div>
                 </div>
-                <hr />
               </div>
-            })}
+              <hr />
+              {book.services.map((service) => {
+                return <div>
+                  <div className="booked-items-container">
+                    <div className="booked-item">
+                      <div className="booked-item-details">
+                        <div className="booked-item-img">
+                          <img src="" alt="" />
+                        </div>
+                        <div className="booked-item-info">
+                          <p className='booked-name'>{service.serviceName}</p>
+                          <p>Type: {getCategory(Number(service.categoryId))}</p>
+                          <p>Quantity: 1</p>
+                        </div>
+                      </div>
+                      <div className="booked-item-price">
+                        <p>{service.price} đ</p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              })}
+            </div>
           </div>
-        </div>
+        }
+
       })}
     </div>
   )
 }
 
-export default All
+export default Deposited

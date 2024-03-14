@@ -32,7 +32,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 const name = localStorage.getItem('email');
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export const HostRooms = () => {
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
 
     const handleDrawerOpen = () => {

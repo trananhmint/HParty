@@ -121,4 +121,4 @@ function MoneyFormattedInputs() {
 //     );
 // }
 
-export default { MoneyFormattedInputs}
+export default { MoneyFormattedInputs};

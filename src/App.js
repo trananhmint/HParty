@@ -53,6 +53,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
+
           <Routes>
             <Route path='/signup' element={<LoginSignup />} />
             <Route element={<PrivateRoute />}>
@@ -75,26 +76,30 @@ function App() {
             <Route path="/contractByPH" element={<ContractPageByPH />} />
             <Route path='/contract' element={<ContractPage />} />
             <Route path='/alerts' element={<Alerts />} />
-
-            <Route path='/otp' element={<OTP/>} />
+            <Route path='/otp' element={<OTP />} />
             <Route path='/customer' element={<CustomerProfile />} />
             <Route path='/customer-profile' element={<CusProfile />} />
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
+
           </Routes>
           <Routes>
-            <Route path='/host' element={<HostDisplay />} />
+            <Route element={<PrivateRoute />}>
+              <Route path='/host' element={<HostDisplay />} />
+            </Route>
             <Route path='/host-profile' element={<HostProfile />} />
             <Route path='/host-services' element={<HostServices />} />
             <Route path='/host-rooms' element={<HostRooms />} />
           </Routes>
           <Routes>
+            <Route element={<PrivateRoute />}>
+              <Route path="/admin" element={<AdminPage />} />
+            </Route>
             <Route path="/all-users" element={<AllUsers />} />
             <Route path="/all-services" element={<AllServices />} />
             <Route path="/all-contracts" element={<AllContracts />} />
             <Route path="/all-rooms" element={<AllRooms />} />
-            <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
             <Route path='/editRoom' element={<RoomModalUnstyled />} />
@@ -115,7 +120,7 @@ function App() {
       />
       {/* Same as */}
       <ToastContainer />
-    </div>
+    </div >
   );
 }
 

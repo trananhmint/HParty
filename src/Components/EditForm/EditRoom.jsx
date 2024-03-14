@@ -14,18 +14,78 @@ import { NumericFormat } from 'react-number-format';
 
 import './EditService.css'
 import MoneyFormattedInputs from '../Format/NumericFormat';
+import { Box } from '@mui/material';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function ModalUpdateRoom({room}) {
+export default function ModalUpdateRoom({ room }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [host, setHost] = useState("");
 
-    const [updateRoom, setUpdateRoom] = React.useState ({
+
+
+    const fetchPartyHost = async () => {
+        try {
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User", {
+                withCredentials: true
+            });
+            setHost(data.data.data);
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchPartyHost();
+    }, []);
+
+
+    const [updateRoom, setUpdateRoom] = React.useState({
+        RoomId: room.roomId,
         RoomName: room.roomName,
         Description: room.description,
         Capacity: room.capacity,
         Address: room.address,
+        UserId: host.userId,
+        Price: room.price,
+        Images: room.images,
+        Status: room.status,
+        Area: ""
     })
+
+
+
+
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        if (name === 'Price') {
+            setUpdateRoom((prev) => ({
+                ...prev,
+                [name]: Number(value),
+            }));
+        } else {
+            setUpdateRoom((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
+        }
+
+    };
+    console.log("RoomId: ", updateRoom.RoomId);
+    console.log("RoomName: ", updateRoom.RoomName);
+    console.log("Description: ", updateRoom.Description);
+    console.log("Capacity: ", updateRoom.Capacity);
+    console.log("Address: ", updateRoom.Address);
+    console.log("UserId: ", updateRoom.UserId);
+    console.log("Price: ", updateRoom.Price);
+    console.log("Images: ", updateRoom.Images);
+    console.log("Area: ", updateRoom.Area)
 
     const name = "Balloon"
 
@@ -47,6 +107,57 @@ export default function ModalUpdateRoom({room}) {
         currency: 'VND',
     });
 
+
+    const fetchUpdateRoom = async (updateRoom) => {
+        try {
+            const formData = new FormData();
+            // // Thêm các trường dữ liệu khác nếu cần
+            formData.append('RoomId', updateRoom.RoomId);
+            formData.append('RoomName', updateRoom.RoomName);
+            formData.append('Description', updateRoom.Description);
+            formData.append('Capacity', updateRoom.Capacity);
+            formData.append('Address', updateRoom.Address);
+            formData.append('UserId', host.userId);
+            formData.append('Price', updateRoom.Price);
+            formData.append('Images', updateRoom.Images);
+            formData.append('Status', updateRoom.Status);
+            formData.append('Area', updateRoom.Area);
+            console.log([...formData]);
+            console.log(formData);
+
+            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Room/room/${updateRoom.RoomId}`, formData,
+
+                {
+
+                    headers: { "Content-Type": "multipart/form-data" },
+                    // withCredentials: true,
+                });
+            console.log(response.data)
+            toast.success('Update Successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            window.location.reload();
+
+
+            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu PUT
+        } catch (error) {
+            console.error('Error updating service:', error);
+            throw error; // Ném lỗi để xử lý ở phía gọi hàm
+        }
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        fetchUpdateRoom(updateRoom)
+    }
+
     return (
         <div className='editservice'>
             <TriggerButton type="button" onClick={handleOpen}>
@@ -59,65 +170,79 @@ export default function ModalUpdateRoom({room}) {
                 onClose={handleClose}
                 slots={{ backdrop: StyledBackdrop }}
             >
+
                 <ModalContent sx={{ width: '800px' }}>
-                    <h2 id="unstyled-modal-title" className="modal-title">
-                        Update Room
-                    </h2>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={onSubmit}
+                    >
 
-                    <div>
-                        <div id="unstyled-modal-description" className="modal-description">
+                        <h2 id="unstyled-modal-title" className="modal-title">
+                            Update Room
+                        </h2>
 
-                            <TextField id="outlined-basic" label="ID" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px', marginRight: '50px'}}>
-                                <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-helper-label"
-                                    id="demo-simple-select-helper"
-                                    value={category}
-                                    label="Category"
-                                    onChange={handleChangeCategory}
-                                    style={{ height: '35.88px' }}
-                                >
-                                    <MenuItem value={10}>Room</MenuItem>
-                                    <MenuItem value={20}>Food</MenuItem>``
-                                    <MenuItem value={20}>Decoration</MenuItem>
-                                    <MenuItem value={20}>Waiter</MenuItem>
+                        <div>
+                            <div id="unstyled-modal-description" className="modal-description">
 
-                                </Select>
-                            </FormControl>
-                            <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} />                            
-                            <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
+                                <TextField id="outlined-basic" label="ID" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='RoomId' defaultValue={room.roomId} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='RoomName' defaultValue={room.roomName} onChange={handleInput} />
+                                {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px', marginRight: '50px' }}>
+                                    <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-helper-label"
+                                        id="demo-simple-select-helper"
+                                        value={category}
+                                        label="Category"
+                                        onChange={handleChangeCategory}
+                                        style={{ height: '35.88px' }}
+                                    >
+                                        <MenuItem value={10}>Room</MenuItem>
+                                        <MenuItem value={20}>Food</MenuItem>``
+                                        <MenuItem value={20}>Decoration</MenuItem>
+                                        <MenuItem value={20}>Waiter</MenuItem>
 
-                            <TextField id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                
-                            <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} />
-                            <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
-                                <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-helper-label"
-                                    id="demo-simple-select-helper"
-                                    value={status}
-                                    label="Status"
-                                    onChange={handleChangeStatus}
-                                    style={{ height: '35.88px' }}
-                                >
-                                    <MenuItem value={10}>Active</MenuItem>
-                                    <MenuItem value={20}>Inactive</MenuItem>
-                                </Select>
-                            </FormControl>
+                                    </Select>
+                                </FormControl> */}
+                                <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Price" defaultValue={VND.format(room.price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(room.sale_Price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
+
+                                <TextField id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' defaultValue={room.capacity} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' defaultValue={room.address} onChange={handleInput} />
+
+                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
+                                <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
+                                    <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-helper-label"
+                                        id="demo-simple-select-helper"
+                                        defaultValue={room.status}
+                                        label="Status"
+                                        onChange={handleInput}
+                                        style={{ height: '35.88px' }}
+                                    >
+                                        <MenuItem value={1}>Active</MenuItem>
+                                        <MenuItem value={0}>Inactive</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
+                            <div style={{ padding: '0 50px' }}>
+                                <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4}
+                                    defaultValue={room.description}
+                                    name='Description'
+                                    onChange={handleInput}
+                                // style={{margin: '0 50px'}}
+                                />
+                            </div>
                         </div>
-                        <div style={{ padding: '0 50px' }}>
-                            <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4} defaultValue="Description"
-                            // style={{margin: '0 50px'}}
-                            />
-                        </div>
-                    </div>
-                    <div style={{ margin: '20px auto' }}><Button variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
-
+                        <div style={{ margin: '20px auto' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
+                    </Box>
                 </ModalContent>
             </Modal>
         </div>

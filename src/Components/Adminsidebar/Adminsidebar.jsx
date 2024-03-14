@@ -19,6 +19,7 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import TaskIcon from '@mui/icons-material/Task';
 import SingleBedIcon from '@mui/icons-material/SingleBed';
+import RedeemIcon from '@mui/icons-material/Redeem';
 import './Adminsidebar.css';
 const drawerWidth = 240;
 
@@ -77,6 +78,7 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
     'All Services': <CelebrationIcon style={{color: 'white'}}/>,
     'All Contracts': <TaskIcon style={{color: 'white'}}/>,
     'All Rooms': <SingleBedIcon style={{color: 'white'}}/>,
+    'All Promotions': <RedeemIcon style={{color: 'white'}}/>
   };
 
   return (
@@ -110,7 +112,7 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
         </DrawerHeader>
         <Divider />
         <List>
-        {['My Profile Info', 'All Users', 'All Services', 'All Contracts', 'All Rooms'].map((text, index) => (
+        {['My Profile Info', 'All Users', 'All Services', 'All Contracts', 'All Rooms', 'All Promotions'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton component={Link} to={text === 'My Profile Info' ? '/admin-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
               <ListItemIcon>

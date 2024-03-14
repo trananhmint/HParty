@@ -17,12 +17,37 @@ import axios from 'axios';
 import { create } from '@mui/material/styles/createTransitions';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import { CircularProgress } from '@mui/material';
+
 
 export default function ModalCreateService() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [images, setImages] = useState("");
+    const [user, setUser] = useState("");
+    const [loading, setLoading] = useState(true);
+
+
+    const fetchData = async () => {
+        try {
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+                {
+                    withCredentials: true
+                }
+            );
+            setUser(data.data.data);
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
 
 
     const handleChangeImage = (e) => {
@@ -30,12 +55,15 @@ export default function ModalCreateService() {
         setImages(e.target.files[0])
     }
 
+
+
+
     const [createService, setCreateService] = useState({
         ServiceTitle: "",
         ServiceName: "",
         Price: 0,
         Description: "",
-        UserId: 0,
+        UserId: user.userId,
         CategoryId: 0,
         Images: images
     })
@@ -62,7 +90,7 @@ export default function ModalCreateService() {
     // console.log("Description", createService.Description);
     // console.log("User Id: ", createService.UserId);
     // console.log("Category Id: ", createService.CategoryId);
-    console.log("Images: ", createService.Images);
+    // console.log("Images: ", createService.Images);
     console.log("Image1: ", images)
     const name = "Balloon"
 
@@ -75,7 +103,7 @@ export default function ModalCreateService() {
             formData.append('ServiceName', createService.ServiceName);
             formData.append('Price', createService.Price);
             formData.append('Description', createService.Description);
-            formData.append('UserId', createService.UserId);
+            formData.append('UserId', user.userId);
             formData.append('CategoryId', createService.CategoryId);
             formData.append('Images', images);
             // Xử lý file ảnh nếu có
@@ -119,6 +147,13 @@ export default function ModalCreateService() {
         fetchCreateService(createService);
     }
 
+    if (loading) {
+        return (
+            <div className="loading-spinner-container">
+                <CircularProgress color="primary" size={60} thickness={5} />
+            </div>
+        );
+    }
 
 
     return (
@@ -173,8 +208,8 @@ export default function ModalCreateService() {
                                 <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
                                 {/* <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} /> */}
                                 <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' onChange={handleInput} />
-                                <TextField type='file' id="outlined-basic" label="Images" variant="outlined" style={{ width: '250px', margin: '0 50px' }} onChange={handleChangeImage} />
+                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' onChange={handleInput} defaultValue={user.userId} />
+                                <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} onChange={handleChangeImage} />
                                 {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                     <Select

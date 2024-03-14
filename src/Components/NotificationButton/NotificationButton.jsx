@@ -66,11 +66,11 @@ export default function NotificationButton() {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  const notifications = [
-    { title: 'Thông báo 1', description: 'Nội dung thông báo 1', datetime: new Date(), image: party_logo },
-    { title: 'Thông báo 2', description: 'Nội dung thông báo 2', datetime: new Date(), image: '' },
-    { title: 'Thông báo 3', description: 'Nội dung thông báo 3', datetime: new Date(), image: '' },
-  ];
+  // const notifications = [
+  //   { title: 'Thông báo 1', description: 'Nội dung thông báo 1', datetime: new Date(), image: party_logo },
+  //   { title: 'Thông báo 2', description: 'Nội dung thông báo 2', datetime: new Date(), image: '' },
+  //   { title: 'Thông báo 3', description: 'Nội dung thông báo 3', datetime: new Date(), image: '' },
+  // ];
 
   // Hàm xử lý khi một mục trong danh sách được nhấp vào
   const handleListItemClick = (notification) => {
@@ -100,7 +100,7 @@ export default function NotificationButton() {
                 key={notification.notificationId}
                 onClick={() => handleListItemClick(notification)} // Xử lý sự kiện khi một mục được nhấp vào
               >
-                <img src={party_logo} alt="" className="notification-image" style={{ width: '56px', height: 'auto', marginRight:'5px' }} />
+                {/* <img src={party_logo} alt="" className="notification-image" style={{ width: '56px', height: 'auto', marginRight:'5px' }} /> */}
                 <ListItemText
                   primaryTypographyProps={{ color: 'black', fontSize: '16px', fontWeight: '500' }}
                   primary={notification.title}

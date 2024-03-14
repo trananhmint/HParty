@@ -103,7 +103,7 @@ function App() {
             </Route>
             <Route path="/all-users" element={<AllUsers />} />
             <Route path="/all-services" element={<AllServices />} />
-            <Route path="/all-contracts" element={<AllContracts />} />
+            {/* <Route path="/all-contracts" element={<AllContracts />} /> */}
             <Route path="/all-rooms" element={<AllRooms />} />
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />

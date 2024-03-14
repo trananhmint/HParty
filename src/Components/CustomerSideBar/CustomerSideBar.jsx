@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
@@ -20,7 +20,8 @@ import CelebrationIcon from '@mui/icons-material/Celebration';
 import HistoryIcon from '@mui/icons-material/History';
 import TaskIcon from '@mui/icons-material/Task';
 import '../Adminsidebar/Adminsidebar.css';
-import './CustomerSideBar.css'
+import './CustomerSideBar.css';
+import axios from 'axios';
 const drawerWidth = 240;
 
 
@@ -62,11 +63,38 @@ function stringAvatar(name) {
     };
 }
 
-const text = 'Trung Son'; // Lấy nội dung từ thẻ <p>
-const firstLetter = text.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
+// const text = 'Trung Son'; // Lấy nội dung từ thẻ <p>
+// const firstLetter = text.substring(0).toUpperCase(); // Lấy chữ cái đầu tiên
 
 
 export const CustomerSideBar = ({ open, handleDrawerClose }) => {
+
+    const [user, setUser] = useState();
+    const [name, setName] = useState();
+  
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User', {
+          withCredentials: true,
+        });
+        console.log(response);
+        setUser(response.data.data);
+      } catch (err) {
+        console.error('Error fetching user ID:', err);
+        throw err; // Rethrow the error to handle it further up the call stack
+      }
+    }
+  
+    useEffect(() => {
+      fetchUser();
+    }, []);
+  
+    useEffect(() => {
+      if (user) {
+          const text = user.fullName; 
+          setName(text);
+      }
+  }, [user]);
 
     const theme = useTheme();
 
@@ -102,8 +130,8 @@ export const CustomerSideBar = ({ open, handleDrawerClose }) => {
                 <div style={{ display: 'flex', alignItems: "center", marginRight: "40px", }}>
                     <Link to='/customerProfile' style={{ textDecoration: 'none', color: 'white' }}>
                         <div className="drawer-avatar">
-                            <Avatar {...stringAvatar(firstLetter)} />
-                            <p>{text}</p>
+                        <Avatar {...(name ? stringAvatar(name) : {})} />
+                            <p>{name}</p>
                         </div>
                     </Link>
                     <IconButton onClick={handleDrawerClose} style={{ marginTop: "8px", fontSize: "20px" }}>

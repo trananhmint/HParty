@@ -33,15 +33,15 @@ export const RoomService = () => {
   }
 
   return (
-        <div className='service'>
-          <Navbar />
-          <Breadcrumb service={items} />
-          <ServiceDisplay service={items} />
-          <HostServiceInfo service={items} />
-          <Descriptionbox service={items} />
-          <Feedback service={items}/>
-          <Footer />
-        </div>
+    <div className='service'>
+      <Navbar />
+      <Breadcrumb service={items} />
+      <ServiceDisplay service={items} />
+      <HostServiceInfo service={items} />
+      <Descriptionbox service={items} />
+      <Feedback service={items} />
+      <Footer />
+    </div>
   )
 }
 

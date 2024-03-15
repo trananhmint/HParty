@@ -12,7 +12,7 @@ const HostServiceInfo = (props) => {
     let user = "";
     if(service.user) {
         user = service.user;
-        console.log(user);
+        // console.log(user);
     }
     console.log(service.roomName);
     

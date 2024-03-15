@@ -15,7 +15,7 @@ export const ServiceCategory = (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
+      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
       setItems(response.data.data.filter((e) => { return e.categoryId === Number(props.categoryId) }));
       setLoading(false);
     }

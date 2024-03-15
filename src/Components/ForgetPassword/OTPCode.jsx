@@ -19,7 +19,7 @@ const OTPCode = () => {
     });
     const fetchConfirmEmail = async (data) => {
         try {
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/verify", data,
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/verify", data,
                 {
                     withCredentials: true
                 }

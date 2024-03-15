@@ -100,13 +100,13 @@ const AdminProfileContent = () => {
           boxRadius: '0'
         }}>
         <div className='admin-profile'>    
-            <div className='admin-profile-list admin-profile-login-name'>
+            {/* <div className='admin-profile-list admin-profile-login-name'>
                 <p>Login Name: </p>
                 <TextField id="outlined-basic" label="Login Name" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
-            </div>
+            </div> */}
 
             <div className='admin-profile-list admin-profile-name'>
-                <p>Name: </p>
+                <p>Full Name: </p>
                 <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
@@ -115,12 +115,18 @@ const AdminProfileContent = () => {
                 <TextField type='email' id="outlined-basic" label="Email" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
+            <div className='admin-profile-list admin-profile-address'>
+                <p>Address: </p>
+                <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
+            </div>
+  
+
             <div className='admin-profile-list admin-profile-phone-number'>
                 <p>Phone Number: </p>
                 <TextField id="outlined-basic" label="Phone Number" variant="outlined" style={{ width: "500px", fontSize:'20px' }} />
             </div>
 
-            <div className='admin-profile-list admin-profile-gender'>
+            {/* <div className='admin-profile-list admin-profile-gender'>
                 <p>Gender: </p> 
                 <FormControl>
                     <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
@@ -141,7 +147,7 @@ const AdminProfileContent = () => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker style={{ width: "500px", fontSize:'20px' }} />
                 </LocalizationProvider>
-            </div>
+            </div> */}
             <div className="admin-profile-button">
                 <button>Submit</button>
             </div>

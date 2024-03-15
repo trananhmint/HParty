@@ -49,7 +49,8 @@ export const HostRoomTable = () => {
   const fetchData = async (id) => {
     try {
       setLoading(true); // Set loading to true before fetching data
-      const data = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Room/party_host/rooms/${id}`,
+
+      const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Room/party_host/rooms/${id}`,
         {
           headers: { 'Content-Type': 'application/json' }
         }

@@ -1,9 +1,10 @@
 .drawer-avatar {
     display: flex;
-    gap: 10px
-}
-
-.drawer-avatar p {
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .drawer-avatar span {
     margin-top: 8px;
-    font-size: 20px;
-}
+    font-size: 20px; 
+  }

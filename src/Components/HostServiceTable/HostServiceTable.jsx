@@ -52,7 +52,8 @@ export const HostServiceTable = () => {
     const fetchData = async (id) => {
         try {
             setLoading(true); // Set loading to true before fetching data
-            const data = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Service/party_host/service/${id}`,
+
+            const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Service/party_host/service/${id}`,
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }

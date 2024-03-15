@@ -82,8 +82,6 @@ const ServiceDisplay = (props) => {
               <div className="servicedisplay-right-price-sale">{service.sale_Price}đ</div>
             </div>
             <div className="servicedisplay-right-description">
-              <p>{service.description}
-              </p>
             </div>
             <button onClick={() => { handleClick(service) }}>ADD TO CART</button>
             {/* {getButton(service.serviceName)} */}

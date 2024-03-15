@@ -44,8 +44,7 @@ export const Service = () => {
       <HostServiceInfo service={items} />
       <Descriptionbox service={items} />
       <Feedback service={items} />
-      <Footer />
-
+      <Footer  />
     </div>
   )
 }

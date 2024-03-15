@@ -196,6 +196,7 @@ export default function ModalUpdateService({ service }) {
                                 <TextField id="outlined-basic" label="Images" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' defaultValue={service.serviceTitle} onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
                                 {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                     <Select
@@ -217,11 +218,12 @@ export default function ModalUpdateService({ service }) {
                                     </Select>
                                 </FormControl> */}
                             </div>
-                            <div style={{ padding: '0 50px' }}>
+                            <div style={{ padding: '0 42px'}}>
                                 <TextField
+                                    style={{width: "100%"}}
                                     fullWidth
                                     id="outlined-multiline-static"
-                                    label="Multiline"
+                                    label="Description"
                                     multiline
                                     rows={4}
                                     defaultValue={service.description}
@@ -233,7 +235,7 @@ export default function ModalUpdateService({ service }) {
 
                             </div>
                         </div>
-                        <div style={{ margin: '20px auto' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
+                        <div style={{ margin: '60px auto' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
                     </Box>
                 </ModalContent>
             </Modal>

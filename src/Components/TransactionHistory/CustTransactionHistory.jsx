@@ -83,7 +83,7 @@ export default function CustTransactionHistoryTable() {
                     {row.time}
                     </TableCell>
                     {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} >{row.paymentMethod}</TableCell> */}
-                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap', fontWeight:'600' }} >{row.amount} VND</TableCell>
+                    <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap', fontWeight:'600' }} > - {row.amount} VND</TableCell>
                   </TableRow>
                 ))}
             </React.Fragment>

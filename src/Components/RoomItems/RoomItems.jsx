@@ -6,6 +6,14 @@ import { Link } from 'react-router-dom';
 
 export const RoomItems = (props) => {
 
+    function getSalePrice(sale_Price) {
+        if (sale_Price !== undefined && sale_Price !== null && sale_Price !== 0) {
+            return <div className='item-card-old-price'>{props.salePrice}đ</div>
+        } else {
+            return null;
+        }
+    }
+
     {
         if (props.images !== null && props.images !== undefined) {
             return (
@@ -21,8 +29,9 @@ export const RoomItems = (props) => {
                             </div>
                             <div className="item-card-prices">
                                 <div className='item-card-new-price'>{props.price}đ</div>
-                                <div className='item-card-old-price'>{props.sale_Price}đ</div>
+                                {getSalePrice(props.salePrice)}
                             </div>
+
                             <div className="rate-stars">
                                 <div className="stars">
                                     <StarRateIcon />
@@ -46,7 +55,7 @@ export const RoomItems = (props) => {
                 <Link to={`/roomService/${props.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                     <div className='item-card'>
                         <div className="item-card-img">
-                            <img src={`data:image/jpeg;base64,${""}`} alt="Images" />
+                            <img src={`data:image/jpeg;base64,${undefined}`} alt="Images" />
                         </div>
                         <hr id='item-card-hr' />
                         <div className="item-card-descriptions">
@@ -55,7 +64,7 @@ export const RoomItems = (props) => {
                             </div>
                             <div className="item-card-prices">
                                 <div className='item-card-new-price'>{props.price}đ</div>
-                                <div className='item-card-old-price'>{props.sale_Price}đ</div>
+                                {getSalePrice(props.salePrice)}
                             </div>
                             <div className="rate-stars">
                                 <div className="stars">

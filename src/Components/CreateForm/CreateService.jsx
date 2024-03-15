@@ -30,7 +30,7 @@ export default function ModalCreateService() {
 
     const fetchData = async () => {
         try {
-            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
                 {
                     withCredentials: true
                 }
@@ -110,7 +110,7 @@ export default function ModalCreateService() {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Service", formData, {
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Service", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true,
             });

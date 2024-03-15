@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './PopularServices.css'
 import Item from '../Item/Item'
-import axios from 'axios'
-import { FeaturedVideoRounded } from '@mui/icons-material'
-import { FetchProduct } from '../../Context/fetchData'
+import { fetchService } from '../../Context/fetchService'
 export const PopularServices = () => {
 
 
@@ -11,7 +9,8 @@ export const PopularServices = () => {
 
     const fetchData = async () => {
         try {
-            const data = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services');
+
+            const data = await fetchService()
             setItems(data.data.data);
         } catch (err) {
             console.log(err);
@@ -30,10 +29,10 @@ export const PopularServices = () => {
             <h1>Popular Services</h1>
             <hr />
             <div className="popular">
-                {items.map((item, i) => {
-                    if (i <= 5 && item.status === 1) {
-                        return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
-                    }else{
+                {items.map((item, index) => {
+                    if (11 <= index  && item.status === 1) {
+                        return <Item key={index} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+                    } else {
                         return null;
                     }
 

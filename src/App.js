@@ -45,6 +45,7 @@ import OTPCode from './Components/ForgetPassword/OTPCode';
 import OTP from './Pages/OTP';
 import HostTransactionHistoryPage from './Pages/HostTransactionHistory';
 import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
+import BackButton from './Components/BackButton/BackButton';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -55,7 +56,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
-
           <Routes>
             <Route path='/signup' element={<LoginSignup />} />
             <Route element={<PrivateRoute />}>
@@ -96,6 +96,7 @@ function App() {
             <Route path='/host-services' element={<HostServices />} />
             <Route path='/host-rooms' element={<HostRooms />} />
             {/* <Route path="/host-transaction-history" element={<HostTransactionHistoryPage/>} /> */}
+
           </Routes>
           <Routes>
             <Route element={<PrivateRoute />}>

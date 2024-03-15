@@ -232,8 +232,14 @@ export default function ModalUpdateRoom({ room }) {
                                     </Select>
                                 </FormControl>
                             </div>
-                            <div style={{ padding: '0 50px' }}>
-                                <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4}
+                            <div style={{ padding: '0 42px' }}>
+                                <TextField
+                                    style={{width: "100%"}}
+                                    fullWidth
+                                    id="outlined-multiline-static"
+                                    label="Description"
+                                    multiline
+                                    rows={4}
                                     defaultValue={room.description}
                                     name='Description'
                                     onChange={handleInput}
@@ -241,7 +247,7 @@ export default function ModalUpdateRoom({ room }) {
                                 />
                             </div>
                         </div>
-                        <div style={{ margin: '20px auto' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
+                        <div style={{ margin: '20px 30px' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
                     </Box>
                 </ModalContent>
             </Modal>

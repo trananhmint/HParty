@@ -11,6 +11,7 @@ import { fetchNoti } from "../../Context/fetchNoti";
 // import { fetchNoti } from "../../Context/fetchNoti";
 
 export default function NotificationButton() {
+
   const [user, setUser] = useState();
   const [items, setItems] = useState([]);
 
@@ -47,8 +48,6 @@ export default function NotificationButton() {
       fetchData(user.userId);
     }
   }, [user]);
-
-
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);

@@ -193,13 +193,7 @@ const LoginSignup = () => {
         <div className="form-container sign-up">
           <form onSubmit={handleSubmitRegisterEvent}>
             <h1>Create Account</h1>
-            <div className="social-icons">
-              <a href="https://github.com/trananhmint/HParty"><GoogleIcon /></a>
-              <a href="https://github.com/trananhmint/HParty"><FacebookIcon /></a>
-              <a href="https://github.com/trananhmint/HParty"><GitHubIcon /></a>
-              <a href="https://github.com/trananhmint/HParty"><LinkedInIcon /></a>
-            </div>
-            <span>or use your email for registeration</span>
+            {/* <span>or use your email for registeration</span> */}
             <div className='input-field-register'>
               <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput} placeholder='FullName' />
               <select name='roleId' defaultValue={0} onChange={handleRegisterInput}>

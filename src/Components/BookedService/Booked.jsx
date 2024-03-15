@@ -6,12 +6,6 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 const Booked = () => {
 
   const [booked, setBooked] = useState([]);
-  const [bookingDetail, setBookingDetail] = useState([]);
-  const [rooms, setRooms] = useState([]);
-  const [services, setServices] = useState([]);
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
 
   const fetchBooked = async () => {
     try {
@@ -27,69 +21,6 @@ const Booked = () => {
     fetchBooked();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const bookingIds = booked.map(booking => booking.bookingId);
-  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-  //     setBookingDetail(bookingDetails);
-  //   };
-
-  //   if (booked.length > 0) {
-  //     fetchData();
-  //   }
-  // }, [booked]);
-
-  const fetchBookingDetail = async (bookingId) => {
-    try {
-      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-      return response.data.data;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
-
-  useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms');
-        setRooms(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchRooms();
-  }, []);
-
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services');
-        setServices(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchServices();
-  }, []);
-
-  // console.log("Service: ", services)
-  // console.log("Booked:", booked)
-  // console.log("Booking Detail:", bookingDetail);
-  // let bookList = [];
-  // bookingDetail.map((books) => {
-  //   if (books.length > 1) {
-
-  //     bookList.push(books)
-  //   } else {
-  //     for (let book of books) {
-  //       bookList.push(book);
-  //     }
-  //   }
-  // });
-
-  // console.log("Book List: ")
-  // console.log(bookList);
 
   function getCategory(categoryId) {
     let category;

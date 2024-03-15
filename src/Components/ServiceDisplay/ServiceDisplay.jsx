@@ -10,13 +10,11 @@ import Rating from '@mui/material/Rating';
 const ServiceDisplay = (props) => {
   const [base64, setBase64] = useState('')
   const { service } = props;
-  console.log(service);
   const { AddToCart, AddRoomsToCart } = useContext(ServiceContext);
   const [value, setValue] = React.useState(2);
 
 
   const images = service.images
-
 
   const handleClick = (service) => {
     if (service.serviceName) {
@@ -36,11 +34,11 @@ const ServiceDisplay = (props) => {
     }
   }
 
-  function getButton(serviceName) {
-    if (serviceName) {
-      return <button onClick={() => { AddToCart(service.serviceId) }}>ADD TO CART</button>
+  function getSalePrice(sale_Price) {
+    if (sale_Price !== undefined && sale_Price !== null && sale_Price !== 0) {
+      return <div className="servicedisplay-right-price-sale">{service.sale_Price}đ</div>
     } else {
-      return <button onClick={() => { AddRoomsToCart(service.roomId) }}>ADD TO CART</button>
+      return null;
     }
   }
 
@@ -75,15 +73,13 @@ const ServiceDisplay = (props) => {
                 }}
               />
 
-              <p>({service.sale})</p>
             </div>
             <div className="servicedisplay-right-prices">
               <div className="servicedisplay-right-price">{service.price}đ</div>
-              <div className="servicedisplay-right-price-sale">{service.sale_Price}đ</div>
+              {/* <div className="servicedisplay-right-price-sale">{service.sale_Price}đ</div> */}
+              {getSalePrice(service.salePrice)}
             </div>
             <div className="servicedisplay-right-description">
-              <p>{service.description}
-              </p>
             </div>
             <button onClick={() => { handleClick(service) }}>ADD TO CART</button>
             {/* {getButton(service.serviceName)} */}
@@ -121,7 +117,7 @@ const ServiceDisplay = (props) => {
                 }}
               />
 
-              <p>({service.sale}100)</p>
+              <p>({service.sale})</p>
             </div>
             <div className="servicedisplay-right-prices">
               <div className="servicedisplay-right-price">{service.price}đ</div>

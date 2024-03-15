@@ -6,11 +6,13 @@ import Offers from '../Components/Offers/Offers';
 import PopularServices from '../Components/PopularServices/PopularServices';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
+import BackButton from '../Components/BackButton/BackButton';
 
 export const Homepage = () => {
   return (
     <div>
       <Navbar />
+      {/* <BackButton /> */}
       <Banner />
       <Category />
       <EventCollections />

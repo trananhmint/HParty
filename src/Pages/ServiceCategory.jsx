@@ -7,6 +7,7 @@ import Footer from '../Components/Footer/Footer';
 import axios from 'axios';
 import ServiceBreadcrumb from '../Components/Breadcrumbs/ServiceBreadcrumb';
 import { CircularProgress } from '@mui/material';
+import BackButton from '../Components/BackButton/BackButton';
 export const ServiceCategory = (props) => {
 
 
@@ -107,6 +108,7 @@ export const ServiceCategory = (props) => {
   return (
     <div className='services'>
       <Navbar />
+      {/* <BackButton /> */}
       <ServiceBreadcrumb service={props} />
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">

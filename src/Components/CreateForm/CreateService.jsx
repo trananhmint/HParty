@@ -11,10 +11,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import '../EditForm/EditService.css'
-import Item from '../Item/Item';
 import { Box } from '@mui/material';
 import axios from 'axios';
-import { create } from '@mui/material/styles/createTransitions';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
@@ -91,7 +89,6 @@ export default function ModalCreateService() {
     console.log("User Id: ", user.userId);
     console.log("Category Id: ", createService.CategoryId);
     console.log("Image1: ", images)
-    const name = "Balloon"
 
 
     const fetchCreateService = async (createService) => {

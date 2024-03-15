@@ -35,7 +35,7 @@ export const HostServiceTable = () => {
 
     const fetchPartyHost = async () => {
         try {
-            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
                 {
                     withCredentials: true
                 }

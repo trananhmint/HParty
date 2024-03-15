@@ -27,7 +27,7 @@ export const Alerts = () => {
 
 
 
-    const apiUrl1 = "https://bookingbithdayparty.azurewebsites.net/api/Deposit";
+    const apiUrl1 = "https://bookingbirthdayparties.azurewebsites.net/api/Deposit";
     let status = "fail";
 
 

@@ -38,7 +38,7 @@ export const SearchPage = () => {
     const fetchSearchRoom = async () => {
         try {
             // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room/search_room", search.search, {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room/search_room", search.search, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -55,7 +55,7 @@ export const SearchPage = () => {
     const fetchSearchService = async () => {
         try {
             // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Service/services", search.search, {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Service/services", search.search, {
                 headers: {
                     "Content-Type": "application/json"
                 }

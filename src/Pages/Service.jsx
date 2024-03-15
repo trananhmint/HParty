@@ -1,18 +1,16 @@
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ServiceDisplay from '../Components/ServiceDisplay/ServiceDisplay';
 import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
 import Navbar from '../Components/Navbar/Navbar';
 import Footer from '../Components/Footer/Footer';
-import { ServiceContext } from '../Context/ServiceContext';
 import Feedback from '../Components/Feedback/Feedback';
-import axios from 'axios';
 import { fetchService } from '../Context/fetchService';
 import Descriptionbox from '../Components/DescriptionBox/Descriptionbox';
 import HostServiceInfo from '../Components/HostServiceInfo/HostServiceInfo';
-import Stack from '@mui/material/Stack';
 import CircularProgress from '@mui/material/CircularProgress';
+import BackButton from '../Components/BackButton/BackButton';
 
 
 export const Service = () => {
@@ -21,7 +19,7 @@ export const Service = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
+      let response = await fetchService()
       setItems(response.data.data.find((e) => { return e.serviceId === Number(serviceId) }));
       setLoading(false);
     }
@@ -40,6 +38,7 @@ export const Service = () => {
   return (
     <div className='service'>
       <Navbar />
+      {/* <BackButton/> */}
       <Breadcrumb service={items} />
       <ServiceDisplay service={items} />
       <HostServiceInfo service={items} />

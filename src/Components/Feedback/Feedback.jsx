@@ -18,7 +18,7 @@ export const Feedback = (props) => {
 
     // const fetchFeedback = async (data) => {
     //     try {
-    //         const response = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/Service/services");
+    //         const response = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/Service/services");
     //         console.log(response.data.data);
     //         setServices(response.data.data);
     //     }

@@ -7,6 +7,7 @@ import Footer from '../Components/Footer/Footer';
 import axios from 'axios';
 import ServiceBreadcrumb from '../Components/Breadcrumbs/ServiceBreadcrumb';
 import { CircularProgress } from '@mui/material';
+import BackButton from '../Components/BackButton/BackButton';
 export const ServiceCategory = (props) => {
 
 
@@ -14,7 +15,7 @@ export const ServiceCategory = (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
+      let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Service/services')
       setItems(response.data.data.filter((e) => { return e.categoryId === Number(props.categoryId) }));
       setLoading(false);
     }
@@ -107,6 +108,7 @@ export const ServiceCategory = (props) => {
   return (
     <div className='services'>
       <Navbar />
+      {/* <BackButton /> */}
       <ServiceBreadcrumb service={props} />
       <img className='services-banner' src={props.banner} alt="" />
       <div className="services-indexSort">

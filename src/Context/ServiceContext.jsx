@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { addToCart } from "../redux/CartSlice";
 import { useDispatch } from 'react-redux';
+import { fetchService } from "./fetchService";
 
 export const ServiceContext = createContext(null);
 
@@ -36,7 +37,7 @@ const ServiceContextProvider = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms')
+            let response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Room/rooms')
             setRooms(response.data.data);
         }
         fetchData();
@@ -50,7 +51,7 @@ const ServiceContextProvider = (props) => {
 
     useEffect(() => {
         async function fetchData() {
-            let response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services')
+            let response = await fetchService();
             setServices(response.data.data);
         }
         fetchData();
@@ -173,7 +174,6 @@ const ServiceContextProvider = (props) => {
     }
 
     const clearCart = () => {
-        let cart = [];
         localStorage.setItem(cartId, JSON.stringify([]));
         setCart([]);
     }

@@ -81,7 +81,7 @@ export const Navbar = () => {
             <form onSubmit={onSubmitSearch}>
                 <div className='navbar-search'>
                     <input type="text" onChange={handleSearch} placeholder='Search here' />
-                    <button><SearchIcon /></button>
+                    <button type='submit'><SearchIcon /></button>
                 </div>
             </form>
             <div className="navbar-info">

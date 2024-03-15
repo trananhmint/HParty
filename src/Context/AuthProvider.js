@@ -16,8 +16,8 @@ const AuthProvider = ({ children }) => {
     const fetchRegister = async (data) => {
         try {
 
-            const response = await axios
-                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/register", data, {
+            await axios
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data, {
                     headers: { 'Content-Type': 'application/json' }
                 })
                 .then(res => {
@@ -59,8 +59,8 @@ const AuthProvider = ({ children }) => {
 
     const fetchLogin = async (data) => {
         try {
-            const response = await axios
-                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/login", data,
+            await axios
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/login", data,
                     {
                         withCredentials: true // Ensure credentials are included
                     })
@@ -78,7 +78,7 @@ const AuthProvider = ({ children }) => {
                         setRole(decoded[roles]);
                         console.log(decoded);
                         console.log(decoded[roles]);
-
+                        console.log(decoded.exp)
                         cookies.set("authToken", res.data, { expires: new Date(decoded.exp * 1000) });
                         toast.success('Login successfully', {
                             position: "top-right",

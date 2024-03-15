@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import { Edit } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import { NumericFormat } from 'react-number-format';
@@ -31,7 +30,7 @@ export default function ModalCreateRoom() {
 
     const fetchData = async () => {
         try {
-            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
                 {
                     withCredentials: true
                 }
@@ -135,7 +134,7 @@ export default function ModalCreateRoom() {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room", formData, {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true,
             });

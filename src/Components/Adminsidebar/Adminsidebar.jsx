@@ -125,8 +125,10 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
     >
       <DrawerHeader >
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'space-between' }}>
+        <Link to='/admin-profile' style={{ textDecoration: 'none', color: 'white' }}>
         <Avatar src={storedImage} {...(name ? stringAvatar(name) : {})} />
-        <p style={{fontWeight: '500', fontSize:'18px'}}>{name}</p>
+        <p style={{fontWeight: '500', fontSize:'18px', whiteSpace:'nowrap'}}>{name}</p>
+        </Link>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon style={{color:'#ffffff'}}/> : <ChevronRightIcon />}
           </IconButton>

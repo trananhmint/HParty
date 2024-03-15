@@ -9,6 +9,7 @@ import axios from 'axios';
 import Descriptionbox from '../Components/DescriptionBox/Descriptionbox';
 import HostServiceInfo from '../Components/HostServiceInfo/HostServiceInfo';
 import CircularProgress from '@mui/material/CircularProgress';
+import BackButton from '../Components/BackButton/BackButton';
 
 export const RoomService = () => {
   const [items, setItems] = useState([]);
@@ -33,15 +34,16 @@ export const RoomService = () => {
   }
 
   return (
-    <div className='service'>
-      <Navbar />
-      <Breadcrumb service={items} />
-      <ServiceDisplay service={items} />
-      <HostServiceInfo service={items} />
-      <Descriptionbox service={items} />
-      <Feedback service={items} />
-      <Footer />
-    </div>
+        <div className='service'>
+          <Navbar />
+          {/* <BackButton/> */}
+          <Breadcrumb service={items} />
+          <ServiceDisplay service={items} />
+          <HostServiceInfo service={items} />
+          <Descriptionbox service={items} />
+          <Feedback service={items}/>
+          <Footer />
+        </div>
   )
 }
 

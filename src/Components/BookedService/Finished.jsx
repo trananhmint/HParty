@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { fetchService } from '../../Context/fetchService';
 
 const Finished = () => {
 
@@ -63,7 +64,7 @@ const Finished = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Service/services');
+        const response = await fetchService();
         setServices(response.data.data);
       } catch (err) {
         console.log(err);

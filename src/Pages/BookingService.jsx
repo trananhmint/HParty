@@ -6,12 +6,14 @@ import AddressDisplay from '../Components/AddressDisplay/AddressDisplay';
 import ShopCart from '../Components/ShopCart/ShopCart';
 import Payment from '../Components/Payment/Payment';
 import { useSelector } from 'react-redux';
+import BackButton from '../Components/BackButton/BackButton';
 export const BookingService = () => {
   const title = 'payment'
 
   return (
     <div className='booking-service'>
       <TitleBar title={title} />
+      {/* <BackButton /> */}
       <AddressDisplay />
       <ShopCart />
       <Payment />

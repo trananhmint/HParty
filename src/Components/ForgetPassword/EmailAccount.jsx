@@ -11,7 +11,7 @@ const EmailAccount = () => {
 
     const fetchUser = async () => {
         try {
-            const response = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/users",
+            const response = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/users",
                 {
                     withCredentials: true
                 }

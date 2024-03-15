@@ -23,15 +23,17 @@
 .servicedisplay-img-container img {
     height: 160px;
     width: 160px;
+    border-radius: 5px;
     object-fit: contain;
 }
 
 .servicedisplay-display-img {
     display: flex;
     justify-content: center;
+    align-items: center;
     /* border: 1px solid #818181; */
     border-radius: 10px;
-    align-items: center;
+    
 }
 
 .servicedisplay-display-img img {

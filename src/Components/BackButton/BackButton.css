@@ -1,0 +1,34 @@
+.button-back {
+    display: inline-block;
+    margin-top: 150px;
+    background: transparent;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+    position: relative;
+}
+
+.button-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    /* background-color: #E7C494; */
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+
+.button-back:hover {
+    color: #f5a02c;
+}
+
+.button-back:hover::before {
+    transform: scaleX(1);
+}

@@ -24,19 +24,17 @@ export default function ModalUpdateService({ service }) {
     const [open, setOpen] = React.useState(false);
     const [host, setHost] = useState("");
     const [images, setImages] = useState("");
-    const [loading, setLoading] = useState(true);
 
 
     const fetchPartyHost = async () => {
         try {
-            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User", {
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User", {
                 withCredentials: true
             });
             setHost(data.data.data);
-            setLoading(false);
+         
         } catch (err) {
             console.log(err);
-            setLoading(false);
         }
     }
 
@@ -66,7 +64,7 @@ export default function ModalUpdateService({ service }) {
         Description: service.description,
         UserId: host.userId,
         CategoryId: service.categoryId,
-        Images: service.images
+        Images: images
     })
 
     const handleInput = (e) => {
@@ -87,10 +85,6 @@ export default function ModalUpdateService({ service }) {
 
     // console.log("Service Name: ", updateService.ServiceName)
 
-    const name = "Balloon"
-
-
-
     const fetchUpdateService = async (updateService) => {
         try {
             const formData = new FormData();
@@ -102,11 +96,11 @@ export default function ModalUpdateService({ service }) {
             formData.append('Description', updateService.Description);
             formData.append('UserId', host.userId);
             formData.append('CategoryId', updateService.CategoryId);
-            formData.append('Images', updateService.Images);
+            formData.append('Images', images);
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
+            const response = await axios.put(`https://bookingbirthdayparties.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
 
                 {
 

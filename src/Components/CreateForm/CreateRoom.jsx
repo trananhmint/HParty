@@ -244,7 +244,7 @@ export default function ModalCreateRoom() {
                             <div style={{ padding: '0 50px' }}>
                                 <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4} defaultValue="Description"
                                     name='Description' onChange={handleInput}
-                                // style={{margin: '0 50px'}}
+                                style={{margin: '0 50px', width: "100%"}}
                                 />
                             </div>
                         </div>

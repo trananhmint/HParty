@@ -47,7 +47,7 @@ export default function AdminPage() {
     <Box sx={{ display: 'flex' }} >
       <CssBaseline />
       <AdminHeader open={open} handleDrawerOpen={handleDrawerOpen} />
-      <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} />
+      {/* <AdminSideBar open={open} handleDrawerClose={handleDrawerClose} /> */}
 
       <Main open={open}>
         <div className="main-layout">

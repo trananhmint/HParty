@@ -63,20 +63,20 @@ export const ShopCart = () => {
         }
       })}
       <hr />
-      <div className="shopcart-format-voucher">
+      {/* <div className="shopcart-format-voucher">
         <p><ConfirmationNumberOutlinedIcon />Shop's Voucher</p>
         <div className="shopcart-format-voucher-change">
           <p>Sale 15%</p>
           <button>Choose Voucher</button>
         </div>
       </div>
-      <hr />
-      <div className="shopcart-format-message">
+      <hr /> */}
+      {/* <div className="shopcart-format-message">
         <p>Message:</p>
         <div className="shopcart-format-message-textarea">
           <textarea placeholder='Message for seller'></textarea>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

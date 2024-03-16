@@ -6,11 +6,6 @@ const Cancel = () => {
 
   const [booked, setBooked] = useState([]);
   const [bookingDetail, setBookingDetail] = useState([]);
-  const [rooms, setRooms] = useState([]);
-  const [services, setServices] = useState([]);
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
 
   const fetchBooked = async () => {
     try {
@@ -26,17 +21,17 @@ const Cancel = () => {
     fetchBooked();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const bookingIds = booked.map(booking => booking.bookingId);
-  //     const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-  //     setBookingDetail(bookingDetails);
-  //   };
+  useEffect(() => {
+    const fetchData = async () => {
+      const bookingIds = booked.map(booking => booking.bookingId);
+      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
+      setBookingDetail(bookingDetails);
+    };
 
-  //   if (booked.length > 0) {
-  //     fetchData();
-  //   }
-  // }, [booked]);
+    if (booked.length > 0) {
+      fetchData();
+    }
+  }, [booked]);
 
   const fetchBookingDetail = async (bookingId) => {
     try {
@@ -48,8 +43,6 @@ const Cancel = () => {
     }
   };
 
-  // console.log("Booked:", booked)
-  // console.log("Booking Detail:", bookingDetail);
 
 
   function getCategory(categoryId) {

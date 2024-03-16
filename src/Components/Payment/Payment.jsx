@@ -26,9 +26,6 @@ export const Payment = () => {
     console.log(roomIds)
     console.log(serviceIds)
 
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
-
 
 
     const [booking, setBooking] = useState({
@@ -38,7 +35,7 @@ export const Payment = () => {
         roomId: roomIds[0],
         serviceIds: serviceIds,
     })
-    
+
 
     console.log(booking.roomId);
     console.log(booking.serviceIds)
@@ -67,7 +64,6 @@ export const Payment = () => {
             console.log("Post created:", response.data);
             console.log(response.data.isSuccess);
             setSuccess(response.data.isSuccess)
-            // navigate("/alerts");
 
             if (response.data.isSuccess === false) {
                 toast.warning(response.data.message, {
@@ -96,7 +92,6 @@ export const Payment = () => {
             }
 
 
-            // alert("Booking successfully");
 
         } catch (error) {
             console.error(error);
@@ -116,12 +111,15 @@ export const Payment = () => {
         }
     }
 
-    // // const cart = useSelector((state) => state.cart.cart)
-    // // console.log(cart);
-    console.log(isSuccess);
+    useEffect(() => {
+        if (isSuccess) {
+            fetchVNPAY(booking.totalPrice);
+            clearCart();
+        }
+    }, [isSuccess]);
+
     const fetchVNPAY = async (data) => {
         try {
-            console.log(data);
             const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/VNPay", {
                 totalPrice: data
             },
@@ -131,26 +129,25 @@ export const Payment = () => {
                     },
                     withCredentials: true // Ensure credentials are included
                 })
-                if(isSuccess === true){
-                    console.log(response);
-                    console.log("VNPAY created:", response.data.url);
-                    // navigate("/alerts");
-                    console.log("Success");
-                    toast.success('Move to VNPAY', {
-                        position: "top-right",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-        
-                    });
-                    window.location.href = response.data.url;
-        
-                }
-          
+            console.log(response);
+            console.log("VNPAY created:", response.data.url);
+            // navigate("/alerts");
+            console.log("Success");
+            toast.success('Move to VNPAY', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+            window.location.href = response.data.url;
+
+
+
 
             // alert("Booking successfully");
 
@@ -171,16 +168,12 @@ export const Payment = () => {
         }
     }
 
+
+
     const handleSubmitEvent = (e) => {
         e.preventDefault();
         if (booking.totalPrice !== "" && booking.roomId !== "" && booking.serviceIds.length !== 0 && booking.startTime !== "" && booking.endTIme !== "") {
             fetchBooking(booking);
-            if (isSuccess === true) {
-                fetchVNPAY(totalPrice);
-            }
-
-
-            // clearCart();
             return;
         } else if (booking.roomId === "") {
             toast.warning('Please choose A Room before booking.', {
@@ -260,7 +253,7 @@ export const Payment = () => {
         <form onSubmit={handleSubmitEvent}>
 
             <div className='payment'>
-                <div className="payment-methods">
+                {/* <div className="payment-methods">
                     <p><LocalAtmOutlinedIcon /> Payment Method</p>
                     <div className="payment-methods-change">
                         <div id="payment-methods-display">
@@ -274,7 +267,7 @@ export const Payment = () => {
 
                     </div>
                 </div>
-                <hr />
+                <hr /> */}
                 <div className="payment-input-time">
                     <p><EventNoteIcon /> Choose Party Time</p>
                     <input type="datetime-local" id='booking-startTime' name='startTime' aria-describedby='booking-startTime' aria-invalid="false" onChange={handleInput} />

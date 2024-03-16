@@ -115,6 +115,9 @@ export const Alerts = () => {
     useEffect(() => {
         fetchData();
     }, []);
+    // useEffect(() => {
+    //     clearCart();
+    // })
 
 
     function Items({ currentItems }) {

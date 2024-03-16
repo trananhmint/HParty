@@ -2,29 +2,26 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Payment.css'
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import PolicyIcon from '@mui/icons-material/Policy';
 import { ServiceContext } from '../../Context/ServiceContext';
 import { redirect, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Context/AuthProvider';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Condition from '../Condition/Condition';
 
 
 export const Payment = () => {
-    const { clearCart, getTotalPrice, CartOfItems, rooms, services } = useContext(ServiceContext);
-    const navigate = useNavigate();
+    const { clearCart, getTotalPrice, VND } = useContext(ServiceContext);
     const [isSuccess, setSuccess] = useState(false);
-    const [methods, setMethods] = useState("");
 
 
     let uniqueItemOfRoom = JSON.parse(localStorage.getItem("uniqueItemOfRoom"));
     let uniqueItemOfService = JSON.parse(localStorage.getItem("uniqueItemOfService"));
-
     let roomIds = uniqueItemOfRoom.map((room) => room.roomId);
     let serviceIds = uniqueItemOfService.map((service) => service.serviceId);
     let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
-    console.log(roomIds)
-    console.log(serviceIds)
+
 
 
 
@@ -35,11 +32,6 @@ export const Payment = () => {
         roomId: roomIds[0],
         serviceIds: serviceIds,
     })
-
-
-    console.log(booking.roomId);
-    console.log(booking.serviceIds)
-    console.log(booking.totalPrice);
 
 
     const handleInput = (e) => {
@@ -62,7 +54,6 @@ export const Payment = () => {
                 })
             console.log(response);
             console.log("Post created:", response.data);
-            console.log(response.data.isSuccess);
             setSuccess(response.data.isSuccess)
 
             if (response.data.isSuccess === false) {
@@ -95,7 +86,6 @@ export const Payment = () => {
 
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid booking")
             toast.error('Booking failed', {
                 position: "top-right",
                 autoClose: 3000,
@@ -132,7 +122,6 @@ export const Payment = () => {
                     },
                     withCredentials: true // Ensure credentials are included
                 })
-            console.log(response);
             console.log("VNPAY created:", response.data.url);
             // navigate("/alerts");
             console.log("Success");
@@ -228,13 +217,12 @@ export const Payment = () => {
     }
 
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        setMethods(e.target.value);
-    }
+    // const handleChange = (e) => {
+    //     e.preventDefault();
+    //     setMethods(e.target.value);
+    // }
 
 
-    const auth = useAuth();
     const handleClick = (e) => {
         e.preventDefault()
         document.querySelector("#payment-methods-display").style.display = "flex";
@@ -251,52 +239,52 @@ export const Payment = () => {
     }
 
 
-    console.log(methods);
     return (
         <form onSubmit={handleSubmitEvent}>
 
             <div className='payment'>
-                {/* <div className="payment-methods">
+                <div className="payment-methods">
                     <p><LocalAtmOutlinedIcon /> Payment Method</p>
                     <div className="payment-methods-change">
-                        <div id="payment-methods-display">
-                            <input className="payment-methods-change-radio" type="radio" id="byCash" name="methods" value="byCash" onChange={handleChange} />
-                            <label for="byCash">By Cash</label>
-                            <input className="payment-methods-change-radio" type="radio" id="byBanking" name="methods" value="byVNPAY" onChange={handleChange} />
-                            <label for="byBanking">By VNPAY</label>
-                        </div>
+                        <p>VN PAY </p>
 
-                        <button id="methods-button" onClick={handleClick}>Choose Method</button>
+                        {/* <button id="methods-button" onClick={handleClick}>Choose Method</button> */}
 
                     </div>
                 </div>
-                <hr /> */}
-                <div className="payment-input-time">
-                    <p><EventNoteIcon /> Choose Party Time</p>
-                    <input type="datetime-local" id='booking-startTime' name='startTime' aria-describedby='booking-startTime' aria-invalid="false" onChange={handleInput} />
-                    <input type="datetime-local" id='booking-endTIme' name='endTIme' aria-describedby='booking-endTIme' aria-invalid="false" onChange={handleInput} />
+                <hr />
+                <div className='payment-input-time-guide'>
+                    <div className="payment-input-time">
+                        <p><EventNoteIcon /> Choose Party Time</p>
+                        <input type="datetime-local" id='booking-startTime' name='startTime' aria-describedby='booking-startTime' aria-invalid="false" onChange={handleInput} />
+                        <input type="datetime-local" id='booking-endTIme' name='endTIme' aria-describedby='booking-endTIme' aria-invalid="false" onChange={handleInput} />
+                    </div>
+                    <div className='payment-time-guide'>
+                        <p><PolicyIcon /> Time Guide</p>
+                        <p>Conditions of party reservation: <br />
+                            - 30 days to 1 year in advance <br />
+                            - Duration: At least 2 hours to 6 hours<br />
+                        </p>
+                    </div>
                 </div>
                 <hr />
                 <div className="payment-total">
                     <div>
                         <div className="payment-total-item">
                             <p>Sub Total</p>
-                            <p>{getTotalPrice()}đ</p>
+                            <p>{VND.format(getTotalPrice())}</p>
                         </div>
                         <hr />
                         <div className="payment-total-item">
                             <h3>Total</h3>
-                            <h3>{getTotalPrice() + 0} đ</h3>
+                            <h3>{VND.format(getTotalPrice() + 0)}</h3>
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div className="payment-total-button">
-                    <p>Enter "Proceed to checkout" to agree with <span>Conditions of HParty</span></p>
-                    <button type='submit'  >PROCEED TO CHECKOUT</button>
-                    {/* <form onSubmit={handleSubmitVNPAY}>
-                        <button type='submit'>DEPOSIT</button>
-                    </form> */}
+                    <Condition className="condition"  />
+                    <button type='submit'>BOOKING</button>
                 </div>
             </div>
         </form>

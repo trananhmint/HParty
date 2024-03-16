@@ -34,6 +34,13 @@ const ServiceContextProvider = (props) => {
     }
     localStorage.setItem(cartId, JSON.stringify(cart.filter(onlyUnique)));
 
+    const VND = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+
+
+
 
     useEffect(() => {
         async function fetchData() {
@@ -180,7 +187,7 @@ const ServiceContextProvider = (props) => {
 
 
 
-    const contextValue = { services, rooms, AddToCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity, CartOfItems, totalPrice, clearCart, count };
+    const contextValue = { services, rooms, AddToCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity, CartOfItems, totalPrice, clearCart, count, VND };
     return <ServiceContext.Provider value={contextValue}>
         {props.children}
     </ServiceContext.Provider>

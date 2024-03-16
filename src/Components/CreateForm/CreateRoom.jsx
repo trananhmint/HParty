@@ -109,10 +109,6 @@ export default function ModalCreateRoom() {
     //     setCategory(event.target.value);
     // };
 
-    const VND = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
 
     const fetchCreateRoom = async (createRoom) => {
         try {
@@ -152,11 +148,6 @@ export default function ModalCreateRoom() {
             });
             window.location.reload();
 
-            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu POST
-
-
-
-            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu PUT
         } catch (error) {
             console.error('Error updating service:', error);
             throw error; // Ném lỗi để xử lý ở phía gọi hàm
@@ -216,7 +207,7 @@ export default function ModalCreateRoom() {
                                 </FormControl>
                                 <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Sale Price" defaultValue={price} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
 
                                 <TextField type='number' id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' onChange={handleInput} />

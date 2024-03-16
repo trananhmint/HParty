@@ -13,7 +13,7 @@ export const Feedback = (props) => {
     
     console.log(service.serviceName);
 
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(service.rate);
     const [services, setServices] = React.useState();
 
     // const fetchFeedback = async (data) => {
@@ -44,18 +44,19 @@ export const Feedback = (props) => {
                 <p>FEEDBACK</p>
                 <hr />
                 {feedbacks.map((feedback) => {
+                    console.log(feedback.user.fullName);
                     return <div>
                         <div className="feedback-frame">
                             <div className="feedback-avatar">
                                 <Avatar
                                     sx={{ bgcolor: deepOrange[500] }}
-                                    alt="`${feedback.fullName}`"
+                                    alt="`${feedback.user.fullName}`"
                                     src="/broken-image.jpg"
                                 />
                             </div>
                             <div className="feedback-frame-right">
                                 <div className="feedback-frame-name">
-                                    <p>{feedback.fullName}</p>
+                                    <p>{feedback.user.fullName}</p>
                                     <div className="feedback-frame-stars">
                                         <Rating name="read-only" value={feedback.rate} readOnly />
                                     </div>

@@ -127,14 +127,22 @@
 }
 
 .cartitems-total-cart button {
-    padding: 20px;
-    font-size: 18px;
-    font-weight: 500;
-    color: white;
-    background: red;
+    width: 262px;
+    height: 58px;
+    outline: none;
     border: none;
-    border-radius: 6px;
+    border-radius: 33px;
+    background: #f5a02c;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+}
+
+.cartitems-total-cart button:active {
+    opacity: .7;
+    transform: scale(0.9);
+    transition: 0.1s;
 }
 
 .cartitems-clear button {
@@ -142,9 +150,20 @@
     padding: 20px;
     font-size: 18px;
     font-weight: 500;
-    color: white;
-    background: red;
-    border: none;
+    color: red;
+    background-color: white;
+    border: 1px solid red;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.cartitems-clear button:hover {
+    color: white;
+    background-color: red;
+}
+
+.cartitems-clear button:active {
+    opacity: .7;
+    transform: scale(0.9);
+    transition: 0.1s;
 }

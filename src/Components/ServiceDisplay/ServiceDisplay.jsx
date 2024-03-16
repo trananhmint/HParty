@@ -10,11 +10,13 @@ import Rating from '@mui/material/Rating';
 const ServiceDisplay = (props) => {
   const [base64, setBase64] = useState('')
   const { service } = props;
-  const { AddToCart, AddRoomsToCart } = useContext(ServiceContext);
-  const [value, setValue] = React.useState(service.rating);
+  const { AddToCart, VND } = useContext(ServiceContext);
+  const [value, setValue] = React.useState(service.averageRating);
 
 
   const images = service.images
+
+  console.log(service)
 
   const handleClick = (service) => {
     if (service.serviceName) {
@@ -63,7 +65,7 @@ const ServiceDisplay = (props) => {
               <Rating name="read-only" value={value} readOnly />
             </div>
             <div className="servicedisplay-right-prices">
-              <div className="servicedisplay-right-price">{service.price}đ</div>
+              <div className="servicedisplay-right-price">{VND.format(service.price)}</div>
               {/* <div className="servicedisplay-right-price-sale">{service.sale_Price}đ</div> */}
               {getSalePrice(service.salePrice)}
             </div>
@@ -105,18 +107,17 @@ const ServiceDisplay = (props) => {
                 }}
               />
 
-              <p>({service.sale})</p>
             </div>
             <div className="servicedisplay-right-prices">
-              <div className="servicedisplay-right-price">{service.price}đ</div>
-              <div className="servicedisplay-right-price-sale">{service.sale_Price}đ</div>
+              <div className="servicedisplay-right-price">{VND.format(service.price)}</div>
+              {getSalePrice(service.salePrice)}
             </div>
             <div className="servicedisplay-right-description">
               <p>{service.description}
               </p>
             </div>
             <button onClick={() => { handleClick(service) }}>ADD TO CART</button>
-            {/* {getButton(service.serviceName)} */}
+
           </div>
 
         </div>

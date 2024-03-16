@@ -13,6 +13,10 @@ import './UserTable.css'
 import { fetchUser } from '../../Context/fetchUser';
 import axios from 'axios';
 import ModalUpdateUser from '../EditForm/EditUser';
+import { disableUser } from '../../Context/disableUser';
+import { toast } from 'react-toastify';
+import DeleteUser from '../DeleteDialog/DeleteUser';
+
 
 
 export default function UserTable() {
@@ -32,7 +36,26 @@ export default function UserTable() {
     }
 
   }
-
+  const handleDisableClick = async (id) => {
+    try {
+      await disableUser(id);
+      console.log("User disable:", id);
+      toast.success('Delete Successfully', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      // fetchData();
+      window.location.reload();
+    } catch (error) {
+      console.error("Error disabling user:", error);
+    }
+  };
 
 
   useEffect(() => {
@@ -85,9 +108,10 @@ export default function UserTable() {
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
                   <ModalUpdateUser />
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
+                  {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                     Delete
-                  </Button>
+                  </Button> */}
+                  <DeleteUser handleDisableClick={() => handleDisableClick(item.userId)} />
                 </Stack>
               </TableCell>
             </TableRow>

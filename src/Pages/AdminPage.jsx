@@ -8,6 +8,8 @@ import AdminHeader from '../Components/Adminheader/Adminheader';
 import AdminSideBar from '../Components/Adminsidebar/Adminsidebar';
 import ServicePieChart from '../Components/ServicePieChart/ServicePiechart';
 import AdminRevenue from '../Components/AdminRevenue/AdminRevenue';
+import AdminCustCount from '../Components/AdminUserCount/AdminCustCount';
+import AdminHostCount from '../Components/AdminHostCount/AdminHostCount';
 
 const drawerWidth = 240;
 
@@ -51,7 +53,11 @@ export default function AdminPage() {
 
       <Main open={open}>
         <div className="main-layout">
-        <AdminRevenue /> 
+        <div className='statistic-group'>
+        <AdminRevenue className="revenue"/> 
+        <AdminCustCount/>
+        <AdminHostCount/>
+        </div>
           <div className="chart-group">
             <UserPieChart className="user-pie-chart" />
             <ServicePieChart/>

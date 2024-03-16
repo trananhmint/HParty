@@ -104,7 +104,7 @@ export const CustomerSideBar = ({ open, handleDrawerClose }) => {
         'Change Password': <AssignmentIndIcon style={{ color: 'white' }} />,
         'My Order': <AccountBoxIcon style={{ color: 'white' }} />,
         'All Promotion': <CelebrationIcon style={{ color: 'white' }} />,
-        'My Transaction History': <HistoryIcon  style={{ color: 'white' }} />,
+        // 'My Transaction History': <HistoryIcon  style={{ color: 'white' }} />,
     };
 
     return (
@@ -126,14 +126,16 @@ export const CustomerSideBar = ({ open, handleDrawerClose }) => {
             anchor="left"
             open={open}
         >
+
+
+
             <DrawerHeader >
-                <div style={{ display: 'flex', alignItems: "center", marginRight: "40px", }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'space-between'}}>
                     <Link to='/customerProfile' style={{ textDecoration: 'none', color: 'white' }}>
-                        <div className="drawer-avatar">
-                        <Avatar {...(name ? stringAvatar(name) : {})} />
-                            <p>{name}</p>
-                        </div>
+                    <Avatar {...(name ? stringAvatar(name) : {})} />
+                    <p style={{fontWeight: '500', fontSize:'18px', whiteSpace:'nowrap'}}>{name}</p>
                     </Link>
+
                     <IconButton onClick={handleDrawerClose} style={{ marginTop: "8px", fontSize: "20px" }}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon style={{ color: '#ffffff' }} /> : <ChevronRightIcon />}
                     </IconButton>
@@ -141,7 +143,7 @@ export const CustomerSideBar = ({ open, handleDrawerClose }) => {
             </DrawerHeader>
             <Divider />
             <List>
-                {['My Profile', 'My Order', 'Change Password', 'My Address', 'All Promotion', 'My Transaction History'].map((text, index) => (
+                {['My Profile', 'My Order', 'Change Password', 'My Address', 'All Promotion'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={Link} to={text === 'My Profile' ? '/customer-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
                             <ListItemIcon>

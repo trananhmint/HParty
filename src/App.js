@@ -84,8 +84,8 @@ function App() {
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
-            <Route path="/my-transaction-history" element={<CustTransactionHistoryPage />} />
-
+            {/* <Route path="/my-transaction-history" element={<CustTransactionHistoryPage/>} /> */}
+            
 
           </Routes>
           <Routes>
@@ -95,7 +95,8 @@ function App() {
             <Route path='/host-profile' element={<HostProfile />} />
             <Route path='/host-services' element={<HostServices />} />
             <Route path='/host-rooms' element={<HostRooms />} />
-            <Route path="/host-transaction-history" element={<HostTransactionHistoryPage />} />
+            {/* <Route path="/host-transaction-history" element={<HostTransactionHistoryPage/>} /> */}
+
           </Routes>
           <Routes>
             <Route element={<PrivateRoute />}>

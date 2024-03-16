@@ -8,6 +8,7 @@ import { useAuth } from '../../Context/AuthProvider';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Condition from '../Condition/Condition';
 
 
 export const Payment = () => {
@@ -292,7 +293,7 @@ export const Payment = () => {
                 </div>
                 <hr />
                 <div className="payment-total-button">
-                    <p>Enter "Proceed to checkout" to agree with <span>Conditions of HParty</span></p>
+                    <Condition className="condition" sx={{}} />
                     <button type='submit'  >PROCEED TO CHECKOUT</button>
                     {/* <form onSubmit={handleSubmitVNPAY}>
                         <button type='submit'>DEPOSIT</button>

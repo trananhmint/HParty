@@ -46,6 +46,7 @@ import OTP from './Pages/OTP';
 import HostTransactionHistoryPage from './Pages/HostTransactionHistory';
 import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
 import BackButton from './Components/BackButton/BackButton';
+import Condition from './Components/Condition/Condition';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -85,6 +86,7 @@ function App() {
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
+            <Route path='/condition' element={<Condition/>}></Route>
             {/* <Route path="/my-transaction-history" element={<CustTransactionHistoryPage/>} /> */}
             
 

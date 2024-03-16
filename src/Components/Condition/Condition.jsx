@@ -14,7 +14,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: '90%',
+  width: '80%',
   bgcolor: "background.paper",
   borderColor: 'white',
   boxShadow: 24,
@@ -30,9 +30,9 @@ export default function Condition() {
 
   return (
     <div>
-    <span style={{color: 'black', width: 'max-content'}}>Enter "Proceed to checkout" to agree with </span>
+    <span style={{color: 'black', width: 'max-content'}}>Enter "Booking" to agree with </span>
       <span sx={{ color: "orange", width: '100%', textDecoration: "underline" }} onClick={handleOpen}>
-        Condition of HParty
+        Conditions of HParty
       </span>
       <Modal
         aria-labelledby="transition-modal-title"

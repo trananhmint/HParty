@@ -17,9 +17,10 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Rating from '@mui/material/Rating';
 import { useEffect } from 'react';
 
-export default function ModalCreateRoom() {
+export default function ModalCreateFeedback() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -94,7 +95,7 @@ export default function ModalCreateRoom() {
     console.log("Area: ", createRoom.Area);
     console.log("Images: ", images);
 
-    const name = "Balloon"
+    const [rating, setRating] = React.useState(5);
 
 
 
@@ -109,6 +110,10 @@ export default function ModalCreateRoom() {
     //     setCategory(event.target.value);
     // };
 
+    const VND = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
 
     const fetchCreateRoom = async (createRoom) => {
         try {
@@ -119,11 +124,8 @@ export default function ModalCreateRoom() {
             formData.append("Price", createRoom.Price);
             formData.append("Capacity", createRoom.Capacity);
             formData.append("Address", createRoom.Address);
-            formData.append("Area", createRoom.Area);
             formData.append("UserId", host.userId);
-            formData.append("Images", images);
             // Xử lý file ảnh nếu có
-
             // Nếu Images là một mảng của các file ảnh
 
 
@@ -148,6 +150,11 @@ export default function ModalCreateRoom() {
             });
             window.location.reload();
 
+            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu POST
+
+
+
+            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu PUT
         } catch (error) {
             console.error('Error updating service:', error);
             throw error; // Ném lỗi để xử lý ở phía gọi hàm
@@ -182,63 +189,33 @@ export default function ModalCreateRoom() {
                         onSubmit={onSubmit}
                     >
                         <h2 id="unstyled-modal-title" className="modal-title">
-                            Create Room
+                            Feedback
                         </h2>
-
+                        <hr />
                         <div>
                             <div id="unstyled-modal-description" className="modal-description">
-
-                                {/* <TextField id="outlined-basic" label="ID" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} /> */}
-                                <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='RoomName' onChange={handleInput} />
-                                <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px', marginRight: '50px' }}>
-                                    <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-helper-label"
-                                        id="demo-simple-select-helper"
-                                        name='CategoryId'
-                                        value={1}
-                                        label="Category"
-                                        onChange={handleInput}
-                                        style={{ height: '35.88px' }}
-                                    >
-                                        <MenuItem value={1}>Room</MenuItem>
-
-                                    </Select>
-                                </FormControl>
-                                <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Sale Price" defaultValue={price} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
-
-                                <TextField type='number' id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' onChange={handleInput} />
-
-                                <TextField id="outlined-basic" label="Creator" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
-                                <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleChangeImage} />
-                                <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
-                                <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
-                                    <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-helper-label"
-                                        id="demo-simple-select-helper"
-                                        defaultValue={1}
-                                        name='Status'
-                                        label="Status"
-                                        onChange={handleInput}
-                                        style={{ height: '35.88px' }}
-                                    >
-                                        <MenuItem value={1}>Active</MenuItem>
-                                        <MenuItem value={0}>Inactive</MenuItem>
-                                    </Select>
-                                </FormControl>
+                                <p style={{ width: '100px', margin: '30px 0px 10px 50px' }}>Rating: </p>
+                                <Rating
+                                    name="simple-controlled"
+                                    value={rating}
+                                    onChange={(event, newValue) => {
+                                        setRating(newValue);
+                                    }}
+                                    style={{ width: '100px', margin: '30px 70px 10px 0px' }}
+                                />
+                                {/* <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '10px 50px' }} name='Images' onChange={handleChangeImage} /> */}
                             </div>
-                            <div style={{ padding: '0 50px' }}>
-                                <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4} defaultValue="Description"
+                            <div style={{ padding: '0 42px' }}>
+                                <TextField fullWidth id="outlined-multiline-static"
+                                    label="Description"
+                                    multiline rows={4}
+                                    placeholder='Write your feedback here'
                                     name='Description' onChange={handleInput}
-                                style={{width: "100%"}}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
                         </div>
-                        <div style={{ margin: '20px auto' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600' }}>Save</Button></div>
+                        <div style={{ margin: '20px auto' }}><Button type='submit' variant="contained" style={{ width: '200px', fontSize: '20px', fontWeight: '600', marginRight: '34px' }}>Save</Button></div>
                     </Box>
                 </ModalContent>
             </Modal>

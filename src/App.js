@@ -13,10 +13,8 @@ import Service from './Pages/Service';
 import SearchPage from './Pages/SearchPage';
 import BookingService from './Pages/BookingService';
 import Alerts from './Pages/Alerts';
-import { useState } from 'react';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './router/route';
-import ForgetPassword from './Pages/ForgetPassword';
 import ContractPage from './Pages/ContractPage';
 import { pdfjs } from 'react-pdf';
 import ContractPageByPH from './Pages/ContractPageByPH';
@@ -25,13 +23,11 @@ import AdminProfile from './Pages/Adminprofile';
 import Notification from './Pages/Notification'
 import AllUsers from './Pages/AllUsers';
 import AllServices from './Pages/AllServices';
-import AllContracts from './Pages/AllContracts';
 import RoomCategory from './Pages/RoomCategory';
 import RoomService from './Pages/RoomService';
 import BookedService from './Pages/BookedService';
 import { ToastContainer } from 'react-toastify';
 import AllRooms from './Pages/AllRooms';
-import EditService from './Components/EditForm/EditService';
 import CustomerProfile from './Pages/CustomerProfile';
 import MyOrder from './Pages/MyOrder';
 import { CusProfile } from './Pages/CusProfile';
@@ -41,12 +37,12 @@ import HostDisplay from './Pages/HostDisplay';
 import { HostProfile } from './Pages/HostProfile';
 import { HostServices } from './Pages/HostServices';
 import { HostRooms } from './Pages/HostRooms';
-import OTPCode from './Components/ForgetPassword/OTPCode';
 import OTP from './Pages/OTP';
 import HostTransactionHistoryPage from './Pages/HostTransactionHistory';
 import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
 import BackButton from './Components/BackButton/BackButton';
-import Condition from './Components/Condition/Condition';
+import CreateFeedback from './Components/CreateForm/CreateFeedback';
+import ModalCreateFeedback from './Components/CreateForm/CreateFeedback';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
@@ -86,7 +82,6 @@ function App() {
             <Route path='/my-address' element={<CusAddress />} />
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
-            <Route path='/condition' element={<Condition/>}></Route>
             {/* <Route path="/my-transaction-history" element={<CustTransactionHistoryPage/>} /> */}
             
 
@@ -112,6 +107,7 @@ function App() {
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
             <Route path='/editRoom' element={<RoomModalUnstyled />} />
+            <Route path='/createfeedback' element={<ModalCreateFeedback/>}/>
           </Routes>
         </AuthProvider>
       </BrowserRouter>

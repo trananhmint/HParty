@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import './HostProfileComponent.css'
+import './HostProfileComponent.css';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -14,6 +14,8 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { Avatar, Button, Grid } from '@mui/material';
 import party_logo from '../Assets/logo1.png';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -35,14 +37,87 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
+
+
+
 export const HostProfileComponent = () => {
 
+
+    const [user, setUser] = useState([]);
+    const fetchUser = async () => {
+        try {
+            const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User',
+                {
+                    withCredentials: true,
+                }
+            )
+            setUser(response.data.data);
+            console.log(response.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
+    console.log(user.fullName);
+    const [updateUser, setUpdateUser] = React.useState({
+        UserId: user.userId,
+        FullName: user.fullName,
+        Email: user.email,
+        Phone: user.phone,
+        Address: user.address,
+    })
 
     const [selectedImage, setSelectedImage] = useState(() => {
         // Try to get the image from localStorage on component mount
         const storedImage = localStorage.getItem('selectedImage');
         return storedImage || null;
     });
+
+    const fetchUpdateUser = async (updateUser) => {
+        try {
+            const formData = new FormData();
+            // // Thêm các trường dữ liệu khác nếu cần
+            formData.append("UserId", updateUser.UserId);
+            formData.append('FullName', updateUser.FullName);
+            formData.append('Email', updateUser.Email);
+            formData.append('Phone', updateUser.Phone);
+            formData.append('Images', updateUser.Images);
+            console.log([...formData]);
+            console.log(formData);
+
+            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/User/${updateUser.UserId}`, formData,
+                {
+                    headers: { "Content-Type": "multipart/form-data" },
+                    // withCredentials: true,
+                });
+            console.log(response.data)
+            toast.success('Update Successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            window.location.reload();
+
+
+            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu PUT
+        } catch (error) {
+            console.error('Error updating service:', error);
+            throw error; // Ném lỗi để xử lý ở phía gọi hàm
+        }
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        fetchUpdateUser(updateUser)
+    }
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -61,14 +136,20 @@ export const HostProfileComponent = () => {
     };
 
     return (
-        <Box sx={{ flexGrow: 1 }} style={{
-            // margin: '0px auto',
-            // width: '100%',
-            // boxShadow: '0px 0px 10px 5px #e5e5e5',
-            // padding: '20px',
-            marginTop: '100px'
-        }}>
-            <div className="admin-profile-title">
+        <Box sx={{ flexGrow: 1 }}
+            style={{
+                // margin: '0px auto',
+                // width: '100%',
+                // boxShadow: '0px 0px 10px 5px #e5e5e5',
+                // padding: '20px',
+                marginTop: '100px'
+            }}
+            component="form"
+            noValidate
+            autoComplete="off"
+            onSubmit={onSubmit}
+        >
+            <div className="host-profile-title">
                 <h3>MY PROFILE INFORMATION</h3>
                 <p>Manage your given information to protect account</p>
             </div>
@@ -84,51 +165,20 @@ export const HostProfileComponent = () => {
                         boxShadow: 'none',
                         boxRadius: '0'
                     }}>
-                        <div className='admin-profile'>
-                            <div className='admin-profile-list admin-profile-login-name'>
-                                <p>Login Name: </p>
-                                <TextField id="outlined-basic" label="Login Name" variant="outlined" style={{ width: "500px", fontSize: '20px' }} />
+                        <div className='host-profile'>
+                            <div className='host-profile-list host-profile-name'>
+                                <TextField id="outlined-basic" label="Full Name" name="FullName" variant="outlined" style={{ width: "500px", fontSize: '20px' }} defaultValue={user.fullName} />
                             </div>
 
-                            <div className='admin-profile-list admin-profile-name'>
-                                <p>Name: </p>
-                                <TextField id="outlined-basic" label="Name" variant="outlined" style={{ width: "500px", fontSize: '20px' }} />
+                            <div className=' host-profile-list host-profile-email'>
+                                <TextField type='email' id="outlined-basic" label="Email" name="Email" variant="outlined" style={{ width: "500px", fontSize: '20px' }} defaultValue={user.email} />
                             </div>
 
-                            <div className=' admin-profile-list admin-profile-email'>
-                                <p>Email: </p>
-                                <TextField type='email' id="outlined-basic" label="Email" variant="outlined" style={{ width: "500px", fontSize: '20px' }} />
+                            <div className='host-profile-list host-profile-phone-number'>
+                                <TextField id="outlined-basic" label="Phone Number" name="Phone" variant="outlined" style={{ width: "500px", fontSize: '20px' }} defaultValue={user.phone} />
                             </div>
-
-                            <div className='admin-profile-list admin-profile-phone-number'>
-                                <p>Phone Number: </p>
-                                <TextField id="outlined-basic" label="Phone Number" variant="outlined" style={{ width: "500px", fontSize: '20px' }} />
-                            </div>
-
-                            <div className='admin-profile-list admin-profile-gender'>
-                                <p>Gender: </p>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label"></FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                        <FormControlLabel value="other" control={<Radio />} label="Other" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </div>
-
-                            <div className='admin-profile-list admin-profile-birthday'>
-                                <p>Birth Date: </p>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DatePicker style={{ width: "500px", fontSize: '20px' }} />
-                                </LocalizationProvider>
-                            </div>
-                            <div className="admin-profile-button">
-                                <button>Submit</button>
+                            <div className="host-profile-button">
+                                <button style={{ backgroundColor: "#f5a02c" }}>Save</button>
                             </div>
 
                         </div>

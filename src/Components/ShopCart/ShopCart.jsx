@@ -5,7 +5,7 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
 export const ShopCart = () => {
-  const { CartOfItems, getQuantity } = useContext(ServiceContext);
+  const { CartOfItems, getQuantity, VND } = useContext(ServiceContext);
   return (
     <div className='shopcart'>
       <div className="shopcart-format-main">
@@ -24,14 +24,14 @@ export const ShopCart = () => {
         if (item.roomId !== undefined && item.roomId !== null && item.roomId !== "" && item.roomId > 0) {
           return <div>
             <div className="shopcart-format shopcart-format-main">
-              <img src={item.imgPath} alt="" className='shopcart-image' />
+              <img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" className='shopcart-image' />
               <p>{item.roomName}</p>
-              <p>{item.price}đ</p>
+              <p>{VND.format(item.price)}</p>
               <p className="shopcart-quantity">
                 {/* {product[item.roomId]} */}
                 {getQuantity(item.roomId)}
               </p>
-              <p>{item.price * getQuantity(item.roomId)} đ</p>
+              <p>{VND.format(item.price * getQuantity(item.roomId))}</p>
             </div>
           </div>
 
@@ -48,14 +48,14 @@ export const ShopCart = () => {
         if (item.serviceId !== undefined && item.serviceId !== null && item.serviceId !== "" && item.serviceId > 0) {
           return <div>
             <div className="shopcart-format shopcart-format-main">
-              <img src={item.imgPath} alt="" className='shopcart-image' />
+              <img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" className='shopcart-image' />
               <p>{item.serviceName}</p>
-              <p>{item.price}đ</p>
+              <p>{VND.format(item.price)}</p>
               <p className="shopcart-quantity">
                 {/* {cartItems[item.serviceId]} */}
                 {getQuantity(item.serviceId)}
               </p>
-              <p>{item.price * getQuantity(item.serviceId)} đ</p>
+              <p>{VND.format(item.price * getQuantity(item.serviceId))}</p>
             </div>
           </div>
         } else {

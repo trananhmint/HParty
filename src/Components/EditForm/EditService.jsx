@@ -28,7 +28,7 @@ export default function ModalUpdateService({ service }) {
 
     const fetchPartyHost = async () => {
         try {
-            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User", {
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User", {
                 withCredentials: true
             });
             setHost(data.data.data);
@@ -100,7 +100,7 @@ export default function ModalUpdateService({ service }) {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
+            const response = await axios.put(`https://bookingbirthdayparties.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
 
                 {
 

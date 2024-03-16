@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
         try {
 
             await axios
-                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/register", data, {
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/register", data, {
                     headers: { 'Content-Type': 'application/json' }
                 })
                 .then(res => {
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
     const fetchLogin = async (data) => {
         try {
             await axios
-                .post("https://bookingbithdayparty.azurewebsites.net/api/Authentication/login", data,
+                .post("https://bookingbirthdayparties.azurewebsites.net/api/Authentication/login", data,
                     {
                         withCredentials: true // Ensure credentials are included
                     })

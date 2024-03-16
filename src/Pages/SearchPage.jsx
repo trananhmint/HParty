@@ -14,6 +14,9 @@ import Footer from '../Components/Footer/Footer';
 import { ServiceContext } from '../Context/ServiceContext';
 import RoomItems from '../Components/RoomItems/RoomItems';
 import axios from 'axios';
+import Errors from '../Components/Error/Error';
+import ErrorSearchPage from '../Components/Error/ErrorSearchPage';
+
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -38,7 +41,7 @@ export const SearchPage = () => {
     const fetchSearchRoom = async () => {
         try {
             // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room/search_room", search.search, {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room/search_room", search.search, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -55,7 +58,7 @@ export const SearchPage = () => {
     const fetchSearchService = async () => {
         try {
             // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Service/services", search.search, {
+            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Service/services", search.search, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -80,6 +83,8 @@ export const SearchPage = () => {
     // }));
 
     console.log(items);
+
+
 
     function Items({ currentItems }) {
         return (
@@ -218,7 +223,7 @@ export const SearchPage = () => {
                 </div>
                 <div className="searchpage-right">
                     <div className="searchpage-sort">
-                        <FormControl className='searchpage-display-sort' variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl className='searchpage-display-sort' variant="standard" sx={{ m: 1, minWidth: 120}}>
                             <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
                             <Select
                                 labelId="demo-simple-select-standard-label"
@@ -238,9 +243,14 @@ export const SearchPage = () => {
                             </Select>
                         </FormControl>
                     </div>
+                    <br/>
+                    {items.length === 0 ? (
+                    <ErrorSearchPage />
+                ) : (
                     <div className="searchpage-services">
                         <PaginatedItems itemsPerPage={8} />
                     </div>
+                )}
                 </div>
             </div>
             <Footer />

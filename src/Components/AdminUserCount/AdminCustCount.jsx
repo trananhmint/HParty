@@ -12,7 +12,7 @@ export default function AdminCustCount() {
   
     const fetchData = async () => {
       try {
-        const data = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/users',
+        const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/users',
           {
             withCredentials: true,
           });
@@ -25,8 +25,6 @@ export default function AdminCustCount() {
   
     }
   
-  
-  
     useEffect(() => {
       fetchData();
     }, []);
@@ -34,7 +32,7 @@ export default function AdminCustCount() {
 
   useEffect(() => {
 
-    const customers = items.filter (user => user.roleId === 1).length;
+    const customers = items.filter (user => user.role.roleId === 1).length;
     setCustomer(customers);
   }, [items]);
 

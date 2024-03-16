@@ -9,7 +9,7 @@ const Booked = () => {
 
   const fetchBooked = async () => {
     try {
-      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking');
+      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Booking');
       setBooked(response.data.data);
       console.log(response.data);
     } catch (err) {

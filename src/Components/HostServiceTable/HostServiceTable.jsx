@@ -35,7 +35,7 @@ export const HostServiceTable = () => {
 
     const fetchPartyHost = async () => {
         try {
-            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
                 {
                     withCredentials: true
                 }
@@ -53,7 +53,7 @@ export const HostServiceTable = () => {
         try {
             setLoading(true); // Set loading to true before fetching data
 
-            const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Service/party_host/service/${id}`,
+            const data = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Service/party_host/service/${id}`,
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }

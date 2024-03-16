@@ -11,15 +11,13 @@ import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 
 export const CartItems = () => {
-  const { services, rooms, totalPrice, CartOfItems, clearCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity } = useContext(ServiceContext);
+  const { services, rooms, totalPrice, CartOfItems, clearCart, removeFromCart, getTotalPrice, getCountOfCart, getQuantity, VND } = useContext(ServiceContext);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const auth = useAuth();
   const cookies = new Cookies();
   let token = cookies.get("authToken");
-  console.log(token);
   const cartId = localStorage.getItem("email");
   let cart = JSON.parse(localStorage.getItem(cartId));
   let room = rooms.map((room) => room)
@@ -59,20 +57,9 @@ export const CartItems = () => {
 
   }
 
-
-
-
-  // console.log(uniqueItemOfService);
-  // console.log(CartOfItems());
-  console.log(uniqueService(cart, service));
-
   const getDecoration = uniqueService(cart, service).some((service) => Number(service.categoryId) === 1)
   const getFood = uniqueService(cart, service).some((service) => Number(service.categoryId) === 2);
   const getWaiter = uniqueService(cart, service).some((service) => Number(service.categoryId) === 3);
-  console.log("Deco: ", getDecoration);
-  console.log("Food: ", getFood);
-  console.log("Waiter: ", getWaiter);
-  console.log("Room: ", uniqueRoom(cart, room))
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -86,7 +73,6 @@ export const CartItems = () => {
       services: uniqueService(cart, service),
       totalPrice: totalPrice,
     }
-    console.log(newItems);
 
     // console.log(typeof newItems.rooms);
     console.log(newItems.rooms.length);
@@ -194,14 +180,14 @@ export const CartItems = () => {
             if (item.roomId !== undefined && item.roomId !== null && item.roomId !== "" && item.roomId > 0) {
               return <div>
                 <div className="cartitems-format cartitems-format-main">
-                  <img src={item.imgPath} alt="" className='cartitems-image' />
+                  <img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" className='cartitems-image' />
                   <p>{item.roomName}</p>
-                  <p>{item.price}đ</p>
+                  <p>{VND.format(item.price)}</p>
                   <p className="cartitems-quantity">
                     {/* {product[item.roomId]} */}
                     {getQuantity(item.roomId)}
                   </p>
-                  <p>{item.price * getQuantity(item.roomId)} đ</p>
+                  <p>{VND.format(item.price * getQuantity(item.roomId))}</p>
                   <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(item.roomId) }} />
                 </div>
               </div>
@@ -219,14 +205,13 @@ export const CartItems = () => {
             if (item.serviceId !== undefined && item.serviceId !== null && item.serviceId !== "" && item.serviceId > 0) {
               return <div>
                 <div className="cartitems-format cartitems-format-main">
-                  <img src={item.imgPath} alt="" className='cartitems-image' />
+                  <img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" className='cartitems-image' />
                   <p>{item.serviceName}</p>
-                  <p>{item.price}đ</p>
+                  <p>{VND.format(item.price)}</p>
                   <p className="cartitems-quantity">
-                    {/* {cartItems[item.serviceId]} */}
                     {getQuantity(item.serviceId)}
                   </p>
-                  <p>{item.price * getQuantity(item.serviceId)} đ</p>
+                  <p>{VND.format(item.price * getQuantity(item.serviceId))}</p>
                   <RemoveCircleOutlineOutlinedIcon className='cartitems-remove' onClick={() => { removeFromCart(item.serviceId) }} />
                 </div>
               </div>
@@ -241,20 +226,19 @@ export const CartItems = () => {
 
 
         <div className="cartitems-total">
-          <div className="cartitems-total-promotion">
+          {/* <div className="cartitems-total-promotion">
             <p> <ConfirmationNumberOutlinedIcon /> Shop voucher</p>
             <p>Choose voucher or enter your code</p>
-          </div>
+          </div> */}
           <hr />
           <div className="cartitems-total-cart">
             <p className="cartitems-total-services">Choose {getCountOfCart()} service(s)</p>
             <div className="cartitems-total-price">
               <p>Total: </p>
-              {/* <input name="totalPrice" onChange={handleInput}/> */}
-              <p>{getTotalPrice()} đ</p>
+              <p>{VND.format(getTotalPrice())}</p>
             </div>
 
-            <button>BOOKING</button>
+            <button>PROCCESS TO CHECKOUT</button>
           </div>
         </div>
       </div>

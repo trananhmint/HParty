@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
+import { ServiceContext } from '../../Context/ServiceContext';
 
 export const Item = (props) => {
+    const { VND } = useContext(ServiceContext);
+
+    function getSalePrice(salePrice) {
+        if (salePrice !== undefined && salePrice !== null && salePrice !== 0) {
+            return <div className='item-card-old-price'>{VND.format(props.salePrice)}</div>
+        } else {
+            return null;
+        }
+    }
 
     {
         if (props.images !== null) {
@@ -21,8 +31,8 @@ export const Item = (props) => {
                                 {props.serviceName}
                             </div>
                             <div className="item-card-prices">
-                                <div className='item-card-new-price'>{props.price}đ</div>
-                                <div className='item-card-old-price'>{props.sale_Price}đ</div>
+                                <div className='item-card-new-price'>{VND.format(props.price)}</div>
+                                {getSalePrice(props.salePrice)}
                             </div>
                             <div className="rate-stars">
                                 <div className="stars">
@@ -42,7 +52,7 @@ export const Item = (props) => {
                     </div>
                 </Link>
             )
-        }else {
+        } else {
             return (
                 <Link to={`/service/${props.id}`} style={{ textDecoration: 'none', color: 'black' }}>
                     <div className='item-card'>
@@ -55,8 +65,8 @@ export const Item = (props) => {
                                 {props.serviceName}
                             </div>
                             <div className="item-card-prices">
-                                <div className='item-card-new-price'>{props.price}đ</div>
-                                <div className='item-card-old-price'>{props.sale_Price}đ</div>
+                                <div className='item-card-new-price'>{VND.format(props.price)}</div>
+                                {getSalePrice(props.salePrice)}
                             </div>
                             <div className="rate-stars">
                                 <div className="stars">

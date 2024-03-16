@@ -9,7 +9,7 @@ export const ShopCart = () => {
   return (
     <div className='shopcart'>
       <div className="shopcart-format-main">
-        <p id='product'>Product</p>
+        <p id='product'>Services</p>
         <p>Title</p>
         <p>Price</p>
         <p>Quantity</p>

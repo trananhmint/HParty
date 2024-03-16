@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import './AdminRevenue.css'
 import { fetchBooking } from '../../Context/fetchBooking';
-
-
-// const data = [
-//   { value: 30, color: '#F4A460', label: 'Completed' },
-//   { value: 20, color: '#F5DEB3', label: 'Proccessing' },
-//   { value: 10, color: '#DEB887', label: 'Canceled' },
-// ];
-
-// const size = {
-//   width: 400,
-//   height: 200,
-// };
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
@@ -56,24 +44,9 @@ export default function AdminRevenue() {
   return (
     <div className="chart-container">
       <div className="chart-wrapper">
-        <h3>Number of Bookings: {totalBooking}</h3>
-        <span>Revenue of all bookings: {revenue} VND</span>
-        {/* <PieChart
-          series={[
-            {
-              arcLabelMinAngle: 45,
-              data,
-            },
-          ]}
-          sx={{
-            [`& .${pieArcLabelClasses.root}`]: {
-              fill: 'white',
-              fontWeight: 'bold',
-            },
-          }}
-          {...size}
-        /> */}
-
+      <ShoppingCartIcon fontSize='large' style={{color: '#D2691E'}}/>
+        <h3 style={{whiteSpace: 'nowrap'}}>Number of Bookings: {totalBooking}</h3>
+        <span style={{fontSize:'30px'}}>{revenue} VND</span>
       </div>
     </div>
   );

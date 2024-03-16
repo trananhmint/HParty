@@ -1,21 +1,124 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './CSS/LoginSignup.css'
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useAuth } from '../Context/AuthProvider';
-import Alert from '@mui/material/Alert';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LoginSignup = () => {
+
+  const [provinceId, setProvinceId] = React.useState(0);
+  const [districtId, setDistrictId] = useState(0)
+  const [wardId, setWardId] = useState(0);
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [wards, setWards] = useState([]);
+  const [numberAddress, setNumberAddress] = useState('');
+
+
+  const handleProvinceChange = (event) => {
+    setProvinceId(event.target.value);
+  };
+  const handleDistrictChange = (event) => {
+    setDistrictId(event.target.value);
+  };
+  const handleWardChange = (event) => {
+    setWardId(event.target.value);
+  };
+
+  const handleNumberAddressChange = (event) => {
+    setNumberAddress(event.target.value);
+  };
+
+
+
+
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+
+
+
+  const fetchProvinces = async () => {
+    try {
+      const response = await axios.get('https://vapi.vnappmob.com/api/province/',
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }
+      )
+      setProvinces(response.data.results);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchProvinces();
+  }, []);
+
+
+  const fetchDistrict = async (provinceId) => {
+    try {
+      const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${provinceId}`,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }
+      )
+      setDistricts(response.data.results);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    if (provinceId) {
+      fetchDistrict(provinceId)
+    }
+  }, [provinceId]);
+
+  const fetchWard = async (districtId) => {
+    try {
+      const response = await axios.get(`https://vapi.vnappmob.com/api/province/ward/${districtId}`,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }
+      )
+      setWards(response.data.results);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    if (districtId) {
+      fetchWard(districtId)
+    }
+  }, [districtId]);
+
+  function addressName(provinceId, districtId, wardId, numberAddress) {
+    let addressName = '';
+    const provinceName = provinces.find((province) => provinceId === province.province_id);
+    const districtName = districts.find((district) => districtId === district.district_id);
+    const wardName = wards.find((ward) => wardId === ward.ward_id);
+    if (provinceName !== undefined && districtName !== undefined && wardName !== undefined) {
+      return addressName = numberAddress + ', ' + provinceName.province_name + ", " + districtName.district_name + ", " + wardName.ward_name
+    }
+    else {
+      return addressName;
+    }
+  }
+
   const [register, setRegister] = useState({
     fullname: "",
     email: "",
@@ -26,8 +129,11 @@ const LoginSignup = () => {
   })
 
 
-
-
+  useEffect(() => {
+    // Assuming provinceId, districtId, and wardId are defined somewhere
+    const address = addressName(provinceId, districtId, wardId, numberAddress);
+    setRegister(prev => ({ ...prev, address }));
+  }, [provinceId, districtId, wardId, numberAddress]);
 
   const auth = useAuth();
   const handleSubmitEvent = (e) => {
@@ -89,7 +195,7 @@ const LoginSignup = () => {
     if (register.fullname !== "" && register.email !== "" && register.password !== "" && register.address !== ""
       && register.phone !== "" && register.roleId !== 0) {
       auth.fetchRegister(register);
-      localStorage.setItem("confirmEmail",JSON.stringify(register.email));
+      localStorage.setItem("confirmEmail", JSON.stringify(register.email));
       return;
     } else if (register.fullname === "") {
       toast.warning('Please input your Full Name', {
@@ -177,7 +283,6 @@ const LoginSignup = () => {
         theme: "light",
 
       });
-      // alert("Please fill in the register form");
     }
 
   };
@@ -203,7 +308,58 @@ const LoginSignup = () => {
               </select>
               <input type="email" id='register-email' name='email' aria-describedby='register-email' aria-invalid="false" onChange={handleRegisterInput} placeholder='Email' />
               <input type="password" id='register-password' name='password' aria-describedby='register-password' aria-invalid="false" onChange={handleRegisterInput} placeholder='Password' />
-              <input type="text" id='register-address' name='address' aria-describedby='register-address' aria-invalid="false" onChange={handleRegisterInput} placeholder='Address' />
+              <input style={{ width: '100%' }} type="text" id='register-numberAddress' name='numberAddress' aria-describedby='register-numberAddress' aria-invalid="false" onChange={handleNumberAddressChange} placeholder='Number Address' />
+              {/* <input type="text" id='register-address' name='address' aria-describedby='register-address' aria-invalid="false" onChange={handleRegisterInput} placeholder='Address' /> */}
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Province</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={provinceId}
+                  label="Province"
+                  onChange={handleProvinceChange}
+                >
+                  <MenuItem value={0} disabled>Select Province</MenuItem>
+                  {provinces.map((province) => {
+                    return <MenuItem value={province.province_id}>{province.province_name}</MenuItem>
+                  })}
+
+                </Select>
+              </FormControl>
+
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">District</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={districtId}
+                  label="District"
+                  onChange={handleDistrictChange}
+                >
+                  <MenuItem value={0} disabled>Select District</MenuItem>
+                  {districts.map((district) => {
+                    return <MenuItem value={district.district_id}>{district.district_name}</MenuItem>
+                  })}
+                </Select>
+              </FormControl>
+
+
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Ward</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={wardId}
+                  label="Ward"
+                  onChange={handleWardChange}
+                >
+                  <MenuItem value={0} disabled>Select Ward</MenuItem>
+                  {wards.map((ward) => {
+                    return <MenuItem value={ward.ward_id}>{ward.ward_name}</MenuItem>
+                  })}
+                </Select>
+              </FormControl>
+
               <input type="text" id='register-phone' name='phone' aria-describedby='register-phone' aria-invalid="false" onChange={handleRegisterInput} placeholder='Phone' />
             </div>
             <button >Sign Up</button>
@@ -212,13 +368,6 @@ const LoginSignup = () => {
         <div className="form-container sign-in">
           <form onSubmit={handleSubmitEvent} >
             <h1 >Sign In</h1>
-            <div className="social-icons">
-              <a href="https://github.com/trananhmint/HParty"><GoogleIcon /></a>
-              <a href="https://github.com/trananhmint/HParty"><FacebookIcon /></a>
-              <a href="https://github.com/trananhmint/HParty"><GitHubIcon /></a>
-              <a href="https://github.com/trananhmint/HParty"><LinkedInIcon /></a>
-            </div>
-            <span>or use your email password</span>
             <input type="email" id='user-email' name='email' aria-describedby='user-email' aria-invalid="false" onChange={handleInput} placeholder='Email' />
             {/* <div id='user-email' className='sr-only'>
               Please enter a valid username. It must contain at least 6 characters.

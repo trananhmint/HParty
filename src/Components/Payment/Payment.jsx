@@ -109,7 +109,10 @@ export const Payment = () => {
 
     const fetchVNPAY = async (data) => {
         try {
+
+            console.log(data);
             const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/VNPay", {
+
                 totalPrice: data
             },
                 {

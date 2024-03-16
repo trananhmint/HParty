@@ -9,7 +9,7 @@ export const ShopCart = () => {
   return (
     <div className='shopcart'>
       <div className="shopcart-format-main">
-        <p id='product'>Product</p>
+        <p id='product'>Services</p>
         <p>Title</p>
         <p>Price</p>
         <p>Quantity</p>
@@ -63,14 +63,14 @@ export const ShopCart = () => {
         }
       })}
       <hr />
-      <div className="shopcart-format-voucher">
+      {/* <div className="shopcart-format-voucher">
         <p><ConfirmationNumberOutlinedIcon />Shop's Voucher</p>
         <div className="shopcart-format-voucher-change">
           <p>Sale 15%</p>
           <button>Choose Voucher</button>
         </div>
-      </div>
-      <hr />
+      </div> */}
+      {/* <hr /> */}
       <div className="shopcart-format-message">
         <p>Message:</p>
         <div className="shopcart-format-message-textarea">

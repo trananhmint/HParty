@@ -8,6 +8,7 @@ import { redirect, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Condition from '../Condition/Condition';
 
 
 export const Payment = () => {
@@ -282,7 +283,7 @@ export const Payment = () => {
                 </div>
                 <hr />
                 <div className="payment-total-button">
-                    <p>Enter "Booking" to agree with <span>Conditions of HParty</span></p>
+                    <Condition className="condition"  />
                     <button type='submit'>BOOKING</button>
                 </div>
             </div>

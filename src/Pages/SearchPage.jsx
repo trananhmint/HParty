@@ -14,6 +14,9 @@ import Footer from '../Components/Footer/Footer';
 import { ServiceContext } from '../Context/ServiceContext';
 import RoomItems from '../Components/RoomItems/RoomItems';
 import axios from 'axios';
+import Errors from '../Components/Error/Error';
+import ErrorSearchPage from '../Components/Error/ErrorSearchPage';
+
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -89,6 +92,8 @@ const SearchPage = () => {
     // }));
 
     console.log(items);
+
+
 
     function Items({ currentItems }) {
         return (
@@ -227,7 +232,7 @@ const SearchPage = () => {
                 </div>
                 <div className="searchpage-right">
                     <div className="searchpage-sort">
-                        <FormControl className='searchpage-display-sort' variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                        <FormControl className='searchpage-display-sort' variant="standard" sx={{ m: 1, minWidth: 120}}>
                             <InputLabel id="demo-simple-select-standard-label">Category</InputLabel>
                             <Select
                                 labelId="demo-simple-select-standard-label"
@@ -247,9 +252,14 @@ const SearchPage = () => {
                             </Select>
                         </FormControl>
                     </div>
+                    <br/>
+                    {items.length === 0 ? (
+                    <ErrorSearchPage />
+                ) : (
                     <div className="searchpage-services">
                         <PaginatedItems itemsPerPage={8} />
                     </div>
+                )}
                 </div>
             </div>
             <Footer />

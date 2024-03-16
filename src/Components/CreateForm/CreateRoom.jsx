@@ -30,7 +30,7 @@ export default function ModalCreateRoom() {
 
     const fetchData = async () => {
         try {
-            const data = await axios.get("https://bookingbirthdayparties.azurewebsites.net/api/User",
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
                 {
                     withCredentials: true
                 }
@@ -134,7 +134,7 @@ export default function ModalCreateRoom() {
             console.log([...formData]);
             console.log(formData);
 
-            const response = await axios.post("https://bookingbirthdayparties.azurewebsites.net/api/Room", formData, {
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true,
             });
@@ -221,7 +221,7 @@ export default function ModalCreateRoom() {
                                 <TextField type='number' id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' onChange={handleInput} />
 
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Creator" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
                                 <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleChangeImage} />
                                 <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
                                 <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
@@ -243,7 +243,7 @@ export default function ModalCreateRoom() {
                             <div style={{ padding: '0 50px' }}>
                                 <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4} defaultValue="Description"
                                     name='Description' onChange={handleInput}
-                                // style={{margin: '0 50px'}}
+                                style={{width: "100%"}}
                                 />
                             </div>
                         </div>

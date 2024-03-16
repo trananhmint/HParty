@@ -12,7 +12,7 @@ export default function AdminCustCount() {
   
     const fetchData = async () => {
       try {
-        const data = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/users',
+        const data = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/users',
           {
             withCredentials: true,
           });

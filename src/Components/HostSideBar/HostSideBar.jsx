@@ -75,7 +75,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
   
     const fetchUser = async () => {
       try {
-        const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/User', {
+        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User', {
           withCredentials: true,
         });
         console.log(response);
@@ -129,7 +129,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
         >
             <DrawerHeader >
                 <div style={{ display: 'flex', alignItems: "center", marginRight: "40px", }}>
-                    <Link to='/customerProfile' style={{ textDecoration: 'none', color: 'white' }}>
+                    <Link to='/customer' style={{ textDecoration: 'none', color: 'white' }}>
                         <div className="drawer-avatar">
                         <Avatar {...(name ? stringAvatar(name) : {})} />
                             <span>{name}</span>

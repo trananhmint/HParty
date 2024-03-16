@@ -14,7 +14,7 @@ const Deposited = () => {
 
   const fetchBooked = async () => {
     try {
-      const response = await axios.get('https://bookingbirthdayparties.azurewebsites.net/api/Booking');
+      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking');
       setBooked(response.data.data);
       console.log(response.data);
     } catch (err) {
@@ -40,7 +40,7 @@ const Deposited = () => {
 
   const fetchBookingDetail = async (bookingId) => {
     try {
-      const response = await axios.get(`https://bookingbirthdayparties.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
       return response.data.data;
     } catch (err) {
       console.log(err);
@@ -50,7 +50,7 @@ const Deposited = () => {
 
   const fetchCustomerCancel = async (data) => {
     try {
-      const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Booking/CancelByCustomer', data,
+      const response = await axios.post('https://bookingbithdayparty.azurewebsites.net/api/Booking/CancelByCustomer', data,
         {
           headers: {
             "Content-Type": "application/json"
@@ -68,7 +68,7 @@ const Deposited = () => {
 
   const fetchCustomerFinish = async (data) => {
     try {
-      const response = await axios.post('https://bookingbirthdayparties.azurewebsites.net/api/Booking/finishBooking', data,
+      const response = await axios.post('https://bookingbithdayparty.azurewebsites.net/api/Booking/finishBooking', data,
         {
           headers: {
             "Content-Type": "application/json"

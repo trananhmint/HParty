@@ -182,7 +182,7 @@ export const CartItems = () => {
         <div className="cartitems-items">
           <h1>Your Shopping Cart</h1>
           <div className="cartitems-format-main">
-            <p>Products</p>
+            <p>Services</p>
             <p>Title</p>
             <p>Price</p>
             <p>Quantity</p>

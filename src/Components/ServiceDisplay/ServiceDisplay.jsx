@@ -11,7 +11,7 @@ const ServiceDisplay = (props) => {
   const [base64, setBase64] = useState('')
   const { service } = props;
   const { AddToCart, AddRoomsToCart } = useContext(ServiceContext);
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(service.rating);
 
 
   const images = service.images
@@ -60,19 +60,7 @@ const ServiceDisplay = (props) => {
           <div className="servicedisplay-right">
             {getName(service.serviceName)}
             <div className="servicedisplay-right-star">
-              {/* <StarOutlinedIcon />
-            <StarOutlinedIcon />
-            <StarOutlinedIcon />
-            <StarOutlinedIcon />
-            <StarBorderOutlinedIcon /> */}
-              <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-              />
-
+              <Rating name="read-only" value={value} readOnly />
             </div>
             <div className="servicedisplay-right-prices">
               <div className="servicedisplay-right-price">{service.price}đ</div>

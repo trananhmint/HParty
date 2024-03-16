@@ -17,13 +17,15 @@ import axios from 'axios';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export const SearchPage = () => {
+const SearchPage = () => {
     const { rooms, services } = useContext(ServiceContext);
     const [category, setCategory] = React.useState('');
     const queryParams = window.location.search;
     const cleanQuery = queryParams.replace("?", "");
     const urlParams = new URLSearchParams(cleanQuery);
-    const [items, setItems] = React.useState([...services, ...rooms]);
+    let [items, setItems] = React.useState([...services, ...rooms]);
+    const [searchRooms, setSearchRooms] = React.useState([]);
+    const [searchServices, setSearchServices] = React.useState([]);
 
     const [search, setSearch] = React.useState({
         search: urlParams.get("searchTerm")
@@ -44,7 +46,7 @@ export const SearchPage = () => {
                 }
 
             });
-            setItems(response.data.data);
+            setSearchRooms(response.data.data);
             console.log(response.data.data);
         }
         catch (error) {
@@ -55,26 +57,33 @@ export const SearchPage = () => {
     const fetchSearchService = async () => {
         try {
             // const queryParams = new URLSearchParams({ searchTerm: searchTerm }).toString();
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Service/services", search.search, {
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Service/search_service", search.search, {
                 headers: {
                     "Content-Type": "application/json"
                 }
 
             });
-            setItems(response.data.data);
+            setSearchServices(response.data.data);
             console.log(response.data.data);
         }
         catch (error) {
             console.log(error);
         }
     }
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         fetchSearchRoom();
     }, [])
 
-    //gộp và trộn room & service
-    
+    useEffect(() => {
+        fetchSearchService();
+    }, [])
+
+    useEffect(() => {
+        // Cập nhật items với sự kết hợp của searchRooms và searchServices
+        setItems([...searchRooms, ...searchServices]);
+
+    }, [searchRooms, searchServices]);
     // console.log(items.sort(() => {
     //     return Math.random() - 0.5;
     // }));

@@ -32,7 +32,7 @@ export default function AdminHostCount() {
 
   useEffect(() => {
 
-    const hosts = items.filter (user => user.roleId === 2).length;
+    const hosts = items.filter (user => user.role.roleId === 2).length;
     setHost(hosts);
   }, [items]);
 

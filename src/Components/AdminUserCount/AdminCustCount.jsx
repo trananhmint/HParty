@@ -25,8 +25,6 @@ export default function AdminCustCount() {
   
     }
   
-  
-  
     useEffect(() => {
       fetchData();
     }, []);
@@ -34,7 +32,7 @@ export default function AdminCustCount() {
 
   useEffect(() => {
 
-    const customers = items.filter (user => user.roleId === 1).length;
+    const customers = items.filter (user => user.role.roleId === 1).length;
     setCustomer(customers);
   }, [items]);
 

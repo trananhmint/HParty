@@ -63,8 +63,8 @@ function stringAvatar(name) {
 
 const AdminSidebar = ({ open, handleDrawerClose }) => {
 
-  const [user, setUser] = useState("");
-  const [name, setName] = useState("");
+  const [user, setUser] = useState();
+  const [name, setName] = useState();
 
   const fetchUser = async () => {
     try {
@@ -87,9 +87,6 @@ const AdminSidebar = ({ open, handleDrawerClose }) => {
     if (user) {
         const text = user.fullName; 
         setName(text);
-        // const firstLetter = text.substring(0, 1).toUpperCase(); 
-        // setFirstLetters(firstLetter);
-        // Tiếp tục xử lý dữ liệu của bạn ở đây
     }
 }, [user]);
   const storedImage = localStorage.getItem('selectedImage');

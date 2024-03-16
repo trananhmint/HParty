@@ -46,6 +46,7 @@ import OTP from './Pages/OTP';
 import HostTransactionHistoryPage from './Pages/HostTransactionHistory';
 import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
 import BackButton from './Components/BackButton/BackButton';
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,

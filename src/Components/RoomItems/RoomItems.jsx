@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import '../Item/Item.css'
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import { Link } from 'react-router-dom';
+import { ServiceContext } from '../../Context/ServiceContext';
 
 export const RoomItems = (props) => {
 
-    function getSalePrice(sale_Price) {
-        if (sale_Price !== undefined && sale_Price !== null && sale_Price !== 0) {
-            return <div className='item-card-old-price'>{props.salePrice}đ</div>
+    const { VND } = useContext(ServiceContext);
+
+    function getSalePrice(salePrice) {
+        if (salePrice !== undefined && salePrice !== null && salePrice !== 0) {
+            return <div className='item-card-old-price'>{VND.format(props.salePrice)}</div>
         } else {
             return null;
         }
@@ -28,7 +31,7 @@ export const RoomItems = (props) => {
                                 {props.roomName}
                             </div>
                             <div className="item-card-prices">
-                                <div className='item-card-new-price'>{props.price}đ</div>
+                                <div className='item-card-new-price'>{VND.format(props.price)}</div>
                                 {getSalePrice(props.salePrice)}
                             </div>
 
@@ -63,7 +66,7 @@ export const RoomItems = (props) => {
                                 {props.roomName}
                             </div>
                             <div className="item-card-prices">
-                                <div className='item-card-new-price'>{props.price}đ</div>
+                                <div className='item-card-new-price'>{VND.format(props.price)}</div>
                                 {getSalePrice(props.salePrice)}
                             </div>
                             <div className="rate-stars">

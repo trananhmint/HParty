@@ -89,14 +89,14 @@
 }
 
 .payment-total-button button {
-    width: 262px;
+    width: 200px;
     height: 58px;
     outline: none;
     border: none;
     border-radius: 33px;
     background: #f5a02c;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -126,6 +126,11 @@
     font-size: 20px;
 }
 
+.payment-input-time-guide {
+    display: flex;
+    justify-content: space-between;
+}
+
 .payment-input-time {
     display: flex;
     flex-direction: column;
@@ -140,6 +145,34 @@
 .payment-input-time svg {
     font-size: 30px;
     margin-bottom: -8px;
+}
+
+.payment-time-guide {
+    display: flex;
+    flex-direction: column;
+    color: grey;
+    margin: 20px 0;
+    padding: 25px 30px;
+    gap: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    gap: 15px;
+}
+
+.payment-time-guide p {
+    font-size: 20px;
+    line-height: 1.7;
+}
+
+.payment-time-guide>p:first-child {
+    font-size: 20px;
+    color: #f5a02c;
+}
+
+.payment-time-guide svg {
+    font-size: 30px;
+    margin-bottom: -8px;
+    margin-left: -3px;
 }
 
 .payment-input-time input[type="datetime-local" i] {

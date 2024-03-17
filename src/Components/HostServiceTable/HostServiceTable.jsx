@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,6 +20,7 @@ import { CircularProgress } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import axios from 'axios';
+import { ServiceContext } from '../../Context/ServiceContext';
 
 export const HostServiceTable = () => {
     const [items, setItems] = useState([]);
@@ -27,8 +28,8 @@ export const HostServiceTable = () => {
     const handleOpen = () => setOpen(true);
     const [loading, setLoading] = useState(true);
     const [base64Image, setBase64Image] = useState('');
+    const { VND } = useContext(ServiceContext);
     const [host, setHost] = useState("");
-
 
 
 
@@ -55,7 +56,8 @@ export const HostServiceTable = () => {
 
             const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Service/party_host/service/${id}`,
                 {
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
                 }
             );
             setItems(data.data.data);
@@ -72,7 +74,7 @@ export const HostServiceTable = () => {
     }, []);
 
     useEffect(() => {
-        if (host) { 
+        if (host) {
             fetchData(host.userId);
         }
     }, [host]);
@@ -146,7 +148,7 @@ export const HostServiceTable = () => {
                                                 {index + 1}
                                             </TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{VND.format(item.price)}</TableCell>
                                             <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" /></TableCell>
                                             {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images}</TableCell> */}
                                             <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
@@ -182,7 +184,7 @@ export const HostServiceTable = () => {
                                                 {index + 1}
                                             </TableCell>
                                             <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.price}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{VND.format(item.price)}</TableCell>
                                             <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${base64Image}`} alt="Images" /></TableCell>
 
                                             {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images[0].imageBase64}</TableCell> */}

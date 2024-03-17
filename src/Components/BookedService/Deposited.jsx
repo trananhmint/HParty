@@ -2,19 +2,45 @@ import React, { useEffect, useState } from 'react'
 import './Booked.css'
 import axios from 'axios';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { FinishBooking } from '../DeleteDialog/FinishBooking';
+import { DeleteBooking } from '../DeleteDialog/DeleteBooking';
 
 const Deposited = () => {
   const [booked, setBooked] = useState([]);
-  const [bookingDetail, setBookingDetail] = useState([]);
-  const [rooms, setRooms] = useState([]);
-  const [services, setServices] = useState([]);
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+  const [user, setUser] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+
+
+  const fetchUser = async () => {
+    try {
+      const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+        {
+          withCredentials: true
+        }
+      );
+      setUser(data.data.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   }
 
-  const fetchBooked = async () => {
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+
+
+  const fetchBooked = async (id) => {
     try {
-      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking', {
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/booking/${user.userId}`, {
+
+        headers: {
+          "Content-Type": "application/json"
+        },
         withCredentials: true
       });
       setBooked(response.data.data);
@@ -25,30 +51,13 @@ const Deposited = () => {
   };
 
   useEffect(() => {
-    fetchBooked();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
-
-    if (booked.length > 0) {
-      fetchData();
+    if (user) {
+      fetchBooked(user.userId);
     }
-  }, [booked]);
+  }, [user]);
 
-  const fetchBookingDetail = async (bookingId) => {
-    try {
-      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-      return response.data.data;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
+
+
 
   const fetchCustomerCancel = async (data) => {
     try {
@@ -88,19 +97,16 @@ const Deposited = () => {
 
 
 
-  const handleClick = (bookingId) => {
-    window.confirm('Are you sure to cancel');
+  const handleCancelClick = (bookingId) => {
+    // window.confirm('Are you sure to cancel');
     fetchCustomerCancel(bookingId);
   }
 
 
   const handleClickFinish = (bookingId) => {
-    window.confirm('Are you sure to finish');
+    // window.confirm('Are you sure to finish');
     fetchCustomerFinish(bookingId);
   }
-
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
 
 
   function getCategory(categoryId) {
@@ -138,7 +144,7 @@ const Deposited = () => {
   return (
     <div className='all'>
       {booked.map((book, index) => {
-        if (book.status === "DEPOSITED") {
+        if (book.status === "BOOKED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
@@ -149,8 +155,8 @@ const Deposited = () => {
                   <p>{getDateTime(book.bookingDate)}</p>
                   <hr />
                   <div className='booking-button'>
-                    <button id='finish' onClick={() => handleClickFinish(book.bookingId)}>FINISH</button>
-                    <button id='cancel' onClick={() => handleClick(book.bookingId)} ><CancelOutlinedIcon /></button>
+                    <FinishBooking handleClickFinish={() => handleClickFinish(book.booingId)} />
+                    <DeleteBooking handleCancelClick={() => handleCancelClick(book.booingId)} />
                   </div>
                 </div>
               </div>

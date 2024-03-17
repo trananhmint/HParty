@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -19,6 +19,7 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
+import { ServiceContext } from '../../Context/ServiceContext';
 
 
 export const HostRoomTable = () => {
@@ -26,6 +27,7 @@ export const HostRoomTable = () => {
   const [host, setHost] = useState("");
   const [loading, setLoading] = useState(true);
   const [base64Image, setBase64Image] = useState('');
+  const { VND } = useContext(ServiceContext);
 
   const fetchPartyHost = async () => {
     try {
@@ -52,7 +54,8 @@ export const HostRoomTable = () => {
 
       const data = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Room/party_host/rooms/${id}`,
         {
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
         }
       );
       if (data.data.data !== null && data.data.data !== undefined) {
@@ -76,6 +79,7 @@ export const HostRoomTable = () => {
       fetchData(host.userId);
     }
   }, [host]);
+
 
   console.log(items)
   const itemRoom = items.filter((item) => {
@@ -154,7 +158,7 @@ export const HostRoomTable = () => {
                       <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.capacity}</TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
-                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{VND.format(item.price)}</TableCell>
                       <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
                       {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
                       <TableCell sx={{ fontSize: '16px' }} align="center">
@@ -189,7 +193,7 @@ export const HostRoomTable = () => {
                       <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.capacity}</TableCell>
                       <TableCell sx={{ fontSize: '16px' }}>{item.address}</TableCell>
-                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{item.price}</TableCell>
+                      <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align='center'>{VND.format(item.price)}</TableCell>
                       <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
                       {/* <TableCell sx={{fontSize:'16px' , whiteSpace: 'nowrap'}} align='center'>{item.user.fullName}</TableCell> */}
                       <TableCell sx={{ fontSize: '16px' }} align="center">

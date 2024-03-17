@@ -43,6 +43,7 @@ import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
 import BackButton from './Components/BackButton/BackButton';
 import CreateFeedback from './Components/CreateForm/CreateFeedback';
 import ModalCreateFeedback from './Components/CreateForm/CreateFeedback';
+import { HostBooking } from './Pages/HostBooking';
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -82,7 +83,7 @@ function App() {
             <Route path='/my-order' element={<MyOrder />}></Route>
             <Route path='/all-promotion'></Route>
             {/* <Route path="/my-transaction-history" element={<CustTransactionHistoryPage/>} /> */}
-            
+
 
           </Routes>
           <Routes>
@@ -92,6 +93,7 @@ function App() {
             <Route path='/host-profile' element={<HostProfile />} />
             <Route path='/host-services' element={<HostServices />} />
             <Route path='/host-rooms' element={<HostRooms />} />
+            <Route path='host-bookings' element={<HostBooking />} />
             {/* <Route path="/host-transaction-history" element={<HostTransactionHistoryPage/>} /> */}
 
           </Routes>
@@ -106,7 +108,7 @@ function App() {
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
             <Route path='/editRoom' element={<RoomModalUnstyled />} />
-            <Route path='/createfeedback' element={<ModalCreateFeedback/>}/>
+            <Route path='/createfeedback' element={<ModalCreateFeedback />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

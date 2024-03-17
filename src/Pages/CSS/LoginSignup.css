@@ -76,7 +76,7 @@
 }
 
 .container input {
-    background-color: #eee;
+    /* background-color: #eee; */
     border: none;
     margin: 8px 0;
     padding: 5px 15px;
@@ -105,13 +105,23 @@
     height: 100%;
     transition: all 0.6s ease-in-out;
 }
+.form-container.sign-up {
+    display: flex;
+    flex-direction: row;
+}
+.form-container.sign-in div {
+    margin: 5px 0;
+}
+.form-container.sign-up div {
+    margin: 3px 5px;
+}
 
 .form-container.sign-in form {
-    padding: 0 150px;
+    padding: 0 100px;
 }
 
 .form-container.sign-up form {
-    padding: 0 150px;
+    padding: 0 100px;
 }
 
 .sign-in {
@@ -240,4 +250,10 @@
     grid-template-columns: 1fr 1fr;
     row-gap: 10px;
     column-gap: 10px;
+}
+
+.input-register {
+    display: flex;
+    margin: 50px auto;
+    flex-wrap: wrap;
 }

@@ -8,6 +8,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import 'react-toastify/dist/ReactToastify.css';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 const LoginSignup = () => {
 
@@ -298,69 +300,82 @@ const LoginSignup = () => {
         <div className="form-container sign-up">
           <form onSubmit={handleSubmitRegisterEvent}>
             <h1>Create Account</h1>
-            {/* <span>or use your email for registeration</span> */}
-            <div className='input-field-register'>
-              <input type="text" id='register-fullname' name='fullname' aria-describedby='register-fullname' aria-invalid="false" onChange={handleRegisterInput} placeholder='FullName' />
-              <select name='roleId' defaultValue={0} onChange={handleRegisterInput}>
-                <option value={0} disabled>Select User Type</option>
-                <option value={1} >Customer</option>
-                <option value={2} >Party Host</option>
-              </select>
-              <input type="email" id='register-email' name='email' aria-describedby='register-email' aria-invalid="false" onChange={handleRegisterInput} placeholder='Email' />
-              <input type="password" id='register-password' name='password' aria-describedby='register-password' aria-invalid="false" onChange={handleRegisterInput} placeholder='Password' />
-              <input style={{ width: '100%' }} type="text" id='register-numberAddress' name='numberAddress' aria-describedby='register-numberAddress' aria-invalid="false" onChange={handleNumberAddressChange} placeholder='Number Address' />
-              {/* <input type="text" id='register-address' name='address' aria-describedby='register-address' aria-invalid="false" onChange={handleRegisterInput} placeholder='Address' /> */}
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Province</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={provinceId}
-                  label="Province"
-                  onChange={handleProvinceChange}
-                >
-                  <MenuItem value={0} disabled>Select Province</MenuItem>
-                  {provinces.map((province) => {
-                    return <MenuItem value={province.province_id}>{province.province_name}</MenuItem>
-                  })}
+            <div className="input-register">
+              <div><TextField id="outlined-basic" label="Full Name" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }} /></div>
+              <div>
+                <FormControl style={{width: '250px', fontSize: '20px', height: '50px' }} >
+                  <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={provinceId}
+                    label="Province"
+                    onChange={handleProvinceChange}
+                  >
+                    <MenuItem value={0} disabled>Select Role</MenuItem>
+                    <MenuItem value={1} >Customer</MenuItem>
+                    <MenuItem value={2} >Party Host</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
+              <div><TextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" style={{width: '250px', fontSize: '20px' }}/></div>
+              <div><TextField id="outlined-basic" label="Email" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }} /></div>
+              <div><TextField id="outlined-basic" label="Phone" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }} /></div>
+              <div>
+                <FormControl style={{width: '250px', fontSize: '20px' }}>
+                  <InputLabel id="demo-simple-select-label">Province</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={provinceId}
+                    label="Province"
+                    onChange={handleProvinceChange}
+                  >
+                    <MenuItem value={0} disabled>Select Province</MenuItem>
+                    {provinces.map((province) => {
+                      return <MenuItem value={province.province_id}>{province.province_name}</MenuItem>
+                    })}
 
-                </Select>
-              </FormControl>
+                  </Select>
+                </FormControl>
+              </div>
+              <div>
+                <FormControl style={{width: '250px', fontSize: '20px' }}>
+                  <InputLabel id="demo-simple-select-label">District</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={districtId}
+                    label="District"
+                    onChange={handleDistrictChange}
+                  >
+                    <MenuItem value={0} disabled>Select District</MenuItem>
+                    {districts.map((district) => {
+                      return <MenuItem value={district.district_id}>{district.district_name}</MenuItem>
+                    })}
+                  </Select>
+                </FormControl>
+              </div>
+              <div>
+                <FormControl style={{width: '250px', fontSize: '20px' }}>
+                  <InputLabel id="demo-simple-select-label">Ward</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={wardId}
+                    label="Ward"
+                    onChange={handleWardChange}
+                  >
+                    <MenuItem value={0} disabled>Select Ward</MenuItem>
+                    {wards.map((ward) => {
+                      return <MenuItem value={ward.ward_id}>{ward.ward_name}</MenuItem>
+                    })}
+                  </Select>
+                </FormControl>
+              </div>
+              <div><TextField id="outlined-basic" label="Number Address" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }}/></div>
 
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">District</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={districtId}
-                  label="District"
-                  onChange={handleDistrictChange}
-                >
-                  <MenuItem value={0} disabled>Select District</MenuItem>
-                  {districts.map((district) => {
-                    return <MenuItem value={district.district_id}>{district.district_name}</MenuItem>
-                  })}
-                </Select>
-              </FormControl>
 
-
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Ward</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={wardId}
-                  label="Ward"
-                  onChange={handleWardChange}
-                >
-                  <MenuItem value={0} disabled>Select Ward</MenuItem>
-                  {wards.map((ward) => {
-                    return <MenuItem value={ward.ward_id}>{ward.ward_name}</MenuItem>
-                  })}
-                </Select>
-              </FormControl>
-
-              <input type="text" id='register-phone' name='phone' aria-describedby='register-phone' aria-invalid="false" onChange={handleRegisterInput} placeholder='Phone' />
             </div>
             <button >Sign Up</button>
           </form>
@@ -368,11 +383,11 @@ const LoginSignup = () => {
         <div className="form-container sign-in">
           <form onSubmit={handleSubmitEvent} >
             <h1 >Sign In</h1>
-            <input type="email" id='user-email' name='email' aria-describedby='user-email' aria-invalid="false" onChange={handleInput} placeholder='Email' />
             {/* <div id='user-email' className='sr-only'>
               Please enter a valid username. It must contain at least 6 characters.
             </div> */}
-            <input type="password" id='user-password' name='password' aria-describedby='user-password' aria-invalid="false" onChange={handleInput} placeholder='Password' />
+              <div><TextField id="outlined-basic" label="Email" name="email" variant="outlined" size='small' style={{width: '350px'}} /></div>
+              <div><TextField id="outlined-password-input" label="Password" name="password" type="password"  style={{width: '350px'}}/></div>
             {/* <div id='user-password' className='sr-only'>
               Your password should be more than 6 character
             </div> */}

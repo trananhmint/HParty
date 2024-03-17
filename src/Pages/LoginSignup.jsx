@@ -127,7 +127,7 @@ const LoginSignup = () => {
     password: "",
     address: "",
     phone: "",
-    roleId: 0
+    roleId: 1
   })
 
 
@@ -301,28 +301,28 @@ const LoginSignup = () => {
           <form onSubmit={handleSubmitRegisterEvent}>
             <h1>Create Account</h1>
             <div className="input-register">
-              <div><TextField id="outlined-basic" label="Full Name" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }} /></div>
-              <div>
-                <FormControl style={{width: '250px', fontSize: '20px', height: '50px' }} >
+              <div><TextField id="outlined-basic" label="Full Name" variant="outlined" size='small' style={{ width: '250px', fontSize: '20px' }} name='fullname' onChange={handleRegisterInput} /></div>
+              {/* <div>
+                <FormControl style={{ width: '250px', fontSize: '20px', height: '50px' }} >
                   <InputLabel id="demo-simple-select-label">Role</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={provinceId}
+                    name='roleId'
                     label="Province"
-                    onChange={handleProvinceChange}
+                    onChange={handleRegisterInput}
                   >
                     <MenuItem value={0} disabled>Select Role</MenuItem>
                     <MenuItem value={1} >Customer</MenuItem>
                     <MenuItem value={2} >Party Host</MenuItem>
                   </Select>
                 </FormControl>
-              </div>
-              <div><TextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" style={{width: '250px', fontSize: '20px' }}/></div>
-              <div><TextField id="outlined-basic" label="Email" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }} /></div>
-              <div><TextField id="outlined-basic" label="Phone" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }} /></div>
+              </div> */}
+              <div><TextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" style={{ width: '250px', fontSize: '20px' }} name='password' onChange={handleRegisterInput} /></div>
+              <div><TextField id="outlined-basic" label="Email" variant="outlined" size='small' style={{ width: '250px', fontSize: '20px' }} name='email' onChange={handleRegisterInput} /></div>
+              <div><TextField id="outlined-basic" label="Phone" variant="outlined" size='small' style={{ width: '250px', fontSize: '20px' }} name='phone' onChange={handleRegisterInput} /></div>
               <div>
-                <FormControl style={{width: '250px', fontSize: '20px' }}>
+                <FormControl style={{ width: '250px', fontSize: '20px' }}>
                   <InputLabel id="demo-simple-select-label">Province</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -340,7 +340,7 @@ const LoginSignup = () => {
                 </FormControl>
               </div>
               <div>
-                <FormControl style={{width: '250px', fontSize: '20px' }}>
+                <FormControl style={{ width: '250px', fontSize: '20px' }}>
                   <InputLabel id="demo-simple-select-label">District</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -357,7 +357,7 @@ const LoginSignup = () => {
                 </FormControl>
               </div>
               <div>
-                <FormControl style={{width: '250px', fontSize: '20px' }}>
+                <FormControl style={{ width: '250px', fontSize: '20px' }}>
                   <InputLabel id="demo-simple-select-label">Ward</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -373,7 +373,7 @@ const LoginSignup = () => {
                   </Select>
                 </FormControl>
               </div>
-              <div><TextField id="outlined-basic" label="Number Address" variant="outlined" size='small' style={{width: '250px', fontSize: '20px' }}/></div>
+              <div><TextField id="outlined-basic" label="Number Address" variant="outlined" size='small' style={{ width: '250px', fontSize: '20px' }} name='numberAddress' onChange={handleNumberAddressChange} /></div>
 
 
             </div>
@@ -386,8 +386,8 @@ const LoginSignup = () => {
             {/* <div id='user-email' className='sr-only'>
               Please enter a valid username. It must contain at least 6 characters.
             </div> */}
-              <div><TextField id="outlined-basic" label="Email" name="email" variant="outlined" size='small' style={{width: '350px'}} /></div>
-              <div><TextField id="outlined-password-input" label="Password" name="password" type="password"  style={{width: '350px'}}/></div>
+            <div><TextField id="outlined-basic" label="Email" name="email" variant="outlined" size='small' style={{ width: '350px' }} onChange={handleInput} /></div>
+            <div><TextField id="outlined-password-input" label="Password" name="password" type="password" style={{ width: '350px' }} onChange={handleInput} /></div>
             {/* <div id='user-password' className='sr-only'>
               Your password should be more than 6 character
             </div> */}

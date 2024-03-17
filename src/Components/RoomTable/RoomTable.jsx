@@ -70,7 +70,7 @@ export default function RoomTable() {
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Capacity</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Address</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
-            <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">SalePrice</TableCell>
+            {/* <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">SalePrice</TableCell> */}
             {/* <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">UserId</TableCell> */}
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
             <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
@@ -90,7 +90,7 @@ export default function RoomTable() {
               <TableCell sx={{ fontSize: '16px' }} align='center'>{item.capacity}</TableCell>
               <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.address}</TableCell>
               <TableCell sx={{ fontSize: '16px' }} align='center'>{item.price}</TableCell>
-              <TableCell sx={{ fontSize: '16px' }} align='center'>{item.salePrice}</TableCell>
+              {/* <TableCell sx={{ fontSize: '16px' }} align='center'>{item.salePrice}</TableCell> */}
               {/* <TableCell sx={{ fontSize: '16px' }} align='center'>{item.userId}</TableCell> */}
               <TableCell sx={{ fontSize: '16px' }} align="center">
                 <Button

@@ -53,6 +53,7 @@ export default function Condition() {
               Terms and Conditions for Booking Children's Birthday Party
               Services
 
+
             </Typography>
             <Paper elevation={3} style={{ padding: "20px", height: '100%' }}>
               <Typography variant="h5" fontWeight={550}>1. Decoration Rental:</Typography><br/>

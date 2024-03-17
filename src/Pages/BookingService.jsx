@@ -7,6 +7,7 @@ import ShopCart from '../Components/ShopCart/ShopCart';
 import Payment from '../Components/Payment/Payment';
 import { useSelector } from 'react-redux';
 import BackButton from '../Components/BackButton/BackButton';
+import Condition from '../Components/Condition/Condition';
 export const BookingService = () => {
   const title = 'payment'
 

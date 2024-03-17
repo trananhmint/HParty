@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
 import './UserTable.css'
-import { fetchUser } from '../../Context/fetchUser';
+// import { fetchUser } from '../../Context/fetchUser';
 import axios from 'axios';
 import ModalUpdateUser from '../EditForm/EditUser';
 import { disableUser } from '../../Context/disableUser';
@@ -107,7 +107,7 @@ export default function UserTable() {
               </TableCell>
               <TableCell align="right">
                 <Stack direction="row" spacing={1} alignItems={'center'} justifyContent={'space-around'}>
-                  <ModalUpdateUser />
+                  <ModalUpdateUser user={item} />
                   {/* <Button variant="outlined" startIcon={<DeleteIcon />} style={{ borderColor: '#f5a02c', color: '#f5a02c' }}>
                     Delete
                   </Button> */}

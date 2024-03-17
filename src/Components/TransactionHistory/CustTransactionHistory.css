@@ -53,6 +53,10 @@ table.MuiTable-root.css-quj9j6-MuiTable-root {
     outline: none;
 }
 .transaction-filter select{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
     font-size: 20px;
     background:  #DEB887 ;
     color: white;

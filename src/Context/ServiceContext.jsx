@@ -6,22 +6,7 @@ import { fetchService } from "./fetchService";
 
 export const ServiceContext = createContext(null);
 
-
-
-// const GetDefaultCart = () => {
-//     let cart = {}
-//     for (let index = 0; index <= 100; index++) {
-//         cart[index] = 0;
-//     }
-//     return cart;
-
-
-// }
-
-
 const ServiceContextProvider = (props) => {
-    // const [product, setProduct] = useState(GetDefaultCart());
-    // const [cartItems, setCartItems] = useState(GetDefaultCart());
     const [totalPrice, setTotalPrice] = useState(0);
     const [rooms, setRooms] = useState([]);
     const [services, setServices] = useState([]);
@@ -65,8 +50,6 @@ const ServiceContextProvider = (props) => {
     }, []);
     dispatch(addToCart({ rooms, services, totalPrice }));
 
-    // const cart = useSelector((state) => state.cart.cart)
-    // console.log(cart);
     let room = rooms.map((room) => room)
     let service = services.map((service) => service)
     let roomItem = cart.map((item) => {
@@ -103,16 +86,6 @@ const ServiceContextProvider = (props) => {
         return cart;
     }
 
-
-    // const AddRoomsToCart = (itemId) => {
-    //     setProduct((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-    //     console.log("Add to cart");
-    //     console.log(product);
-    // }
-
-
-
-
     const AddToCart = (itemId) => {
         setCart([...cart.filter(onlyUnique), itemId]);
         console.log("Add to cart");
@@ -120,7 +93,6 @@ const ServiceContextProvider = (props) => {
         console.log(localStorage.getItem(cartId));
 
     }
-
 
 
     const removeFromCart = (itemId) => {

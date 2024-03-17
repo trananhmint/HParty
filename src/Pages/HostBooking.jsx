@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import './CSS/AdminPage.css';
 import HostHeader from '../Components/HostHeader/HostHeader';
 import HostSideBar from '../Components/HostSideBar/HostSideBar';
+import { HostBookingTabs } from '../Components/BookedService/HostBookingTabs';
 
 const drawerWidth = 240;
 
@@ -31,7 +32,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 
 
-export const HostDisplay = () => {
+export const HostBooking = () => {
     const [open, setOpen] = React.useState(false);
 
 
@@ -51,14 +52,13 @@ export const HostDisplay = () => {
                 <HostSideBar open={open} handleDrawerClose={handleDrawerClose} />
 
                 <Main open={open}>
-
+                    <HostBookingTabs />
                 </Main>
-                {/* <Footer /> */}
             </Box>
 
         </div>
 
     )
 }
-export default HostDisplay;
+
 

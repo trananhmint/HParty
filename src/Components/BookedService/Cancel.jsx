@@ -1,15 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import './Booked.css'
 import axios from 'axios';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 const Cancel = () => {
 
   const [booked, setBooked] = useState([]);
-  const [bookingDetail, setBookingDetail] = useState([]);
+  const [user, setUser] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const fetchBooked = async () => {
+
+
+
+  const fetchUser = async () => {
     try {
-      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking', {
+      const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+        {
+          withCredentials: true
+        }
+      );
+      setUser(data.data.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+
+
+  const fetchBooked = async (id) => {
+    try {
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/booking/${id}`, {
         withCredentials: true
       });
       setBooked(response.data.data);
@@ -20,30 +44,12 @@ const Cancel = () => {
   };
 
   useEffect(() => {
-    fetchBooked();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
-
-    if (booked.length > 0) {
-      fetchData();
+    if (user) {
+      fetchBooked(user.userId);
     }
-  }, [booked]);
+  }, [user]);
 
-  const fetchBookingDetail = async (bookingId) => {
-    try {
-      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-      return response.data.data;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
+
 
 
 
@@ -88,7 +94,6 @@ const Cancel = () => {
                   <hr />
                   <p>{getDateTime(book.bookingDate)}</p>
                   <hr />
-                  <button id='cancel'><CancelOutlinedIcon /></button>
                 </div>
               </div>
               <hr />

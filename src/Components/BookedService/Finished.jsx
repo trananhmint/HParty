@@ -1,22 +1,41 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { fetchService } from '../../Context/fetchService';
 
 const Finished = () => {
 
   const [booked, setBooked] = useState([]);
-  const [bookingDetail, setBookingDetail] = useState([]);
-  const [rooms, setRooms] = useState([]);
-  const [services, setServices] = useState([]);
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+  const [user, setUser] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+
+
+  const fetchUser = async () => {
+    try {
+      const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
+        {
+          withCredentials: true
+        }
+      );
+      setUser(data.data.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   }
 
-  const fetchBooked = async () => {
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+
+
+  const fetchBooked = async (id) => {
     try {
-      const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Booking', {
-        withCredentials:true
+      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/booking/${id}`, {
+        withCredentials: true
       });
       setBooked(response.data.data);
       console.log(response.data);
@@ -26,72 +45,12 @@ const Finished = () => {
   };
 
   useEffect(() => {
-    fetchBooked();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const bookingIds = booked.map(booking => booking.bookingId);
-      const bookingDetails = await Promise.all(bookingIds.map(id => fetchBookingDetail(id)));
-      setBookingDetail(bookingDetails);
-    };
-
-    if (booked.length > 0) {
-      fetchData();
+    if (user) {
+      fetchBooked(user.userId);
     }
-  }, [booked]);
+  }, [user]);
 
-  const fetchBookingDetail = async (bookingId) => {
-    try {
-      const response = await axios.get(`https://bookingbithdayparty.azurewebsites.net/api/Booking/bookingdetails?bookingId=${bookingId}`);
-      return response.data.data;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
 
-  useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/Room/rooms');
-        setRooms(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchRooms();
-  }, []);
-
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const response = await fetchService();
-        setServices(response.data.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchServices();
-  }, []);
-
-  console.log("Service: ", services)
-  console.log("Booked:", booked)
-  console.log("Booking Detail:", bookingDetail);
-  let bookList = [];
-  bookingDetail.map((books) => {
-    if (books.length > 1) {
-
-      bookList.push(books)
-    } else {
-      for (let book of books) {
-        bookList.push(book);
-      }
-    }
-  });
-
-  console.log("Book List: ")
-  console.log(bookList);
 
   function getCategory(categoryId) {
     let category;

@@ -9,6 +9,7 @@ import { ServiceContext } from '../../Context/ServiceContext';
 export const Item = (props) => {
     const { VND } = useContext(ServiceContext);
 
+
     function getSalePrice(salePrice) {
         if (salePrice !== undefined && salePrice !== null && salePrice !== 0) {
             return <div className='item-card-old-price'>{VND.format(props.salePrice)}</div>
@@ -36,13 +37,8 @@ export const Item = (props) => {
                             </div>
                             <div className="rate-stars">
                                 <div className="stars">
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateOutlinedIcon />
+                                    <Rating name="read-only" value={props.averageRating} readOnly />
                                 </div>
-                                <p>(122)</p>
                                 {/* <p>{props.sale}</p> */}
                             </div>
                             <div className="item-card-place">
@@ -70,11 +66,7 @@ export const Item = (props) => {
                             </div>
                             <div className="rate-stars">
                                 <div className="stars">
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateOutlinedIcon />
+                                    <Rating name="read-only" value={props.averageRating} readOnly />
                                 </div>
                                 <p>(122)</p>
                                 {/* <p>{props.sale}</p> */}

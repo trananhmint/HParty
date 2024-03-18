@@ -4,10 +4,13 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import StarRateOutlinedIcon from '@mui/icons-material/StarRateOutlined';
 import { Link } from 'react-router-dom';
 import { ServiceContext } from '../../Context/ServiceContext';
+import Rating from '@mui/material/Rating';
 
 export const RoomItems = (props) => {
 
     const { VND } = useContext(ServiceContext);
+
+    
 
     function getSalePrice(salePrice) {
         if (salePrice !== undefined && salePrice !== null && salePrice !== 0) {
@@ -37,13 +40,9 @@ export const RoomItems = (props) => {
 
                             <div className="rate-stars">
                                 <div className="stars">
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateOutlinedIcon />
+                                    <Rating name="read-only" value={props.averageRating} readOnly />
                                 </div>
-                                <p>(122)</p>
+                       
                                 {/* <p>{props.sale}</p> */}
                             </div>
                             <div className="item-card-place">
@@ -71,11 +70,7 @@ export const RoomItems = (props) => {
                             </div>
                             <div className="rate-stars">
                                 <div className="stars">
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateIcon />
-                                    <StarRateOutlinedIcon />
+                                    <Rating name="read-only" value={props.averageRating} readOnly />
                                 </div>
                                 <p>(122)</p>
                                 {/* <p>{props.sale}</p> */}

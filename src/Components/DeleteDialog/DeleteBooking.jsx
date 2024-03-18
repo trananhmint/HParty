@@ -31,9 +31,9 @@ export const DeleteBooking = ({ handleCancelClick }) => {
         <div>
             <Button
                 variant='outlined'
-                startIcon={<DeleteIcon />}
                 onClick={handleOpen}
                 style={{ borderColor: '#f5a02c', color: '#f5a02c', borderRadius: '8px' }} >
+                Cancel
             </Button>
             <Modal
                 open={open}
@@ -51,7 +51,7 @@ export const DeleteBooking = ({ handleCancelClick }) => {
                         sx={{
                             mt: 2,
                             float: "right",
-                            color: "green",
+                            color: "gray",
                             "&:hover": {
                                 backgroundColor: "white",
                             },
@@ -67,7 +67,7 @@ export const DeleteBooking = ({ handleCancelClick }) => {
                         sx={{
                             mt: 2,
                             float: "right",
-                            color: "red",
+                            color: "#f5a02c",
                             "&:hover": {
                                 backgroundColor: "white",
                             },

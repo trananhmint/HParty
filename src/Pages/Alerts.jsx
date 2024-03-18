@@ -124,7 +124,7 @@ export const Alerts = () => {
         return (
             <div className='services-displayed'>
                 {currentItems && currentItems.map((item, i) => {
-                    return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+                    return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating}/>
                 })}
             </div>
 

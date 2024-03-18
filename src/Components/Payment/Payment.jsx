@@ -14,7 +14,8 @@ import Condition from '../Condition/Condition';
 export const Payment = () => {
     const { clearCart, getTotalPrice, VND } = useContext(ServiceContext);
     const [isSuccess, setSuccess] = useState(false);
-
+    const [bookingId, setBookingId] = useState(0);
+    const navigate = useNavigate();
 
     let uniqueItemOfRoom = JSON.parse(localStorage.getItem("uniqueItemOfRoom"));
     let uniqueItemOfService = JSON.parse(localStorage.getItem("uniqueItemOfService"));
@@ -52,8 +53,9 @@ export const Payment = () => {
                     },
                     withCredentials: true // Ensure credentials are included
                 })
-            console.log(response);
+            console.log(response.data);
             console.log("Post created:", response.data);
+            setBookingId(response.data.data.bookingId);
             setSuccess(response.data.isSuccess)
 
             if (response.data.isSuccess === false) {
@@ -102,16 +104,69 @@ export const Payment = () => {
     }
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isSuccess && bookingId) {
             fetchVNPAY(booking.totalPrice);
             clearCart();
+            // fetchDepositBooking(bookingId);
+            // // clearCart();
+            // // navigate('/alerts')
         }
     }, [isSuccess]);
+
+
+
+
+    const fetchDepositBooking = async (data) => {
+        try {
+
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Deposit", {
+
+                bookingId: data
+            },
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    withCredentials: true // Ensure credentials are included
+                })
+            console.log(response);
+            console.log("Success");
+            toast.success('Deposit Booking Successfully ', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+            // window.location.href = response.data.url;
+
+
+        } catch (error) {
+            console.error(error);
+            console.log("There are errors")
+            toast.error('VNPAY failed', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+
+            });
+        }
+    }
+
 
     const fetchVNPAY = async (data) => {
         try {
 
-            console.log(data);
+
             const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/VNPay", {
 
                 totalPrice: data
@@ -137,11 +192,6 @@ export const Payment = () => {
 
             });
             window.location.href = response.data.url;
-
-
-
-
-            // alert("Booking successfully");
 
         } catch (error) {
             console.error(error);
@@ -283,7 +333,7 @@ export const Payment = () => {
                 </div>
                 <hr />
                 <div className="payment-total-button">
-                    <Condition className="condition"  />
+                    <Condition className="condition" />
                     <button type='submit'>BOOKING</button>
                 </div>
             </div>

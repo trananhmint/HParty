@@ -10,7 +10,7 @@ export const ShopCart = () => {
     <div className='shopcart'>
       <div className="shopcart-format-main">
         <p id='product'>Services</p>
-        <p>Title</p>
+        <p style={{ align: 'center' }}>Title</p>
         <p>Price</p>
         <p>Quantity</p>
         <p>Total</p>

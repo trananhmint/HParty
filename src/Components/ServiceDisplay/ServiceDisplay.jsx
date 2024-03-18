@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react'
 import '../ServiceDisplay/ServiceDisplay.css';
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
-import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import { ServiceContext } from '../../Context/ServiceContext';
 
 import Rating from '@mui/material/Rating';
@@ -16,7 +14,6 @@ const ServiceDisplay = (props) => {
 
   const images = service.images
 
-  console.log(service)
 
   const handleClick = (service) => {
     if (service.serviceName) {
@@ -94,11 +91,6 @@ const ServiceDisplay = (props) => {
           <div className="servicedisplay-right">
             {getName(service.serviceName)}
             <div className="servicedisplay-right-star">
-              {/* <StarOutlinedIcon />
-              <StarOutlinedIcon />
-              <StarOutlinedIcon />
-              <StarOutlinedIcon />
-              <StarBorderOutlinedIcon /> */}
               <Rating
                 name="simple-controlled"
                 value={value}

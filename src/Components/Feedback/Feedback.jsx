@@ -13,8 +13,6 @@ export const Feedback = (props) => {
     
     console.log(service.serviceName);
 
-    const [value, setValue] = React.useState(service.rate);
-    const [services, setServices] = React.useState();
 
     // const fetchFeedback = async (data) => {
     //     try {
@@ -50,7 +48,7 @@ export const Feedback = (props) => {
                             <div className="feedback-avatar">
                                 <Avatar
                                     sx={{ bgcolor: deepOrange[500] }}
-                                    alt="`${feedback.user.fullName}`"
+                                    alt={`${feedback.user.fullName}`}
                                     src="/broken-image.jpg"
                                 />
                             </div>
@@ -67,12 +65,6 @@ export const Feedback = (props) => {
     
                                 <div className="feedback-frame-content">
                                     <p>{feedback.content}</p>
-                                    <div className="feedback-frame-content-image">
-                                        <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                                        <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                                        <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                                        <img src="https://cdn.firstcry.com/education/2022/12/29111202/101-Of-Planning-An-Unforgettable-Kids-Birthday-Party.jpg" alt="" />
-                                    </div>
     
                                 </div>
                             </div>

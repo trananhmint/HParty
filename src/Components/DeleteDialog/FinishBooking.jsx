@@ -34,7 +34,7 @@ export const FinishBooking = ({ handleClickFinish }) => {
                 variant='outlined'
                 // startIcon={<DeleteIcon />}
                 onClick={handleOpen}
-                style={{ borderColor: '#f5a02c', color: '#f5a02c', borderRadius: '8px' }} >
+                style={{ borderColor: '#f5a02c', color: 'white', borderRadius: '8px', background: '#f5a02c' }} >
                 Finish
             </Button>
             <Modal
@@ -53,7 +53,7 @@ export const FinishBooking = ({ handleClickFinish }) => {
                         sx={{
                             mt: 2,
                             float: "right",
-                            color: "green",
+                            color: "grey",
                             "&:hover": {
                                 backgroundColor: "white",
                             },
@@ -69,7 +69,7 @@ export const FinishBooking = ({ handleClickFinish }) => {
                         sx={{
                             mt: 2,
                             float: "right",
-                            color: "red",
+                            color: "#f5a02c",
                             "&:hover": {
                                 backgroundColor: "white",
                             },

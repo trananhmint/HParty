@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Booked.css'
 import axios from 'axios';
+import { ServiceContext } from '../../Context/ServiceContext';
 const Cancel = () => {
 
   const [booked, setBooked] = useState([]);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const { VND } = useContext(ServiceContext);
 
 
 
@@ -110,7 +111,7 @@ const Cancel = () => {
                     </div>
                   </div>
                   <div className="booked-item-price">
-                    <p>{book.room.price} đ</p>
+                    <p>{VND.format(book.room.price)}</p>
                   </div>
                 </div>
               </div>
@@ -130,7 +131,7 @@ const Cancel = () => {
                         </div>
                       </div>
                       <div className="booked-item-price">
-                        <p>{service.price} đ</p>
+                        <p>{VND.format(service.price)}</p>
                       </div>
                     </div>
                   </div>

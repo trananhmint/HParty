@@ -32,7 +32,7 @@ export default function ModalUpdateService({ service }) {
                 withCredentials: true
             });
             setHost(data.data.data);
-         
+
         } catch (err) {
             console.log(err);
         }
@@ -103,9 +103,8 @@ export default function ModalUpdateService({ service }) {
             const response = await axios.put(`https://bookingbithdayparty.azurewebsites.net/api/Service/service/${service.serviceId}`, formData,
 
                 {
-
                     headers: { "Content-Type": "multipart/form-data" },
-                    // withCredentials: true,
+                    withCredentials: true,
                 });
             console.log(response.data)
             toast.success('Update Successfully', {
@@ -193,10 +192,10 @@ export default function ModalUpdateService({ service }) {
                                 </FormControl>
                                 <TextField type='number' id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' defaultValue={service.price} onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='sale_Price' />
-                                <TextField id="outlined-basic" label="Images" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleInput} />
+                                {/* <TextField id="outlined-basic" label="Images" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleInput} /> */}
                                 <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' defaultValue={service.serviceTitle} onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
+                                {/* <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} disabled /> */}
+                                {/* <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} /> */}
                                 {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                     <Select
@@ -218,9 +217,9 @@ export default function ModalUpdateService({ service }) {
                                     </Select>
                                 </FormControl> */}
                             </div>
-                            <div style={{ padding: '0 42px'}}>
+                            <div style={{ padding: '0 42px' }}>
                                 <TextField
-                                    style={{width: "100%"}}
+                                    style={{ width: "100%" }}
                                     fullWidth
                                     id="outlined-multiline-static"
                                     label="Description"

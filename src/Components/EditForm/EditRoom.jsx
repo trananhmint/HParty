@@ -3,17 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/base/Modal';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import { Edit } from '@mui/icons-material';
 import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import { NumericFormat } from 'react-number-format';
-
 import './EditService.css'
-import MoneyFormattedInputs from '../Format/NumericFormat';
 import { Box } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -56,7 +49,7 @@ export default function ModalUpdateRoom({ room }) {
         Price: room.price,
         Images: room.images,
         Status: room.status,
-        Area: ""
+        Area: room.area
     })
 
 
@@ -77,19 +70,7 @@ export default function ModalUpdateRoom({ room }) {
         }
 
     };
-    console.log("RoomId: ", updateRoom.RoomId);
-    console.log("RoomName: ", updateRoom.RoomName);
-    console.log("Description: ", updateRoom.Description);
-    console.log("Capacity: ", updateRoom.Capacity);
-    console.log("Address: ", updateRoom.Address);
-    console.log("UserId: ", updateRoom.UserId);
-    console.log("Price: ", updateRoom.Price);
-    console.log("Images: ", updateRoom.Images);
-    console.log("Area: ", updateRoom.Area)
 
-    const name = "Balloon"
-
-    const price = 345432342;
 
     const [status, setStatus] = React.useState('');
 
@@ -208,16 +189,16 @@ export default function ModalUpdateRoom({ room }) {
 
                                     </Select>
                                 </FormControl> */}
-                                <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Price" defaultValue={VND.format(room.price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(room.sale_Price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' defaultValue={room.area} onChange={handleInput} />
+                                <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' defaultValue={room.price} onChange={handleInput} />
+                                {/* <TextField id="outlined-basic" label="Sale Price" defaultValue={VND.format(room.sale_Price)} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} /> */}
 
                                 <TextField id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' defaultValue={room.capacity} onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' defaultValue={room.address} onChange={handleInput} />
 
-                                <TextField id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
-                                <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
+                                {/* <TextField disabled id="outlined-basic" label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} /> */}
+                                {/* <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} /> */}
+                                {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-helper-label"
@@ -230,11 +211,11 @@ export default function ModalUpdateRoom({ room }) {
                                         <MenuItem value={1}>Active</MenuItem>
                                         <MenuItem value={0}>Inactive</MenuItem>
                                     </Select>
-                                </FormControl>
+                                </FormControl> */}
                             </div>
                             <div style={{ padding: '0 42px' }}>
                                 <TextField
-                                    style={{width: "100%"}}
+                                    style={{ width: "100%" }}
                                     fullWidth
                                     id="outlined-multiline-static"
                                     label="Description"

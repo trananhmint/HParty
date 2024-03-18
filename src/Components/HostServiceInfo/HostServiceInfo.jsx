@@ -8,14 +8,12 @@ import { Avatar, Rating } from '@mui/material'
 
 const HostServiceInfo = (props) => {
     const { service } = props;
-    // console.log(service.serviceName);
     let user = "";
-    if(service.user) {
+    if (service.user) {
         user = service.user;
         // console.log(user);
     }
-    console.log(service.roomName);
-    
+
     return (
         <div className='hostserviceinfo'>
             <div className="hostserviceinfo-avatar">
@@ -38,7 +36,7 @@ const HostServiceInfo = (props) => {
             <hr />
             <div className="hostserviceinfo-hotline">
                 <p className='hostserviceinfo-title'>Hotline</p>
-                <p className='hostserviceinfo-content'>(+84) 987 654 321</p>
+                <p className='hostserviceinfo-content'>{user.phone}</p>
             </div>
             <hr />
             <div className="hostserviceinfo-email">

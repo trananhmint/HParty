@@ -6,6 +6,7 @@ import './CSS/AdminPage.css';
 import CustomerHeader from '../Components/CustomerHeader/CustomerHeader';
 import CustomerSideBar from '../Components/CustomerSideBar/CustomerSideBar';
 import Footer from '../Components/Footer/Footer';
+import BookedServiceTabs from '../Components/BookedService/BookedServiceTabs';
 
 const drawerWidth = 240;
 
@@ -33,7 +34,7 @@ const name = localStorage.getItem('email');
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export const CustomerProfile = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
 
   const handleDrawerOpen = () => {
@@ -52,7 +53,7 @@ export const CustomerProfile = () => {
         <CustomerSideBar open={open} handleDrawerClose={handleDrawerClose} />
 
         <Main open={open}>
-
+          <BookedServiceTabs />
         </Main>
         {/* <Footer /> */}
       </Box>

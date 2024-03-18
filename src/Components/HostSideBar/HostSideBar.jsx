@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
@@ -72,30 +72,30 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
 
     const [user, setUser] = useState();
     const [name, setName] = useState();
-  
+
     const fetchUser = async () => {
-      try {
-        const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User', {
-          withCredentials: true,
-        });
-        console.log(response);
-        setUser(response.data.data);
-      } catch (err) {
-        console.error('Error fetching user ID:', err);
-        throw err; // Rethrow the error to handle it further up the call stack
-      }
+        try {
+            const response = await axios.get('https://bookingbithdayparty.azurewebsites.net/api/User', {
+                withCredentials: true,
+            });
+            console.log(response);
+            setUser(response.data.data);
+        } catch (err) {
+            console.error('Error fetching user ID:', err);
+            throw err; // Rethrow the error to handle it further up the call stack
+        }
     }
-  
+
     useEffect(() => {
-      fetchUser();
+        fetchUser();
     }, []);
-  
+
     useEffect(() => {
-      if (user) {
-          const text = user.fullName; 
-          setName(text);
-      }
-  }, [user]);
+        if (user) {
+            const text = user.fullName;
+            setName(text);
+        }
+    }, [user]);
     const theme = useTheme();
 
     const textAndIcons = {
@@ -104,8 +104,9 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
         'Change Password': <AssignmentIndIcon style={{ color: 'white' }} />,
         'Host Services': <AccountBoxIcon style={{ color: 'white' }} />,
         'Host Rooms': <AccountBoxIcon style={{ color: 'white' }} />,
+        'Host Bookings': <AccountBoxIcon style={{ color: 'white' }} />,
         'All Promotion': <CelebrationIcon style={{ color: 'white' }} />,
-        'Host Transaction History': <HistoryIcon  style={{ color: 'white' }} />,
+        'Host Transaction History': <HistoryIcon style={{ color: 'white' }} />,
     };
 
     return (
@@ -131,7 +132,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
                 <div style={{ display: 'flex', alignItems: "center", marginRight: "40px", }}>
                     <Link to='/customer' style={{ textDecoration: 'none', color: 'white' }}>
                         <div className="drawer-avatar">
-                        <Avatar {...(name ? stringAvatar(name) : {})} />
+                            <Avatar {...(name ? stringAvatar(name) : {})} />
                             <span>{name}</span>
                         </div>
                     </Link>
@@ -142,7 +143,7 @@ export const HostSideBar = ({ open, handleDrawerClose }) => {
             </DrawerHeader>
             <Divider />
             <List>
-                {['My Profile', 'Host Services', 'Host Rooms', 'Change Password', 'Host Address', 'All Promotion', 'Host Transaction History'].map((text, index) => (
+                {['My Profile', 'Host Services', 'Host Rooms', 'Host Bookings', 'Change Password', 'Host Address', 'All Promotion', 'Host Transaction History'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton component={Link} to={text === 'My Profile' ? '/host-profile' : `/${text.toLowerCase().replace(/\s/g, '-')}`}>
                             <ListItemIcon>

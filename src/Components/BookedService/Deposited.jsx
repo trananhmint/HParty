@@ -90,8 +90,8 @@ const Deposited = () => {
           withCredentials: true,
         })
       console.log(response.data);
-      window.location.reload();
-      return response.data;
+      // window.location.reload();
+
     } catch (err) {
       console.log(err);
       return null;

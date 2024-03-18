@@ -14,6 +14,8 @@ const ServiceContextProvider = (props) => {
     const [count, setCount] = useState(0);
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem(cartId)) || []);
     const dispatch = useDispatch();
+
+
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
@@ -64,8 +66,6 @@ const ServiceContextProvider = (props) => {
     let uniqueItemOfService = [...itemOfService.filter(onlyUnique)];
     let cartItem = [...uniqueItemOfRoom, ...uniqueItemOfService];
 
-
-
     let cartOfItems = [];
     cartOfItems = [...uniqueItemOfRoom, ...uniqueItemOfService];
 
@@ -86,8 +86,26 @@ const ServiceContextProvider = (props) => {
         return cart;
     }
 
+
+    // const AddRoomsToCart = (itemId) => {
+    //     setProduct((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+    //     console.log("Add to cart");
+    //     console.log(product);
+    // }
+
+    // const checkCategory = (itemId) => {
+    //     if (rooms.map((room) => {
+    //         if (room.roomId === Number(itemId)) {return (room.categoryId);}
+    //     })) {
+
+    //     }
+    // };
+
     const AddToCart = (itemId) => {
-        setCart([...cart.filter(onlyUnique), itemId]);
+        if (true) {
+            setCart([...cart.filter(onlyUnique), itemId]);
+        }
+        
         console.log("Add to cart");
         console.log(cart);
         console.log(localStorage.getItem(cartId));

@@ -43,6 +43,7 @@ import CustTransactionHistoryPage from './Pages/CustTransactionHistory';
 import BackButton from './Components/BackButton/BackButton';
 import CreateFeedback from './Components/CreateForm/CreateFeedback';
 import ModalCreateFeedback from './Components/CreateForm/CreateFeedback';
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
@@ -107,7 +108,6 @@ function App() {
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
             <Route path='/editRoom' element={<RoomModalUnstyled />} />
-            <Route path='/createfeedback' element={<ModalCreateFeedback />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

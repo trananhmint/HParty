@@ -84,18 +84,6 @@ export default function ModalCreateRoom() {
 
     };
 
-    console.log('RoomName: ', createRoom.RoomName);
-    console.log('Price', createRoom.Price);
-    console.log('Description: ', createRoom.Description);
-    console.log("Capacity: ", createRoom.Capacity);
-    console.log("Address: ", createRoom.Address);
-    console.log("UserId: ", createRoom.UserId);
-    console.log("Status", createRoom.Status);
-    console.log("Area: ", createRoom.Area);
-    console.log("Images: ", images);
-
-    const name = "Balloon"
-
 
 
     // const [status, setStatus] = React.useState('');

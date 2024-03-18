@@ -20,7 +20,7 @@ import { toast } from 'react-toastify';
 import Rating from '@mui/material/Rating';
 import { useEffect } from 'react';
 
-export default function ModalCreateFeedback() {
+export default function ModalCreateFeedback({ service }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -29,142 +29,73 @@ export default function ModalCreateFeedback() {
     const [host, setHost] = useState("");
 
 
+    const [createFeedback, setCreateFeedback] = useState({
+        rate: 0,
+        content: "",
+        serviceId: service.serviceId === undefined ? 0 : service.serviceId,
+        roomId: service.roomId === undefined ? 0 : service.roomId,
+        userId: "", // Initially empty
+    });
+
+
     const fetchData = async () => {
         try {
-            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User",
-                {
-                    withCredentials: true
-                }
-            );
+            const data = await axios.get("https://bookingbithdayparty.azurewebsites.net/api/User", {
+                withCredentials: true
+            });
             setHost(data.data.data);
         } catch (err) {
             console.log(err);
+            // Handle error
         }
+    };
 
-    }
     useEffect(() => {
         fetchData();
     }, []);
 
-
-    const handleChangePrice = (e) => {
-        setPrice(e.target.value);
-    }
-
-    const handleChangeImage = (e) => {
-        console.log(e.target.value);
-        setImages(e.target.files[0])
-    }
-
-
-    const [createRoom, setCreateRoom] = useState({
-        RoomName: "",
-        Price: "",
-        Description: "",
-        Capacity: 0,
-        Address: "",
-        UserId: host.userId,
-        Images: [],
-        Status: "",
-        Area: ""
-    })
+    useEffect(() => {
+        if (host && host.userId) {
+            setCreateFeedback(prevState => ({
+                ...prevState,
+                userId: host.userId
+            }));
+        }
+    }, [host]);
 
     const handleInput = (e) => {
         const { name, value } = e.target;
-        if (name === 'Price') {
-            setCreateRoom((prev) => ({
-                ...prev,
-                [name]: Number(value),
-            }));
-        } else {
-            setCreateRoom((prev) => ({
-                ...prev,
-                [name]: value,
-            }));
-        }
-
+        setCreateFeedback(prevState => ({
+            ...prevState,
+            [name]: name === "rate" ? Number(value) : value,
+        }));
     };
 
-    console.log('RoomName: ', createRoom.RoomName);
-    console.log('Price', createRoom.Price);
-    console.log('Description: ', createRoom.Description);
-    console.log("Capacity: ", createRoom.Capacity);
-    console.log("Address: ", createRoom.Address);
-    console.log("UserId: ", createRoom.UserId);
-    console.log("Status", createRoom.Status);
-    console.log("Area: ", createRoom.Area);
-    console.log("Images: ", images);
-
-    const [rating, setRating] = React.useState(5);
-
-
-
-    // const [status, setStatus] = React.useState('');
-
-    // const handleChangeStatus = (event) => {
-    //     setStatus(event.target.value);
-    // };
-    // const [category, setCategory] = React.useState('');
-
-    // const handleChangeCategory = (event) => {
-    //     setCategory(event.target.value);
-    // };
-
-    const VND = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
-
-    const fetchCreateRoom = async (createRoom) => {
+    const fetchCreateFeedback = async () => {
         try {
-            const formData = new FormData();
-            // Thêm các trường dữ liệu khác nếu cần
-            formData.append("RoomName", createRoom.RoomName);
-            formData.append("Description", createRoom.Description);
-            formData.append("Price", createRoom.Price);
-            formData.append("Capacity", createRoom.Capacity);
-            formData.append("Address", createRoom.Address);
-            formData.append("UserId", host.userId);
-            // Xử lý file ảnh nếu có
-            // Nếu Images là một mảng của các file ảnh
-
-
-            console.log([...formData]);
-            console.log(formData);
-
-            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Room", formData, {
-                headers: { "Content-Type": "multipart/form-data" },
+            const response = await axios.post("https://bookingbithdayparty.azurewebsites.net/api/Feedback/Create", createFeedback, {
+                headers: { "Content-Type": "application/json" },
                 withCredentials: true,
             });
 
             console.log(response.data);
             toast.success('Create Successfully', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
+                // Toast options
             });
-            window.location.reload();
-
-            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu POST
-
-
-
-            // Trả về dữ liệu từ phản hồi của API sau khi gửi yêu cầu PUT
+            // window.location.reload();
         } catch (error) {
             console.error('Error updating service:', error);
-            throw error; // Ném lỗi để xử lý ở phía gọi hàm
+            // Handle error
         }
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        fetchCreateRoom(createRoom)
-    }
+        fetchCreateFeedback();
+    };
+
+    console.log(createFeedback.rate);
+
 
     return (
         <div className='createservice'>
@@ -196,11 +127,9 @@ export default function ModalCreateFeedback() {
                             <div id="unstyled-modal-description" className="modal-description">
                                 <p style={{ width: '100px', margin: '30px 0px 10px 50px' }}>Rating: </p>
                                 <Rating
-                                    name="simple-controlled"
-                                    value={rating}
-                                    onChange={(event, newValue) => {
-                                        setRating(newValue);
-                                    }}
+                                    name="rate"
+
+                                    onChange={handleInput}
                                     style={{ width: '100px', margin: '30px 70px 10px 0px' }}
                                 />
                                 {/* <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '10px 50px' }} name='Images' onChange={handleChangeImage} /> */}
@@ -210,7 +139,8 @@ export default function ModalCreateFeedback() {
                                     label="Description"
                                     multiline rows={4}
                                     placeholder='Write your feedback here'
-                                    name='Description' onChange={handleInput}
+                                    name='content'
+                                    onChange={handleInput}
                                     style={{ width: "100%" }}
                                 />
                             </div>

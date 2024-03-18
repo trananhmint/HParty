@@ -7,6 +7,7 @@ import Rating from '@mui/material/Rating';
 
 import './Feedback.css'
 import axios from 'axios';
+import ModalCreateFeedback from '../CreateForm/CreateFeedback';
 
 export const Feedback = (props) => {
     const {service} = props;
@@ -35,6 +36,8 @@ export const Feedback = (props) => {
 
     // })
 
+    
+
     const feedbacks = service.feedbacks;
     console.log(service.feedbacks);
 
@@ -42,6 +45,7 @@ export const Feedback = (props) => {
     if (service.feedbacks) {
         return <div className='feedback'>
                 <p>FEEDBACK</p>
+                <ModalCreateFeedback service={service}/>
                 <hr />
                 {feedbacks.map((feedback) => {
                     console.log(feedback.user.fullName);

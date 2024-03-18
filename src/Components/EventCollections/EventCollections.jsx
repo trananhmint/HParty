@@ -30,7 +30,7 @@ export const EventCollections = () => {
       <div className="collections">
         {items.map((item, index) => {
           if (index <= 4 && item.status === 1) {
-            return <Item key={index} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+            return <Item key={index} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
           } else {
             return null;
           }

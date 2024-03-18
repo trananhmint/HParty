@@ -32,7 +32,6 @@ export default function NotificationButton() {
     try {
       const data = await fetchNoti(id)
       setItems(data.data.data);
-      console.log(data.data.data);
     } catch (err) {
       console.log(err);
     }

@@ -203,8 +203,8 @@ export default function ModalCreateService() {
                                 </FormControl>
                                 <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
                                 {/* <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} /> */}
-                                <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' defaultValue={"String"} onChange={handleInput} />
-                                <TextField id="outlined-basic" disabled label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' onChange={handleInput} defaultValue={user.userId} />
+                                <TextField id="outlined-basic" label="Title" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='ServiceTitle' defaultValue={"Title"} onChange={handleInput} />
+                                {/* <TextField id="outlined-basic" disabled label="Creator" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' onChange={handleInput} defaultValue={user.userId} /> */}
                                 <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} onChange={handleChangeImage} />
                                 {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
@@ -232,7 +232,7 @@ export default function ModalCreateService() {
                                     multiline
                                     rows={4}
                                     defaultValue="Description"
-                                style={{margin: '0px', width: "100%"}}
+                                    style={{ margin: '0px', width: "100%" }}
                                 />
                             </div>
                         </div>

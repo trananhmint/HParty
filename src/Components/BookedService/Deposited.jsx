@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Booked.css'
 import axios from 'axios';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { FinishBooking } from '../DeleteDialog/FinishBooking';
 import { DeleteBooking } from '../DeleteDialog/DeleteBooking';
+import { ServiceContext } from '../../Context/ServiceContext';
 
 const Deposited = () => {
   const [booked, setBooked] = useState([]);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { VND } = useContext(ServiceContext);
 
 
 
@@ -69,6 +71,7 @@ const Deposited = () => {
           withCredentials: true,
         })
       console.log(response.data);
+      window.location.reload();
       return response.data;
     } catch (err) {
       console.log(err);
@@ -79,7 +82,7 @@ const Deposited = () => {
 
   const fetchCustomerFinish = async (data) => {
     try {
-      const response = await axios.post('https://bookingbithdayparty.azurewebsites.net/api/Booking/finishBooking', data,
+      const response = await axios.put('https://bookingbithdayparty.azurewebsites.net/api/Booking/finishBooking', data,
         {
           headers: {
             "Content-Type": "application/json"
@@ -87,6 +90,7 @@ const Deposited = () => {
           withCredentials: true,
         })
       console.log(response.data);
+      window.location.reload();
       return response.data;
     } catch (err) {
       console.log(err);
@@ -144,7 +148,7 @@ const Deposited = () => {
   return (
     <div className='all'>
       {booked.map((book, index) => {
-        if (book.status === "BOOKED") {
+        if (book.status === "DEPOSITED") {
           return <div>
             <div className="booked">
               <div className="booked-info">
@@ -155,8 +159,8 @@ const Deposited = () => {
                   <p>{getDateTime(book.bookingDate)}</p>
                   <hr />
                   <div className='booking-button'>
-                    <FinishBooking handleClickFinish={() => handleClickFinish(book.booingId)} />
-                    <DeleteBooking handleCancelClick={() => handleCancelClick(book.booingId)} />
+                    <FinishBooking handleClickFinish={() => handleClickFinish(Number(book.bookingId))} />
+                    <DeleteBooking handleCancelClick={() => handleCancelClick(Number(book.bookingId))} />
                   </div>
                 </div>
               </div>
@@ -174,7 +178,7 @@ const Deposited = () => {
                     </div>
                   </div>
                   <div className="booked-item-price">
-                    <p>{book.room.price} đ</p>
+                    <p>{VND.format(book.room.price)}</p>
                   </div>
                 </div>
               </div>
@@ -194,7 +198,7 @@ const Deposited = () => {
                         </div>
                       </div>
                       <div className="booked-item-price">
-                        <p>{service.price} đ</p>
+                        <p>{VND.format(service.price)}</p>
                       </div>
                     </div>
                   </div>

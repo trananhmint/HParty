@@ -1,13 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { ServiceContext } from '../../Context/ServiceContext';
 
 const Finished = () => {
 
   const [booked, setBooked] = useState([]);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const { VND } = useContext(ServiceContext);
 
 
 
@@ -112,7 +113,7 @@ const Finished = () => {
                     </div>
                   </div>
                   <div className="booked-item-price">
-                    <p>{book.room.price} đ</p>
+                    <p>{VND.format(book.room.price)}</p>
                   </div>
                 </div>
               </div>
@@ -132,7 +133,7 @@ const Finished = () => {
                         </div>
                       </div>
                       <div className="booked-item-price">
-                        <p>{service.price} đ</p>
+                        <p>{VND.format(service.price)}</p>
                       </div>
                     </div>
                   </div>

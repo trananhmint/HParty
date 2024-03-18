@@ -53,7 +53,7 @@ export default function DeleteRoom({handleDisableClick}) {
             sx={{
               mt: 2,
               float: "right",
-              color: "green",
+              color: "gray",
               "&:hover": {
                 backgroundColor: "white", 
               },
@@ -69,7 +69,7 @@ export default function DeleteRoom({handleDisableClick}) {
             sx={{
               mt: 2,
               float: "right",
-              color: "red",
+              color: "#f5a02c",
               "&:hover": {
                 backgroundColor: "white", 
               },

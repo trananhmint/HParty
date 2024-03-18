@@ -34,7 +34,6 @@ const SearchPage = () => {
         search: urlParams.get("searchTerm")
     });
 
-    console.log(search.search);
 
     const handleChange = (event) => {
         setCategory(event.target.value);
@@ -67,7 +66,6 @@ const SearchPage = () => {
 
             });
             setSearchServices(response.data.data);
-            console.log(response.data.data);
         }
         catch (error) {
             console.log(error);
@@ -87,11 +85,7 @@ const SearchPage = () => {
         setItems([...searchRooms, ...searchServices]);
 
     }, [searchRooms, searchServices]);
-    // console.log(items.sort(() => {
-    //     return Math.random() - 0.5;
-    // }));
 
-    console.log(items);
 
 
 
@@ -100,15 +94,15 @@ const SearchPage = () => {
             <div className='services-displayed'>
                 {currentItems && currentItems.map((item, i) => {
                     if (category === item.categoryId) {
-                        return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+                        return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
                     } else if (category === 4 && item.categoryId === undefined) {
-                        return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+                        return <RoomItems key={i} id={item.roomId} serviceName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
                     }
                     else {
                         if (item.categoryId === undefined) {
-                            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+                            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
                         } else {
-                            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+                            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
                         }
                     }
                 })}

@@ -12,16 +12,16 @@ export const Category = () => {
     <div className='category'>
       <ArrowLeftOutlinedIcon />
       <ul className='category-menu'>
-        <Link to='/rooms' style={{textDecoration:'none'}}>
+        <Link to='/rooms' style={{ textDecoration: 'none', color: 'black' }}>
           <li className='category-menu-item'><img src={rooms} alt="" /> <span>Rooms</span></li>
         </Link>
-        <Link to='/decorations' style={{textDecoration:'none'}}>
+        <Link to='/decorations' style={{ textDecoration: 'none', color: 'black' }}>
           <li className='category-menu-item'><img src={decorations} alt="" /><span>Decors</span></li>
         </Link>
-        <Link to='/foods' style={{textDecoration:'none'}}>
+        <Link to='/foods' style={{ textDecoration: 'none', color: 'black' }}>
           <li className='category-menu-item'><img src={foods} alt="" /><span>Foods</span></li>
         </Link>
-        <Link to='/waiters' style={{textDecoration:'none'}}>
+        <Link to='/waiters' style={{ textDecoration: 'none', color: 'black' }}>
           <li className='category-menu-item'><img src={waiters} alt="" /><span>Waiters</span></li>
         </Link>
 

@@ -18,7 +18,7 @@ const style = {
   borderRadius: "8px",
 };
 
-export default function DeleteUser({handleDisableClick}) {
+export default function DeleteUser({ handleDisableClick }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,12 +30,12 @@ export default function DeleteUser({handleDisableClick}) {
 
   return (
     <div>
-      <Button 
-      variant='outlined' 
-      startIcon={<DeleteIcon />} 
-      onClick={handleOpen} 
-      style={{ borderColor: '#f5a02c', color: '#f5a02c', borderRadius: '8px' }} >
-      Delete
+      <Button
+        variant='outlined'
+        startIcon={<DeleteIcon />}
+        onClick={handleOpen}
+        style={{ borderColor: '#f5a02c', color: '#f5a02c', borderRadius: '8px' }} >
+        Delete
       </Button>
       <Modal
         open={open}
@@ -53,7 +53,7 @@ export default function DeleteUser({handleDisableClick}) {
             sx={{
               mt: 2,
               float: "right",
-              color: "green",
+              color: "gray",
               "&:hover": {
                 backgroundColor: "white", // Màu khi di chuột qua
               },
@@ -69,7 +69,7 @@ export default function DeleteUser({handleDisableClick}) {
             sx={{
               mt: 2,
               float: "right",
-              color: "red",
+              color: "#f5a02c",
               "&:hover": {
                 backgroundColor: "white", // Màu khi di chuột qua
               },
@@ -79,7 +79,7 @@ export default function DeleteUser({handleDisableClick}) {
             }}
             autoFocus
           >
-          Yes
+            Yes
           </Button>
         </Box>
       </Modal>

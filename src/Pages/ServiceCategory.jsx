@@ -28,7 +28,7 @@ export const ServiceCategory = (props) => {
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
           if (Number(props.categoryId) === item.categoryId && item.status === 1) {
-            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+            return <Item key={i} id={item.serviceId} serviceName={item.serviceName} price={item.price} sale_Price={item.sale_Price} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
           } else {
             return null;
           }
@@ -38,7 +38,6 @@ export const ServiceCategory = (props) => {
     )
   }
 
-  console.log(items)
 
   function PaginatedItems({ itemsPerPage }) {
     const [currentItems, setCurrentItems] = useState(null);

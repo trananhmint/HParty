@@ -26,7 +26,7 @@ export const RoomCategory = (props) => {
       <div className='services-displayed'>
         {currentItems && currentItems.map((item, i) => {
           if (item.status === 1) {
-            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} />
+            return <RoomItems key={i} id={item.roomId} roomName={item.roomName} price={item.price} sale_Price={item.salePrice} description={item.description} status={item.status} userId={item.userId} categoryId={item.categoryId} images={item.images} averageRating={item.averageRating} />
           }
         })}
       </div>

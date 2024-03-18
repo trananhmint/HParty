@@ -22,8 +22,6 @@ const AuthProvider = ({ children }) => {
                 })
                 .then(res => {
                     console.log("Post created:", res.data);
-                    console.log("Success");
-                    //  navigate("/otp");
                     toast.success('Please check your email!!!', {
                         position: "top-right",
                         autoClose: 3000,
@@ -39,7 +37,6 @@ const AuthProvider = ({ children }) => {
 
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid register")
             toast.error('Your email or password is existed. Please try again!!!', {
                 position: "top-right",
                 autoClose: 3000,
@@ -76,9 +73,6 @@ const AuthProvider = ({ children }) => {
                         setToken(res.data);
                         const roles = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
                         setRole(decoded[roles]);
-                        console.log(decoded);
-                        console.log(decoded[roles]);
-                        console.log(decoded.exp)
                         cookies.set("authToken", res.data, { expires: new Date(decoded.exp * 1000) });
                         toast.success('Login successfully', {
                             position: "top-right",
@@ -97,13 +91,11 @@ const AuthProvider = ({ children }) => {
                         } else {
                             navigate("/host")
                         }
-                        console.log("Success");
                         return;
                     }
                 })
         } catch (error) {
             console.error(error);
-            console.log("This is an invalid login")
             toast.error('Your email or password is incorrect. Please try again!!!', {
                 position: "top-right",
                 autoClose: 3000,

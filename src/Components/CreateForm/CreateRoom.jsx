@@ -195,15 +195,15 @@ export default function ModalCreateRoom() {
                                 </FormControl>
                                 <TextField id="outlined-basic" label="Area" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Area' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Price" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Price' onChange={handleInput} />
-                                <TextField id="outlined-basic" label="Sale Price" defaultValue={price} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} />
+                                {/* <TextField id="outlined-basic" label="Sale Price" defaultValue={price} variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='SalePrice' onChange={handleInput} /> */}
 
                                 <TextField type='number' id="outlined-basic" label="Capacity" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Capacity' onChange={handleInput} />
                                 <TextField id="outlined-basic" label="Address" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Address' onChange={handleInput} />
 
-                                <TextField id="outlined-basic" label="Creator" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} />
+                                {/* <TextField id="outlined-basic" label="Creator" disabled variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='UserId' defaultValue={host.userId} onChange={handleInput} /> */}
                                 <TextField type='file' id="outlined-basic" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Images' onChange={handleChangeImage} />
-                                <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} />
-                                <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
+                                {/* <TextField id="outlined-basic" label="Facilities" variant="outlined" style={{ width: '250px', margin: '0 50px' }} name='Facilities' onChange={handleInput} /> */}
+                                {/* <FormControl style={{ width: '250px', marginLeft: '50px', marginTop: '-1px' }}>
                                     <InputLabel id="demo-simple-select-helper-label">Status</InputLabel>
                                     <Select
                                         labelId="demo-simple-select-helper-label"
@@ -217,7 +217,7 @@ export default function ModalCreateRoom() {
                                         <MenuItem value={1}>Active</MenuItem>
                                         <MenuItem value={0}>Inactive</MenuItem>
                                     </Select>
-                                </FormControl>
+                                </FormControl> */}
                             </div>
                             <div style={{ padding: '0 50px' }}>
                                 <TextField fullWidth id="outlined-multiline-static" label="Description" multiline rows={4} defaultValue="Description"

@@ -34,7 +34,6 @@ export const CartItems = () => {
       })
       let itemOfRoom = roomItem.filter((room) => room !== undefined);
       uniqueItemOfRoom = [...itemOfRoom.filter(onlyUnique)];
-      console.log(uniqueItemOfRoom);
     }
 
     return uniqueItemOfRoom;
@@ -50,7 +49,6 @@ export const CartItems = () => {
 
       let itemOfService = serviceItem.filter((service) => service !== undefined);
       uniqueItemOfService = [...itemOfService.filter(onlyUnique)];
-      console.log(uniqueItemOfService);
     }
     return uniqueItemOfService;
 

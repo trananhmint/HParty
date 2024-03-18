@@ -126,12 +126,12 @@ export const HostServiceTable = () => {
 
                             <TableHead className='table-header'>
                                 <TableRow >
-                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} >No.</TableCell>
+                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center" >No.</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Service Name</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Price</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Image</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Description</TableCell>
-                                    <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Host</TableCell>
+                                    {/* <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Host</TableCell> */}
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Category</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Status</TableCell>
                                     <TableCell sx={{ fontSize: '18px', fontWeight: '550', color: 'white' }} align="center">Operation</TableCell>
@@ -147,12 +147,12 @@ export const HostServiceTable = () => {
                                             <TableCell component="th" scope="row">
                                                 {index + 1}
                                             </TableCell>
-                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.serviceName}</TableCell>
-                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{VND.format(item.price)}</TableCell>
-                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" /></TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align="center">{item.serviceName}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align="center">{VND.format(item.price)}</TableCell>
+                                            <TableCell className='edit-images' sx={{ fontSize: '16px', whiteSpace: 'nowrap' }} align="center"><img src={`data:image/jpeg;base64,${item.images[0].imageBase64}`} alt="Images" /></TableCell>
                                             {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images}</TableCell> */}
-                                            <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
+                                            <TableCell sx={{ fontSize: '16px', width: '100%' }} align="center">{item.description}</TableCell>
+                                            {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell> */}
                                             <TableCell sx={{ fontSize: '16px' }} align="center">
                                                 {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
                                             </TableCell>
@@ -189,7 +189,7 @@ export const HostServiceTable = () => {
 
                                             {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{item.images[0].imageBase64}</TableCell> */}
                                             <TableCell sx={{ fontSize: '16px' }}>{item.description}</TableCell>
-                                            <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell>
+                                            {/* <TableCell sx={{ fontSize: '16px', whiteSpace: 'nowrap' }}>{host.fullName}</TableCell> */}
                                             <TableCell sx={{ fontSize: '16px' }} align="center">
                                                 {item.categoryId === 1 ? 'Decoration' : item.categoryId === 2 ? 'Food & Drinks' : item.categoryId === 3 ? 'Waiter' : ''}
                                             </TableCell>

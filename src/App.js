@@ -108,7 +108,6 @@ function App() {
             <Route path="/admin-profile" element={<AdminProfile />} />
             <Route path="/notification" element={<Notification />} />
             <Route path='/editRoom' element={<RoomModalUnstyled />} />
-            <Route path='/createfeedback' element={<ModalCreateFeedback />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

@@ -79,10 +79,14 @@ export default function ModalCreateFeedback({ service }) {
             });
 
             console.log(response.data);
-            toast.success('Create Successfully', {
-                // Toast options
-            });
-            // window.location.reload();
+            if (response.data.isSuccess === true) {
+                toast.success('Create Successfully', {
+                    // Toast options
+                });
+                window.location.reload();
+            }
+
+
         } catch (error) {
             console.error('Error updating service:', error);
             // Handle error

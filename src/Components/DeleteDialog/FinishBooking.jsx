@@ -45,7 +45,7 @@ export const FinishBooking = ({ handleClickFinish }) => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Are you sure to cancel this booking ?
+                        Are you sure to finish this booking ?
                     </Typography>
                     <Button
                         autoFocus
